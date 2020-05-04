@@ -1,13 +1,12 @@
 <template>
   <div>
-    <div class="section1"></div>
-    <div class="section2"></div>
+    this is a article page
   </div>
 </template>
 
 <script>
   export default {
-    name: "Index"
+    name: "Article"
   }
 </script>
 

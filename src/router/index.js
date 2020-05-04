@@ -11,6 +11,11 @@ Vue.use(VueRouter)
     component: ()=>import('../views/Index')
   },
   {
+    path:"/article",
+    name:"Article",
+    component: ()=>import('../views/Article')
+  },
+  {
     path: '**',
     name: 'NotFound',
     component: () => import('../views/NotFound')
