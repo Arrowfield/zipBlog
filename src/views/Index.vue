@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="section1"></div>
-    <div class="section2"></div>
+
   </div>
 </template>
 
