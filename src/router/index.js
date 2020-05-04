@@ -16,14 +16,14 @@ Vue.use(VueRouter)
     component: ()=>import('../views/Article')
   },
   {
-    path: '**',
+    path: '*',
     name: 'NotFound',
     component: () => import('../views/NotFound')
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

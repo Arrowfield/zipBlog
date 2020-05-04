@@ -39,3 +39,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 + [前台](https://gitee.com/mcan/zipBlog.git)
 + [后台](https://gitee.com/mcan/zipBlogServer.git)
+
+#### 部署线上
+
+```shell script
+1. 购买云虚拟主机
+2. 配置java运行环境以及mysql数据库环境
+3. 打包成jar包
+4. 运行即可
+```
