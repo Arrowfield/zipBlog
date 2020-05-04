@@ -70,10 +70,31 @@ yum install -y git
 docker pull nginx
 10. 将静态资源部署到nginx上
 
+docker run -id --name=c_nginx \
+-p 80:80 \
+-v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf \
+-v $PWD/logs:/var/log/nginx \
+-v $PWD/html:/usr/share/nginx/html \
+nginx
+
+
+
 docker run -p 80:80 --name nginx01 -d docker.io/nginx
+
+docker run -p 80:80 --name nginx01 -d docker.io/nginx    -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /data/nginx/log:/var/log/nginx -v /data/nginx/html:/usr/share/nginx/html
 ```
 
 #### 简介
 + 两个服务器
   + vps
   + 阿里云 
+#### tips
+
++ 快速删除node包
+````shell script
+全局代理
+npm config set registry https://registry.npm.taobao.org
+cnpm install rimraf -g 
+// 使用命令删除 
+rimraf node_modules // 也可以删除其它文件夹或文件
+````  
