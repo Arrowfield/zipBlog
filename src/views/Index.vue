@@ -11,7 +11,7 @@
         <div>Golang 在线 IDE <em style="color:#4183c4">Wide</em></div>
         <div>黑客与画家的社区 <em style="color:#f47e00">Sym</em></div>
       </div>
-      <img class="arrow" src="../assets/img/index/arrow.svg">
+      <img class="arrow" src="../assets/img/index/arrow.svg" alt="">
     </div>
 
     <div class="article">
@@ -195,8 +195,6 @@
     color: white;
     letter-spacing: 4px;
     opacity: 1;
-    /*animation: fadeInDown 1s both;*/
-    /*animation-delay: .5s;*/
   }
 
   .intro {
@@ -205,7 +203,6 @@
     font-size: 13px;
     animation: fadeInDown .9s both;
     animation-delay: .9s;
-
     .intro-title{
       font-size: 20px;
     }
@@ -215,7 +212,6 @@
     display: inline-block;
   }
 
-
   .arrow {
     width: 34px;
     height: 34px;
@@ -224,7 +220,6 @@
     animation: bounce 4s 2s infinite;
     cursor: pointer;
   }
-
 
   /*动画*/
   @keyframes fadeInDown {
