@@ -53,7 +53,7 @@ docker
 yum update
 yum install docker
 3. 打包成jar包
-java -jar zip-blog-serve-1.0-SNAPSHOT.jar --server.port=80 > log.file 2>&1 &
+nohup java -jar zip-blog-serve-0.0.1-SNAPSHOT.jar &
 
 4. 运行即可
 5. 检查防火墙
@@ -70,12 +70,14 @@ yum install -y git
 docker pull nginx
 10. 将静态资源部署到nginx上
 
-docker run -id --name=c_nginx \
+docker run \
+--name=nginx01 \
 -p 80:80 \
--v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf \
--v $PWD/logs:/var/log/nginx \
--v $PWD/html:/usr/share/nginx/html \
-nginx
+-v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
+-v /nginx/logs:/var/log/nginx \
+-v /nginx/html:/usr/share/nginx/html \
+-v /nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
+-d nginx
 
 
 
@@ -97,5 +99,13 @@ npm config set registry https://registry.npm.taobao.org
 cnpm install rimraf -g 
 // 使用命令删除 
 rimraf node_modules // 也可以删除其它文件夹或文件
+jarb上传工具
+yum -y install lrzsz
+rz -y
+终止8080端口
+netstat -tunlp|grep 8080
+kill 01 pid
 ````  
 [node的版本太低的解决方式](https://segmentfault.com/a/1190000015302680)
+
+#### 成功
