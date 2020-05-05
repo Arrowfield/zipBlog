@@ -1,10 +1,8 @@
 <template>
   <div @scroll="handleScroll" class="index">
-
     <div class="my-top">
       <button @tap="handleClick" class="menu" :class="{'is-scroll':isScroll}">MENU</button>
-
-      <div @click="handleClick" class="title">D的个人博客</div>
+      <div @click="handleClick" class="title">Z的个人博客</div>
       <div class="intro">
         <div class="intro-title" >开源程序员，自由职业者</div>
         <div>小而美的 Java 博客系统 <em style="color:orangered;">Solo</em></div>
@@ -13,7 +11,6 @@
       </div>
       <img class="arrow" src="../assets/img/index/arrow.svg" alt="">
     </div>
-
     <div class="article">
       <div class="item">
         <div class="title">创业的第二个夏天</div>
@@ -91,18 +88,22 @@
         </div>
       </div>
     </div>
-
     <!--    <mymenu :menu="menu" v-if="false"></mymenu>-->
-
+    <Menu :menu="menu" />
   </div>
 </template>
 
 <script>
+  import Menu from "@/components/Menu";
   export default {
+    components:{
+      Menu
+    },
     name: "Index",
     data() {
       return {
-        isScroll: false
+        isScroll: false,
+        menu:false
       }
     },
     methods: {
