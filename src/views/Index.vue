@@ -1,103 +1,22 @@
 <template>
   <div @scroll="handleScroll" class="index">
     <div class="my-top">
-      <button @tap="handleClick" class="menu" :class="{'is-scroll':isScroll}">MENU</button>
-      <div @click="handleClick" class="title">Z的个人博客</div>
-      <div class="intro">
-        <div class="intro-title" >开源程序员，自由职业者</div>
-        <div>小而美的 Java 博客系统 <em style="color:orangered;">Solo</em></div>
-        <div>Golang 在线 IDE <em style="color:#4183c4">Wide</em></div>
-        <div>黑客与画家的社区 <em style="color:#f47e00">Sym</em></div>
-      </div>
-      <img class="arrow" src="../assets/img/index/arrow.svg" alt="">
+
+<!--      <div class="intro">-->
+<!--        <div class="intro-title" >开源程序员，自由职业者</div>-->
+<!--        <div>小而美的 Java 博客系统 <em style="color:orangered;">Solo</em></div>-->
+<!--        <div>Golang 在线 IDE <em style="color:#4183c4">Wide</em></div>-->
+<!--        <div>黑客与画家的社区 <em style="color:#f47e00">Sym</em></div>-->
+<!--      </div>-->
     </div>
-    <div class="article">
-      <div class="item">
-        <div class="title">创业的第二个夏天</div>
-        <div class="content">如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。 这个夏天我开始做己的事情了。 星火 做一个真正意义上的社区，这是我最近几年</div>
-        <div class="list-intro">
-          <div style="color:#77b6ff;">88250</div>
-          <div>.</div>
-          <div>创业</div>
-          <div></div>
-          <div>B3LOG</div>
-          <div>.</div>
-          <div>41评论</div>
-          <div>.</div>
-          <div>185浏览</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">创业的第二个夏天</div>
-        <div class="content">如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。 这个夏天我开始做己的事情了。 星火 做一个真正意义上的社区，这是我最近几年</div>
-        <div class="list-intro">
-          <div style="color:#77b6ff;">88250</div>
-          <div>.</div>
-          <div>创业</div>
-          <div></div>
-          <div>B3LOG</div>
-          <div>.</div>
-          <div>41评论</div>
-          <div>.</div>
-          <div>185浏览</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">创业的第二个夏天</div>
-        <div class="content">如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。 这个夏天我开始做己的事情了。 星火 做一个真正意义上的社区，这是我最近几年</div>
-        <div class="list-intro">
-          <div style="color:#77b6ff;">88250</div>
-          <div>.</div>
-          <div>创业</div>
-          <div></div>
-          <div>B3LOG</div>
-          <div>.</div>
-          <div>41评论</div>
-          <div>.</div>
-          <div>185浏览</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">创业的第二个夏天</div>
-        <div class="content">如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。 这个夏天我开始做己的事情了。 星火 做一个真正意义上的社区，这是我最近几年</div>
-        <div class="list-intro">
-          <div style="color:#77b6ff;">88250</div>
-          <div>.</div>
-          <div>创业</div>
-          <div></div>
-          <div>B3LOG</div>
-          <div>.</div>
-          <div>41评论</div>
-          <div>.</div>
-          <div>185浏览</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="title">创业的第二个夏天</div>
-        <div class="content">如果你是第一次看这个系列的文章，可从第一篇《创业的第一个春天》1 看起。 这个夏天我开始做己的事情了。 星火 做一个真正意义上的社区，这是我最近几年</div>
-        <div class="list-intro">
-          <div style="color:#77b6ff;">88250</div>
-          <div>.</div>
-          <div>创业</div>
-          <div></div>
-          <div>B3LOG</div>
-          <div>.</div>
-          <div>41评论</div>
-          <div>.</div>
-          <div>185浏览</div>
-        </div>
-      </div>
-    </div>
-    <!--    <mymenu :menu="menu" v-if="false"></mymenu>-->
-    <Menu :menu="menu" />
   </div>
 </template>
 
 <script>
-  import Menu from "@/components/Menu";
+
   export default {
     components:{
-      Menu
+
     },
     name: "Index",
     data() {
