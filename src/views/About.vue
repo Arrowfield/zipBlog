@@ -27,6 +27,7 @@
 
     <div class="intro-detail">
       <p>留言</p>
+      <Message/>
     </div>
 
     <div class="intro-detail">
@@ -43,11 +44,12 @@
 
 <script>
   import Tags from "@/components/Tags";
-
+  import Message from '@/components/Message'
   export default {
     name: "About",
     components: {
-      Tags
+      Tags,
+      Message
     }
   }
 </script>

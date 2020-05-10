@@ -1,0 +1,43 @@
+<template>
+  <div class="message">
+    <textarea placeholder="请输入评论"></textarea>
+    <div class="send-cont">
+      <input placeholder="请输入你的昵称" type="text" name="message">
+      <button class="send">留言</button>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "Message"
+  }
+</script>
+
+<style lang="scss" scoped>
+  .message {
+    textarea {
+      width: 100% !important;
+      min-height: 100px;
+      font-size: 14px;
+      border: 1px solid #dcdee2;
+      padding: 4px 7px;
+    }
+
+    .send-cont{
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      /*justify-content: end;*/
+    }
+
+    input {
+      height: 32px;
+    }
+    .send{
+      height: 32px;
+      margin-left:5px;
+      min-width: 80px;
+    }
+  }
+</style>

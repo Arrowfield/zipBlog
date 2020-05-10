@@ -28,7 +28,6 @@
         <a v-waves href="#"><i class="iconfont iconwifi"></i></a>
         <a v-waves href="#" >
           <i class="iconfont iconshuji"></i>
-
         </a>
       </div>
     </div>
@@ -43,6 +42,12 @@
           <div class="code">
             <img alt="" src="../assets/img/index/code.jpg">
           </div>
+        </a>
+        <a  href="javascript:" class="code-cont" title="登录">
+          <i class="iconfont icondenglu"></i>
+        </a>
+        <a  href="http://music.sxswyc.top/" class="code-cont" title="音乐馆" target="_blank">
+          <i class="iconfont iconyinyue"></i>
         </a>
       </div>
     </div>
@@ -204,6 +209,7 @@
           display: flex;
           align-items: center;
           padding:0 4px;
+          flex-wrap: wrap;
           .code-cont{
             position: relative;
             &:hover .code{
