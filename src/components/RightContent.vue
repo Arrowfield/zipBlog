@@ -39,7 +39,7 @@
 
       align-items: center;
       justify-content: space-between;
-      padding:0 10px;
+      padding:0 20px 0 10px;
       display: none;
       a {
         width: 48px;
