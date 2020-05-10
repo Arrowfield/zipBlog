@@ -21,16 +21,16 @@ const routes = [
         component:()=> import("../views/LinkFriend")
       },
       {
+        path:"tags",
+        name:"Tags",
+        component:()=> import("../views/Tags")
+      },
+      {
         path: "about",
         name:"About",
         component:()=> import("../views/About")
       }
     ]
-  },
-  {
-    path: "/article",
-    name: "Article",
-    component: () => import('../views/Article')
   },
   {
     path: '*',

@@ -1,6 +1,5 @@
 <template>
-  <RightPanelContainer class="link-page">
-    <h2 class="link-title">友情链接</h2>
+  <RightPanelContainer class="link-page" title="友情链接">
     <ul class="link-list">
       <li>
         <a href="https://www.stackoverflow.wiki/" title="贼拉正经的技术博客" target="_blank">
@@ -16,6 +15,15 @@
             src="https://img.hacpai.com/avatar/1353745196354_1584267806213.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"
             alt="">
           <p>D的个人博客</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="https://www.yezismile.com/" title="叶子的个人博客" target="_blank">
+          <img
+            src="https://www.yezismile.com/kindeditor/attached/image/20191205/20191205130647_70177.jpeg"
+            alt="">
+          <p><a href="http://m.yezismile.com/" title="叶子的个人博客" target="_blank">叶子的个人博客</a></p>
         </a>
       </li>
 
@@ -38,41 +46,14 @@
     name: "LinkFriend",
     components: {
       RightPanelContainer
-    }
+    },
+
   }
 </script>
 
 <style lang="scss" scoped>
   .link-page {
-    .link-title {
-      font-size: 1.5em;
-      position: relative;
-      padding-bottom: 10px;
-      color: #111;
-      margin: 20px 0;
 
-      &::before {
-        content: "";
-        width: calc(100% + 40px);
-        border-bottom: 1px solid #eee;
-        position: absolute;
-        bottom: -1px;
-        left: -20px;
-      }
-
-      &::after {
-        transition: all .35s;
-        content: "";
-        position: absolute;
-        background: rgba(255, 78, 106, .85);
-        width: 1em;
-        height: 5px;
-        bottom: -3px;
-        left: 0;
-        border-radius: 6px;
-        box-shadow: 0 2px 12px rgba(255, 78, 106, .85);
-      }
-    }
 
     .link-list {
       display: flex;
