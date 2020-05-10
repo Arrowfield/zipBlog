@@ -38,7 +38,7 @@
 <style lang="scss" scoped>
 
   .about-page {
-
+      margin-top: 20px;
     .img-cont {
       overflow: hidden;
       position: relative;
