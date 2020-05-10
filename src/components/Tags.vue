@@ -8,8 +8,12 @@
 </template>
 
 <script>
+  import waves from "@/directive/waves/waves";
   export default {
-    name: "Tags"
+    name: "Tags",
+    directives:{
+      waves
+    },
   }
 </script>
 

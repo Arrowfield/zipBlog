@@ -8,18 +8,25 @@
     <div class="intro-detail">
       <p>我是谁</p>
       <ul>
-        <li>一个来自重庆山区的少年，喜欢唱、跳、rap。。。。。好像跑题了，重新来。</li>
-        <li>一个来自重庆山区的少年，即将结束大学生涯却拿不到毕业证的想成为程序员的码农。</li>
-        <li>金戋(jian)取自我名字中第二个字，学习docker时无意中发现了<a href="https://github.com/b3log" target="_blank">solo</a>，就随手搭建了一个，于是就有了<a href="http://www.jinjianh.com" target="_blank">墨殇的技术博客</a></li>
+        <li>一个来自湖北黄石的少年，喜欢唱、跳、rap。。。。。好像跑题了，重新来。</li>
+        <li>一个来自湖北黄石的少年，即将结束大学生涯却拿不到毕业证的想成为程序员的码农。</li>
+        <li>网站的主题完全模仿 <a href="https://www.inkdp.cn/" target="_blank">墨殇的技术博客</a>目前还有许多没有完善，后端也没有接入，目前就是个纯静态</li>
         <li>一个刚步入社会，略带中二的少年，希望成为一名很优秀的程序员</li>
       </ul>
       <p>我在干嘛</p>
       <ul>
-        <li>一个来自重庆山区的少年，喜欢唱、跳、rap。。。。。好像跑题了，重新来。</li>
-        <li>一个来自重庆山区的少年，即将结束大学生涯却拿不到毕业证的想成为程序员的码农。</li>
-        <li>金戋(jian)取自我名字中第二个字，学习docker时无意中发现了<a href="https://github.com/b3log" target="_blank">solo</a>，就随手搭建了一个，于是就有了<a href="http://www.jinjianh.com" target="_blank">墨殇的技术博客</a></li>
-        <li>一个刚步入社会，略带中二的少年，希望成为一名很优秀的程序员</li>
+        <li>努力学习，不断的进步</li>
+        <li>在一家公司担任web前端工程师</li>
       </ul>
+      <p>我会什么</p>
+      <ul>
+        <li>前端 （Vue、Node.js）</li>
+        <li>数据库设计</li>
+      </ul>
+    </div>
+
+    <div class="intro-detail">
+      <p>留言</p>
     </div>
   </div>
 </template>
@@ -67,6 +74,7 @@
 
       p{
         margin-bottom: 16px;
+        font-weight: bold;
       }
 
       ul{
