@@ -37,7 +37,11 @@
         <li>qq:768449566</li>
         <li>微信:</li>
         <li>邮箱:<a href="mailto:768449566@qq.com?subject=发送邮件">768449566@qq.com</a></li>
+        <li class="play-music">点击此处播放音乐:<i @click="playMusic" class="iconfont" :class="play ? 'iconxinbaniconshangchuan-' : 'iconjingyin'"></i></li>
       </ul>
+<!--      <audio ref="audioPlay" src="../assets/media/SoldOut.mp3" loop>-->
+<!--        您的浏览器不支持 audio 标签。-->
+<!--      </audio>-->
     </div>
   </div>
 </template>
@@ -50,6 +54,21 @@
     components: {
       Tags,
       Message
+    },
+    data(){
+      return{
+        play:false
+      }
+    },
+    methods:{
+      playMusic(){
+        // this.play = !this.play
+        // if(this.$refs.audioPlay.paused){
+        //   this.$refs.audioPlay.play()
+        // }else{
+        //   this.$refs.audioPlay.pause()
+        // }
+      }
     }
   }
 </script>
@@ -98,6 +117,14 @@
 
       li{
         line-height: 24px;
+      }
+
+      li.play-music{
+        i{
+          margin-left:5px;
+          font-size: 20px;
+          cursor: pointer;
+        }
       }
 
     }

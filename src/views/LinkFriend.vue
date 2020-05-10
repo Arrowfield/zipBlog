@@ -66,8 +66,6 @@
 
 <style lang="scss" scoped>
   .link-page {
-
-
     .link-list {
       display: flex;
       flex-wrap: wrap;
@@ -88,10 +86,6 @@
           overflow: hidden;
           padding: 3px 10px 5px;
         }
-      }
-
-      img {
-
       }
     }
   }

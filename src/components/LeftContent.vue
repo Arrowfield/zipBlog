@@ -20,6 +20,7 @@
       <router-link to="/link" v-waves><i class="iconfont icondaohang"></i>友情链接</router-link>
       <router-link to="/tags" v-waves><i class="iconfont iconbianqian"></i>标签</router-link>
       <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
+      <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
     </div>
     <div class="intro fun-list">
       <h3>功能按钮</h3>
