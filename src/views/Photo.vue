@@ -33,7 +33,7 @@
       <li>
         <a href="javascript:" title="" >
           <img
-            src=""
+            src="../assets/img/photo/jinmu.png"
             alt="">
           <p>2020.02.08</p>
         </a>
@@ -42,7 +42,7 @@
       <li>
         <a href="javascript:" title="" >
           <img
-            src=""
+            src="../assets/img/photo/me.jpg"
             alt="">
           <p>2020.02.07</p>
         </a>
