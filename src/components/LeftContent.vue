@@ -177,6 +177,7 @@
         .fun-items{
           display: flex;
           align-items: center;
+          padding:0 4px;
         }
 
         .fun-items a{
