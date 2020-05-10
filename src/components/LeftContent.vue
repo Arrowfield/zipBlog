@@ -211,6 +211,7 @@
             }
             .code{
               display: none;
+
               &::after{
                 content: "";
                 width: 0;
@@ -226,14 +227,17 @@
 
               img{
                 width: 100%;
+                border-radius: 10px;
               }
+              border-radius: 10px;
               position: absolute;
               width: 150px;
-              height: 150px;
+
               top:100%;
               margin-top:5px;
               left:50%;
               margin-left: -75px;
+              /*overflow: hidden;*/
               background: white;
               box-shadow: 0 0.3rem 2rem rgba(161,177,204,.6);
 
