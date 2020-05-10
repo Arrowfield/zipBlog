@@ -26,7 +26,10 @@
       <div class="fun-items">
         <a v-waves href="#"><i class="iconfont iconhuabanfuben"></i></a>
         <a v-waves href="#"><i class="iconfont iconwifi"></i></a>
-        <a v-waves href="#"><i class="iconfont iconshuji"></i></a>
+        <a v-waves href="#" >
+          <i class="iconfont iconshuji"></i>
+
+        </a>
       </div>
     </div>
 
@@ -35,7 +38,12 @@
       <div class="fun-items">
         <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i class="iconfont icongithub"></i></a>
         <a v-waves href="//qm.qq.com/cgi-bin/qm/qr?k=RmZQeDHL_tjQIKwib_rmvEFa7AsOMSj-&noverify=0#" title="768449566" target="_blank"><i class="iconfont iconqq"></i></a>
-        <a v-waves href="#"><i class="iconfont iconweixin"></i></a>
+        <a  href="javascript:" class="code-cont">
+          <i class="iconfont iconweixin"></i>
+          <div class="code">
+            <img alt="" src="../assets/img/index/code.jpg">
+          </div>
+        </a>
       </div>
     </div>
 
@@ -178,6 +186,42 @@
           display: flex;
           align-items: center;
           padding:0 4px;
+          .code-cont{
+            position: relative;
+            &:hover .code{
+              display: block;
+            }
+            .code{
+              display: none;
+              &::after{
+                content: "";
+                width: 0;
+                height: 0;
+                position: absolute;
+                top:-16px;
+                left:50%;
+                margin-left: -8px;
+                border-style: solid;
+                border-width: 8px;
+                border-color: transparent transparent white transparent;
+              }
+
+              img{
+                width: 100%;
+              }
+              position: absolute;
+              width: 150px;
+              height: 150px;
+              top:100%;
+              margin-top:5px;
+              left:50%;
+              margin-left: -75px;
+              background: white;
+              box-shadow: 0 0.3rem 2rem rgba(161,177,204,.6);
+
+
+            }
+          }
         }
 
         .fun-items a{
