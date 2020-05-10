@@ -16,6 +16,11 @@ const routes = [
         component:()=> import("../components/Article")
       },
       {
+        path:"link",
+        name:"LinkFriend",
+        component:()=> import("../views/LinkFriend")
+      },
+      {
         path: "about",
         name:"About",
         component:()=> import("../views/About")
