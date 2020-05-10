@@ -4,7 +4,7 @@
       <a v-waves href="javascript:" @click="showMenuFun"><i class="iconfont icondaohang"></i></a>
       <a href="#"><img src="../assets/img/index/avatar.gif" alt=""></a>
     </div>
-    <ul>
+    <ul v-if="$route.fullPath === '/'">
       <li>
         <a v-waves class="link" href="#" title="从零开始安装 solo 博客 - Z 个人博客">
           <div class="image-cont">
@@ -150,6 +150,7 @@
         </article>
       </li>
     </ul>
+    <router-view v-else/>
     <div class="footer">凡打不倒我的，必使我强大！！！—— Z 技术博客</div>
   </div>
 </template>
@@ -160,11 +161,13 @@
 
   export default {
     name: "RightContent",
-
     directives: {
       waves
     },
     props:['showMenu'],
+    watch:{
+
+    },
     methods:{
       showMenuFun(){
         this.$emit('update:showMenu',!this.showMenu)
@@ -178,7 +181,7 @@
     margin-top: 20px;
     position: absolute;
     left: 260px;
-
+    width: 940px;
     .header {
 
       align-items: center;
@@ -204,7 +207,7 @@
     }
 
     li {
-      width: 940px;
+
       margin: 20px auto;
       border-radius: 10px;
       background-color: #fff;

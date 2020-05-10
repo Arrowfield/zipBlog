@@ -16,10 +16,10 @@
       </div>
     </div>
     <div class="intro menu-list">
-      <a href="#" v-waves><i class="iconfont iconshouye"></i>回到首页</a>
+      <router-link to="/" v-waves><i class="iconfont iconshouye"></i>回到首页</router-link>
       <a href="#" v-waves><i class="iconfont icondaohang"></i>友情链接</a>
-      <a href="#" v-waves><i class="iconfont iconbianqian"></i>标签</a>
-      <a href="#" v-waves><i class="iconfont iconguanyu"></i>关于我</a>
+      <router-link to="/tags" v-waves><i class="iconfont iconbianqian"></i>标签</router-link>
+      <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
     </div>
     <div class="intro fun-list">
       <h3>功能按钮</h3>
@@ -87,6 +87,12 @@
       </ul>
     </div>
 
+    <div class="copyright">
+      <p>&copy; 2020 <a href="#">Z 个人博客</a></p>
+      <p><a href="#">渝ICP备17007419号-2</a></p>
+      <p>Powered by <a href="#">Solo</a></p>
+      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>
+    </div>
   </div>
 </template>
 
@@ -117,6 +123,18 @@
       width: 0;
       height: 0;
     }
+
+    .copyright{
+      margin: 20px;
+      text-align: right;
+      padding:0 10px;
+      font-size: 12px;
+      color: #444;
+      a{
+        color: rgba(255,78,106,.8);
+      }
+    }
+
     .intro{
       border-radius: 10px;
       background-color: #fff;
@@ -262,7 +280,7 @@
           line-height: 48px;
           overflow: hidden;
 
-          &:nth-child(1){
+          &.router-link-exact-active{
             color: #fff;
             opacity: .9;
             background: #ff4e6a;

@@ -4,7 +4,6 @@
     <div class="index-mask" v-if="showMenu" @click="showMenu = !showMenu"></div>
     <LeftContent :showMenu="showMenu"/>
     <RightContent :showMenu.sync="showMenu"/>
-
     <svg t="1589073817842" class="icon go-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
          p-id="4944" width="200" height="200">
       <path

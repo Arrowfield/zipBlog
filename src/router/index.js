@@ -4,16 +4,23 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Index',
-    component: ()=>import('../views/Index')
+    component: () => import('../views/Index'),
+    children: [
+      {
+        path: "about",
+        name:"About",
+        component:()=> import("../views/About")
+      }
+    ]
   },
   {
-    path:"/article",
-    name:"Article",
-    component: ()=>import('../views/Article')
+    path: "/article",
+    name: "Article",
+    component: () => import('../views/Article')
   },
   {
     path: '*',
@@ -24,6 +31,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
+  linkActiveClass:'active',
   base: process.env.BASE_URL,
   routes
 })

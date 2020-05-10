@@ -7,6 +7,7 @@
 body{
   max-width: 1200px;
   margin: auto!important;
+  font-family: Roboto,Noto,Helvetica,Arial,sans-serif;
 }
 
 html{
@@ -45,7 +46,7 @@ a{
   div.right-content{
     position: relative !important;
     left:0 !important;
-
+    width: 100% !important;
     .header{
       //display: block !important;
       display: flex !important;
