@@ -31,11 +31,12 @@
       /*justify-content: end;*/
     }
 
-    input {
+    input,.send {
       height: 32px;
+      padding: 4px 7px;
+      border: 1px solid #dcdee2;
     }
     .send{
-      height: 32px;
       margin-left:5px;
       min-width: 80px;
     }

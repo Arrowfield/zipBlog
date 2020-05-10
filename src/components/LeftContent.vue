@@ -23,11 +23,17 @@
     </div>
     <div class="intro fun-list">
       <h3>功能按钮</h3>
-      <div class="fun-items">
+      <div class="fun-items btn">
         <a v-waves href="#"><i class="iconfont iconhuabanfuben"></i></a>
         <a v-waves href="#"><i class="iconfont iconwifi"></i></a>
         <a v-waves href="#" >
           <i class="iconfont iconshuji"></i>
+        </a>
+        <a v-waves href="http://music.sxswyc.top/" class="code-cont" title="音乐馆" target="_blank">
+          <i class="iconfont iconyinyue"></i>
+        </a>
+        <a v-waves href="//v.sxswyc.top/" class="code-cont" title="视频屋" target="_blank">
+          <i class="iconfont iconshipin"></i>
         </a>
       </div>
     </div>
@@ -37,17 +43,14 @@
       <div class="fun-items">
         <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i class="iconfont icongithub"></i></a>
         <a v-waves href="//qm.qq.com/cgi-bin/qm/qr?k=RmZQeDHL_tjQIKwib_rmvEFa7AsOMSj-&noverify=0#" title="768449566" target="_blank"><i class="iconfont iconqq"></i></a>
-        <a  href="javascript:" class="code-cont">
+        <a href="javascript:" class="code-cont">
           <i class="iconfont iconweixin"></i>
           <div class="code">
             <img alt="" src="../assets/img/index/code.jpg">
           </div>
         </a>
-        <a  href="javascript:" class="code-cont" title="登录">
+        <a v-waves  href="javascript:" class="code-cont" title="登录">
           <i class="iconfont icondenglu"></i>
-        </a>
-        <a  href="http://music.sxswyc.top/" class="code-cont" title="音乐馆" target="_blank">
-          <i class="iconfont iconyinyue"></i>
         </a>
       </div>
     </div>
@@ -94,7 +97,7 @@
 
     <div class="copyright">
       <p>&copy; 2020 <a href="#">Z 个人博客</a></p>
-      <p><a href="#">渝ICP备17007419号-2</a></p>
+      <p><a href="#">鄂ICP备1707419号-2</a></p>
       <p>Powered by <a href="#">Solo</a></p>
       <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>
     </div>
@@ -263,6 +266,35 @@
           line-height: 40px;
           background-color: rgba(180,180,255,.15);
         }
+        .fun-items.btn a:nth-child(1){
+          color: #64dcf0;
+        }
+        .fun-items.btn a:nth-child(2){
+          color: #d4237a;
+        }
+        .fun-items.btn a:nth-child(3){
+          color: #f4ea2a;
+        }
+        .fun-items.btn a:nth-child(4){
+          color: #d4237a;
+        }
+        .fun-items.btn a:nth-child(5){
+          color: #1296db;
+        }
+
+        .fun-items a:nth-child(1){
+          color: #2c2c2c;
+        }
+
+        .fun-items a:nth-child(2){
+          color: #1296db;
+        }
+
+        .fun-items a:nth-child(3){
+          color: #1afa29;
+        }
+
+
       }
 
       .article,.views{

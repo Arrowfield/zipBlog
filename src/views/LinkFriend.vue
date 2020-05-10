@@ -35,6 +35,16 @@
           <p>墨殇的技术博客</p>
         </a>
       </li>
+
+      <li>
+        <a href="http://blog.sxswyc.top/" title="一个人の↑蹲バ街角个人博客 | 王震个人博客 | Laity个人博客" target="_blank">
+          <img
+            src="http://blog.sxswyc.top/ueditor/php/upload/image/20190307/1551937909294156.png"
+            alt="">
+          <p>一个人の↑蹲バ街角个人博客 | 王震个人博客 | Laity个人博客</p>
+        </a>
+      </li>
+
     </ul>
   </RightPanelContainer>
 </template>
@@ -57,6 +67,7 @@
 
     .link-list {
       display: flex;
+      flex-wrap: wrap;
       li {
         transition: all .03s;
         width: 100px;
