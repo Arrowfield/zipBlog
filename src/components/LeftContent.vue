@@ -1,5 +1,5 @@
 <template>
-  <div class="left-content">
+  <div class="left-content " :class="{'screen-change':showMenu}">
     <div class="avatar">
       <a href="#">
         <img src="../assets/img/index/avatar.gif" title="Z 的技术博客" alt="">
@@ -33,8 +33,8 @@
     <div class="intro fun-list">
       <h3>社交功能</h3>
       <div class="fun-items">
-        <a v-waves href="#"><i class="iconfont icongithub"></i></a>
-        <a v-waves href="#"><i class="iconfont iconqq"></i></a>
+        <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i class="iconfont icongithub"></i></a>
+        <a v-waves href="//qm.qq.com/cgi-bin/qm/qr?k=RmZQeDHL_tjQIKwib_rmvEFa7AsOMSj-&noverify=0#" title="768449566" target="_blank"><i class="iconfont iconqq"></i></a>
         <a v-waves href="#"><i class="iconfont iconweixin"></i></a>
       </div>
     </div>
@@ -88,6 +88,11 @@
     name: "LeftContent",
     directives:{
       waves
+    },
+    props:{
+      showMenu:{
+        default:false
+      }
     }
   }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="right-content">
     <div class="header">
-      <a v-waves href="#"><i class="iconfont icondaohang"></i></a>
+      <a v-waves href="javascript:" @click="showMenuFun"><i class="iconfont icondaohang"></i></a>
       <a href="#"><img src="../assets/img/index/avatar.gif" alt=""></a>
     </div>
     <ul>
@@ -163,6 +163,12 @@
 
     directives: {
       waves
+    },
+    props:['showMenu'],
+    methods:{
+      showMenuFun(){
+        this.$emit('update:showMenu',!this.showMenu)
+      }
     }
   }
 </script>
