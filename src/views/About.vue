@@ -36,7 +36,7 @@
         <li>主题版权归原作者所有如有侵权请立即与本人联系,本人将及时处理</li>
         <li>qq:768449566</li>
         <li>微信:</li>
-        <li>邮箱:768449566@qq.com</li>
+        <li>邮箱:<a href="mailto:768449566@qq.com?subject=发送邮件">768449566@qq.com</a></li>
       </ul>
     </div>
   </div>
