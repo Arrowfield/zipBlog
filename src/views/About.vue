@@ -8,8 +8,8 @@
     <div class="intro-detail">
       <p>我是谁</p>
       <ul>
-        <li>姿平（Zip）/男/湖北黄石/1996</li>
-        <li>计科/武汉工商学院</li>
+        <li>姿平（Zip）/ 男 / 湖北黄石 / 1996</li>
+        <li>计科 / 武汉工商学院</li>
         <li>网站模仿 <a href="https://www.inkdp.cn/" target="_blank">墨殇的技术博客</a></li>
       </ul>
       <p>我在干嘛</p>
@@ -117,6 +117,7 @@
         list-style: disc;
         padding-left: 2em;
         margin-bottom:16px;
+        color:#738a94;
       }
 
       li{
