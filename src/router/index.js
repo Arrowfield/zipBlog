@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+// import Valine from 'valine';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Index',
+    // name: 'Index',
     component: () => import('../views/Index'),
     children: [
       {
@@ -39,8 +39,8 @@ const routes = [
   },
   {
     path: '*',
-    name: 'NotFound',
-    component: () => import('../views/NotFound')
+    name: '404',
+    component: () => import('../views/404')
   }
 ]
 
@@ -49,6 +49,11 @@ const router = new VueRouter({
   linkActiveClass:'active',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to,from,next)=>{
+
+  next()
 })
 
 export default router

@@ -21,10 +21,12 @@
       Fragment
     },
     mounted() {
-      new Valine({
-        el:'#vcomments',
-        appId: 'i6UzLvqubKd7cmpuvLNmcKot-gzGzoHsz',
-        appKey: 'HsPRcF8z6wsC6oKKRHIK4lQ9'
+      this.$nextTick(()=>{
+        new Valine({
+          el:'#vcomments',
+          appId: 'i6UzLvqubKd7cmpuvLNmcKot-gzGzoHsz',
+          appKey: 'HsPRcF8z6wsC6oKKRHIK4lQ9'
+        })
       })
     }
   }
