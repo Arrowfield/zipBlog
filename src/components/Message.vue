@@ -8,18 +8,24 @@
 <!--  </div>-->
 
   <Fragment>
-
+    <div id="vcomments"></div>
   </Fragment>
 </template>
 
 <script>
   import {Fragment} from 'vue-fragment'
+  import Valine from 'valine';
   export default {
     name: "Message",
     components:{
       Fragment
     },
     mounted() {
+      new Valine({
+        el:'#vcomments',
+        appId: 'i6UzLvqubKd7cmpuvLNmcKot-gzGzoHsz',
+        appKey: 'HsPRcF8z6wsC6oKKRHIK4lQ9'
+      })
     }
   }
 </script>

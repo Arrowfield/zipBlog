@@ -112,4 +112,7 @@ kill 01 pid
 
 
 #### 接入云评论
-+ 
+```shell script
+#npm install --save vuepress-plugin-comment
+npm install valine --save
+```
