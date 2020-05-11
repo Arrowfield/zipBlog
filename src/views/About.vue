@@ -23,6 +23,11 @@
         <li>前端 （Vue、Node.js）</li>
         <li>数据库设计</li>
       </ul>
+      <p>我喜欢什么</p>
+      <ul>
+        <li>王者荣耀【苹果手Q26区（i衷情于你i）】纵情山河万里，肆意九州五岳</li>
+        <li>QQ飞车</li>
+      </ul>
     </div>
 
     <div class="intro-detail">

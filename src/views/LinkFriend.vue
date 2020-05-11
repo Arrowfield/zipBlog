@@ -21,14 +21,14 @@
       </li>
 
 
-      <li>
-        <a href="https://www.yezismile.com/" title="叶子的个人博客" target="_blank">
-          <img
-            src="https://www.yezismile.com/kindeditor/attached/image/20191205/20191205130647_70177.jpeg"
-            alt="">
-          <p><a href="http://m.yezismile.com/" title="叶子的个人博客" target="_blank">叶子的个人博客</a></p>
-        </a>
-      </li>
+<!--      <li>-->
+<!--        <a href="https://www.yezismile.com/" title="叶子的个人博客" target="_blank">-->
+<!--          <img-->
+<!--            src="https://www.yezismile.com/kindeditor/attached/image/20191205/20191205130647_70177.jpeg"-->
+<!--            alt="">-->
+<!--          <p><a href="http://m.yezismile.com/" title="叶子的个人博客" target="_blank">叶子的个人博客</a></p>-->
+<!--        </a>-->
+<!--      </li>-->
 
       <li>
         <a href="https://www.inkdp.cn/" title="墨殇的技术博客" target="_blank">
@@ -39,14 +39,14 @@
         </a>
       </li>
 
-      <li>
-        <a href="http://blog.sxswyc.top/" title="一个人の↑蹲バ街角个人博客 | 王震个人博客 | Laity个人博客" target="_blank">
-          <img
-            src="http://blog.sxswyc.top/ueditor/php/upload/image/20190307/1551937909294156.png"
-            alt="">
-          <p>一个人の↑蹲バ街角个人博客 | 王震个人博客 | Laity个人博客</p>
-        </a>
-      </li>
+<!--      <li>-->
+<!--        <a href="http://blog.sxswyc.top/" title="一个人の↑蹲バ街角个人博客 | 王震个人博客 | Laity个人博客" target="_blank">-->
+<!--          <img-->
+<!--            src="http://blog.sxswyc.top/ueditor/php/upload/image/20190307/1551937909294156.png"-->
+<!--            alt="">-->
+<!--          <p>一个人の↑蹲バ街角个人博客 | 王震个人博客 | Laity个人博客</p>-->
+<!--        </a>-->
+<!--      </li>-->
 
     </ul>
   </RightPanelContainer>

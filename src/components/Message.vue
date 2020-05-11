@@ -1,16 +1,26 @@
 <template>
-  <div class="message">
-    <textarea placeholder="请输入评论"></textarea>
-    <div class="send-cont">
-      <input placeholder="请输入你的昵称" type="text" name="message">
-      <button class="send">留言</button>
-    </div>
-  </div>
+<!--  <div class="message">-->
+<!--    <textarea placeholder="请输入评论"></textarea>-->
+<!--    <div class="send-cont">-->
+<!--      <input placeholder="请输入你的昵称" type="text" name="message">-->
+<!--      <button class="send">留言</button>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <Fragment>
+
+  </Fragment>
 </template>
 
 <script>
+  import {Fragment} from 'vue-fragment'
   export default {
-    name: "Message"
+    name: "Message",
+    components:{
+      Fragment
+    },
+    mounted() {
+    }
   }
 </script>
 
