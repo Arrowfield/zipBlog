@@ -8,9 +8,10 @@
     <div class="intro-detail">
       <p>我是谁</p>
       <ul>
-        <li>姿平（Zip）/ 男 / 湖北黄石</li>
+        <li>方姿平（Zip）/ 男 / 湖北黄石</li>
         <li>计科 / 武汉工商学院</li>
         <li>网站模仿 <a href="https://www.inkdp.cn/" target="_blank">墨殇的技术博客</a></li>
+        <li>个人博客：<a href="http://10.94.3.73:8080/about">http://10.94.3.73:8080</a></li>
       </ul>
       <p>我在干嘛</p>
       <ul>
@@ -39,6 +40,7 @@
       <p>后记</p>
       <ul>
         <li>主题版权归原作者所有如有侵权请立即与本人联系,本人将及时处理</li>
+        <li>网站域名还在阿里云备案中，，，</li>
         <li>qq:768449566</li>
         <li>微信:</li>
         <li>邮箱:<a href="mailto:768449566@qq.com?subject=发送邮件">768449566@qq.com</a></li>
