@@ -1,13 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Valine from 'valine';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    // name: 'Index',
     component: () => import('../views/Index'),
     children: [
       {
