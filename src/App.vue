@@ -9,6 +9,9 @@
     name: "App",
     methods: {},
     mounted() {
+      this.$axios.get('/api/user/3',{}).then((res)=>{
+        console.log(res)
+      })
     }
   }
 </script>

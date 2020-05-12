@@ -10,6 +10,17 @@ module.exports = {
     }
   },
   pluginOptions: {
-    
-  }
+
+  },
+  devServer: {
+    disableHostCheck: true,
+    proxy: {
+      '/api': {
+        target: 'http://121.199.58.113:8080',
+        ws: false,
+        changeOrigin: true,
+        secure: false,
+      }
+    }
+  },
 }
