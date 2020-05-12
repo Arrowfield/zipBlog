@@ -8,7 +8,7 @@
     <div class="intro-detail">
       <p>我是谁</p>
       <ul>
-        <li>姿平（Zip）/ 男 / 湖北黄石 / 1996</li>
+        <li>姿平（Zip）/ 男 / 湖北黄石</li>
         <li>计科 / 武汉工商学院</li>
         <li>网站模仿 <a href="https://www.inkdp.cn/" target="_blank">墨殇的技术博客</a></li>
       </ul>
@@ -26,6 +26,7 @@
       <ul>
         <li>王者荣耀【苹果手Q26区（i衷情于你i）】纵情山河万里，肆意九州五岳</li>
         <li>QQ飞车</li>
+        <li>动漫【海贼，柯南，，，，】</li>
       </ul>
     </div>
 
