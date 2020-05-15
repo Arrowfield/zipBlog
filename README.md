@@ -78,12 +78,6 @@ docker run \
 -v /nginx/html:/usr/share/nginx/html \
 -v /nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
 -d nginx
-
-
-
-docker run -p 80:80 --name nginx01 -d docker.io/nginx
-
-docker run -p 80:80 --name nginx01 -d docker.io/nginx    -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /data/nginx/log:/var/log/nginx -v /data/nginx/html:/usr/share/nginx/html
 ```
 
 #### 简介
