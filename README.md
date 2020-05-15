@@ -113,3 +113,10 @@ npm install valine --save
 git config --global https.proxy 127.0.0.1:12639
 git config --global http.proxy 127.0.0.1:12639
 ```
+
+#### 强制复制的命令
+```shell script
+\cp -rf dist/* /nginx/html/web/ 
+success
+ yarn serve --port 8000
+```
