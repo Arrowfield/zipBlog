@@ -19,7 +19,7 @@
       <router-link to="/" v-waves><i class="iconfont iconshouye"></i>回到首页</router-link>
       <router-link to="/link" v-waves><i class="iconfont icondaohang"></i>友情链接</router-link>
       <router-link to="/tags" v-waves><i class="iconfont iconbianqian"></i>标签</router-link>
-      <a href="/about" @click="/*goToPage('about')*/" v-waves :class="$route.path === '/about' ? 'router-link-exact-active': ''"><i class="iconfont iconguanyu"></i>关于我</a>
+      <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
       <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
     </div>
     <div class="intro fun-list">
@@ -120,9 +120,7 @@
         default: false
       }
     },
-    watch:{
-
-    },
+    watch: {},
     methods: {
       goToPage() {
         // const {href} = this.$router.resolve({path})
