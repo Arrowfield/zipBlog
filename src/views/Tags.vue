@@ -37,12 +37,16 @@
 
 <script>
   import RightPanelContainer from '@/components/RightPanelContainer'
+  import {getTags} from "@/api/tag";
   // import TagsComponent from '@/components/Tags'
   export default {
     name: "Tags",
     components:{
       RightPanelContainer,
-
+    },
+    async mounted(){
+      let res = await getTags()
+      console.log(res)
     }
   }
 </script>
