@@ -5,18 +5,22 @@
 </template>
 
 <script>
+
+  import {getUser} from '@/api/home'
+
   export default {
     name: "App",
     methods: {},
-    mounted() {
+    async mounted() {
       // this.$axios.get('/api/user/3',{}).then((res)=>{
       //   console.log(res)
       // })
 
-      this.$axios.get('/user/3',{}).then((res)=>{
-        console.log(res)
-      })
-
+      // this.$axios.get('/user/3', {}).then((res) => {
+      //   console.log(res)
+      // })
+      let res = await getUser()
+      console.log(res)
     }
   }
 </script>
