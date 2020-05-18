@@ -3,7 +3,7 @@ module.exports = {
   //     port:80,
   //     host:process.env.MY_SELF_HOST
   // }
-
+  lintOnSave: false,
   configureWebpack: {
     externals: {
       //Valine: 'Valine'
@@ -14,13 +14,13 @@ module.exports = {
   },
   devServer: {
     disableHostCheck: true,
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://121.199.58.113:8080/',
-    //     ws: false,
-    //     changeOrigin: true,
-    //     secure: false,
-    //   }
-    // }
+    proxy: {
+      "/api": {
+        target: process.env.VUE_APP_SERVER,
+        ws: false,
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 }

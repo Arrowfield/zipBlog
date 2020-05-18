@@ -6,3 +6,9 @@ export function getUser(params) {
     method:"GET"
   })
 }
+
+export function getArticleList() {
+  return service({
+    url:"/article/get"
+  })
+}

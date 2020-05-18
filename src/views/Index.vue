@@ -3,8 +3,9 @@
     <div class="bg"></div>
     <div class="index-mask" v-if="showMenu" @click="showMenu = !showMenu"></div>
     <LeftContent :showMenu="showMenu"/>
-    <RightContent :showMenu.sync="showMenu"/>
-    <svg @click="goTop" t="1589073817842" class="icon go-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    <RightContent :showMenu.sync="showMenu" />
+    <svg @click="goTop" t="1589073817842" class="icon go-top" viewBox="0 0 1024 1024" version="1.1"
+         xmlns="http://www.w3.org/2000/svg"
          p-id="4944" width="200" height="200">
       <path
         d="M507.484372 498.742115m-435.162069 0a435.162069 435.162069 0 1 0 870.324137 0 435.162069 435.162069 0 1 0-870.324137 0Z"
@@ -54,6 +55,7 @@
   import RightContent from '@/components/RightContent'
   import LeftContent from "@/components/LeftContent";
 
+
   export default {
     components: {
       RightContent,
@@ -62,13 +64,14 @@
     name: "Index",
     data() {
       return {
-        showMenu: false
+        showMenu: false,
+
       }
     },
     methods: {
-      goTop(){
+      goTop() {
         //window.scrollTo(0,0)
-        document.querySelector('#app').scrollIntoView({ block: 'start', behavior: 'smooth' })
+        document.querySelector('#app').scrollIntoView({block: 'start', behavior: 'smooth'})
       },
       handleClick() {
       },
@@ -76,7 +79,7 @@
       },
       changeMenuStatus() {
       }
-    }
+    },
   }
 </script>
 
