@@ -16,7 +16,8 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       "/api": {
-        target: process.env.VUE_APP_SERVER,
+        //target: process.env.VUE_APP_SERVER,
+        target: "http://121.199.58.113/",
         ws: false,
         changeOrigin: true,
         secure: false,
