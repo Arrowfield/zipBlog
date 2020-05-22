@@ -53,7 +53,7 @@ docker
 yum update
 yum install docker
 3. 打包成jar包
-nohup java -jar zip-blog-serve-0.0.1-SNAPSHOT.jar &
+nohup java -jar zip-blog-serve-0.0.1-SNAPSHOT.jar --server.port=8080 &
 
 4. 运行即可
 5. 检查防火墙
