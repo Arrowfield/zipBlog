@@ -14,13 +14,14 @@ module.exports = {
   },
   devServer: {
     disableHostCheck: true,
-    proxy: {
-      "/api": {
-        target: process.env.VUE_APP_SERVER,
-        ws: false,
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+    port:8091
+    // proxy: {
+    //   "/api": {
+    //     target: process.env.VUE_APP_SERVER,
+    //     ws: false,
+    //     changeOrigin: true,
+    //     secure: false,
+    //   },
+    // },
   },
 }
