@@ -23,7 +23,6 @@
     data() {
       return {
         showMenu: false,
-
       }
     },
     methods: {

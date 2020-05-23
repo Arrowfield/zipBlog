@@ -13,17 +13,6 @@
       <Message/>
     </div>
 
-    <div class="intro-detail">
-      <p>后记</p>
-      <ul>
-        <li>主题版权归原作者所有如有侵权请立即与本人联系,本人将及时处理</li>
-        <li>网站域名还在阿里云备案中，，，</li>
-        <li>qq:768449566</li>
-        <li>微信:</li>
-        <li>邮箱:<a href="mailto:768449566@qq.com?subject=发送邮件">768449566@qq.com</a></li>
-        <li class="play-music">点击此处播放音乐:<i  class="iconfont" :class="play ? 'iconxinbaniconshangchuan-' : 'iconjingyin'"></i></li>
-      </ul>
-    </div>
   </div>
 </template>
 
@@ -79,6 +68,7 @@
       img{
         width: auto;
         height: auto;
+        max-width: 100%;
       }
     }
   }
