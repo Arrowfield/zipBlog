@@ -17,6 +17,10 @@ const routes = [
         }
       },
       {
+        path:"article/:id",
+        component:()=> import("@/views/ArticleDetail")
+      },
+      {
         path: "link",
         name: "LinkFriend",
         component: () => import("../views/LinkFriend"),
@@ -61,6 +65,9 @@ const router = new VueRouter({
   mode: 'history',
   linkActiveClass: 'active',
   base: process.env.BASE_URL,
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  },
   routes
 })
 

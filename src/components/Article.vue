@@ -1,26 +1,26 @@
 <template>
   <div>
     <ul class="article-page">
-      <li v-for="item in articleList">
-        <a v-waves class="link" href="#" :title="item.articleTitle">
+      <li v-for="(item,index) in articleList" :key="index">
+        <router-link :to="/article/ + item.zid" v-waves class="link"  :title="item.articleTitle">
           <div class="image-cont">
             <img :src="item.articleImgURL" alt="">
             <h1 class="title">{{item.articleTitle}}</h1>
-            <i class="iconfont iconstar"></i>
+            <i v-if="index < 2" class="iconfont iconstar"></i>
           </div>
-        </a>
+        </router-link>
         <div class="tags">
           <a v-waves href="#"><i class="iconfont iconrili"></i>{{item.articleCreated}}</a>
           <a v-waves href="#"><i class="iconfont iconredu"></i>{{ Math.floor(Math.random() * 1000) }} °C</a>
           <a v-waves href="#"><i class="iconfont iconxx"></i>{{ Math.floor(Math.random() * 1000) }}</a>
-          <a class="tag" v-for="tmp in item.articleTags.split(',')" v-waves href="#"><i class="iconfont icondaohang1"></i>{{tmp}}</a>
+          <a class="tag" :key="i" v-for="(tmp,i) in item.articleTags.split(',')" v-waves href="#"><i class="iconfont icondaohang1"></i>{{tmp}}</a>
         </div>
         <article>
           <p class="summary">{{item.articleAbstract}}</p>
         </article>
       </li>
     </ul>
-    <PageNav/>
+    <PageNav :total="total"/>
   </div>
 </template>
 
@@ -33,7 +33,8 @@
     name: "Article",
     data(){
       return{
-        articleList:[]
+        articleList:[],
+        total:0
       }
     },
     components: {PageNav},
@@ -43,7 +44,7 @@
     async mounted(){
       let res = await getArticleList()
       this.articleList = res.data.data
-      console.log(this.articleList)
+      this.total = this.articleList.length
     }
   }
 </script>

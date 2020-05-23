@@ -1,5 +1,5 @@
 <template>
-  <ul class="page-nav">
+  <ul class="page-nav" v-if="total > 10">
     <li class="active">1</li>
     <li>2</li>
     <li>3</li>
@@ -8,7 +8,13 @@
 
 <script>
   export default {
-    name: "PageNav"
+    name: "PageNav",
+    props:{
+      total:{
+        type:Number,
+        default:0
+      }
+    },
   }
 </script>
 
