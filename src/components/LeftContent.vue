@@ -1,8 +1,8 @@
 <template>
 
-  <div class="left-content-page" :class="{'is-ie':isIe}">
 
-  <div class="left-content " :class="{'screen-change':showMenu}">
+
+  <div class="left-content " :class="{'screen-change':showMenu,'is-ie':isIe}">
     <div class="avatar">
       <a href="/">
 <!--        <img src="../assets/img/index/avatar.gif" title="Z 的技术博客" alt="">-->
@@ -109,7 +109,7 @@
       <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>
     </div>
   </div>
-  </div>
+
 </template>
 
 <script>
@@ -160,6 +160,7 @@
     width: 260px;
     overflow-y: scroll;
     scrollbar-width: none;
+    -ms-overflow-style:none;
 
     &::-webkit-scrollbar {
       width: 0;
