@@ -2,7 +2,7 @@
   <div class="right-content">
     <div class="header">
       <a v-waves href="javascript:" @click="showMenuFun"><i class="iconfont icondaohang"></i></a>
-      <a href="#"><img src="../assets/img/index/avatar.gif" alt=""></a>
+      <a href="/"><img src="../assets/img/index/kenan_avatar.png" alt=""></a>
     </div>
     <router-view/>
     <div class="footer">凡打不倒我的，必使我强大！！！—— Z 技术博客</div>

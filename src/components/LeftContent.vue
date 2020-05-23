@@ -1,8 +1,9 @@
 <template>
   <div class="left-content " :class="{'screen-change':showMenu}">
     <div class="avatar">
-      <a href="#">
-        <img src="../assets/img/index/avatar.gif" title="Z 的技术博客" alt="">
+      <a href="/">
+<!--        <img src="../assets/img/index/avatar.gif" title="Z 的技术博客" alt="">-->
+        <img src="../assets/img/index/kenan_avatar.png" title="Z 的技术博客" alt="">
       </a>
     </div>
     <div class="intro">

@@ -5,6 +5,16 @@
       <li>
         <a href="javascript:" title="" >
           <img
+            src="../assets/img/index/kenan_avatar.png"
+            alt="">
+          <p>2020.02.07</p>
+        </a>
+      </li>
+
+
+      <li>
+        <a href="javascript:" title="" >
+          <img
             src="../assets/img/photo/avatar.jpg"
             alt="">
           <p>2020.05.10</p>
@@ -47,6 +57,9 @@
           <p>2020.02.07</p>
         </a>
       </li>
+
+
+
 
     </ul>
   </RightPanelContainer>

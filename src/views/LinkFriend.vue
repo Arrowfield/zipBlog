@@ -11,6 +11,17 @@
         </a>
       </li>
 
+
+
+      <li>
+        <a href="https://blog.qqiyu.cn/?btwaf=69547750" title="七云's Blog" target="_blank">
+          <img
+            src="https://v1.qqiyu.cn/qqimg.php?qq=66547997"
+            alt="">
+          <p>七云's Blog</p>
+        </a>
+      </li>
+
       <li>
         <a href="https://www.stackoverflow.wiki/" title="贼拉正经的技术博客" target="_blank">
           <img
