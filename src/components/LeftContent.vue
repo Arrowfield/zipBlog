@@ -1,4 +1,7 @@
 <template>
+
+  <div class="left-content-page" :class="{'is-ie':isIe}">
+
   <div class="left-content " :class="{'screen-change':showMenu}">
     <div class="avatar">
       <a href="/">
@@ -106,6 +109,7 @@
       <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -113,6 +117,11 @@
 
   export default {
     name: "LeftContent",
+    data(){
+      return{
+        isIe:false
+      }
+    },
     directives: {
       waves
     },
@@ -127,11 +136,22 @@
         // const {href} = this.$router.resolve({path})
         // window.open(href,'_self')
       }
+    },
+    mounted(){
+      let agent = navigator.userAgent
+      if(agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1)
+        this.isIe = true
     }
   }
 </script>
 
 <style lang="scss" scoped>
+
+  .left-content-page{
+    width: 260px;
+    /*position: relative;*/
+    overflow: hidden;
+  }
 
   .left-content {
     position: fixed;
