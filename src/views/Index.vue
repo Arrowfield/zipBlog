@@ -44,7 +44,8 @@
 
   .index {
     position: relative;
-
+    max-width: 1200px;
+    margin:0 auto;
     .go-top {
       position: fixed;
       width: 30px;
