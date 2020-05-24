@@ -52,6 +52,11 @@ yum install java-1.8.0-openjdk-devel.x86_64 开发环境
 docker
 yum update
 yum install docker
+
+终止8080端口
+netstat -tunlp|grep 8080
+kill 01 pid
+
 3. 打包成jar包
 nohup java -jar zip-blog-serve-0.0.1-SNAPSHOT.jar --server.port=8080 &
 
@@ -96,9 +101,7 @@ rimraf node_modules // 也可以删除其它文件夹或文件
 jarb上传工具
 yum -y install lrzsz
 rz -y
-终止8080端口
-netstat -tunlp|grep 8080
-kill 01 pid
+
 ````  
 [node的版本太低的解决方式](https://segmentfault.com/a/1190000015302680)
 
