@@ -104,7 +104,7 @@
 
     <div class="copyright">
       <p>&copy; 2020 <a href="#">Z 个人博客</a></p>
-      <p><a href="#">鄂ICP备1707419号-2</a></p>
+      <p><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备1707419号-2</a></p>
       <p>Powered by <a href="#">Solo</a></p>
       <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>
     </div>
