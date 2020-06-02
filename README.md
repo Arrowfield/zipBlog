@@ -87,11 +87,13 @@ docker run \
 
 docker run \
 --name=nginx02 \
+-p 80:80 \
 -p 443:443 \
 -v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
 -v /nginx/logs:/var/log/nginx \
 -v /nginx/html:/usr/share/nginx/html \
 -v /nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
+-v /nginx/conf.d/cert/:/etc/nginx/cert \
 -d nginx
 
 ```
