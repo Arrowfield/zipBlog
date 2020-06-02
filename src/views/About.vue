@@ -10,8 +10,7 @@
       <ul>
         <li>方姿平（Zip）/ 男 / 湖北黄石</li>
         <li>计科 / 武汉工商学院</li>
-        <li>网站模仿 <a href="https://www.inkdp.cn/" target="_blank">墨殇的技术博客</a></li>
-        <li>个人博客：<a href="http://121.199.58.113/">http://121.199.58.113/</a></li>
+        <li>个人博客：<a href="https://arrowfield.top/about">https://arrowfield.top/about</a></li>
       </ul>
       <p>我在干嘛</p>
       <ul>
