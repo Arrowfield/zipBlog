@@ -39,8 +39,9 @@ input, textarea, button, a, select {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media screen and (max-width: 1024px) {
-  .left-content {
+@media screen and (max-width: 1024px) { //2080px
+
+  div.left-content {
     display: none;
 
     &.screen-change {
@@ -50,9 +51,15 @@ input, textarea, button, a, select {
     }
   }
 
-  .index::before {
-    display: table;
-    content: "";
+  div.index {
+    &::before {
+      display: table;
+      content: "";
+    }
+
+    div.bg {
+      background: #f4f8fb !important;
+    }
   }
 
   div.right-content {
