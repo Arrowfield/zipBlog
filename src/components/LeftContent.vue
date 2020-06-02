@@ -103,8 +103,9 @@
     </div>
 
     <div class="copyright">
-      <p>&copy; 2020 <a href="#">Zの个人博客</a></p>
-      <p><a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank">粤ICP备20045257号-1</a></p>
+      <p>&copy; 2020 <a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank">Zの个人博客</a></p>
+	  
+      <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx" target="_blank">粤ICP备20045257号-1</a></p>
       <p>Powered by <a href="#">Solo</a></p>
       <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>
     </div>
