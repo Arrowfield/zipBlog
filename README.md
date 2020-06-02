@@ -83,6 +83,17 @@ docker run \
 -v /nginx/html:/usr/share/nginx/html \
 -v /nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
 -d nginx
+
+
+docker run \
+--name=nginx02 \
+-p 443:443 \
+-v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
+-v /nginx/logs:/var/log/nginx \
+-v /nginx/html:/usr/share/nginx/html \
+-v /nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
+-d nginx
+
 ```
 
 #### 简介
