@@ -8,8 +8,8 @@
     <div class="intro-detail" v-html="articleDetail.articleContent">
     </div>
 
-    <div class="intro-detail">
-      <p>留言</p>
+    <div class="intro-detail message">
+      <p style="margin-bottom:0">留言</p>
       <!-- <Message/> -->
       <Comment :postId="articleDetail.zid" />
     </div>
