@@ -29,6 +29,7 @@ module.exports = {
             inject: {
               foo: 'bar'
             },
+            headless: false, // 报错时注释掉
             renderAfterDocumentEvent: 'render-event',
             args: ['--no-sandbox', '--disable-setuid-sandbox']
           })
