@@ -141,4 +141,6 @@ success
 + 家里的网络和ecs阿里云服务器使用npm安装 前提安装windows运行工具包
 + 公司的网络使用yarn
 
+#### 安装python2.7和初始化windows工具依赖环境
+
 
