@@ -113,7 +113,7 @@
       box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
 
       p{
-        margin-bottom: 16px;
+        // margin-bottom: 16px;
         font-weight: bold;
       }
 
