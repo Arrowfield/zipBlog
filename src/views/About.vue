@@ -32,7 +32,7 @@
 
     <div class="intro-detail">
       <p>留言</p>
-      <Message/>
+      <Comment :postId="123456"/>
     </div>
 
     <div class="intro-detail">
@@ -55,11 +55,13 @@
 <script>
   import Tags from "@/components/Tags";
   import Message from '@/components/Message'
+  import Comment from '@/components/Comment'
   export default {
     name: "About",
     components: {
       Tags,
-      Message
+      Message,
+      Comment
     },
     data(){
       return{
@@ -111,7 +113,7 @@
       box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
 
       p{
-        margin-bottom: 16px;
+        // margin-bottom: 16px;
         font-weight: bold;
       }
 

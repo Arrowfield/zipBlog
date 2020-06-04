@@ -92,6 +92,6 @@
 <style lang="scss" scoped>
   .comment-box {
     background: #fff;
-    padding: 15px
+    
   }
 </style>
