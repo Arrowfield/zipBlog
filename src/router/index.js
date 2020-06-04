@@ -13,7 +13,7 @@ const routes = [
         name: "Article",
         component: () => import("../components/Article"),
         meta: {
-          title: 'Zの个人博客'
+          title: 'Z个人博客'
         }
       },
       {
@@ -25,7 +25,7 @@ const routes = [
         name: "LinkFriend",
         component: () => import("../views/LinkFriend"),
         meta: {
-          title: 'Zの个人博客-友情链接'
+          title: 'Z个人博客-友情链接'
         }
       },
       {
@@ -33,7 +33,7 @@ const routes = [
         name: "Tags",
         component: () => import("../views/Tags"),
         meta: {
-          title: 'Zの个人博客-标签'
+          title: 'Z个人博客-标签'
         }
       },
       {
@@ -41,7 +41,7 @@ const routes = [
         name: "About",
         component: () => import("../views/About"),
         meta: {
-          title: 'Zの个人博客-关于'
+          title: 'Z个人博客-关于'
         }
       },
       {
@@ -49,7 +49,7 @@ const routes = [
         name: "Photo",
         component: () => import("../views/Photo"),
         meta: {
-          title: 'Zの个人博客-相册'
+          title: 'Z个人博客-相册'
         }
       }
     ]
