@@ -137,4 +137,8 @@ success
  yarn serve --port 8000
 ```
 
+### 安装node_module包的异常
++ 家里的网络和ecs阿里云服务器使用npm安装 前提安装windows运行工具包
++ 公司的网络使用yarn
+
 
