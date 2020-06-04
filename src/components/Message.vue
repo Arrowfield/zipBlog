@@ -1,18 +1,14 @@
 <template>
-<!--  <div class="message">-->
-<!--    <textarea placeholder="请输入评论"></textarea>-->
-<!--    <div class="send-cont">-->
-<!--      <input placeholder="请输入你的昵称" type="text" name="message">-->
-<!--      <button class="send">留言</button>-->
-<!--    </div>-->
-<!--  </div>-->
-
   <Fragment>
     <div id="vcomments"></div>
   </Fragment>
 </template>
 
 <script>
+  /**
+   * 云评论的地址：https://valine.js.org/
+   * @desc 无后端评论系统
+   */
   import {Fragment} from 'vue-fragment'
   import Valine from 'valine';
   export default {

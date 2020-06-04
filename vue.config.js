@@ -1,5 +1,4 @@
 module.exports = {
-
   lintOnSave: false,
   configureWebpack: {
     externals: {
@@ -7,7 +6,6 @@ module.exports = {
     }
   },
   pluginOptions: {
-
   },
   devServer: {
     disableHostCheck: true,

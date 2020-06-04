@@ -10,7 +10,8 @@
 
     <div class="intro-detail">
       <p>留言</p>
-      <Message/>
+      <!-- <Message/> -->
+      <Comment :postId="articleDetail.zid" />
     </div>
 
   </div>
@@ -19,24 +20,29 @@
 <script>
   import Tags from "@/components/Tags";
   import Message from '@/components/Message'
+  import Comment from '@/components/Comment'
   import {getArticleById} from "@/api/home";
   export default {
     name: "ArticleDetail",
     components: {
       Tags,
-      Message
+      Message,
+      Comment,
     },
     data(){
       return{
         play:false,
-        articleDetail:{},
+        articleDetail:{
+          zid:Math.random() * 10000
+        },
       }
     },
     methods:{
       async getArticleDetail(){
         let res = await getArticleById({zid:this.$route.params.id})
-        console.log(res)
+        // console.log(res)
         this.articleDetail = Object.assign({},res.data.data)
+        //console.log(this.articleDetail.zid)
       }
     },
     mounted(){
