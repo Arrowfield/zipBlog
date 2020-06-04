@@ -24,7 +24,8 @@ module.exports = {
       plugins: [
         new PrerenderSPAPlugin({
           staticDir: path.join(__dirname, 'dist'),
-          routes: ['/', '/link', '/about','/tags'],
+          //routes: ['/', '/link', '/about','/tags'],
+          routes: ['/'],
           renderer: new Renderer({
             inject: {
               foo: 'bar'
