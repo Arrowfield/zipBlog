@@ -5,15 +5,19 @@
       <a href="/"><img src="../assets/img/index/kenan_avatar.png" alt=""></a>
     </div>
     <router-view/>
+    <Loading/>
     <div class="footer">凡打不倒我的，必使我强大！！！—— Z 技术博客</div>
   </div>
 </template>
 
 <script>
   import waves from "@/directive/waves/waves";
-
+  import Loading from "@/components/Loading";
   export default {
     name: "RightContent",
+    components:{
+      Loading
+    },
     directives: {
       waves
     },
