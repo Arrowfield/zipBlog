@@ -148,4 +148,28 @@ success
 yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 ipa-gothic-fonts xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc
 ```
 
+#### 网站缺陷更新日志
+##### 2020.06.03篇
 
++ 1、文章与浏览处的统计是写死的，目前没有调用接口
++ 2、文章的图片十分模糊，变形严重
++ 3、文章标题应该使用一行显示，溢出显示省略号
++ 4、[13寸电脑屏幕分辨率](https://zhidao.baidu.com/question/1050739764072908379.html)最小的是1280*800px，要保证这个尺寸下不显示滚动条；768px之下才隐藏侧边导航；
++ 5、日期不需要显示时分秒
++ 6、友盟的流量网站统计接入
++ 7、粤公网安备
++ 8、置顶字段的添加
++ 9、搜索功能的添加
++ 10、去掉底部与该网站无关的内容
++ 11、rss链接的添加
++ 12、第三方github的登录的添加
++ 13、标签处接口的调用，颜色的随机色
++ 14、所有的文章与标签应该均是原创
++ 15、分类表的创建
++ 16、存档表的创建
++ 17、没加载到图片之前的高度稍微加长点
++ 18、关于我处的部分内容需要修改
++ 19、添加鼠标悬浮，背景变小的效果
++ 20、需求完毕
+
+##### 2020.06.04篇

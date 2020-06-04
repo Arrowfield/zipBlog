@@ -21,7 +21,7 @@
   import Tags from "@/components/Tags";
   import Message from '@/components/Message'
   import Comment from '@/components/Comment'
-  import {getArticleById} from "@/api/home";
+  import {getArticleById,recordCount} from "@/api/home";
   export default {
     name: "ArticleDetail",
     components: {
@@ -40,13 +40,16 @@
     methods:{
       async getArticleDetail(){
         let res = await getArticleById({zid:this.$route.params.id})
-        // console.log(res)
         this.articleDetail = Object.assign({},res.data.data)
-        //console.log(this.articleDetail.zid)
+      },
+      //记录文章的浏览量进行埋点
+      recordArticleViewCount(){
+        recordCount({zid:this.$route.params.id})
       }
     },
     mounted(){
       this.getArticleDetail()
+      this.recordArticleViewCount()
     }
   }
 </script>
