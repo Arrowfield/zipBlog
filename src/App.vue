@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <router-view/>
+    <Progress/>
+      <router-view/>
   </div>
 </template>
 
 <script>
 
   import {getUser} from '@/api/home'
+  import Progress from "@/components/Progress";
 
   export default {
     name: "App",
+    components: {Progress},
     methods: {},
     // async mounted() {
     //   let res = await getUser()

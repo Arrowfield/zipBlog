@@ -65,6 +65,7 @@
         let year = date.getFullYear()
         let month = date.getMonth() + 1
         let day = date.getDate()
+        month = month < 10 ? "0" + month : month
         return `${year}年${month}月${day}日`
       }
     },
@@ -75,7 +76,8 @@
     async mounted(){
       let res = await getArticleList()
       this.articleList = res.data.data
-      this.total = this.articleList.length
+      this.total = res.data.total
+      this.$store.commit("setIndexBaseData",{total:this.total})
     }
   }
 </script>
@@ -102,7 +104,7 @@
       border-radius: 10px;
 
       max-height: 500px;
-      min-height: 350px;
+      min-height: 200px;
       background-color: #eee;
       position: relative;
 

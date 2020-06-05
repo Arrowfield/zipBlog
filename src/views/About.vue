@@ -30,12 +30,12 @@
       </ul>
     </div>
 
-    <div class="intro-detail">
+    <div class="intro-detail ">
       <p>留言</p>
       <Comment :postId="123456"/>
     </div>
 
-    <div class="intro-detail">
+    <div class="intro-detail about">
       <p>后记</p>
       <ul>
         <li>主题版权归原作者所有如有侵权请立即与本人联系,本人将及时处理</li>

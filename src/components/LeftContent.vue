@@ -11,7 +11,7 @@
     <div class="intro">
       <div class="article">
         <p>文章</p>
-        <p>34</p>
+        <p>{{ total }}</p>
       </div>
       <div class="views">
         <p>浏览</p>
@@ -116,7 +116,7 @@
 
 <script>
   import waves from "@/directive/waves/waves";
-
+  import {mapState} from 'vuex'
   export default {
     name: "LeftContent",
     data() {
@@ -124,6 +124,11 @@
         isIe: false,
         countInnerHtml: ""
       }
+    },
+    computed:{
+      ...mapState({
+        total:state => state.indexBaseData.articleTotal
+      })
     },
     directives: {
       waves

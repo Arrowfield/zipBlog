@@ -8,9 +8,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     //articleList:[],
-
+    indexBaseData:{
+      articleTotal:0
+    }
   },
   mutations: {
+    setIndexBaseData(state,payload){
+      state.indexBaseData.articleTotal = payload.total
+    }
   },
   actions: {
   },
