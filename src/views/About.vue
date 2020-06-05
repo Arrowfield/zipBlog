@@ -1,7 +1,7 @@
 <template>
   <div class="about-page">
     <div class="img-cont" v-waves>
-      <img src="https://img.hacpai.com/bing/20180919.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt="">
+      <img src="https://arrowfield.top/5e42925d412fdc2e940edf3acb31fca5.jpg?imageView2/0/q/75" alt="">
       <h1 class="title">关于我</h1>
     </div>
     <Tags/>
