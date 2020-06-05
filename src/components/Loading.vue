@@ -23,7 +23,7 @@
       border-radius: 50%;
       border:1px black solid;
       margin-left:1px;
-      animation: loading 1s forwards infinite;
+      animation: loading 1s infinite;
     }
 
   }
