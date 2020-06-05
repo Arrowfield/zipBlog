@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="article-page">
+    <ul class="article-page" v-if="articleList.length > 0">
       <li v-for="(item,index) in articleList" :key="index">
         <router-link :to="/article/ + item.zid" v-waves class="link"  :title="item.articleTitle">
           <div class="image-cont">
@@ -17,6 +17,26 @@
         </div>
         <article>
           <p class="summary">{{item.articleAbstract}}</p>
+        </article>
+      </li>
+    </ul>
+    <ul class="article-page" v-else>
+      <li>
+        <router-link to="#" v-waves class="link"  title="#">
+          <div class="image-cont">
+            <img src="#" alt="">
+            <h1 class="title">-</h1>
+            <i  class="iconfont iconstar"></i>
+          </div>
+        </router-link>
+        <div class="tags">
+          <a v-waves href="#"><i class="iconfont iconrili"></i>-</a>
+          <a v-waves href="#"><i class="iconfont iconredu"></i>-°C</a>
+          <a v-waves href="#"><i class="iconfont iconxx"></i>-</a>
+          <a class="tag"   v-waves href="#"><i class="iconfont icondaohang1"></i>-</a>
+        </div>
+        <article>
+          <p class="summary">-</p>
         </article>
       </li>
     </ul>
@@ -71,7 +91,7 @@
       border-radius: 10px;
 
       max-height: 500px;
-      min-height: 65px;
+      min-height: 350px;
       background-color: #eee;
       position: relative;
 
