@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="article-page">
+    <ul class="article-page" v-if="articleList.length > 0">
       <li v-for="(item,index) in articleList" :key="index">
         <router-link :to="/article/ + item.zid" v-waves class="link"  :title="item.articleTitle">
           <div class="image-cont">
@@ -10,13 +10,33 @@
           </div>
         </router-link>
         <div class="tags">
-          <a v-waves href="#"><i class="iconfont iconrili"></i>{{item.articleCreated}}</a>
+          <a v-waves href="#"><i class="iconfont iconrili"></i>{{item.articleCreated | truncation}}</a>
           <a v-waves href="#"><i class="iconfont iconredu"></i>{{ Math.floor(Math.random() * 1000) }} °C</a>
           <a v-waves href="#"><i class="iconfont iconxx"></i>{{ Math.floor(Math.random() * 1000) }}</a>
           <a class="tag" :key="i" v-for="(tmp,i) in item.articleTags.split(',')" v-waves href="#"><i class="iconfont icondaohang1"></i>{{tmp}}</a>
         </div>
         <article>
           <p class="summary">{{item.articleAbstract}}</p>
+        </article>
+      </li>
+    </ul>
+    <ul class="article-page" v-else>
+      <li>
+        <router-link to="#" v-waves class="link"  title="#">
+          <div class="image-cont">
+            <img src="#" alt="">
+            <h1 class="title">- 太懒了 一篇文章都没有，，，，</h1>
+            <i  class="iconfont iconstar"></i>
+          </div>
+        </router-link>
+        <div class="tags">
+          <a v-waves href="#"><i class="iconfont iconrili"></i>-</a>
+          <a v-waves href="#"><i class="iconfont iconredu"></i>-°C</a>
+          <a v-waves href="#"><i class="iconfont iconxx"></i>-</a>
+          <a class="tag"   v-waves href="#"><i class="iconfont icondaohang1"></i>-</a>
+        </div>
+        <article>
+          <p class="summary">-</p>
         </article>
       </li>
     </ul>
@@ -29,12 +49,23 @@
   import PageNav from "@/components/PageNav";
   import {getArticleList} from "@/api/home";
 
+  const testText = '12312345645648789456132131'
+
   export default {
     name: "Article",
     data(){
       return{
         articleList:[],
         total:0
+      }
+    },
+    filters:{
+      truncation(val){
+        let date = new Date(val)
+        let year = date.getFullYear()
+        let month = date.getMonth() + 1
+        let day = date.getDate()
+        return `${year}年${month}月${day}日`
       }
     },
     components: {PageNav},
@@ -57,7 +88,7 @@
     background-color: #fff;
     padding: 20px 20px 0;
     box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
-
+    transition: all 2s linear;
     .link {
       display: block;
       overflow: hidden;
@@ -71,7 +102,7 @@
       border-radius: 10px;
 
       max-height: 500px;
-      min-height: 65px;
+      min-height: 350px;
       background-color: #eee;
       position: relative;
 
@@ -92,7 +123,10 @@
         width: 100%;
         font-weight: 400;
         cursor: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
         z-index: 5;
+        white-space: nowrap;
       }
 
       i {
