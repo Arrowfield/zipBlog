@@ -204,6 +204,7 @@
 
       .count-img{
         margin-top:5px;
+        margin-right: 5px;
         display: flex;
         align-items: center;
         justify-content: flex-end;

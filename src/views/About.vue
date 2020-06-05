@@ -1,6 +1,6 @@
 <template>
   <div class="about-page">
-    <div class="img-cont">
+    <div class="img-cont" v-waves>
       <img src="https://img.hacpai.com/bing/20180919.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt="">
       <h1 class="title">关于我</h1>
     </div>
@@ -55,9 +55,13 @@
 <script>
   import Tags from "@/components/Tags";
   import Message from '@/components/Message'
+  import waves from '@/directive/waves'
   import Comment from '@/components/Comment'
   export default {
     name: "About",
+    directives:{
+      waves
+    },
     components: {
       Tags,
       Message,
@@ -91,6 +95,10 @@
       position: relative;
       img {
         border-radius: 10px;
+        transition: all .5s linear;
+        //&:hover{
+          //box-shadow: -2px -2px 5px #ff4e6a;
+        //}
       }
       .title {
         position: absolute;
