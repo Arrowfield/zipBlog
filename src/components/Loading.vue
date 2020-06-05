@@ -5,6 +5,7 @@
     <span></span>
     <span></span>
     <span></span>
+    <span></span>
   </div>
 </template>
 
@@ -23,7 +24,25 @@
       border-radius: 50%;
       border:1px black solid;
       margin-left:1px;
-      animation: loading 1s forwards infinite;
+      animation: loading 2.1s ease infinite;
+    }
+    span:nth-child(1){
+      animation-delay: .3s;
+    }
+    span:nth-child(2){
+      animation-delay: .6s;
+    }
+    span:nth-child(3){
+      animation-delay: .9s;
+    }
+    span:nth-child(4){
+      animation-delay: 1.2s;
+    }
+    span:nth-child(5){
+      animation-delay: 1.5s;
+    }
+    span:nth-child(6){
+      animation-delay: 1.8s;
     }
 
   }
