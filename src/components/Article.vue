@@ -25,7 +25,7 @@
         <router-link to="#" v-waves class="link"  title="#">
           <div class="image-cont">
             <img src="#" alt="">
-            <h1 class="title">-</h1>
+            <h1 class="title">- 太懒了 一篇文章都没有，，，，</h1>
             <i  class="iconfont iconstar"></i>
           </div>
         </router-link>
