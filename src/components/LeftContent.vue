@@ -174,9 +174,14 @@
       padding: 0 10px;
       font-size: 12px;
       color: #444;
+
       font-family: 'Arizonia', cursive;
       a {
         color: rgba(255, 78, 106, .8);
+        opacity: .8;
+        &:hover{
+          opacity: 1;
+        }
       }
     }
 
