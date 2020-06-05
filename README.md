@@ -172,4 +172,7 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 + 19、添加鼠标悬浮，背景变小的效果
 + 20、需求完毕
 
+
 ##### 2020.06.04篇
+
++ 1、顶部加载进度条

@@ -1,11 +1,10 @@
 <template>
 
 
-
   <div class="left-content " :class="{'screen-change':showMenu,'is-ie':isIe}">
     <div class="avatar">
       <a href="/">
-<!--        <img src="../assets/img/index/avatar.gif" title="Z 的技术博客" alt="">-->
+        <!--        <img src="../assets/img/index/avatar.gif" title="Z 的技术博客" alt="">-->
         <img src="../assets/img/index/kenan_avatar.png" title="Z 的技术博客" alt="">
       </a>
     </div>
@@ -29,11 +28,11 @@
     <div class="intro fun-list">
       <h3>功能按钮</h3>
       <div class="fun-items btn">
-        <a v-waves href="#"><i class="iconfont iconhuabanfuben"></i></a>
-        <a v-waves href="#"><i class="iconfont iconwifi"></i></a>
-        <a v-waves href="#">
-          <i class="iconfont iconshuji"></i>
-        </a>
+        <a v-waves href="#" title="搜索"><i class="iconfont iconhuabanfuben"></i></a>
+        <a v-waves href="#" title="ssr"><i class="iconfont iconwifi"></i></a>
+        <!--        <a v-waves href="#">-->
+        <!--          <i class="iconfont iconshuji"></i>-->
+        <!--        </a>-->
         <a v-waves href="http://music.sxswyc.top/" class="code-cont" title="音乐馆" target="_blank">
           <i class="iconfont iconyinyue"></i>
         </a>
@@ -104,10 +103,12 @@
 
     <div class="copyright">
       <p>&copy; 2020 <a href="#">银杏树下</a></p>
-      <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx" target="_blank">粤ICP备20045257号</a></p>
+      <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
+            target="_blank">粤ICP备20045257号</a></p>
       <p>20202225656<a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank">粤公网安备</a></p>
-<!--      <p>Powered by <a href="#">Solo</a></p>-->
-<!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
+      <!--      <p>Powered by <a href="#">Solo</a></p>-->
+      <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
+      <p v-html="countInnerHtml" class="count-img"></p>
     </div>
   </div>
 
@@ -118,9 +119,10 @@
 
   export default {
     name: "LeftContent",
-    data(){
-      return{
-        isIe:false
+    data() {
+      return {
+        isIe: false,
+        countInnerHtml: ""
       }
     },
     directives: {
@@ -136,19 +138,33 @@
       goToPage() {
         // const {href} = this.$router.resolve({path})
         // window.open(href,'_self')
+      },
+      getCountImage() {
+        let dom = document.getElementById("cnzz_stat_icon_1278967959")
+        console.log(dom)
+        this.countInnerHtml = `站长统计${dom.innerHTML}`
       }
     },
-    mounted(){
+    mounted() {
       let agent = navigator.userAgent
-      if(agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1)
+      if (agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1)
         this.isIe = true
+      this.getCountImage()
     }
   }
 </script>
 
+<style lang="scss">
+  .count-img img{
+    width: auto;
+    vertical-align: top;
+
+  }
+</style>
+
 <style lang="scss" scoped>
 
-  .left-content-page{
+  .left-content-page {
     width: 260px;
     /*position: relative;*/
     overflow: hidden;
@@ -161,7 +177,7 @@
     width: 260px;
     overflow-y: scroll;
     scrollbar-width: none;
-    -ms-overflow-style:none;
+    -ms-overflow-style: none;
 
     &::-webkit-scrollbar {
       width: 0;
@@ -176,12 +192,21 @@
       color: #444;
 
       font-family: 'Arizonia', cursive;
+
       a {
         color: rgba(255, 78, 106, .8);
         opacity: .8;
-        &:hover{
+
+        &:hover {
           opacity: 1;
         }
+      }
+
+      .count-img{
+        margin-top:5px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
       }
     }
 
@@ -305,6 +330,7 @@
             }
           }
         }
+
 
         .fun-items a {
           width: 40px;
