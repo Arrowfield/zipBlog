@@ -46,19 +46,46 @@
     components: {
       RightPanelContainer,
     },
+    data() {
+      return {
+        bgColors: [
+          "rgba(255,78,106,.15)",
+          "rgba(255,170,115,.15)",
+          "rgba(254,212,102,.15)",
+          "rgba(60,220,130,.15)",
+          "rgba(100,220,240,.15)",
+          "rgba(100,185,255,.15)",
+          "rgba(180,180,255,.15)",
+          "rgba(255,78,106,.15)"
+        ],
+        textColors: [
+          "rgba(255,78,106,.8)",
+          "#ffaa73",
+          "#fed466",
+          "#3cdc82",
+          "#64dcf0",
+          "#64b9ff",
+          "#b4b4ff",
+          "rgba(255,78,106,.8)"
+        ],
+      }
+    },
+    computed: {
+      getTagsColor() {
 
+        //return getColor()
+      }
+    },
+    methods: {},
     async mounted() {
       try {
-        let color = getColor()
-        console.log(color)
-        let res = await getTags()
+        // let color = getColor()
+        // console.log(color)
+        //let res = await getTags()
 
-
-      }catch (e) {
+      } catch (e) {
         throw e
       }
-
-
     }
   }
 </script>
