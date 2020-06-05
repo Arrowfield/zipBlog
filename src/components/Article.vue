@@ -49,6 +49,8 @@
   import PageNav from "@/components/PageNav";
   import {getArticleList} from "@/api/home";
 
+  const testText = '12312345645648789456132131'
+
   export default {
     name: "Article",
     data(){
@@ -77,7 +79,7 @@
     background-color: #fff;
     padding: 20px 20px 0;
     box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
-
+    transition: all 2s linear;
     .link {
       display: block;
       overflow: hidden;
@@ -112,6 +114,8 @@
         width: 100%;
         font-weight: 400;
         cursor: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
         z-index: 5;
       }
 
