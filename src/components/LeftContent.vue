@@ -65,7 +65,7 @@
     <div class="intro fun-list tags-list">
       <h3>标签</h3>
       <div class="tags">
-        <a># 随笔</a>
+        <a v-loading-self="true"># 随笔</a>
         <a># golang</a>
         <a># 算法</a>
         <a># 关于我</a>
