@@ -141,7 +141,7 @@
       },
       getCountImage() {
         let dom = document.getElementById("cnzz_stat_icon_1278967959")
-        console.log(dom)
+
         this.countInnerHtml = `站长统计${dom.innerHTML}`
       }
     },

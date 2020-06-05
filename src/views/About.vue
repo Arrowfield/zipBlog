@@ -5,12 +5,12 @@
       <h1 class="title">关于我</h1>
     </div>
     <Tags/>
-    <div class="intro-detail">
+    <div class="intro-detail about">
       <p>我是谁</p>
       <ul>
         <li>方姿平（Zip）/ 男 / 湖北黄石</li>
         <li>计科 / 武汉工商学院</li>
-        <li>个人博客：<a href="https://arrowfield.top/about">https://arrowfield.top/about</a></li>
+        <li><a href="https://www.arrowfield.top/about" title="Z个人博客">个人博客地址</a></li>
       </ul>
       <p>我在干嘛</p>
       <ul>
@@ -26,7 +26,7 @@
       <ul>
         <li>王者荣耀【苹果手Q26区（i衷情于你i）】纵情山河万里，肆意九州五岳</li>
         <li>QQ飞车</li>
-        <li>动漫【海贼，柯南，，，，】</li>
+        <li>动漫【海贼王，名侦探柯南，犬夜叉，龙珠，银魂，妖精的尾巴，魔兵传奇，，，，】</li>
       </ul>
     </div>
 
@@ -39,7 +39,7 @@
       <p>后记</p>
       <ul>
         <li>主题版权归原作者所有如有侵权请立即与本人联系,本人将及时处理</li>
-        <li>网站域名还在阿里云备案中，，，</li>
+<!--        <li>网站域名还在阿里云备案中，，，</li>-->
         <li>qq:768449566</li>
         <li>微信:</li>
         <li>邮箱:<a href="mailto:768449566@qq.com?subject=发送邮件">768449566@qq.com</a></li>
@@ -119,7 +119,9 @@
       background-color: #fff;
       padding: 20px;
       box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
-
+      &.about p{
+        margin-bottom: 16px;
+      }
       p{
         // margin-bottom: 16px;
         font-weight: bold;
