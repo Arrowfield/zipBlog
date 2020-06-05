@@ -176,3 +176,4 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 ##### 2020.06.04篇
 
 + 1、顶部加载进度条
++ 2、所有的文章还是以markdown的形式输出

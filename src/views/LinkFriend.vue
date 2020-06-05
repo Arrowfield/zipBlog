@@ -32,14 +32,15 @@
       </li>
 
 
-<!--      <li>-->
-<!--        <a href="https://www.yezismile.com/" title="叶子的个人博客" target="_blank">-->
-<!--          <img-->
-<!--            src="https://www.yezismile.com/kindeditor/attached/image/20191205/20191205130647_70177.jpeg"-->
-<!--            alt="">-->
-<!--          <p><a href="http://m.yezismile.com/" title="叶子的个人博客" target="_blank">叶子的个人博客</a></p>-->
-<!--        </a>-->
-<!--      </li>-->
+      <li>
+        <a href="https://www.yezismile.com/" title="叶子的个人博客" target="_blank">
+          <div class="img-panel"><img
+            src="https://static.yezismile.com/data/photo/day_20191121/201911211135396348_s.jpeg"
+            alt="">
+          </div>
+          <p>叶子的个人博客</p>
+        </a>
+      </li>
 
       <li>
         <a href="https://www.inkdp.cn/" title="墨殇的技术博客" target="_blank">
@@ -89,6 +90,13 @@
         /*font-size: 0;*/
         overflow: hidden;
 
+        .img-panel{
+          /*width: 98px;*/
+          height: 98px;
+        }
+        a{
+          display: block;
+        }
         p {
           font-size: 13px;
           color: #606266;
@@ -96,6 +104,10 @@
           text-overflow: ellipsis;
           overflow: hidden;
           padding: 3px 10px 5px;
+        }
+        img{
+          vertical-align: top;
+          height: 100%;
         }
       }
     }

@@ -126,6 +126,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         z-index: 5;
+        white-space: nowrap;
       }
 
       i {
