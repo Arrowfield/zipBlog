@@ -107,6 +107,7 @@
       <!--      <p>Powered by <a href="#">Solo</a></p>-->
       <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
       <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959" target="_blank">站长统计</a></p>
+      <p class="data-time">网站在线时长：{{ time }}</p>
     </div>
   </div>
 
@@ -116,6 +117,7 @@
   import waves from "@/directive/waves/waves";
   import {mapState} from 'vuex'
   import {getArticleList} from "@/api/home";
+  import setting from "@/settings"
   export default {
     name: "LeftContent",
     data() {
@@ -124,7 +126,9 @@
         countInnerHtml: "",
         views:0,
         loading:false,
-        tags:[]
+        tags:[],
+        timer:null,
+        time:""
       }
     },
     computed:{
@@ -149,9 +153,23 @@
         // window.open(href,'_self')
       },
       getCountImage() {
-        let dom = document.getElementById("cnzz_stat_icon_1278967959")
+        //let dom = document.getElementById("cnzz_stat_icon_1278967959")
+        //this.countInnerHtml = `站长统计${dom.innerHTML}`
+        //获取网页开始的时间
+        let start = new Date(setting.siteStartTime).getTime()
+        // let timestamp = now.getTime() - start.getTime()
 
-        this.countInnerHtml = `站长统计${dom.innerHTML}`
+        this.timer = setInterval(()=>{
+          // console.log(new Date)
+          let now,timestamp,day,hours,m,s
+          now = new Date().getTime()
+          timestamp = now - start
+          day = Math.floor(timestamp / (3600 * 24 * 1000))
+          hours = Math.floor(timestamp % (3600 * 24 * 1000) / (1000 * 3600))
+          m = Math.floor(timestamp % (3600 * 24 * 1000) % (1000 * 3600) / (1000 * 60))
+          s = Math.round(timestamp % (3600 * 24 * 1000) % (1000 * 3600) % (1000 * 60) / 1000)
+          this.time = `${day}天${hours}小时${m}分钟${s}秒`
+        },1000)
       }
     },
     async mounted() {
@@ -174,6 +192,10 @@
       }catch (e) {
         if(e) throw e
       }
+    },
+    beforeDestroy(){
+      clearInterval(this.timer)
+      this.timer = null
     }
   }
 </script>
@@ -224,6 +246,10 @@
         &:hover {
           opacity: 1;
         }
+      }
+
+      .data-time{
+        color: black;
       }
 
       .count-img{

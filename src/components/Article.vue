@@ -65,7 +65,7 @@
     },
     filters:{
       truncation(val){
-        let date = new Date(val)
+        let date = new Date(val.replace(/-/g,"/"))
         let year = date.getFullYear()
         let month = date.getMonth() + 1
         let day = date.getDate()

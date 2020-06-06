@@ -59,7 +59,7 @@
       transition: all .2s ease-in;
 
       &:hover{
-        transform:rotateX(15deg) ;
+        /*transform:rotateX(15deg) ;*/
       }
 
       a {

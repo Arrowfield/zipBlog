@@ -80,7 +80,7 @@
       font-size: 13px;
       bottom: 0;
       width: 100%;
-      height: 56px;
+      min-height: 56px;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       font-family: 'Arizonia', cursive;
