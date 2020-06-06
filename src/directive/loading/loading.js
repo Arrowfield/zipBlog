@@ -20,7 +20,7 @@ Loading.install = function (Vue, options) {
       toggleLoading(el, options.value)
     },
     update: function (el, options) {
-      console.log(el)
+      // console.log(el)
     }
   })
 }

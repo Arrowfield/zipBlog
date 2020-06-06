@@ -107,7 +107,7 @@
       <!--      <p>Powered by <a href="#">Solo</a></p>-->
       <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
       <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959" target="_blank">站长统计</a></p>
-      <p class="data-time">网站在线时长：{{ time }}</p>
+      <p class="data-time">{{ time }}</p>
     </div>
   </div>
 
@@ -157,10 +157,7 @@
         //this.countInnerHtml = `站长统计${dom.innerHTML}`
         //获取网页开始的时间
         let start = new Date(setting.siteStartTime).getTime()
-        // let timestamp = now.getTime() - start.getTime()
-
         this.timer = setInterval(()=>{
-          // console.log(new Date)
           let now,timestamp,day,hours,m,s
           now = new Date().getTime()
           timestamp = now - start
@@ -250,11 +247,12 @@
 
       .data-time{
         color: black;
+        font-family: "Microsoft YaHei",Roboto, Noto, Helvetica, Arial, sans-serif;
+        font-size: 12px;
+
       }
 
       .count-img{
-        /*margin-top:5px;*/
-        /*margin-right: 5px;*/
         display: flex;
         align-items: center;
         justify-content: flex-end;
