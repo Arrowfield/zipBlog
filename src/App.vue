@@ -22,3 +22,6 @@
 </script>
 
 <style lang="scss" src="./assets/scss/base.scss"></style>
+<style>
+  @import "./assets/scss/prism.css";
+</style>
