@@ -23,10 +23,18 @@
     data() {
       return {
         linkList: [
-          {href: "https://www.cnblogs.com/mumu2/p/12035072.html", title: "webstorm最新激活码2019", intro: "网址里面有 lookdiv.com 里面的钥匙就是lookdiv.com 打开网址，获取密钥，复制到激活里面就好了。 关注一下~ 有问题直接私信。",
-            imgUrl: require("@/assets/img/address/address01.jpg")},
-          {href: "https://www.bilibili.com/bangumi/play/ep290152?bsource=baidu_aladdin", title: "B站超清犬夜叉", intro: "在B站可以看犬夜叉啦，，，，哈哈",
-            imgUrl: require("../assets/img/error/loading_error.png")},
+          {
+            href: "https://www.cnblogs.com/mumu2/p/12035072.html",
+            title: "webstorm最新激活码2019",
+            intro: "网址里面有 lookdiv.com 里面的钥匙就是lookdiv.com 打开网址，获取密钥，复制到激活里面就好了。 关注一下~ 有问题直接私信。",
+            imgUrl: require("@/assets/img/address/address01.jpg")
+          },
+          {
+            href: "https://www.bilibili.com/bangumi/play/ep290152?bsource=baidu_aladdin",
+            title: "B站超清犬夜叉",
+            intro: "在B站可以看犬夜叉啦，，，，哈哈",
+            imgUrl: require("../assets/img/error/loading_error.png")
+          },
 
         ]
       }
@@ -48,6 +56,11 @@
       margin-bottom: 20px;
       margin-right: 20px;
       overflow: hidden;
+      transition: all .2s ease-in;
+
+      &:hover{
+        transform:rotateX(15deg) ;
+      }
 
       a {
         /*display: block;*/
@@ -60,7 +73,7 @@
 
         &:hover {
           background: #4285f4;
-          transform: scale(1.02);
+          transform: scale(1.02) ;
 
           .title, .intro {
             color: white;

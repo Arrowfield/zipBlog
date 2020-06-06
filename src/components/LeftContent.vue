@@ -65,12 +65,9 @@
     <div class="intro fun-list tags-list">
       <h3>标签</h3>
       <div class="tags">
-        <a href="javascript:" :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}" v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
-<!--        <a># golang</a>-->
-<!--        <a># 算法</a>-->
-<!--        <a># 关于我</a>-->
-<!--        <a># 随笔</a>-->
-<!--        <a># 随笔</a>-->
+        <a href="javascript:" :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
+           v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
+        <a href="javascript:" v-if="tags.length === 0" :style="{background:bgColors[0],color:textColors[0]}">wuwu 一个标签都没有，，，</a>
       </div>
     </div>
 
@@ -78,11 +75,11 @@
       <h3>分类</h3>
       <ul class="category-list">
         <li>
-          <a href="">环境搭建</a>
-          <span>10</span>
+          <a href="">暂无分类</a>
+          <span>0</span>
         </li>
         <li>
-          <a href="">杂谈与随笔</a>
+          <a href="">-</a>
           <span>0</span>
         </li>
       </ul>
@@ -92,11 +89,11 @@
       <h3>存档</h3>
       <ul class="category-list">
         <li>
-          <a href="">2020年5月10号</a>
-          <span>10</span>
+          <a href="">暂无存档</a>
+          <span>0</span>
         </li>
         <li>
-          <a href="">2020年5月9号</a>
+          <a href="">-</a>
           <span>0</span>
         </li>
       </ul>
@@ -256,8 +253,10 @@
           }
 
           a {
-            padding: 14px 10px;
+            padding: 0 10px;
+            height: 50px;
             display: block;
+            line-height: 50px;
             color: #606266;
             font-size: 15px;
           }
@@ -268,6 +267,7 @@
             width: 26px;
             height: 26px;
             line-height: 26px;
+            font-size: 14px;
             text-align: center;
             border-radius: 100%;
             color: #fff;
