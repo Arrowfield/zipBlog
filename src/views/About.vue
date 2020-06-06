@@ -4,7 +4,7 @@
       <img src="https://arrowfield.top/5e42925d412fdc2e940edf3acb31fca5.jpg?imageView2/0/q/75" alt="">
       <h1 class="title">关于我</h1>
     </div>
-    <Tags/>
+    <Tags :tagDetail="tagDetail"/>
     <div class="intro-detail about">
       <p>我是谁</p>
       <ul>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import Tags from "@/components/Tags";
+  import Tags from "@/components/TagComponent";
   import Message from '@/components/Message'
 
   import Comment from '@/components/Comment'
@@ -67,7 +67,11 @@
     },
     data(){
       return{
-        play:false
+        play:false,
+        tagDetail:{
+          articleCreated:"2020-06-05",
+          articleTags:""
+        }
       }
     },
     methods:{

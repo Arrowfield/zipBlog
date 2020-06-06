@@ -29,6 +29,11 @@
     padding-bottom: 10px;
     color: #111;
     margin: 20px 0;
+    &:hover{
+      &::after{
+        width: 3em;
+      }
+    }
 
     &::before {
       content: "";
@@ -50,6 +55,8 @@
       left: 0;
       border-radius: 6px;
       box-shadow: 0 2px 12px rgba(255, 78, 106, .85);
+      /*display: block;*/
+
     }
   }
 

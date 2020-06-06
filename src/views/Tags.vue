@@ -51,10 +51,10 @@
       color: #fff;
       font-size: 12px !important;
       display: inline-block;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
       background: rgba(255, 78, 106, .15);
       color: rgba(255, 78, 106, .8);
-      margin-right: 5px;
+      margin-right: 15px;
     }
   }
 </style>

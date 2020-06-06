@@ -15,7 +15,7 @@
         //滚动高度 / (窗口高度 - 文档高度) * 100
         //console.log(window.pageYOffset,window.screen.height,window.innerHeight,e.target.documentElement.offsetHeight)
         let dom = document.getElementsByClassName('right-content')[0]
-        this.val = window.pageYOffset / (dom.offsetHeight - window.innerHeight) * 100
+        this.val = Math.floor(window.pageYOffset / (dom.offsetHeight - window.innerHeight) * 100)
 
       }
     },
@@ -40,6 +40,7 @@
     z-index: 3;
     height: 2px;
     border-radius: 2px;
+
   }
 
   .progress::-webkit-progress-bar {
@@ -51,6 +52,7 @@
   .progress::-webkit-progress-value {
     background: rgba(66,133,244,1);
     border-radius: 2px;
+    box-shadow: 0 0 1rem rgba(66,133,244,.5);
   }
 
 </style>

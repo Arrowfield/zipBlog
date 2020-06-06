@@ -35,7 +35,12 @@
             intro: "在B站可以看犬夜叉啦，，，，哈哈",
             imgUrl: require("../assets/img/error/loading_error.png")
           },
-
+          {
+            href: "https://v.qq.com/x/cover/m441e3rjq9kwpsc/d0034b19k4y.html",
+            title: "腾讯视频 - 斗罗大陆",
+            intro: "此生无悔入唐门",
+            imgUrl: "https://puui.qpic.cn/vcover_vt_pic/0/m441e3rjq9kwpsc1575196882/260"
+          },
         ]
       }
     }
@@ -57,7 +62,7 @@
       margin-right: 20px;
       overflow: hidden;
       transition: all .2s ease-in;
-
+      overflow: hidden;
       &:hover{
         /*transform:rotateX(15deg) ;*/
       }

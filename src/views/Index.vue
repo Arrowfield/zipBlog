@@ -3,7 +3,7 @@
     <div class="bg"></div>
     <div class="index-mask" v-if="showMenu" @click="showMenu = !showMenu"></div>
     <LeftContent :showMenu="showMenu"/>
-    <RightContent :showMenu.sync="showMenu" />
+    <RightContent :showMenu.sync="showMenu"/>
 
     <img @click="goTop" src="@/assets/img/index/top.png" class="icon go-top">
   </div>
@@ -23,6 +23,15 @@
     data() {
       return {
         showMenu: false,
+      }
+    },
+    watch:{
+      showMenu(val){
+        if(val){
+          document.body.classList.add('add-mask-panel')
+        }else{
+          document.body.classList.remove('add-mask-panel')
+        }
       }
     },
     methods: {
@@ -45,7 +54,8 @@
   .index {
     position: relative;
     max-width: 1200px;
-    margin:0 auto;
+    margin: 0 auto;
+
     .go-top {
       position: fixed;
       width: 30px;

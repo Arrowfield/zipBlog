@@ -59,6 +59,7 @@
         border-radius: 50%;
         overflow: hidden;
         margin: 0 4px;
+        color: #9ca2a8;
         i{
           font-size: 24px;
         }

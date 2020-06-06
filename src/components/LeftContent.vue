@@ -246,10 +246,9 @@
       }
 
       .data-time{
-        color: black;
+        color: white;
         font-family: "Microsoft YaHei",Roboto, Noto, Helvetica, Arial, sans-serif;
         font-size: 12px;
-
       }
 
       .count-img{
