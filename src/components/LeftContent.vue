@@ -19,11 +19,12 @@
       </div>
     </div>
     <div class="intro menu-list">
-      <router-link to="/" v-waves><i class="iconfont iconshouye"></i>回到首页</router-link>
+      <router-link to="/" v-waves><i class="iconfont iconshouye1"></i>回到首页</router-link>
       <router-link to="/link" v-waves><i class="iconfont icondaohang"></i>友情链接</router-link>
-      <router-link to="/tags" v-waves><i class="iconfont iconbianqian"></i>标签</router-link>
+      <router-link to="/tags" v-waves><i class="iconfont iconbiaoqian1"></i>标签</router-link>
       <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
       <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
+      <router-link to="/address" v-waves><i class="iconfont iconlianjie1"></i>好站推荐</router-link>
     </div>
     <div class="intro fun-list">
       <h3>功能按钮</h3>

@@ -182,4 +182,5 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 
 + 1、移动端格式化时间错误
 + 2、底部的提示语换成自已的
-+ 3、获取数据的加载进度
++ 3、获取数据的加载进度 【暂时不做了】
++ 4、文章详情页的title必须加上文章标题

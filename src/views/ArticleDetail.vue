@@ -22,6 +22,7 @@
   import Message from '@/components/Message'
   import Comment from '@/components/Comment'
   import {getArticleById,recordCount} from "@/api/home";
+  import changePageTitle from "@/utils/changePageTitle";
   export default {
     name: "ArticleDetail",
     components: {
@@ -37,10 +38,16 @@
         },
       }
     },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        // console.log(vm.$data.articleDetail)
+      })
+    },
     methods:{
       async getArticleDetail(){
         let res = await getArticleById({zid:this.$route.params.id})
         this.articleDetail = Object.assign({},res.data.data)
+        changePageTitle(this.articleDetail.articleTitle)
       },
       //记录文章的浏览量进行埋点
       recordArticleViewCount(){

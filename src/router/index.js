@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+import changePageTitle from '../utils/changePageTitle'
+
 const routes = [
   {
     path: '/',
@@ -13,19 +15,20 @@ const routes = [
         name: "Article",
         component: () => import("../components/Article"),
         meta: {
-          title: 'Z个人博客'
+          title: '首页'
         }
       },
       {
         path:"article/:id",
-        component:()=> import("@/views/ArticleDetail")
+        component:()=> import("@/views/ArticleDetail"),
+
       },
       {
         path: "link",
         name: "LinkFriend",
         component: () => import("../views/LinkFriend"),
         meta: {
-          title: 'Z个人博客-友情链接'
+          title: '友情链接'
         }
       },
       {
@@ -33,7 +36,7 @@ const routes = [
         name: "Tags",
         component: () => import("../views/Tags"),
         meta: {
-          title: 'Z个人博客-标签'
+          title: '标签'
         }
       },
       {
@@ -41,7 +44,7 @@ const routes = [
         name: "About",
         component: () => import("../views/About"),
         meta: {
-          title: 'Z个人博客-关于'
+          title: '关于'
         }
       },
       {
@@ -49,7 +52,7 @@ const routes = [
         name: "Photo",
         component: () => import("../views/Photo"),
         meta: {
-          title: 'Z个人博客-相册'
+          title: '相册'
         }
       }
     ]
@@ -72,7 +75,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  window.document.title = to.meta.title || 'Zの个人博客'
+  changePageTitle(to.meta.title)
   next()
 })
 
