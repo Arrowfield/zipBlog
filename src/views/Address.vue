@@ -1,6 +1,6 @@
 <!-- page 好站推荐 -->
 <template>
-  <RightPanelContainer title="好站推荐">
+  <RightPanelContainer class="address-page" title="好站推荐" >
     <ul class="good-link">
       <li class="link-item">
         <a href="https://www.cnblogs.com/mumu2/p/12035072.html" target="_blank" title="webstorm最新激活码2019">
@@ -91,9 +91,10 @@
       }
 
       .logo {
-        max-width: 80px;
+        width: 80px;
         overflow: hidden;
         margin-left: 5px;
+        flex:  0 0 80px;
       }
 
       .logo img {

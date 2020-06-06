@@ -44,8 +44,6 @@ input, textarea, button, a, select {
 @media screen and (max-width: 1024px){
 
   div.right-content {
-    //position: relative !important;
-    //left: 0 !important;
     width: calc(100% - 280px) !important;
   }
 
@@ -109,6 +107,19 @@ input, textarea, button, a, select {
       .intro-detail {
         margin: 0 0 20px;
         padding: 20px;
+      }
+    }
+  }
+
+  div.address-page{
+    .good-link li.link-item{
+      width: 100% ;
+      margin-right:0;
+      a{
+        justify-content: space-between;
+      }
+      p.intro,p.title{
+        max-width: 100%;
       }
     }
   }
