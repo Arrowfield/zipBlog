@@ -31,6 +31,7 @@
           document.body.classList.add('add-mask-panel')
         } else {
           document.body.classList.remove('add-mask-panel')
+
         }
       }
     },

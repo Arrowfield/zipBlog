@@ -24,7 +24,7 @@ const ProgressSelf = function (options) {
   let id = "progress" + seed++
 
   options.onClose = function() {
-    console.log("___________执行到这里了吧")
+    // console.log("___________执行到这里了吧")
     ProgressSelf.close(id, userOnClose);
   };
 

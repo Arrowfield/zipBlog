@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  import settings from "@/settings";
   export default {
     name: "Progress",
     data() {
@@ -24,7 +25,8 @@
       positionStyle() {
         return {
           top: `${this.top}px`,
-          left:`${this.left}px`
+          left:`${this.left}px`,
+          color:settings.textColors[Math.floor(Math.random() * 6)]
         }
       }
     },
