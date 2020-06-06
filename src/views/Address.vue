@@ -16,6 +16,17 @@
           </div>
         </a>
       </li>
+      <li class="link-item">
+        <a href="https://www.bilibili.com/bangumi/play/ep290152?bsource=baidu_aladdin" target="_blank" title="B站超清犬夜叉">
+          <div>
+            <p class="title">B站超清犬夜叉</p>
+            <p class="intro">在B站可以看犬夜叉啦，，，，哈哈</p>
+          </div>
+          <div class="logo">
+            <img src="../assets/img/error/loading_error.png" alt=""/>
+          </div>
+        </a>
+      </li>
     </ul>
   </RightPanelContainer>
 </template>
@@ -27,33 +38,38 @@
 </script>
 
 <style lang="scss" scoped>
-  .good-link{
-    margin-top:25px;
+  .good-link {
+    margin-top: 25px;
     display: flex;
     flex-wrap: wrap;
 
-    li.link-item{
+    li.link-item {
       width: 220px;
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      border-radius:10px;
+      border-radius: 10px;
       height: 130px;
       margin-bottom: 20px;
-      margin-right:20px;
+      margin-right: 20px;
       overflow: hidden;
 
-      a{
+      a {
         /*display: block;*/
-        padding:20px 10px;
+        padding: 20px 10px;
         height: 100%;
         display: flex;
         align-items: center;
         transition: all .2s ease-in;
-        &:hover{
+
+        &:hover {
           background: #4285f4;
-          color: white;
+
+          .title, .intro {
+            color: white;
+          }
         }
       }
-      .title{
+
+      .title {
         color: #333;
         font-weight: bold;
         max-width: 120px;
@@ -62,27 +78,30 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      .intro{
+
+      .intro {
         color: #ddd;
         font-size: 13px;
-        margin-top:5px;
+        margin-top: 5px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
         overflow: hidden;
         max-width: 125px;
       }
-      .logo{
+
+      .logo {
         max-width: 80px;
         overflow: hidden;
-        margin-left:5px;
+        margin-left: 5px;
       }
-      .logo img{
+
+      .logo img {
         display: block;
         /*transition: all .2s linear;*/
         border-radius: 5px;
 
-        &:hover{
+        &:hover {
           /*transform: scale(1.2);*/
         }
       }
