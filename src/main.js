@@ -17,6 +17,10 @@ Vue.use(Waves)
 import _ from 'lodash'
 Vue.prototype._ = _
 
+//全局组件
+import RightPanelContainer from '@/components/RightPanelContainer'
+Vue.component('RightPanelContainer',RightPanelContainer)
+
 new Vue({
   router,
   store,

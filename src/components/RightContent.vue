@@ -6,15 +6,21 @@
     </div>
     <router-view/>
 
-    <div class="footer">凡打不倒我的，必使我强大！！！—— Z 技术博客</div>
+    <div class="footer">{{ epigram }}</div>
   </div>
 </template>
 
 <script>
   import waves from "@/directive/waves/waves";
   import Loading from "@/components/Loading";
+  import setting from '@/settings'
   export default {
     name: "RightContent",
+    data(){
+      return{
+        epigram:setting.epigram //警句，格言
+      }
+    },
     components:{
       Loading
     },
@@ -71,12 +77,13 @@
       text-align: center;
       background-color: #f5f6f5;
       color: #777;
-
+      font-size: 13px;
       bottom: 0;
       width: 100%;
       height: 56px;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
+      font-family: 'Arizonia', cursive;
     }
   }
 </style>

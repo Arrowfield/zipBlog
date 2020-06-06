@@ -32,6 +32,14 @@ const routes = [
         }
       },
       {
+        path: "address",
+        name: "Address",
+        component: () => import("../views/Address"),
+        meta: {
+          title: '好站推荐'
+        }
+      },
+      {
         path: "tags",
         name: "Tags",
         component: () => import("../views/Tags"),

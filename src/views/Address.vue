@@ -1,0 +1,91 @@
+<!-- page 好站推荐 -->
+<template>
+  <RightPanelContainer title="好站推荐">
+    <ul class="good-link">
+      <li class="link-item">
+        <a href="https://www.cnblogs.com/mumu2/p/12035072.html" target="_blank" title="webstorm最新激活码2019">
+          <div>
+            <p class="title">webstorm最新激活码2019</p>
+            <p class="intro">网址里面有 lookdiv.com 里面的钥匙就是lookdiv.com
+              打开网址，获取密钥，复制到激活里面就好了。
+              关注一下~
+              有问题直接私信。</p>
+          </div>
+          <div class="logo">
+            <img src="../assets/img/address/address01.jpg" alt=""/>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </RightPanelContainer>
+</template>
+
+<script>
+  export default {
+    name: "Address"
+  }
+</script>
+
+<style lang="scss" scoped>
+  .good-link{
+    margin-top:25px;
+    display: flex;
+    flex-wrap: wrap;
+
+    li.link-item{
+      width: 220px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      border-radius:10px;
+      height: 130px;
+      margin-bottom: 20px;
+      margin-right:20px;
+      overflow: hidden;
+
+      a{
+        /*display: block;*/
+        padding:20px 10px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        transition: all .2s ease-in;
+        &:hover{
+          background: #4285f4;
+          color: white;
+        }
+      }
+      .title{
+        color: #333;
+        font-weight: bold;
+        max-width: 120px;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .intro{
+        color: #ddd;
+        font-size: 13px;
+        margin-top:5px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        max-width: 125px;
+      }
+      .logo{
+        max-width: 80px;
+        overflow: hidden;
+        margin-left:5px;
+      }
+      .logo img{
+        display: block;
+        /*transition: all .2s linear;*/
+        border-radius: 5px;
+
+        &:hover{
+          /*transform: scale(1.2);*/
+        }
+      }
+    }
+  }
+</style>
