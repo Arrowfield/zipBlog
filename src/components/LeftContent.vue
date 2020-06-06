@@ -15,7 +15,7 @@
       </div>
       <div class="views">
         <p>浏览</p>
-        <p>59630</p>
+        <p>{{ views }}</p>
       </div>
     </div>
     <div class="intro menu-list">
@@ -64,12 +64,12 @@
     <div class="intro fun-list tags-list">
       <h3>标签</h3>
       <div class="tags">
-        <a v-loading-self="true"># 随笔</a>
-        <a># golang</a>
-        <a># 算法</a>
-        <a># 关于我</a>
-        <a># 随笔</a>
-        <a># 随笔</a>
+        <a href="javascript:" :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}" v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
+<!--        <a># golang</a>-->
+<!--        <a># 算法</a>-->
+<!--        <a># 关于我</a>-->
+<!--        <a># 随笔</a>-->
+<!--        <a># 随笔</a>-->
       </div>
     </div>
 
@@ -102,13 +102,13 @@
     </div>
 
     <div class="copyright">
-      <p>&copy; 2020 <a href="#">银杏树下</a></p>
+      <p>&copy; 2020 <a href="javascript:">银杏树下</a></p>
       <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
             target="_blank">粤ICP备20045257号</a></p>
       <p>20202225656<a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank">粤公网安备</a></p>
       <!--      <p>Powered by <a href="#">Solo</a></p>-->
       <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
-      <p v-html="countInnerHtml" class="count-img"></p>
+      <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959" target="_blank">站长统计</a></p>
     </div>
   </div>
 
@@ -117,17 +117,23 @@
 <script>
   import waves from "@/directive/waves/waves";
   import {mapState} from 'vuex'
+  import {getArticleList} from "@/api/home";
   export default {
     name: "LeftContent",
     data() {
       return {
         isIe: false,
-        countInnerHtml: ""
+        countInnerHtml: "",
+        views:0,
+        loading:false,
+        tags:[]
       }
     },
     computed:{
       ...mapState({
-        total:state => state.indexBaseData.articleTotal
+        total:state => state.indexBaseData.articleTotal,
+        bgColors: state => state.bgColors,
+        textColors:state => state.textColors
       })
     },
     directives: {
@@ -150,11 +156,26 @@
         this.countInnerHtml = `站长统计${dom.innerHTML}`
       }
     },
-    mounted() {
+    async mounted() {
       let agent = navigator.userAgent
-      if (agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1)
+      if (agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1) {
         this.isIe = true
+      }
       this.getCountImage()
+      //异步加载数据
+      try {
+        this.loading = true
+        let res = await getArticleList()
+        let data = res.data
+        this.$store.commit("setIndexBaseData",{total:res.data.total})
+        this.$store.commit("article/setDatalist",res.data.data)
+        this.views = data.viewsTotal
+        this.tags = _.take(data.tags,7)
+        this.$store.commit("setTags",data.tags)
+        this.loading = false
+      }catch (e) {
+        if(e) throw e
+      }
     }
   }
 </script>
@@ -208,8 +229,8 @@
       }
 
       .count-img{
-        margin-top:5px;
-        margin-right: 5px;
+        /*margin-top:5px;*/
+        /*margin-right: 5px;*/
         display: flex;
         align-items: center;
         justify-content: flex-end;

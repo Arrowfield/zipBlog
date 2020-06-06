@@ -24,13 +24,13 @@ module.exports = {
       plugins: [
         new PrerenderSPAPlugin({
           staticDir: path.join(__dirname, 'dist'),
-          routes: ['/', '/link', '/about','/tags'],
+          routes: ['/'],
           //routes: ['/'],
           renderer: new Renderer({
             inject: {
               foo: 'bar'
             },
-            //headless: false, 
+            //headless: false,
             renderAfterDocumentEvent: 'render-event',
             args: ['--no-sandbox', '--disable-setuid-sandbox']
           })

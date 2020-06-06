@@ -177,3 +177,9 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 
 + 1、顶部加载进度条
 + 2、所有的文章还是以markdown的形式输出
+
+##### 2020.06.05篇
+
++ 1、移动端格式化时间错误
++ 2、底部的提示语换成自已的
++ 3、获取数据的加载进度

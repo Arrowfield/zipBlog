@@ -50,14 +50,18 @@
   import {getArticleList} from "@/api/home";
 
   const testText = '12312345645648789456132131'
-
+  import {mapState} from 'vuex'
   export default {
     name: "Article",
     data(){
       return{
-        articleList:[],
         total:0
       }
+    },
+    computed:{
+      ...mapState({
+        articleList: state => state.article.articleList
+      })
     },
     filters:{
       truncation(val){
@@ -74,10 +78,10 @@
       waves
     },
     async mounted(){
-      let res = await getArticleList()
-      this.articleList = res.data.data
-      this.total = res.data.total
-      this.$store.commit("setIndexBaseData",{total:this.total})
+      // let res = await getArticleList()
+      // this.articleList = res.data.data
+      // this.total = res.data.total
+
     }
   }
 </script>
@@ -104,7 +108,7 @@
       border-radius: 10px;
 
       max-height: 500px;
-      min-height: 200px;
+      min-height: 100px;
       background-color: #eee;
       position: relative;
 

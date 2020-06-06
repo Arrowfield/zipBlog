@@ -55,13 +55,11 @@
 <script>
   import Tags from "@/components/Tags";
   import Message from '@/components/Message'
-  import waves from '@/directive/waves'
+
   import Comment from '@/components/Comment'
   export default {
     name: "About",
-    directives:{
-      waves
-    },
+
     components: {
       Tags,
       Message,

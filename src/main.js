@@ -7,11 +7,15 @@ import service from "./utils/service"
 Vue.config.productionTip = false
 Vue.prototype.$axios = Object.freeze(service)
 
-
-
 //指令插件的导入
 import Loading from "./directive/loading/loading";
+import Waves from "./directive/waves"
 Vue.use(Loading)
+Vue.use(Waves)
+
+//lodash工具的使用
+import _ from 'lodash'
+Vue.prototype._ = _
 
 new Vue({
   router,

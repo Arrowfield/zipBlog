@@ -1,18 +1,18 @@
 <template>
   <div class="tags">
-    <a v-waves href="#"><i class="iconfont iconrili"></i>2020年04月17日</a>
-    <a v-waves href="#"><i class="iconfont iconredu"></i>21888 °C</a>
-    <a v-waves href="#"><i class="iconfont iconxx"></i>270</a>
-    <a v-waves href="#"><i class="iconfont icondaohang1"></i>环境搭建</a>
+    <a v-waves href="javascript:"><i class="iconfont iconrili"></i>2020年04月17日</a>
+    <a v-waves href="javascript:"><i class="iconfont iconredu"></i>21888 °C</a>
+    <a v-waves href="javascript:"><i class="iconfont iconxx"></i>270</a>
+    <a v-waves href="javascript:"><i class="iconfont icondaohang1"></i>环境搭建</a>
   </div>
 </template>
 
 <script>
-  import waves from "@/directive/waves/waves";
+  // import waves from "@/directive/waves/waves";
   export default {
     name: "Tags",
     directives:{
-      waves
+      // waves
     },
   }
 </script>

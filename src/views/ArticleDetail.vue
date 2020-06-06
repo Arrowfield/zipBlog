@@ -1,6 +1,6 @@
 <template>
   <div class="about-page article-detail-page">
-    <div class="img-cont">
+    <div class="img-cont" v-waves>
       <img :src="articleDetail.articleImgURL" alt="">
       <h1 class="title">{{ articleDetail.articleTitle }}</h1>
     </div>
