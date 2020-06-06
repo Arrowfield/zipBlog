@@ -5,14 +5,14 @@
     <LeftContent :showMenu="showMenu"/>
     <RightContent :showMenu.sync="showMenu"/>
 
-    <img @click="goTop" src="@/assets/img/index/top.png" class="icon go-top">
+    <img @click="goTop" src="@/assets/img/index/top.png" class="icon go-top" alt="">
   </div>
 </template>
 
 <script>
   import RightContent from '@/components/RightContent'
   import LeftContent from "@/components/LeftContent";
-
+  import ProgressSelf from '../plugin/Progress/Progress'
 
   export default {
     components: {
@@ -25,11 +25,11 @@
         showMenu: false,
       }
     },
-    watch:{
-      showMenu(val){
-        if(val){
+    watch: {
+      showMenu(val) {
+        if (val) {
           document.body.classList.add('add-mask-panel')
-        }else{
+        } else {
           document.body.classList.remove('add-mask-panel')
         }
       }
@@ -44,8 +44,14 @@
       handleScroll() {
       },
       changeMenuStatus() {
+      },
+      addLoveIcon(e) {
+        ProgressSelf({left: e.clientX, top: e.clientY})
       }
     },
+    mounted() {
+      document.body.addEventListener("click", this.addLoveIcon)
+    }
   }
 </script>
 
