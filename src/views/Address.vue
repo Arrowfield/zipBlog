@@ -13,36 +13,51 @@
           </div>
         </a>
       </li>
+
+      <li class="link-item" v-if="linkList.length === 0">
+        <a href="javascript:" title="没有加载到数据">
+          <div>
+            <p class="title">没有加载到数据</p>
+            <p class="intro">-</p>
+          </div>
+          <div class="logo">
+            <img src="../assets/img/error/loading_error.png" alt=""/>
+          </div>
+        </a>
+      </li>
+
     </ul>
   </RightPanelContainer>
 </template>
 
 <script>
+  import {getLink} from "@/api/linkFriend";
+
   export default {
     name: "Address",
     data() {
       return {
-        linkList: [
-          {
-            href: "https://www.cnblogs.com/mumu2/p/12035072.html",
-            title: "webstorm最新激活码2019",
-            intro: "网址里面有 lookdiv.com 里面的钥匙就是lookdiv.com 打开网址，获取密钥，复制到激活里面就好了。 关注一下~ 有问题直接私信。",
-            imgUrl: require("@/assets/img/address/address01.jpg")
-          },
-          {
-            href: "https://www.bilibili.com/bangumi/play/ep290152?bsource=baidu_aladdin",
-            title: "B站超清犬夜叉",
-            intro: "在B站可以看犬夜叉啦，，，，哈哈",
-            imgUrl: require("../assets/img/error/loading_error.png")
-          },
-          {
-            href: "https://v.qq.com/x/cover/m441e3rjq9kwpsc/d0034b19k4y.html",
-            title: "腾讯视频 - 斗罗大陆",
-            intro: "此生无悔入唐门",
-            imgUrl: "https://puui.qpic.cn/vcover_vt_pic/0/m441e3rjq9kwpsc1575196882/260"
-          },
-        ]
+        linkList: []
       }
+    },
+    methods: {
+      getGoogLink() {
+        getLink({type: 1}).then((res) => {
+          console.log(res.data.data)
+          if(res.data.code !== 200) return
+          this.linkList = res.data.data.map((item)=>{
+            return{
+              href:item.url,
+              title:item.title,
+              intro:item.description,
+              imgUrl:item.image
+            }
+          })
+        })
+      }
+    },
+    mounted() {
+      this.getGoogLink()
     }
   }
 </script>
@@ -63,7 +78,8 @@
       overflow: hidden;
       transition: all .2s ease-in;
       overflow: hidden;
-      &:hover{
+
+      &:hover {
         /*transform:rotateX(15deg) ;*/
       }
 
@@ -78,7 +94,7 @@
 
         &:hover {
           background: #4285f4;
-          transform: scale(1.02) ;
+          transform: scale(1.02);
 
           .title, .intro {
             color: white;

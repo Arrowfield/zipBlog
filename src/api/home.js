@@ -18,7 +18,6 @@ export function getArticleById(data) {
   return service.post("/article/getById",data)
 }
 
-
 export function recordCount(data){
   return service.post("/article/recordViewCount",data)
 }

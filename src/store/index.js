@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     //articleList:[],
     indexBaseData:{
-      articleTotal:0
+      articleTotal:"-"
     },
     tags:[],
     bgColors: [

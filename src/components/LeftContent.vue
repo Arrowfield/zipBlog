@@ -125,7 +125,7 @@
       return {
         isIe: false,
         countInnerHtml: "",
-        views: 0,
+        views: "-",
         loading: false,
         tags: [],
         timer: null,
