@@ -189,3 +189,8 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 ##### 2020.06.06篇
 
 + 1、左侧菜单的过度效果
+
+#### 2020.06.07篇
+
++ 1、分页功能的添加
++ 2、样式缺陷 

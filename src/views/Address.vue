@@ -4,7 +4,7 @@
     <ul class="good-link">
       <li class="link-item" v-for="(item) in linkList">
         <a :href="item.href" target="_blank" :title="item.title">
-          <div>
+          <div class="intro-link">
             <p class="title">{{ item.title }}</p>
             <p class="intro">{{ item.intro }}</p>
           </div>
@@ -44,13 +44,13 @@
       getGoogLink() {
         getLink({type: 1}).then((res) => {
           console.log(res.data.data)
-          if(res.data.code !== 200) return
-          this.linkList = res.data.data.map((item)=>{
-            return{
-              href:item.url,
-              title:item.title,
-              intro:item.description,
-              imgUrl:item.image
+          if (res.data.code !== 200) return
+          this.linkList = res.data.data.map((item) => {
+            return {
+              href: item.url,
+              title: item.title,
+              intro: item.description,
+              imgUrl: item.image
             }
           })
         })
@@ -77,7 +77,7 @@
       margin-right: 20px;
       overflow: hidden;
       transition: all .2s ease-in;
-      overflow: hidden;
+
 
       &:hover {
         /*transform:rotateX(15deg) ;*/
@@ -100,6 +100,12 @@
             color: white;
           }
         }
+      }
+
+      .intro-link {
+        //width: ;
+        //flex: 0 0 auto;
+        width: calc(100% - 90px)
       }
 
       .title {
