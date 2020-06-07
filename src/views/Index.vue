@@ -1,8 +1,11 @@
 <template>
   <div class="index" :class="{'index-change':showMenu}">
     <div class="bg"></div>
-    <div class="index-mask" v-if="showMenu" @click="showMenu = !showMenu"></div>
-    <LeftContent :showMenu="showMenu"/>
+    <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>
+    <transition name="menu">
+      <LeftContent v-show="showMenu" :showMenu="showMenu"/>
+    </transition>
+    <LeftContent v-show="!showMenu"/>
     <RightContent :showMenu.sync="showMenu"/>
 
     <img @click="goTop" src="@/assets/img/index/top.png" class="icon go-top" alt="">
@@ -23,6 +26,7 @@
     data() {
       return {
         showMenu: false,
+        showMenuFun: true
       }
     },
     watch: {
@@ -45,6 +49,9 @@
       handleScroll() {
       },
       changeMenuStatus() {
+        this.showMenu = !this.showMenu
+        this.showMenuFun = !this.showMenuFun
+        console.log(typeof this.showMenuFun)
       },
       addLoveIcon(e) {
         ProgressSelf({left: e.clientX, top: e.clientY})
@@ -57,6 +64,21 @@
 </script>
 
 <style lang="scss" scoped>
+
+
+  .menu-enter-active {
+    transition: all .6s ease;
+  }
+
+  .menu-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+  .menu-enter, .menu-leave-to {
+    transform: translateX(-260px);
+    opacity: 0;
+  }
+
 
   .index {
     position: relative;

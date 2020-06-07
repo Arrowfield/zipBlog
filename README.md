@@ -185,3 +185,7 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 + 3、获取数据的加载进度 【暂时不做了】
 + 4、文章详情页的title必须加上文章标题【已完成】
 + 5、优化样式
+
+##### 2020.06.06篇
+
++ 1、左侧菜单的过度效果

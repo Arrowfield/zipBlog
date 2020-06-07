@@ -1,116 +1,116 @@
 <template>
-
-
-  <div class="left-content " :class="{'screen-change':showMenu,'is-ie':isIe}">
-    <div class="avatar">
-      <a href="/">
-        <!--        <img src="../assets/img/index/avatar.gif" title="Z 的技术博客" alt="">-->
-        <img src="../assets/img/index/kenan_avatar.png" title="Z 的技术博客" alt="">
-      </a>
-    </div>
-    <div class="intro">
-      <div class="article">
-        <p>文章</p>
-        <p>{{ total }}</p>
-      </div>
-      <div class="views">
-        <p>浏览</p>
-        <p>{{ views }}</p>
-      </div>
-    </div>
-    <div class="intro menu-list">
-      <router-link to="/" v-waves><i class="iconfont iconshouye1"></i>回到首页</router-link>
-      <router-link to="/link" v-waves><i class="iconfont icondaohang"></i>友情链接</router-link>
-      <router-link to="/tags" v-waves><i class="iconfont iconbiaoqian1"></i>标签</router-link>
-      <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
-      <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
-      <router-link to="/address" v-waves><i class="iconfont iconlianjie1"></i>好站推荐</router-link>
-    </div>
-    <div class="intro fun-list">
-      <h3>功能按钮</h3>
-      <div class="fun-items btn">
-        <a v-waves href="#" title="搜索"><i class="iconfont iconhuabanfuben"></i></a>
-        <a v-waves href="#" title="ssr"><i class="iconfont iconwifi"></i></a>
-        <!--        <a v-waves href="#">-->
-        <!--          <i class="iconfont iconshuji"></i>-->
-        <!--        </a>-->
-        <a v-waves href="http://music.sxswyc.top/" class="code-cont" title="音乐馆" target="_blank">
-          <i class="iconfont iconyinyue"></i>
-        </a>
-        <a v-waves href="//v.sxswyc.top/" class="code-cont" title="视频屋" target="_blank">
-          <i class="iconfont iconshipin"></i>
+    <div  class="left-content " :class="{'screen-change':showMenu,'is-ie':isIe}">
+      <div class="avatar">
+        <a href="/">
+          <!--        <img src="../assets/img/index/avatar.gif" title="Z 的技术博客" alt="">-->
+          <img src="../assets/img/index/kenan_avatar.png" title="Z 的技术博客" alt="">
         </a>
       </div>
-    </div>
+      <div class="intro">
+        <div class="article">
+          <p>文章</p>
+          <p>{{ total }}</p>
+        </div>
+        <div class="views">
+          <p>浏览</p>
+          <p>{{ views }}</p>
+        </div>
+      </div>
+      <div class="intro menu-list">
+        <router-link to="/" v-waves><i class="iconfont iconshouye1"></i>回到首页</router-link>
+        <router-link to="/link" v-waves><i class="iconfont icondaohang"></i>友情链接</router-link>
+        <router-link to="/tags" v-waves><i class="iconfont iconbiaoqian1"></i>标签</router-link>
+        <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
+        <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
+        <router-link to="/address" v-waves><i class="iconfont iconlianjie1"></i>好站推荐</router-link>
+      </div>
+      <div class="intro fun-list">
+        <h3>功能按钮</h3>
+        <div class="fun-items btn">
+          <a v-waves href="#" title="搜索"><i class="iconfont iconhuabanfuben"></i></a>
+          <a v-waves href="#" title="ssr"><i class="iconfont iconwifi"></i></a>
+          <!--        <a v-waves href="#">-->
+          <!--          <i class="iconfont iconshuji"></i>-->
+          <!--        </a>-->
+          <a v-waves href="http://music.sxswyc.top/" class="code-cont" title="音乐馆" target="_blank">
+            <i class="iconfont iconyinyue"></i>
+          </a>
+          <a v-waves href="//v.sxswyc.top/" class="code-cont" title="视频屋" target="_blank">
+            <i class="iconfont iconshipin"></i>
+          </a>
+        </div>
+      </div>
 
-    <div class="intro fun-list">
-      <h3>社交功能</h3>
-      <div class="fun-items">
-        <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i
-          class="iconfont icongithub"></i></a>
-        <a v-waves href="//qm.qq.com/cgi-bin/qm/qr?k=RmZQeDHL_tjQIKwib_rmvEFa7AsOMSj-&noverify=0#" title="768449566"
-           target="_blank"><i class="iconfont iconqq"></i></a>
-        <a href="javascript:" class="code-cont">
-          <i class="iconfont iconweixin"></i>
-          <div class="code">
-            <img alt="" src="../assets/img/index/code.jpg">
-          </div>
-        </a>
-        <a v-waves href="javascript:" class="code-cont" title="登录">
-          <i class="iconfont icondenglu"></i>
-        </a>
+      <div class="intro fun-list">
+        <h3>社交功能</h3>
+        <div class="fun-items">
+          <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i
+            class="iconfont icongithub"></i></a>
+          <a v-waves href="//qm.qq.com/cgi-bin/qm/qr?k=RmZQeDHL_tjQIKwib_rmvEFa7AsOMSj-&noverify=0#" title="768449566"
+             target="_blank"><i class="iconfont iconqq"></i></a>
+          <a href="javascript:" class="code-cont">
+            <i class="iconfont iconweixin"></i>
+            <div class="code">
+              <img alt="" src="../assets/img/index/code.jpg">
+            </div>
+          </a>
+          <a v-waves href="javascript:" class="code-cont" title="登录">
+            <i class="iconfont icondenglu"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="intro fun-list tags-list">
+        <h3>标签</h3>
+        <div class="tags">
+          <a href="javascript:"
+             :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
+             v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
+          <a href="javascript:" v-if="tags.length === 0" :style="{background:bgColors[0],color:textColors[0]}">wuwu
+            一个标签都没有，，，</a>
+        </div>
+      </div>
+
+      <div class="intro fun-list">
+        <h3>分类</h3>
+        <ul class="category-list">
+          <li>
+            <a href="">暂无分类</a>
+            <span>0</span>
+          </li>
+          <li>
+            <a href="">-</a>
+            <span>0</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="intro fun-list">
+        <h3>存档</h3>
+        <ul class="category-list">
+          <li>
+            <a href="">暂无存档</a>
+            <span>0</span>
+          </li>
+          <li>
+            <a href="">-</a>
+            <span>0</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2020 <a href="javascript:">银杏树下</a></p>
+        <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
+              target="_blank">粤ICP备20045257号</a></p>
+        <p>20202225656<a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank">粤公网安备</a></p>
+        <!--      <p>Powered by <a href="#">Solo</a></p>-->
+        <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
+        <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959" target="_blank">站长统计</a>
+        </p>
+        <p class="data-time">{{ time }}</p>
       </div>
     </div>
-
-    <div class="intro fun-list tags-list">
-      <h3>标签</h3>
-      <div class="tags">
-        <a href="javascript:" :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
-           v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
-        <a href="javascript:" v-if="tags.length === 0" :style="{background:bgColors[0],color:textColors[0]}">wuwu 一个标签都没有，，，</a>
-      </div>
-    </div>
-
-    <div class="intro fun-list">
-      <h3>分类</h3>
-      <ul class="category-list">
-        <li>
-          <a href="">暂无分类</a>
-          <span>0</span>
-        </li>
-        <li>
-          <a href="">-</a>
-          <span>0</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="intro fun-list">
-      <h3>存档</h3>
-      <ul class="category-list">
-        <li>
-          <a href="">暂无存档</a>
-          <span>0</span>
-        </li>
-        <li>
-          <a href="">-</a>
-          <span>0</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="copyright">
-      <p>&copy; 2020 <a href="javascript:">银杏树下</a></p>
-      <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
-            target="_blank">粤ICP备20045257号</a></p>
-      <p>20202225656<a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank">粤公网安备</a></p>
-      <!--      <p>Powered by <a href="#">Solo</a></p>-->
-      <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
-      <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959" target="_blank">站长统计</a></p>
-      <p class="data-time">{{ time }}</p>
-    </div>
-  </div>
-
 </template>
 
 <script>
@@ -118,32 +118,36 @@
   import {mapState} from 'vuex'
   import {getArticleList} from "@/api/home";
   import setting from "@/settings"
+
   export default {
     name: "LeftContent",
     data() {
       return {
         isIe: false,
         countInnerHtml: "",
-        views:0,
-        loading:false,
-        tags:[],
-        timer:null,
-        time:""
+        views: 0,
+        loading: false,
+        tags: [],
+        timer: null,
+        time: "",
+
       }
     },
-    computed:{
+    computed: {
       ...mapState({
-        total:state => state.indexBaseData.articleTotal,
+        total: state => state.indexBaseData.articleTotal,
         bgColors: state => state.bgColors,
-        textColors:state => state.textColors
+        textColors: state => state.textColors
       })
     },
     directives: {
       waves
     },
     props: {
-      showMenu: {
-        default: false
+      showMenu: [Boolean],
+      showMenuFun: {
+        type: [Boolean, String],
+        // default:true
       }
     },
     watch: {},
@@ -157,8 +161,8 @@
         //this.countInnerHtml = `站长统计${dom.innerHTML}`
         //获取网页开始的时间
         let start = new Date(setting.siteStartTime).getTime()
-        this.timer = setInterval(()=>{
-          let now,timestamp,day,hours,m,s
+        this.timer = setInterval(() => {
+          let now, timestamp, day, hours, m, s
           now = new Date().getTime()
           timestamp = now - start
           day = Math.floor(timestamp / (3600 * 24 * 1000))
@@ -166,7 +170,7 @@
           m = Math.floor(timestamp % (3600 * 24 * 1000) % (1000 * 3600) / (1000 * 60))
           s = Math.round(timestamp % (3600 * 24 * 1000) % (1000 * 3600) % (1000 * 60) / 1000)
           this.time = `${day}天${hours}小时${m}分钟${s}秒`
-        },1000)
+        }, 1000)
       }
     },
     async mounted() {
@@ -180,17 +184,17 @@
         this.loading = true
         let res = await getArticleList()
         let data = res.data
-        this.$store.commit("setIndexBaseData",{total:res.data.total})
-        this.$store.commit("article/setDatalist",res.data.data)
+        this.$store.commit("setIndexBaseData", {total: res.data.total})
+        this.$store.commit("article/setDatalist", res.data.data)
         this.views = data.viewsTotal
-        this.tags = _.take(data.tags,7)
-        this.$store.commit("setTags",data.tags)
+        this.tags = _.take(data.tags, 7)
+        this.$store.commit("setTags", data.tags)
         this.loading = false
-      }catch (e) {
-        if(e) throw e
+      } catch (e) {
+        if (e) throw e
       }
     },
-    beforeDestroy(){
+    beforeDestroy() {
       clearInterval(this.timer)
       this.timer = null
     }
@@ -198,7 +202,7 @@
 </script>
 
 <style lang="scss">
-  .count-img img{
+  .count-img img {
     width: auto;
     vertical-align: top;
 
@@ -207,9 +211,12 @@
 
 <style lang="scss" scoped>
 
+
+
+
+
   .left-content-page {
     width: 260px;
-    /*position: relative;*/
     overflow: hidden;
   }
 
@@ -245,13 +252,13 @@
         }
       }
 
-      .data-time{
+      .data-time {
         color: white;
-        font-family: "Microsoft YaHei",Roboto, Noto, Helvetica, Arial, sans-serif;
+        font-family: "Microsoft YaHei", Roboto, Noto, Helvetica, Arial, sans-serif;
         font-size: 12px;
       }
 
-      .count-img{
+      .count-img {
         display: flex;
         align-items: center;
         justify-content: flex-end;
