@@ -7,8 +7,9 @@
     </transition>
     <LeftContent v-show="!showMenu"/>
     <RightContent :showMenu.sync="showMenu"/>
-
-    <img @click="goTop" src="@/assets/img/index/top.png" class="icon go-top" alt="">
+    <div class="go-top-panel" @click.stop="goTop">
+      <img  src="@/assets/img/index/top.png" class="icon go-top" alt="">
+    </div>
   </div>
 </template>
 
@@ -85,14 +86,20 @@
     max-width: 1200px;
     margin: 0 auto;
 
-    .go-top {
+    .go-top-panel{
       position: fixed;
-      width: 30px;
-      // height: 50px;
-      bottom: 20px;
+      bottom: 80px;
       right: 20px;
       cursor: pointer;
       color: white;
+      padding:10px;
+    }
+
+    .go-top {
+
+      width: 30px;
+      // height: 50px;
+
     }
 
     &.index-change {
