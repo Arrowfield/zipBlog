@@ -85,7 +85,7 @@
       this.ctx = this.$refs.canvas.getContext('2d')
       this.width = window.innerWidth
       this.height = window.innerHeight
-      this.$nextTick(() => {this.drawCanvas()})
+      // this.$nextTick(() => {this.drawCanvas()})
     },
     beforeDestroy() {
       window.removeEventListener('resize', this.resize)
