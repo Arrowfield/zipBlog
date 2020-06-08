@@ -1,5 +1,6 @@
 <template>
   <div class="index" :class="{'index-change':showMenu}">
+<!--    <CanvasBackground></CanvasBackground>-->
     <div class="bg"></div>
     <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>
     <transition name="menu">
@@ -17,11 +18,12 @@
   import RightContent from '@/components/RightContent'
   import LeftContent from "@/components/LeftContent";
   import ProgressSelf from '../plugin/Progress/Progress'
-
+  import CanvasBackground from "../components/canvas-background/CanvasBackground";
   export default {
     components: {
       RightContent,
-      LeftContent
+      LeftContent,
+      CanvasBackground
     },
     name: "Index",
     data() {
