@@ -59,44 +59,33 @@
       },
       changeMenuStatus() {
         this.showMenu = !this.showMenu
-        this.showMenuFun = !this.showMenuFun
-        console.log(typeof this.showMenuFun)
+
       },
       addLoveIcon(e) {
         ProgressSelf({left: e.clientX, top: e.clientY})
       },
       drawCanvas() {
-
-        drawBubble(this.ctx)
+        window.requestAnimationFrame(this.drawCanvas)
+        //console.log(123)
+        this.ctx.clearRect(0,0,this.width,this.height)
+        this.ctx.beginPath()
+        this.ctx.moveTo(5, 10)
+        this.ctx.lineTo(5, 1000)
+        this.ctx.strokeStyle = "red"
+        this.ctx.stroke()
       },
       resize() {
         this.width = window.innerWidth
         this.height = window.innerHeight
-        // let nc = document.createElement("canvas")
-        // nc.width = this.ctx.canvas.width
-        // nc.height = this.ctx.canvas.height
-        // nc.getContext('2d').drawImage(this.ctx.canvas, 0, 0)
-        // this.ctx.width = window.innerWidth
-        // this.ctx.height = window.innerHeight
-        // this.ctx.drawImage(nc, 0, 0)
-        //let imgData = this.ctx.getImageData(0,0,this.width,this.height);
-        // canvas.width = w;
-        // canvas.height = h;
-        //console.log(imgData)
-        //this.ctx.putImageData(imgData,0,0);
-
-        drawBubble(this.ctx)
-
       },
     },
     mounted() {
       document.body.addEventListener("click", this.addLoveIcon)
       window.addEventListener("resize", this.resize)
       this.ctx = this.$refs.canvas.getContext('2d')
-      this.resize()
-      this.$nextTick(() => {
-        this.drawCanvas()
-      })
+      this.width = window.innerWidth
+      this.height = window.innerHeight
+      this.$nextTick(() => {this.drawCanvas()})
     },
     beforeDestroy() {
       window.removeEventListener('resize', this.resize)

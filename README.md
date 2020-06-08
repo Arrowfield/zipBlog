@@ -200,3 +200,5 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 + 页面添加动态效果 pc端显示小泡泡，移动端显示彩带动图；
 + 页面显示卡通人物；添加点击的功能，参考D的博客
 + 优化滚动条的样式
++ 移动端下滑的时候菜单要出现
++ 添加性能狗的专区
