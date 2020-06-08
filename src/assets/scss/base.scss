@@ -8,11 +8,28 @@ body {
   //max-width: 1200px;
   margin: auto !important;
   font-family: Roboto, Noto, Helvetica, Arial, sans-serif;
-
   &.add-mask-panel{
     height: 100%;
     overflow: hidden;
   }
+  &::-webkit-scrollbar{
+    //width: 6px;
+    //height: 6px;
+    //background: #ff4e6a;
+
+  }
+  &::-webkit-scrollbar-track{
+    //background: rgba(0,0,0,.1);
+    //border-radius: 3px;
+
+  }
+  &::-webkit-scrollbar-thumb{
+      //background: #ff4e6a;
+      //border-radius: 3px;
+  }
+  //&::-webkit-scrollbar-corner{
+  //
+  //}
 }
 
 
