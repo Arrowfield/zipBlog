@@ -1,6 +1,6 @@
 <template>
   <div class="index" :class="{'index-change':showMenu}">
-<!--    <CanvasBackground></CanvasBackground>-->
+    <!--    <CanvasBackground></CanvasBackground>-->
     <div class="bg"></div>
     <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>
     <transition name="menu">
@@ -9,8 +9,9 @@
     <LeftContent v-show="!showMenu"/>
     <RightContent :showMenu.sync="showMenu"/>
     <div class="go-top-panel" @click.stop="goTop">
-      <img  src="@/assets/img/index/top.png" class="icon go-top" alt="">
+      <img src="@/assets/img/index/top.png" class="icon go-top" alt="">
     </div>
+    <canvas :width="width" :height="height" id="canvas" ref="canvas"></canvas>
   </div>
 </template>
 
@@ -19,6 +20,8 @@
   import LeftContent from "@/components/LeftContent";
   import ProgressSelf from '../plugin/Progress/Progress'
   import CanvasBackground from "../components/canvas-background/CanvasBackground";
+  import {drawBubble} from "../components/canvas-background/drewCanvas";
+
   export default {
     components: {
       RightContent,
@@ -29,7 +32,10 @@
     data() {
       return {
         showMenu: false,
-        showMenuFun: true
+        showMenuFun: true,
+        width: 200,
+        height: 200,
+        ctx: null
       }
     },
     watch: {
@@ -58,15 +64,49 @@
       },
       addLoveIcon(e) {
         ProgressSelf({left: e.clientX, top: e.clientY})
-      }
+      },
+      drawCanvas() {
+
+        drawBubble(this.ctx)
+      },
+      resize() {
+        this.width = window.innerWidth
+        this.height = window.innerHeight
+        // let nc = document.createElement("canvas")
+        // nc.width = this.ctx.canvas.width
+        // nc.height = this.ctx.canvas.height
+        // nc.getContext('2d').drawImage(this.ctx.canvas, 0, 0)
+        // this.ctx.width = window.innerWidth
+        // this.ctx.height = window.innerHeight
+        // this.ctx.drawImage(nc, 0, 0)
+      },
     },
     mounted() {
       document.body.addEventListener("click", this.addLoveIcon)
+      window.addEventListener("resize", this.resize)
+      this.ctx = this.$refs.canvas.getContext('2d')
+      this.resize()
+      this.$nextTick(() => {
+        this.drawCanvas()
+      })
+    },
+    beforeDestroy() {
+      window.removeEventListener('resize', this.resize)
     }
   }
 </script>
 
 <style lang="scss" scoped>
+
+  #canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    /*background: white;*/
+  }
 
 
   .menu-enter-active {
@@ -88,13 +128,13 @@
     max-width: 1200px;
     margin: 0 auto;
 
-    .go-top-panel{
+    .go-top-panel {
       position: fixed;
       bottom: 80px;
       right: 20px;
       cursor: pointer;
       color: white;
-      padding:10px;
+      padding: 10px;
     }
 
     .go-top {

@@ -25,8 +25,9 @@
       }
     },
     mounted() {
+      this.resize()
       this.$nextTick(() => {
-        this.resize()
+
         new HandleCanvas({id: 'canvas'})
       })
       window.addEventListener("resize", this.resize)
@@ -38,13 +39,5 @@
 </script>
 
 <style scoped>
-  #canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1000;
-    /*background: white;*/
-  }
+
 </style>
