@@ -79,6 +79,12 @@
         // this.ctx.width = window.innerWidth
         // this.ctx.height = window.innerHeight
         // this.ctx.drawImage(nc, 0, 0)
+        let imgData = this.ctx.getImageData(0,0,this.width,this.height);
+        // canvas.width = w;
+        // canvas.height = h;
+        console.log(imgData)
+        this.ctx.putImageData(imgData,0,0);
+
       },
     },
     mounted() {
