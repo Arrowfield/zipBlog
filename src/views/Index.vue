@@ -86,7 +86,6 @@
         this.initCanvas = {
           originX: 0,
           originY: originY,
-          radius: 7,
           distance: 3,
           offset: 10,
           num: num,

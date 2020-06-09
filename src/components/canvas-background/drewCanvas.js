@@ -1,5 +1,3 @@
-let deltaTime = 0, lastTime = Date.now()
-let speed = 0, rate = 0
 
 export const drawBubble = function (ctx, opt) {
   bubbleMonitor(opt,ctx)
