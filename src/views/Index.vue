@@ -69,25 +69,28 @@
         this.width = window.innerWidth
         this.height = window.innerHeight
       },
+      //canvas绘制
       drawBubble() {
         //window.requestAnimationFrame(this.drawBubble)
-
         drawBubble(this.ctx, this.initCanvas)
       },
+      //canvas初始化数据
       initData() {
-        let originY = [], num = Math.floor(this.ctx.canvas.width / 10)
+        let originY = [], num = Math.floor(this.ctx.canvas.width / 10),speed = [],radius = []
         for (let i = 0; i < num; i++) {
-          let tmp = (this.ctx.canvas.height - 10) - Math.floor(100 * Math.random())
-          originY.push(tmp)
+          originY[i] = (this.ctx.canvas.height - 10) - Math.floor(100 * Math.random())
+          speed[i] = Math.random() * 0.027 + 0.03;
+          radius[i] = Math.random() * 7
         }
-        //初始化canvas的数据
         this.initCanvas = {
           originX: 10,
           originY: originY,
           radius: 7,
           distance: 3,
           offset: 10,
-          num: num
+          num: num,
+          speed,
+          radius
         }
       }
     },
@@ -97,7 +100,6 @@
       this.width = window.innerWidth
       this.height = window.innerHeight
       this.$nextTick(() => { //要等到width，height 赋值完之后 在初始化
-
         this.ctx = this.$refs.canvas.getContext('2d')
         this.initData()
         this.drawBubble()
