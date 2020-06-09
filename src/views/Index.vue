@@ -37,7 +37,7 @@
         height: 200,
         ctx: null,
         canvas: null,
-        initCanvas:{}
+        initCanvas: {}
       }
     },
     watch: {
@@ -75,12 +75,13 @@
       },
       //canvas初始化数据
       initData() {
-        let originY = [], num = 300 ,speed = [],radius = [],alive = []
+        let originY = [], num = 300, speed = [], radius = [], alive = [], destory = []
         for (let i = 0; i < num; i++) {
           originY[i] = this.ctx.canvas.height
           speed[i] = Math.random() * 0.09 + 0.01;
           radius[i] = Math.random() * 5 + 2;
           alive[i] = false
+          destory[i] = this.ctx.canvas.height / 5 - Math.random() * this.ctx.canvas.height / 5
         }
         // console.log(num)
         this.initCanvas = {
@@ -92,6 +93,7 @@
           speed,
           radius,
           alive,
+          destory
         }
       }
     },

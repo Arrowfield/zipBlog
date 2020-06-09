@@ -18,7 +18,7 @@
     width: 100%;
     margin: 20px auto;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: rgb(255,255,255);
     padding: 20px;
     box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
   }

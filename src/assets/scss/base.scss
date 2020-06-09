@@ -95,7 +95,16 @@ input, textarea, button, a, select {
     }
 
     div.bg {
-      background: #f4f8fb !important;
+      //background: #f4f8fb !important;
+      background: transparent !important;
+    }
+
+    #canvas{
+      background: #f4f8fb;
+    }
+
+    .panel-cont{
+      background: rgba(255,255,255,.5);
     }
   }
 
