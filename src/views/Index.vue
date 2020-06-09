@@ -21,7 +21,6 @@
   import ProgressSelf from '../plugin/Progress/Progress'
   import CanvasBackground from "../components/canvas-background/CanvasBackground";
   import {drawBubble} from "../components/canvas-background/drewCanvas";
-  import HandleCanvas from "../components/canvas-background/handleCanvas";
 
   export default {
     components: {
@@ -37,7 +36,8 @@
         width: 200,
         height: 200,
         ctx: null,
-        canvas:null
+        canvas: null,
+        initCanvas:{}
       }
     },
     watch: {
@@ -69,9 +69,26 @@
         this.width = window.innerWidth
         this.height = window.innerHeight
       },
-      drawBubble(){
+      drawBubble() {
         //window.requestAnimationFrame(this.drawBubble)
-        drawBubble(this.ctx)
+
+        drawBubble(this.ctx, this.initCanvas)
+      },
+      initData() {
+        let originY = [], num = Math.floor(this.ctx.canvas.width / 10)
+        for (let i = 0; i < num; i++) {
+          let tmp = (this.ctx.canvas.height - 10) - Math.floor(100 * Math.random())
+          originY.push(tmp)
+        }
+        //初始化canvas的数据
+        this.initCanvas = {
+          originX: 10,
+          originY: originY,
+          radius: 7,
+          distance: 3,
+          offset: 10,
+          num: num
+        }
       }
     },
     mounted() {
@@ -79,11 +96,10 @@
       window.addEventListener("resize", this.resize)
       this.width = window.innerWidth
       this.height = window.innerHeight
-      this.$nextTick(()=>{ //要等到width，height 赋值完之后 在初始化
-        // this.canvas = new HandleCanvas(null,this.$refs.canvas)
-        // this.canvas.drawBg()
-        //console.log(this.canvas.init)
+      this.$nextTick(() => { //要等到width，height 赋值完之后 在初始化
+
         this.ctx = this.$refs.canvas.getContext('2d')
+        this.initData()
         this.drawBubble()
       })
     },
