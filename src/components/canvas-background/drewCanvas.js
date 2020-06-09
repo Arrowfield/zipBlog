@@ -7,14 +7,14 @@ export const drawBubble = function (ctx, opt) {
   let originX = opt.originX, originY = opt.originY, distance = opt.distance, num = opt.num
   for (let i = 0; i < num; i++) {
     if (opt.alive[i]) {
-      let offset = opt.radius[i] + distance
+      let offset = opt.radius[i]
       ctx.beginPath()
       ctx.fillStyle = "rgba(255,255,255,1)";
       ctx.globalAlpha = 0.2;
       originY[i] -= opt.speed[i] * 15
       ctx.arc(originX + offset * i * 2, originY[i], opt.radius[i], 0, 2 * Math.PI);
       ctx.fill()
-      if (originY[i] < 0) {
+      if (originY[i] < ctx.canvas.height / 5) {
         opt.alive[i] = false
       }
     }
@@ -45,11 +45,6 @@ function sendBubble(opt,ctx) {
 function born(i, opt,ctx) {
 
   opt.alive[i] = true
-  opt.originY[i] = (ctx.canvas.height - 10) - Math.floor(100 * Math.random())
-  // var aneID = Math.floor(Math.random() * ane.num);
-  // this.x[i] = ane.headx[aneID];
-  // this.y[i] = ane.heady[aneID];
-  // this.l[i] = 0;
-  // this.alive[i] = true;
-  // this.fruitType[i] = Math.random() < 0.9 ? "blue" : "orange";
+  opt.originY[i] = ctx.canvas.height
+
 }

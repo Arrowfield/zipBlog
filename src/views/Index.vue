@@ -46,7 +46,6 @@
           document.body.classList.add('add-mask-panel')
         } else {
           document.body.classList.remove('add-mask-panel')
-
         }
       }
     },
@@ -76,15 +75,16 @@
       },
       //canvas初始化数据
       initData() {
-        let originY = [], num = Math.floor(this.ctx.canvas.width) * 2,speed = [],radius = [],alive = []
+        let originY = [], num = 300 ,speed = [],radius = [],alive = []
         for (let i = 0; i < num; i++) {
-          originY[i] = (this.ctx.canvas.height - 10) - Math.floor(100 * Math.random())
-          speed[i] = Math.random() * 0.017 + 0.03;
-          radius[i] = Math.random() * 7;
+          originY[i] = this.ctx.canvas.height
+          speed[i] = Math.random() * 0.09 + 0.01;
+          radius[i] = Math.random() * 5 + 2;
           alive[i] = false
         }
+        // console.log(num)
         this.initCanvas = {
-          originX: 10,
+          originX: 0,
           originY: originY,
           radius: 7,
           distance: 3,
