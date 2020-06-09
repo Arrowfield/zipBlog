@@ -71,16 +71,17 @@
       },
       //canvas绘制
       drawBubble() {
-        //window.requestAnimationFrame(this.drawBubble)
+        window.requestAnimationFrame(this.drawBubble)
         drawBubble(this.ctx, this.initCanvas)
       },
       //canvas初始化数据
       initData() {
-        let originY = [], num = Math.floor(this.ctx.canvas.width / 10),speed = [],radius = []
+        let originY = [], num = Math.floor(this.ctx.canvas.width) * 2,speed = [],radius = [],alive = []
         for (let i = 0; i < num; i++) {
           originY[i] = (this.ctx.canvas.height - 10) - Math.floor(100 * Math.random())
-          speed[i] = Math.random() * 0.027 + 0.03;
-          radius[i] = Math.random() * 7
+          speed[i] = Math.random() * 0.017 + 0.03;
+          radius[i] = Math.random() * 7;
+          alive[i] = false
         }
         this.initCanvas = {
           originX: 10,
@@ -90,7 +91,8 @@
           offset: 10,
           num: num,
           speed,
-          radius
+          radius,
+          alive,
         }
       }
     },
