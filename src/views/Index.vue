@@ -37,7 +37,8 @@
         height: 200,
         ctx: null,
         canvas: null,
-        initCanvas: {}
+        initCanvas: {},
+        timer:null
       }
     },
     watch: {
@@ -70,7 +71,7 @@
       },
       //canvas绘制
       drawBubble() {
-        window.requestAnimationFrame(this.drawBubble)
+        this.timer = window.requestAnimationFrame(this.drawBubble)
         drawBubble(this.ctx, this.initCanvas)
       },
       //canvas初始化数据
@@ -110,6 +111,7 @@
     },
     beforeDestroy() {
       window.removeEventListener('resize', this.resize)
+      window.cancelAnimationFrame(this.timer)
     }
   }
 </script>
