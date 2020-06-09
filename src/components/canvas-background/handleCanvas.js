@@ -4,7 +4,6 @@ export default class HandleCanvas {
     this.ctx = canvas.getContext('2d')
     this.canvasWidth = this.ctx.canvas.width //画布的宽
     this.canvasHeight = this.ctx.canvas.height //画布的高
-    this.drawBg()
   }
 
   init() {
@@ -12,19 +11,13 @@ export default class HandleCanvas {
   }
 
   drawBg() {
-
+    console.log(this.drawBg)
+    // window.requestAnimationFrame(this.drawBg)
+    console.log(this.canvasHeight,this.canvasWidth)
     let ctx = this.ctx
-    let originX = 10, originY = this.canvasHeight - 10
-
-    // ctx.beginPath()
-    // ctx.moveTo(originX, originY)
-    // ctx.arc(100,100,50,0,2 * Math.PI)
-    // ctx.fillStyle = "red"
-    // ctx.fill()
-    ctx.moveTo(0,0,)
-    ctx.lineTo(0,100)
-
+    ctx.beginPath()
+    ctx.moveTo(0,100)
+    ctx.lineTo(0,200)
     ctx.stroke()
-    console.log(ctx)
   }
 }

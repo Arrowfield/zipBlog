@@ -21,6 +21,7 @@
   import ProgressSelf from '../plugin/Progress/Progress'
   import CanvasBackground from "../components/canvas-background/CanvasBackground";
   import {drawBubble} from "../components/canvas-background/drewCanvas";
+  import HandleCanvas from "../components/canvas-background/handleCanvas";
 
   export default {
     components: {
@@ -35,7 +36,8 @@
         showMenuFun: true,
         width: 200,
         height: 200,
-        ctx: null
+        ctx: null,
+        canvas:null
       }
     },
     watch: {
@@ -59,33 +61,31 @@
       },
       changeMenuStatus() {
         this.showMenu = !this.showMenu
-
       },
       addLoveIcon(e) {
         ProgressSelf({left: e.clientX, top: e.clientY})
-      },
-      drawCanvas() {
-        window.requestAnimationFrame(this.drawCanvas)
-        //console.log(123)
-        this.ctx.clearRect(0,0,this.width,this.height)
-        this.ctx.beginPath()
-        this.ctx.moveTo(5, 10)
-        this.ctx.lineTo(5, 1000)
-        this.ctx.strokeStyle = "red"
-        this.ctx.stroke()
       },
       resize() {
         this.width = window.innerWidth
         this.height = window.innerHeight
       },
+      drawBubble(){
+        //window.requestAnimationFrame(this.drawBubble)
+        drawBubble(this.ctx)
+      }
     },
     mounted() {
       document.body.addEventListener("click", this.addLoveIcon)
       window.addEventListener("resize", this.resize)
-      this.ctx = this.$refs.canvas.getContext('2d')
       this.width = window.innerWidth
       this.height = window.innerHeight
-      // this.$nextTick(() => {this.drawCanvas()})
+      this.$nextTick(()=>{ //要等到width，height 赋值完之后 在初始化
+        // this.canvas = new HandleCanvas(null,this.$refs.canvas)
+        // this.canvas.drawBg()
+        //console.log(this.canvas.init)
+        this.ctx = this.$refs.canvas.getContext('2d')
+        this.drawBubble()
+      })
     },
     beforeDestroy() {
       window.removeEventListener('resize', this.resize)
