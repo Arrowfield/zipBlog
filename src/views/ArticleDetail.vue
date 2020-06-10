@@ -10,7 +10,9 @@
 
     <div class="intro-detail message">
       <p style="margin-bottom:0">留言</p>
-       <Message :idName="articleDetail.zid"/>
+      <div class="message">
+       <Message :idName="'articleDetail'+articleDetail.zid"/>
+      </div>
 <!--      <Comment :postId="articleDetail.zid" />-->
     </div>
 
@@ -97,6 +99,10 @@
 
   .about-page {
     margin-top: 20px;
+
+    .message{
+      margin-top:16px;
+    }
     .img-cont {
       overflow: hidden;
 

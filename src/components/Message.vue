@@ -1,6 +1,6 @@
 <template>
   <Fragment>
-    <div :id="idName"></div>
+    <div  id="message"></div>
   </Fragment>
 </template>
 
@@ -22,7 +22,7 @@
     watch:{
       idName:{
         handler(val){
-          console.log(val)
+          //console.log(val)
         },
         immediate:true
       }
@@ -33,10 +33,10 @@
       }
     },
     mounted() {
-      // console.log(this.$route)
+
       this.$nextTick(()=>{
-        this.comment = new Valine({
-          el:`#${this.idName}`,
+        new Valine({
+          el:"#message",
           appId: 'i6UzLvqubKd7cmpuvLNmcKot-gzGzoHsz',
           appKey: 'HsPRcF8z6wsC6oKKRHIK4lQ9',
           path:this.$route.path
@@ -45,7 +45,7 @@
       })
     },
     beforeDestroy() {
-      this.comment = null
+      // this.comment = null
     }
   }
 </script>
