@@ -106,7 +106,7 @@
 
           changePageTitle("(╮(๑•́ ₃•̀๑)╭)看不到我啦")
         } else {
-          if (timer) clearTimeout(timer)
+          // if (timer) clearTimeout(timer)
           changePageTitle("(◡‿◡✿)欢迎回来")
           timer = setTimeout(() => {
             changePageTitle()
