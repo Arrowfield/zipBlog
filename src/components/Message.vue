@@ -19,18 +19,29 @@
     props:{
       idName:[String,Number]
     },
+    watch:{
+      idName:{
+        handler(val){
+          console.log(val)
+        },
+        immediate:true
+      }
+    },
     data(){
       return{
         comment:null
       }
     },
     mounted() {
+      // console.log(this.$route)
       this.$nextTick(()=>{
         this.comment = new Valine({
           el:`#${this.idName}`,
           appId: 'i6UzLvqubKd7cmpuvLNmcKot-gzGzoHsz',
-          appKey: 'HsPRcF8z6wsC6oKKRHIK4lQ9'
+          appKey: 'HsPRcF8z6wsC6oKKRHIK4lQ9',
+          path:this.$route.path
         })
+        // console.log(this.comment)
       })
     },
     beforeDestroy() {
