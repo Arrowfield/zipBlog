@@ -38,7 +38,7 @@
         ctx: null,
         canvas: null,
         initCanvas: {},
-        timer:null
+        timer: null
       }
     },
     watch: {
@@ -84,7 +84,6 @@
           alive[i] = false
           destory[i] = this.ctx.canvas.height / 5 - Math.random() * this.ctx.canvas.height / 5
         }
-        // console.log(num)
         this.initCanvas = {
           originX: 0,
           originY: originY,
@@ -100,13 +99,20 @@
     },
     mounted() {
       document.body.addEventListener("click", this.addLoveIcon)
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === 'hidden') { //状态判断
+
+        } else {
+
+        }
+      })
       window.addEventListener("resize", this.resize)
       this.width = window.innerWidth
       this.height = window.innerHeight
       this.$nextTick(() => { //要等到width，height 赋值完之后 在初始化
         this.ctx = this.$refs.canvas.getContext('2d')
         this.initData()
-        this.drawBubble()
+        //this.drawBubble()
       })
     },
     beforeDestroy() {
@@ -127,7 +133,6 @@
     z-index: -1;
     /*background: white;*/
   }
-
 
   .menu-enter-active {
     transition: all .6s ease;
