@@ -21,6 +21,7 @@
   import ProgressSelf from '../plugin/Progress/Progress'
   import CanvasBackground from "../components/canvas-background/CanvasBackground";
   import {drawBubble} from "../components/canvas-background/drewCanvas";
+  import changePageTitle from '@/utils/changePageTitle'
 
   export default {
     components: {
@@ -100,10 +101,16 @@
     mounted() {
       document.body.addEventListener("click", this.addLoveIcon)
       document.addEventListener("visibilitychange", () => {
+        let timer = null
         if (document.visibilityState === 'hidden') { //状态判断
 
+          changePageTitle("(╮(๑•́ ₃•̀๑)╭)看不到我啦")
         } else {
-
+          if (timer) clearTimeout(timer)
+          changePageTitle("(◡‿◡✿)欢迎回来")
+          timer = setTimeout(() => {
+            changePageTitle()
+          }, 2000)
         }
       })
       window.addEventListener("resize", this.resize)
