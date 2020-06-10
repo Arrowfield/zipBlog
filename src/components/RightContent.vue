@@ -1,7 +1,7 @@
 <template>
   <div class="right-content">
     <div class="header">
-      <a v-waves href="javascript:" @click="showMenuFun"><i class="iconfont icondaohang"></i></a>
+      <a  :class="{fixed:fixed}" href="javascript:" @click="showMenuFun"><i class="iconfont icondaohang"></i></a>
       <a href="/"><img src="../assets/img/index/kenan_avatar.png" alt=""></a>
     </div>
     <router-view/>
@@ -27,15 +27,14 @@
     directives: {
       waves
     },
-    props:['showMenu'],
+    props:['showMenu','fixed'],
     watch:{
-
     },
     methods:{
       showMenuFun(){
         this.$emit('update:showMenu',!this.showMenu)
       }
-    }
+    },
   }
 </script>
 
@@ -52,16 +51,26 @@
       padding:0 20px 0 10px;
       display: none;
       a {
-        width: 48px;
-        height: 48px;
-        line-height: 48px;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
         text-align: center;
-        border-radius: 50%;
+        border-radius: 4px;
         overflow: hidden;
         margin: 0 4px;
         color: #9ca2a8;
         i{
           font-size: 24px;
+        }
+
+        &.fixed{
+          position: fixed;
+          top:40px;
+          left:-3px;
+          z-index: 99;
+          background: #333;
+          color: white;
+          opacity: .5;
         }
       }
 

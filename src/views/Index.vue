@@ -7,8 +7,8 @@
       <LeftContent v-show="showMenu" :showMenu="showMenu"/>
     </transition>
     <LeftContent v-show="!showMenu"/>
-    <RightContent :showMenu.sync="showMenu"/>
-    <div class="go-top-panel" @click.stop="goTop">
+    <RightContent :showMenu.sync="showMenu" :fixed="fixedLeft"/>
+    <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">
       <img src="@/assets/img/index/top.png" class="icon go-top" alt="">
     </div>
     <canvas :width="width" :height="height" id="canvas" ref="canvas"></canvas>
@@ -40,7 +40,9 @@
         canvas: null,
         initCanvas: {},
         timer: null,
-        leaveTimer:null
+        leaveTimer:null,
+        showTop:false,
+        fixedLeft:false
       }
     },
     watch: {
@@ -114,6 +116,11 @@
           }, 1000)
         }
       })
+      window.addEventListener('scroll',()=>{
+        let scrollTop = document.documentElement.scrollTop||document.body.scrollTop
+        this.showTop = scrollTop > 500
+        this.fixedLeft = scrollTop > 300
+      })
       window.addEventListener("resize", this.resize)
       this.width = window.innerWidth
       this.height = window.innerHeight
@@ -168,6 +175,11 @@
       cursor: pointer;
       color: white;
       padding: 10px;
+      opacity: 0;
+      transition: all .3s ease-in;
+      &.show{
+        opacity: 1;
+      }
     }
 
     .go-top {
@@ -178,17 +190,17 @@
     }
 
     &.index-change {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
+      /*width: 100vw;*/
+      /*height: 100vh;*/
+      /*overflow: hidden;*/
     }
 
     & > .index-mask {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       background: rgba(0, 0, 0, .4);
       z-index: 100;
     }
