@@ -10,8 +10,8 @@
 
     <div class="intro-detail message">
       <p style="margin-bottom:0">留言</p>
-      <!-- <Message/> -->
-      <Comment :postId="articleDetail.zid" />
+       <Message :idName="articleDetail.zid"/>
+<!--      <Comment :postId="articleDetail.zid" />-->
     </div>
 
   </div>

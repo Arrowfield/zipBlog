@@ -24,7 +24,7 @@
       postId: {
         immediate: true,
         handler(val) {
-          //console.log(val)
+
         }
       }
     },

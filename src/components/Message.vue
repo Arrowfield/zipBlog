@@ -1,6 +1,6 @@
 <template>
   <Fragment>
-    <div id="vcomments"></div>
+    <div :id="idName"></div>
   </Fragment>
 </template>
 
@@ -16,14 +16,25 @@
     components:{
       Fragment
     },
+    props:{
+      idName:[String,Number]
+    },
+    data(){
+      return{
+        comment:null
+      }
+    },
     mounted() {
       this.$nextTick(()=>{
-        new Valine({
-          el:'#vcomments',
+        this.comment = new Valine({
+          el:`#${this.idName}`,
           appId: 'i6UzLvqubKd7cmpuvLNmcKot-gzGzoHsz',
           appKey: 'HsPRcF8z6wsC6oKKRHIK4lQ9'
         })
       })
+    },
+    beforeDestroy() {
+      this.comment = null
     }
   }
 </script>

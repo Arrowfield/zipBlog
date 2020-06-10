@@ -32,22 +32,26 @@
 
     <div class="intro-detail ">
       <p>留言</p>
-      <Comment :postId="123456"/>
+      <!--      <Comment :postId="123456"/>-->
+      <div class="message">
+        <Message idName="about" />
+      </div>
     </div>
 
     <div class="intro-detail about">
       <p>后记</p>
       <ul>
         <li>主题版权归原作者所有如有侵权请立即与本人联系,本人将及时处理</li>
-<!--        <li>网站域名还在阿里云备案中，，，</li>-->
+        <!--        <li>网站域名还在阿里云备案中，，，</li>-->
         <li>qq:768449566</li>
         <li>微信:</li>
         <li>邮箱:<a href="mailto:768449566@qq.com?subject=发送邮件">768449566@qq.com</a></li>
-        <li class="play-music">点击此处播放音乐:<i @click="playMusic" class="iconfont" :class="play ? 'iconxinbaniconshangchuan-' : 'iconjingyin'"></i></li>
+        <li class="play-music">点击此处播放音乐:<i @click="playMusic" class="iconfont"
+                                           :class="play ? 'iconxinbaniconshangchuan-' : 'iconjingyin'"></i></li>
       </ul>
-<!--      <audio ref="audioPlay" src="../assets/media/SoldOut.mp3" loop>-->
-<!--        您的浏览器不支持 audio 标签。-->
-<!--      </audio>-->
+      <!--      <audio ref="audioPlay" src="../assets/media/SoldOut.mp3" loop>-->
+      <!--        您的浏览器不支持 audio 标签。-->
+      <!--      </audio>-->
     </div>
   </div>
 </template>
@@ -55,8 +59,8 @@
 <script>
   import Tags from "@/components/TagComponent";
   import Message from '@/components/Message'
-
   import Comment from '@/components/Comment'
+
   export default {
     name: "About",
 
@@ -65,17 +69,17 @@
       Message,
       Comment
     },
-    data(){
-      return{
-        play:false,
-        tagDetail:{
-          articleCreated:"2020-06-05",
-          articleTags:""
+    data() {
+      return {
+        play: false,
+        tagDetail: {
+          articleCreated: "2020-06-05",
+          articleTags: ""
         }
       }
     },
-    methods:{
-      playMusic(){
+    methods: {
+      playMusic() {
         // this.play = !this.play
         // if(this.$refs.audioPlay.paused){
         //   this.$refs.audioPlay.play()
@@ -88,20 +92,24 @@
 </script>
 
 <style lang="scss" scoped>
-
   .about-page {
-      margin-top: 20px;
+    margin-top: 20px;
+    .message{
+      margin-top:16px;
+    }
     .img-cont {
       overflow: hidden;
 
       position: relative;
+
       img {
         border-radius: 10px;
         transition: all .5s linear;
         //&:hover{
-          //box-shadow: -2px -2px 5px #ff4e6a;
+        //box-shadow: -2px -2px 5px #ff4e6a;
         //}
       }
+
       .title {
         position: absolute;
         bottom: 0;
@@ -115,34 +123,36 @@
       }
     }
 
-    .intro-detail{
+    .intro-detail {
       margin-bottom: 20px;
       border-radius: 10px;
       background-color: #fff;
       padding: 20px;
       box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
-      &.about p{
+
+      &.about p {
         margin-bottom: 16px;
       }
-      p{
+
+      p {
         // margin-bottom: 16px;
         font-weight: bold;
       }
 
-      ul{
+      ul {
         list-style: disc;
         padding-left: 2em;
-        margin-bottom:16px;
-        color:#738a94;
+        margin-bottom: 16px;
+        color: #738a94;
       }
 
-      li{
+      li {
         line-height: 24px;
       }
 
-      li.play-music{
-        i{
-          margin-left:5px;
+      li.play-music {
+        i {
+          margin-left: 5px;
           font-size: 20px;
           cursor: pointer;
         }

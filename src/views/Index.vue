@@ -39,7 +39,8 @@
         ctx: null,
         canvas: null,
         initCanvas: {},
-        timer: null
+        timer: null,
+        leaveTimer:null
       }
     },
     watch: {
@@ -101,16 +102,16 @@
     mounted() {
       document.body.addEventListener("click", this.addLoveIcon)
       document.addEventListener("visibilitychange", () => {
-        let timer = null
-        if (document.visibilityState === 'hidden') { //状态判断
 
+        if (document.visibilityState === 'hidden') { //状态判断
+          if (this.leaveTimer) clearTimeout(this.leaveTimer)
           changePageTitle("(╮(๑•́ ₃•̀๑)╭)看不到我啦")
         } else {
-          // if (timer) clearTimeout(timer)
+          // if (time) clearTimeout(time)
           changePageTitle("(◡‿◡✿)欢迎回来")
-          timer = setTimeout(() => {
+          this.leaveTimer = setTimeout(() => {
             changePageTitle()
-          }, 2000)
+          }, 1000)
         }
       })
       window.addEventListener("resize", this.resize)
