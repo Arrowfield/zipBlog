@@ -40,7 +40,7 @@
         </article>
       </li>
     </ul>
-    <PageNav :total="total"/>
+    <PageNav :total="total" :currPage.sync="currPage" @changeCurrPage="changeCurrPage"/>
   </div>
 </template>
 
@@ -55,12 +55,14 @@
     name: "Article",
     data(){
       return{
-        total:0
+        // total:0
+        currPage:1,
       }
     },
     computed:{
       ...mapState({
-        articleList: state => state.article.articleList
+        articleList: state => state.article.articleList,
+        total:state => state.indexBaseData.articleTotal
       })
     },
     filters:{
@@ -81,7 +83,11 @@
       // let res = await getArticleList()
       // this.articleList = res.data.data
       // this.total = res.data.total
-
+    },
+    methods:{
+      changeCurrPage(page){
+        console.log(page)
+      }
     }
   }
 </script>
