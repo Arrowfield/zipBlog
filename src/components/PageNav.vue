@@ -1,10 +1,9 @@
 <template>
-  <ul class="page-nav" v-if="total > 5">
-    <!--    <li class="active">1</li>-->
-    <!--    <li>2</li>-->
-    <!--    <li>3</li>-->
-    <li v-for="i in num" :class="{active:i === currPage}" @click="changePage(i)">{{i}}</li>
-  </ul>
+  <div class="page-nav" v-if="total > 5">
+    <button :disabled="currPage === 1" @click="prevPage"><<</button>
+    <button v-for="(item,i) in nums" :class="{active:item === currPage}" @click="changePage(item)">{{item}}</button>
+    <button :disabled="currPage === maxPageNum" @click="nextPage">>></button>
+  </div>
 </template>
 
 <script>
@@ -21,19 +20,68 @@
         default: 5
       }
     },
+    data(){
+      return{
+        maxPageNum:0,
+        nums:[]
+      }
+    },
     computed: {
       num() {
-        let sum = Math.ceil(this.total / this.pageSize)
-        return sum
+
       }
     },
     methods: {
+      prevPage() {
+        let i = this.currPage - 1
+        this.$emit("update:currPage", i)
+      },
+      nextPage() {
+        let i = this.currPage + 1
+        this.$emit("update:currPage", i)
+      },
       changePage(i) {
         if (typeof i === "number") {
           this.$emit("update:currPage", i)
           this.$emit('changeCurrPage', i)
         }
+
+        if(typeof i === 'string'){
+
+          let result = []
+          this.nums.forEach((item,i)=>{
+            if(i < 6){
+
+              result.push(this.nums[i] + 3)
+            }else{
+              result.push(item)
+            }
+          })
+          this.nums = result
+          this.$emit("update:currPage", result[0])
+        }
+      },
+      getPageNum(){
+        let num = [],result = [],start = [],end = [],center = ['...']
+        this.maxPageNum = Math.ceil(this.total / this.pageSize)
+        for (let i = 1; i <= this.maxPageNum; i++) {
+          num.push(i)
+        }
+        num.forEach((item,i)=>{
+          if(i < 6){
+            start.push(item)
+          }
+          if(i > num.length - 4){
+            end.push(item)
+          }
+        })
+        this.nums = start.concat(center).concat(end)
       }
+    },
+    mounted() {
+      this.$nextTick(()=>{
+        this.getPageNum()
+      })
     }
   }
 </script>
@@ -48,23 +96,28 @@
     border-radius: 10px;
     box-shadow: 0 0 1rem rgba(161, 177, 204, 0.4);
 
-    li {
+    button {
       color: #999;
       border-radius: 10px;
-      width: 35px;
-      height: 35px;
-      line-height: 35px;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
       margin-right: 8px;
       display: inline-block;
       text-align: center;
       background: #f5f6f5;
       cursor: pointer;
+      margin-bottom: 8px;
 
       &.active {
         color: #fff;
         background: #ff4e6a;
         opacity: .9;
         box-shadow: 0 2px 12px #ff4e6a;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
       }
     }
   }
