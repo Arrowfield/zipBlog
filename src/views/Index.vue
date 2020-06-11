@@ -11,6 +11,9 @@
     <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">
       <img src="@/assets/img/index/top.png" class="icon go-top" alt="">
     </div>
+<!--    <div class="small-screen">-->
+<!--      <i class=" iconfont iconzhidingtop"></i>-->
+<!--    </div>-->
     <canvas :width="width" :height="height" id="canvas" ref="canvas"></canvas>
   </div>
 </template>
@@ -40,9 +43,9 @@
         canvas: null,
         initCanvas: {},
         timer: null,
-        leaveTimer:null,
-        showTop:false,
-        fixedLeft:false
+        leaveTimer: null,
+        showTop: false,
+        fixedLeft: false
       }
     },
     watch: {
@@ -116,8 +119,8 @@
           }, 1000)
         }
       })
-      window.addEventListener('scroll',()=>{
-        let scrollTop = document.documentElement.scrollTop||document.body.scrollTop
+      window.addEventListener('scroll', () => {
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         this.showTop = scrollTop > 500
         this.fixedLeft = scrollTop > 300
       })
@@ -177,8 +180,30 @@
       padding: 10px;
       opacity: 0;
       transition: all .3s ease-in;
-      &.show{
+
+      &.show {
         opacity: 1;
+      }
+    }
+
+    .small-screen {
+
+      width: 36px;
+      height: 36px;
+      background: #333;
+      opacity: .5;
+      color: white;
+      line-height: 36px;
+      text-align: center;
+      position: fixed;
+      top: 80px;
+      left: -3px;
+      z-index: 99;
+      border-radius: 4px;
+      margin: 0 4px;
+      i {
+        font-size: 24px;
+
       }
     }
 
