@@ -69,7 +69,7 @@
         if (typeof i === "number") {
           // console.log(this.nums[this.nums.length - 3] - 2)
           if (i < 6) {
-            let start = [], end = this.nums.slice(-4)
+            let start = [], end = ['...'].concat(this.nums.slice(-3))
             for (let i = 1; i <= 6; i++) {
               start.push(i)
             }
