@@ -54,6 +54,14 @@
           let start = [1, "..."], end = this.nums.slice(-4)
           let center = [i - 2, i - 1, i, i + 1]
           this.nums = start.concat(center).concat(end)
+        }else if(this.currPage >= this.nums[this.nums.length - 3]){
+
+          let start = [1, "..."],end = [],max = this.nums[this.nums.length - 1]
+          for(let i = max;i>max - 8;i--){
+            end.unshift(i)
+          }
+          console.log(end)
+          this.nums = start.concat(end)
         }
         this.$emit("update:currPage", i)
       },
@@ -67,9 +75,16 @@
             }
             this.nums = start.concat(end)
           } else if (i >= 6 && i < this.nums[this.nums.length - 3] - 1) {
-            let start = [1, "..."], end = this.nums.slice(-4)
+            let start = [1, "..."], end = ['...'].concat(this.nums.slice(-3))
             let center = [i - 2, i - 1, i, i + 1]
             this.nums = start.concat(center).concat(end)
+          }else{
+            let start = [1, "..."],end = [],max = this.nums[this.nums.length - 1]
+            for(let i = max;i>max - 8;i--){
+              end.unshift(i)
+            }
+            console.log(end)
+            this.nums = start.concat(end)
           }
 
           this.$emit("update:currPage", i)
