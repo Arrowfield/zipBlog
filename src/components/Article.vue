@@ -40,7 +40,7 @@
         </article>
       </li>
     </ul>
-    <PageNav :total="total" :currPage.sync="currPage" @changeCurrPage="changeCurrPage"/>
+<!--    <PageNav :total="total" :currPage.sync="currPage" @changeCurrPage="changeCurrPage"/>-->
   </div>
 </template>
 
