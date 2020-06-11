@@ -43,15 +43,20 @@
           let start = [1, "..."], end = this.nums.slice(-4)
           let center = [i - 2, i - 1, i, i + 1]
           this.nums = start.concat(center).concat(end)
-
         }
         this.$emit("update:currPage", i)
       },
       changePage(i) {
         if (typeof i === "number") {
-
+          // console.log(this.nums[this.nums.length - 3] - 2)
+          if(i >= 6 && i < this.nums[this.nums.length - 3] - 1){
+            let start = [1, "..."], end = this.nums.slice(-4)
+            let center = [i - 2, i - 1, i, i + 1]
+            this.nums = start.concat(center).concat(end)
+          }
           this.$emit("update:currPage", i)
           this.$emit('changeCurrPage', i)
+
         }
         //发生两位的偏移
         // if(typeof i === 'string'){
