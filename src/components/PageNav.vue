@@ -1,5 +1,5 @@
 <template>
-  <div class="page-nav" v-if="total > 5">
+  <div class="page-nav" v-if="total > pageSize">
     <button :disabled="currPage === 1" @click="prevPage"><<</button>
     <button v-for="(item,i) in nums" :class="{active:item === currPage}" @click="changePage(item)">{{item}}</button>
     <button :disabled="currPage === maxPageNum" @click="nextPage">>></button>
