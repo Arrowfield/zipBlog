@@ -34,6 +34,11 @@
     methods: {
       prevPage() {
         let i = this.currPage - 1
+        if (this.currPage >= 6 && this.currPage < this.nums[this.nums.length - 3] - 2) {
+          let start = [1, "..."], end = this.nums.slice(-4)
+          let center = [i - 2, i - 1, i, i + 1]
+          this.nums = start.concat(center).concat(end)
+        }
         this.$emit("update:currPage", i)
       },
       nextPage() {
