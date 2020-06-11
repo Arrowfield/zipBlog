@@ -20,10 +20,10 @@
         default: 5
       }
     },
-    data(){
-      return{
-        maxPageNum:0,
-        nums:[]
+    data() {
+      return {
+        maxPageNum: 0,
+        nums: []
       }
     },
     computed: {
@@ -38,40 +38,46 @@
       },
       nextPage() {
         let i = this.currPage + 1
+
+        if (this.currPage >= 6 && this.currPage < this.nums[this.nums.length - 3] - 2) {
+          let start = [1, "..."], end = this.nums.slice(-4)
+          let center = [i - 2, i - 1, i, i + 1]
+          this.nums = start.concat(center).concat(end)
+
+        }
         this.$emit("update:currPage", i)
       },
       changePage(i) {
         if (typeof i === "number") {
+
           this.$emit("update:currPage", i)
           this.$emit('changeCurrPage', i)
         }
-
-        if(typeof i === 'string'){
-
-          let result = []
-          this.nums.forEach((item,i)=>{
-            if(i < 6){
-
-              result.push(this.nums[i] + 3)
-            }else{
-              result.push(item)
-            }
-          })
-          this.nums = result
-          this.$emit("update:currPage", result[0])
-        }
+        //发生两位的偏移
+        // if(typeof i === 'string'){
+        //   let result = [1,'...']
+        //
+        //   this.nums.forEach((item,i)=>{
+        //     if(i > 2 && i < 7){
+        //       result.push(i)
+        //     }
+        //   })
+        //
+        //   this.nums = result.concat(this.nums.slice(-4))
+        //   this.$emit("update:currPage", result[2])
+        // }
       },
-      getPageNum(){
-        let num = [],result = [],start = [],end = [],center = ['...']
+      getPageNum() {
+        let num = [], result = [], start = [], end = [], center = ['...']
         this.maxPageNum = Math.ceil(this.total / this.pageSize)
         for (let i = 1; i <= this.maxPageNum; i++) {
           num.push(i)
         }
-        num.forEach((item,i)=>{
-          if(i < 6){
+        num.forEach((item, i) => {
+          if (i < 6) {
             start.push(item)
           }
-          if(i > num.length - 4){
+          if (i > num.length - 4) {
             end.push(item)
           }
         })
@@ -79,7 +85,7 @@
       }
     },
     mounted() {
-      this.$nextTick(()=>{
+      this.$nextTick(() => {
         this.getPageNum()
       })
     }
