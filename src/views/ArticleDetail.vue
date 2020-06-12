@@ -5,7 +5,8 @@
       <h1 class="title">{{ articleDetail.articleTitle }}</h1>
     </div>
     <Tags :tagDetail="articleDetail"/>
-    <div class="intro-detail" v-html="articleDetail.articleContent">
+    <div class="intro-detail text-area" v-loading-circ="loading">
+      <div v-html="articleDetail.articleContent"></div>
     </div>
 
     <div class="intro-detail message">
@@ -38,6 +39,7 @@
         articleDetail:{
           zid:Math.random() * 10000
         },
+        loading:false
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -47,11 +49,13 @@
     },
     methods:{
       async getArticleDetail(){
+        this.loading = true
         let res = await getArticleById({zid:this.$route.params.id})
         this.articleDetail = Object.assign({},res.data.data)
         // console.log(this.articleDetail.articleTags)
 
         changePageTitle(this.articleDetail.articleTitle)
+        this.loading = false
       },
       //记录文章的浏览量进行埋点
       recordArticleViewCount(){
@@ -68,10 +72,14 @@
 <style lang="scss">
 
   .article-detail-page {
-    .intro-detail{
+    .intro-detail.text-area{
+      font-size: 15px;
+      min-height: 200px;
       p{
         margin-bottom: 16px;
         line-height: 28px;
+
+        text-indent: 30px; //系统默认的字体大小为16px 最小显示字体为12px
       }
       li{
         line-height: 28px;
@@ -89,6 +97,9 @@
         width: auto;
         height: auto;
         max-width: 100%;
+        /*text-align: left;*/
+        display: inline-block;
+        margin-left: -32px;
       }
     }
   }
