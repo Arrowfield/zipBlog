@@ -32,8 +32,7 @@
       }
     },
     methods: {
-      prevPage() {
-        let i = this.currPage - 1
+      getNums(i) {
         if (this.currPage < 6) {
           let start = [], end = this.nums.slice(-4)
           for (let i = 1; i <= 6; i++) {
@@ -44,30 +43,27 @@
           let start = [1, "..."], end = this.nums.slice(-4)
           let center = [i - 2, i - 1, i, i + 1]
           this.nums = start.concat(center).concat(end)
+        } else if (this.currPage >= this.nums[this.nums.length - 3]) {
+          let start = [1, "..."], end = [], max = this.nums[this.nums.length - 1]
+          for (let i = max; i > max - 8; i--) {
+            end.unshift(i)
+          }
+          this.nums = start.concat(end)
         }
+      },
+      prevPage() {
+        let i = this.currPage - 1
+        this.getNums(i)
         this.$emit("update:currPage", i)
       },
       nextPage() {
         let i = this.currPage + 1
-
-        if (this.currPage >= 6 && this.currPage < this.nums[this.nums.length - 3] - 2) {
-          let start = [1, "..."], end = this.nums.slice(-4)
-          let center = [i - 2, i - 1, i, i + 1]
-          this.nums = start.concat(center).concat(end)
-        }else if(this.currPage >= this.nums[this.nums.length - 3]){
-
-          let start = [1, "..."],end = [],max = this.nums[this.nums.length - 1]
-          for(let i = max;i>max - 8;i--){
-            end.unshift(i)
-          }
-          console.log(end)
-          this.nums = start.concat(end)
-        }
+        this.getNums(i)
         this.$emit("update:currPage", i)
       },
       changePage(i) {
         if (typeof i === "number") {
-          // console.log(this.nums[this.nums.length - 3] - 2)
+
           if (i < 6) {
             let start = [], end = ['...'].concat(this.nums.slice(-3))
             for (let i = 1; i <= 6; i++) {
@@ -78,12 +74,12 @@
             let start = [1, "..."], end = ['...'].concat(this.nums.slice(-3))
             let center = [i - 2, i - 1, i, i + 1]
             this.nums = start.concat(center).concat(end)
-          }else{
-            let start = [1, "..."],end = [],max = this.nums[this.nums.length - 1]
-            for(let i = max;i>max - 8;i--){
+          } else {
+            let start = [1, "..."], end = [], max = this.nums[this.nums.length - 1]
+            for (let i = max; i > max - 8; i--) {
               end.unshift(i)
             }
-            console.log(end)
+
             this.nums = start.concat(end)
           }
 
