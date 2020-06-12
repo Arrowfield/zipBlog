@@ -14,13 +14,12 @@ function toggleLoading(el, show) {
 }
 
 Loading.install = function (Vue, options) {
-  // Vue.component('LoadingSelf',Vue.extend(LoadingSelf))
+
   Vue.directive("loading-self", {
     bind: function (el, options) {
       toggleLoading(el, options.value)
     },
     update: function (el, options) {
-      // console.log(el)
     }
   })
 }

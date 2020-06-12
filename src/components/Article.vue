@@ -27,6 +27,7 @@
             <img src="#" alt="">
             <h1 class="title">- 太懒了 一篇文章都没有，，，，</h1>
             <i  class="iconfont iconstar"></i>
+            <Loading type="circular"/>
           </div>
         </router-link>
         <div class="tags">
@@ -48,7 +49,7 @@
   import waves from "@/directive/waves/waves";
   import PageNav from "@/components/PageNav";
   import {getArticleList} from "@/api/home";
-
+  import Loading from "./Loading";
   const testText = '12312345645648789456132131'
   import {mapState} from 'vuex'
   export default {
@@ -75,7 +76,7 @@
         return `${year}年${month}月${day}日`
       }
     },
-    components: {PageNav},
+    components: {PageNav,Loading},
     directives: {
       waves
     },
