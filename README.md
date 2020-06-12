@@ -208,3 +208,10 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 + 添加Valine云评论
 + 云账号：768449566@qq.com
 + 云密码：76
+
+#### 2020.06.12篇
+
++ 文章的分页功能加上
++ 后端的图片上传功能要加上
++ 富文本编辑的时候2个字符的缩进
++ 单篇文章的浏览量以及评论的数量
