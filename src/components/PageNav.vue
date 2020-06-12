@@ -1,8 +1,8 @@
 <template>
   <div class="page-nav" v-if="total > pageSize">
-    <button :disabled="currPage === 1" @click="prevPage"><<</button>
+    <button v-show="maxPageNum > 10" :disabled="currPage === 1" @click="prevPage"><<</button>
     <button v-for="(item,i) in nums" :class="{active:item === currPage}" @click="changePage(item)">{{item}}</button>
-    <button :disabled="currPage === maxPageNum" @click="nextPage">>></button>
+    <button v-show="maxPageNum > 10" :disabled="currPage === maxPageNum" @click="nextPage">>></button>
   </div>
 </template>
 
@@ -40,7 +40,7 @@
           }
           this.nums = start.concat(end)
         } else if (this.currPage >= 6 && this.currPage < this.nums[this.nums.length - 3] - 2) {
-          let start = [1, "..."], end = this.nums.slice(-4)
+          let start = [1, "..."], end = ['...'].concat(this.nums.slice(-3))
           let center = [i - 2, i - 1, i, i + 1]
           this.nums = start.concat(center).concat(end)
         } else if (this.currPage >= this.nums[this.nums.length - 3]) {
@@ -62,8 +62,7 @@
         this.$emit("update:currPage", i)
       },
       changePage(i) {
-        if (typeof i === "number") {
-
+        if (this.maxPageNum > 10 && typeof i === "number") {
           if (i < 6) {
             let start = [], end = ['...'].concat(this.nums.slice(-3))
             for (let i = 1; i <= 6; i++) {
@@ -79,43 +78,33 @@
             for (let i = max; i > max - 8; i--) {
               end.unshift(i)
             }
-
             this.nums = start.concat(end)
           }
-
-          this.$emit("update:currPage", i)
-          this.$emit('changeCurrPage', i)
-
         }
-        //发生两位的偏移
-        // if(typeof i === 'string'){
-        //   let result = [1,'...']
-        //
-        //   this.nums.forEach((item,i)=>{
-        //     if(i > 2 && i < 7){
-        //       result.push(i)
-        //     }
-        //   })
-        //
-        //   this.nums = result.concat(this.nums.slice(-4))
-        //   this.$emit("update:currPage", result[2])
-        // }
+        this.$emit("update:currPage", i)
+        this.$emit('changeCurrPage', i)
       },
       getPageNum() {
-        let num = [], result = [], start = [], end = [], center = ['...']
         this.maxPageNum = Math.ceil(this.total / this.pageSize)
-        for (let i = 1; i <= this.maxPageNum; i++) {
-          num.push(i)
+        if (this.maxPageNum > 10) {
+          let num = [], start = [], end = [], center = ['...']
+          for (let i = 1; i <= this.maxPageNum; i++) {
+            num.push(i)
+          }
+          num.forEach((item, i) => {
+            if (i < 6) {
+              start.push(item)
+            }
+            if (i > num.length - 4) {
+              end.push(item)
+            }
+          })
+          this.nums = start.concat(center).concat(end)
+        } else {
+          for (let i = 1; i <= this.maxPageNum; i++) {
+            this.nums.push(i)
+          }
         }
-        num.forEach((item, i) => {
-          if (i < 6) {
-            start.push(item)
-          }
-          if (i > num.length - 4) {
-            end.push(item)
-          }
-        })
-        this.nums = start.concat(center).concat(end)
       }
     },
     mounted() {
