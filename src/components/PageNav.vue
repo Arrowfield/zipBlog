@@ -3,6 +3,7 @@
     <button v-show="maxPageNum > 10" :disabled="currPage === 1" @click="prevPage"><<</button>
     <button v-for="(item,i) in nums" :class="{active:item === currPage}" @click="changePage(item)">{{item}}</button>
     <button v-show="maxPageNum > 10" :disabled="currPage === maxPageNum" @click="nextPage">>></button>
+    <input v-show="maxPageNum > 10" v-model="value" type="text" @blur="jumpPage"/>
   </div>
 </template>
 
@@ -23,7 +24,13 @@
     data() {
       return {
         maxPageNum: 0,
-        nums: []
+        nums: [],
+        value: 1
+      }
+    },
+    watch: {
+      currPage(val) {
+        this.value = val
       }
     },
     computed: {
@@ -32,7 +39,19 @@
       }
     },
     methods: {
-      getNums(i) {
+      jumpPage() {
+        if (this.value < 1) {
+          this.$emit('update:currPage', 1)
+          return
+        }
+        if (this.value > this.maxPageNum) {
+          this.$emit('update:currPage', this.maxPageNum)
+          return
+        }
+        this.getNumIndex(Number(this.value))
+        this.$emit('update:currPage', Number(this.value))
+      },
+      getNumsCurr(i) {
         if (this.currPage < 6) {
           let start = [], end = this.nums.slice(-4)
           for (let i = 1; i <= 6; i++) {
@@ -51,18 +70,7 @@
           this.nums = start.concat(end)
         }
       },
-      prevPage() {
-        let i = this.currPage - 1
-        this.getNums(i)
-        this.$emit("update:currPage", i)
-      },
-      nextPage() {
-        let i = this.currPage + 1
-        this.getNums(i)
-        this.$emit("update:currPage", i)
-      },
-      changePage(i) {
-        if (typeof i !== "number") return
+      getNumIndex(i) {
         if (this.maxPageNum > 10) {
           if (i < 6) {
             let start = [], end = ['...'].concat(this.nums.slice(-3))
@@ -82,7 +90,20 @@
             this.nums = start.concat(end)
           }
         }
-
+      },
+      prevPage() {
+        let i = this.currPage - 1
+        this.getNumsCurr(i)
+        this.$emit("update:currPage", i)
+      },
+      nextPage() {
+        let i = this.currPage + 1
+        this.getNumsCurr(i)
+        this.$emit("update:currPage", i)
+      },
+      changePage(i) {
+        if (typeof i !== "number") return
+        this.getNumIndex(i)
         this.$emit("update:currPage", i)
         this.$emit('changeCurrPage', i)
       },
@@ -127,7 +148,7 @@
     border-radius: 10px;
     box-shadow: 0 0 1rem rgba(161, 177, 204, 0.4);
 
-    button {
+    button, input {
       color: #999;
       border-radius: 10px;
       width: 30px;
@@ -150,6 +171,13 @@
       &:disabled {
         cursor: not-allowed;
       }
+    }
+
+    input {
+      appearance: none;
+      -webkit-appearance: button;
+      /*-webkit-appearance: none;*/
+      /*border-radius: 0;*/
     }
   }
 </style>
