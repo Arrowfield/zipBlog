@@ -233,11 +233,11 @@
 
   .index .bg {
     background: #f4f8fb;
-    height: 100vh;
+    height: 100%;
     /*opacity: .7;*/
     background: url("../assets/img/index/header-bg.jpg") no-repeat center;
     background-size: cover;
-    width: 100vw;
+    width: 100%;
     position: fixed;
     z-index: -1;
     left: 0;
