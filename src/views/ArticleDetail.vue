@@ -52,8 +52,6 @@
         this.loading = true
         let res = await getArticleById({zid:this.$route.params.id})
         this.articleDetail = Object.assign({},res.data.data)
-        // console.log(this.articleDetail.articleTags)
-
         changePageTitle(this.articleDetail.articleTitle)
         this.loading = false
       },
