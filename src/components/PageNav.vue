@@ -62,7 +62,8 @@
         this.$emit("update:currPage", i)
       },
       changePage(i) {
-        if (this.maxPageNum > 10 && typeof i === "number") {
+        if (typeof i !== "number") return
+        if (this.maxPageNum > 10) {
           if (i < 6) {
             let start = [], end = ['...'].concat(this.nums.slice(-3))
             for (let i = 1; i <= 6; i++) {
@@ -81,6 +82,7 @@
             this.nums = start.concat(end)
           }
         }
+
         this.$emit("update:currPage", i)
         this.$emit('changeCurrPage', i)
       },
