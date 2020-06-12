@@ -86,7 +86,7 @@
         this.$emit("update:currPage", i)
         this.$emit('changeCurrPage', i)
       },
-      getPageNum() {
+      initPageNum() {
         this.maxPageNum = Math.ceil(this.total / this.pageSize)
         if (this.maxPageNum > 10) {
           let num = [], start = [], end = [], center = ['...']
@@ -111,7 +111,7 @@
     },
     mounted() {
       this.$nextTick(() => {
-        this.getPageNum()
+        this.initPageNum()
       })
     }
   }

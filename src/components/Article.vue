@@ -86,7 +86,7 @@
     },
     methods:{
       changeCurrPage(page){
-        console.log(page)
+        console.log('当前的页数是'+page)
       }
     }
   }
