@@ -74,7 +74,7 @@
       font-size: 15px;
       min-height: 200px;
       p{
-        margin-bottom: 16px;
+        margin-bottom: 7px;
         line-height: 28px;
 
         text-indent: 30px; //系统默认的字体大小为16px 最小显示字体为12px
@@ -83,7 +83,7 @@
         line-height: 28px;
       }
       h1,h2,h3{
-        margin-bottom: 16px;
+        margin-bottom: 7px;
       }
       ul,ol{
         list-style: disc;
