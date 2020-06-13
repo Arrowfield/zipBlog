@@ -188,7 +188,7 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 
 ##### 2020.06.06篇
 
-+ 1、左侧菜单的过度效果
++ 1、左侧菜单的过度效果【暂时不做了】
 
 ##### 2020.06.07篇
 

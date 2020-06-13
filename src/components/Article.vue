@@ -12,7 +12,7 @@
         <div class="tags">
           <a v-waves href="#"><i class="iconfont iconrili"></i>{{item.articleCreated | truncation}}</a>
           <a v-waves href="#"><i class="iconfont iconredu"></i>{{ item.articleViewCount }} °C</a>
-          <a v-waves href="#"><i class="iconfont iconxx"></i>{{ "-" }}</a>
+<!--          <a v-waves href="#"><i class="iconfont iconxx"></i><span class="valine-comment-count" :data-xid="`/article/${item.zid}`">{{ "-" }}</span></a>-->
           <a class="tag" :key="i" v-for="(tmp,i) in item.articleTags.split(',')" v-waves href="#"><i
             class="iconfont icondaohang1"></i>{{tmp}}</a>
         </div>
