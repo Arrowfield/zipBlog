@@ -103,7 +103,7 @@
     <div class="intro fun-list tags-list">
       <h3>公告栏</h3>
       <div class="tags">
-        <video controls muted class="video" src="https://arrowfield.top/Inuyasha.mp4" preload="auto"></video>
+        <video controls muted loop autoplay class="video" src="https://arrowfield.top/Inuyasha.mp4" preload="auto"></video>
       </div>
     </div>
 
