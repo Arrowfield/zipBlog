@@ -22,6 +22,7 @@
       <router-link to="/tags" v-waves><i class="iconfont iconbiaoqian1"></i>标签</router-link>
       <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
       <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
+      <router-link to="/mood" v-waves><i class="iconfont iconziyuan"></i>心情随笔</router-link>
       <router-link to="/address" v-waves><i class="iconfont iconlianjie1"></i>好站推荐</router-link>
     </div>
     <div class="intro fun-list">
@@ -102,7 +103,7 @@
     <div class="intro fun-list tags-list">
       <h3>公告栏</h3>
       <div class="tags">
-
+        <video controls muted class="video" src="https://arrowfield.top/Inuyasha.mp4" preload="auto"></video>
       </div>
     </div>
 
@@ -348,6 +349,10 @@
       &.tags-list {
         .tags {
           padding: 10px 10px 5px;
+        }
+
+        .video{
+          width: 100%;
         }
 
         a {

@@ -32,6 +32,14 @@ const routes = [
         }
       },
       {
+        path: "mood",
+        name: "Mood",
+        component: () => import("../views/Mood"),
+        meta: {
+          title: '心情随笔'
+        }
+      },
+      {
         path: "address",
         name: "Address",
         component: () => import("../views/Address"),

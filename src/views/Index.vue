@@ -140,6 +140,9 @@
         this.startX = e.targetTouches[0].clientX
         // this.isMove = true
       })
+      document.addEventListener("touchmove.prevUC",(e)=>{
+        e.preventDefault()
+      })
       document.addEventListener("touchmove",(e)=>{
         if(this.startX > 10) return
         // console.log(e)
