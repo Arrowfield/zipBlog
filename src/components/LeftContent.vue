@@ -105,7 +105,7 @@
       <div class="tags">
         <i  v-if="paused" class="play iconfont iconplay-circle-fill" @click="handlePlay"></i>
         <i v-else class="play iconfont iconpoweroff-circle-fill" @click="handlePlay"></i>
-        <video ref="video" poster="../assets/img/index/poster.jpg" muted loop class="video"
+        <video ref="video" poster="../assets/img/index/poster.jpg" autoplay muted loop class="video"
                src="https://arrowfield.top/Inuyasha.mp4" preload="auto"></video>
       </div>
     </div>
