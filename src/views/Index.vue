@@ -3,17 +3,18 @@
     <!--    <CanvasBackground></CanvasBackground>-->
     <div class="bg"></div>
     <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>
-    <transition name="menu">
-      <LeftContent v-if="showMenu" :showMenu="showMenu"/>
-    </transition>
-    <LeftContent v-if="!showMenu"/>
+
+    <LeftContent :showMenu="showMenu"/>
+
+
+    <!--    <LeftContent v-if="!showMenu"/>-->
     <RightContent :showMenu.sync="showMenu" :fixed="fixedLeft"/>
     <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">
       <img src="@/assets/img/index/top.png" class="icon go-top" alt="">
     </div>
-<!--    <div class="small-screen">-->
-<!--      <i class=" iconfont iconzhidingtop"></i>-->
-<!--    </div>-->
+    <!--    <div class="small-screen">-->
+    <!--      <i class=" iconfont iconzhidingtop"></i>-->
+    <!--    </div>-->
     <canvas :width="width" :height="height" id="canvas" ref="canvas"></canvas>
   </div>
 </template>
@@ -201,6 +202,7 @@
       z-index: 99;
       border-radius: 4px;
       margin: 0 4px;
+
       i {
         font-size: 24px;
 
