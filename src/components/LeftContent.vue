@@ -45,9 +45,9 @@
       <h3>社交功能</h3>
       <div class="fun-items">
         <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i
-            class="iconfont icongithub"></i></a>
+          class="iconfont icongithub"></i></a>
         <a v-waves href="//qm.qq.com/cgi-bin/qm/qr?k=RmZQeDHL_tjQIKwib_rmvEFa7AsOMSj-&noverify=0#" title="768449566"
-          target="_blank"><i class="iconfont iconqq"></i></a>
+           target="_blank"><i class="iconfont iconqq"></i></a>
         <a href="javascript:" class="code-cont">
           <i class="iconfont iconweixin"></i>
           <div class="code">
@@ -64,8 +64,8 @@
       <h3>标签</h3>
       <div class="tags">
         <a href="javascript:"
-          :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
-          v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
+           :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
+           v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
         <a href="javascript:" v-if="tags.length === 0" :style="{background:bgColors[0],color:textColors[0]}">wuwu
           一个标签都没有，，，</a>
       </div>
@@ -102,9 +102,9 @@
     <div class="copyright">
       <p>&copy; 2020 <a href="javascript:">银杏树下</a></p>
       <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
-          target="_blank">粤ICP备20045257号</a></p>
+            target="_blank">粤ICP备20045257号</a></p>
       <p>粤公网安备<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902002087" target="_blank">
-          44030902002087号</a></p>
+        44030902002087号</a></p>
 
 
       <!--      <div style="width:300px;margin:0 auto; padding:20px 0;">-->
@@ -117,7 +117,7 @@
       <!--      <p>Powered by <a href="#">Solo</a></p>-->
       <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
       <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959"
-          target="_blank">站长统计</a>
+                                        target="_blank">站长统计</a>
       </p>
       <p class="data-time">{{ time }}</p>
     </div>
@@ -134,6 +134,7 @@
     getArticleList
   } from "@/api/home";
   import setting from "@/settings"
+  import {Bus} from "@/utils/Bus";
 
   export default {
     name: "LeftContent",
@@ -188,10 +189,13 @@
           this.time = `${day}天${hours}小时${m}分钟${s}秒`
         }, 1000)
       },
-      articleList() {
+      articleList(page) {
+
+        let pageNum = 1
+        if (page) pageNum = page
         try {
           let params = {
-            page: 1
+            page: pageNum
           }
           this.loading = true
           getArticleList(params).then((res) => {
@@ -219,7 +223,7 @@
       this.getCountImage()
       //异步加载数据
       this.articleList()
-      
+      Bus.$on('getArticleList', this.articleList)
     },
     beforeDestroy() {
       clearInterval(this.timer)

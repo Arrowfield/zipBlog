@@ -2,7 +2,7 @@
   <div>
     <ul class="article-page" v-if="articleList.length > 0">
       <li v-for="(item,index) in articleList" :key="index">
-        <router-link :to="/article/ + item.zid" v-waves class="link"  :title="item.articleTitle">
+        <router-link :to="/article/ + item.zid" v-waves class="link" :title="item.articleTitle">
           <div class="image-cont">
             <img :src="item.articleImgURL" alt="">
             <h1 class="title">{{item.articleTitle}}</h1>
@@ -13,7 +13,8 @@
           <a v-waves href="#"><i class="iconfont iconrili"></i>{{item.articleCreated | truncation}}</a>
           <a v-waves href="#"><i class="iconfont iconredu"></i>{{ Math.floor(Math.random() * 1000) }} °C</a>
           <a v-waves href="#"><i class="iconfont iconxx"></i>{{ Math.floor(Math.random() * 1000) }}</a>
-          <a class="tag" :key="i" v-for="(tmp,i) in item.articleTags.split(',')" v-waves href="#"><i class="iconfont icondaohang1"></i>{{tmp}}</a>
+          <a class="tag" :key="i" v-for="(tmp,i) in item.articleTags.split(',')" v-waves href="#"><i
+            class="iconfont icondaohang1"></i>{{tmp}}</a>
         </div>
         <article>
           <p class="summary">{{item.articleAbstract}}</p>
@@ -22,11 +23,11 @@
     </ul>
     <ul class="article-page" v-else>
       <li>
-        <router-link to="#" v-waves class="link"  title="#">
+        <router-link to="#" v-waves class="link" title="#">
           <div class="image-cont">
             <img src="#" alt="">
             <h1 class="title">- 太懒了 一篇文章都没有，，，，</h1>
-            <i  class="iconfont iconstar"></i>
+            <i class="iconfont iconstar"></i>
             <Loading type="circular"/>
           </div>
         </router-link>
@@ -34,7 +35,7 @@
           <a v-waves href="#"><i class="iconfont iconrili"></i>-</a>
           <a v-waves href="#"><i class="iconfont iconredu"></i>-°C</a>
           <a v-waves href="#"><i class="iconfont iconxx"></i>-</a>
-          <a class="tag"   v-waves href="#"><i class="iconfont icondaohang1"></i>-</a>
+          <a class="tag" v-waves href="#"><i class="iconfont icondaohang1"></i>-</a>
         </div>
         <article>
           <p class="summary">-</p>
@@ -50,25 +51,28 @@
   import PageNav from "@/components/PageNav";
   import {getArticleList} from "@/api/home";
   import Loading from "./Loading";
+
   const testText = '12312345645648789456132131'
   import {mapState} from 'vuex'
+  import {Bus} from "@/utils/Bus";
+
   export default {
     name: "Article",
-    data(){
-      return{
+    data() {
+      return {
         // total:0
-        currPage:1,
+        currPage: 1,
       }
     },
-    computed:{
+    computed: {
       ...mapState({
         articleList: state => state.article.articleList,
-        total:state => state.indexBaseData.articleTotal
+        total: state => state.indexBaseData.articleTotal
       })
     },
-    filters:{
-      truncation(val){
-        let date = new Date(val.replace(/-/g,"/"))
+    filters: {
+      truncation(val) {
+        let date = new Date(val.replace(/-/g, "/"))
         let year = date.getFullYear()
         let month = date.getMonth() + 1
         let day = date.getDate()
@@ -76,18 +80,19 @@
         return `${year}年${month}月${day}日`
       }
     },
-    components: {PageNav,Loading},
+    components: {PageNav, Loading},
     directives: {
       waves
     },
-    mounted(){
+    mounted() {
       // let res = await getArticleList()
       // this.articleList = res.data.data
       // this.total = res.data.total
     },
-    methods:{
-      changeCurrPage(page){
-        console.log('当前的页数是'+page)
+    methods: {
+      changeCurrPage(page) {
+        console.log('当前的页数是' + page)
+        Bus.$emit('getArticleList', page)
       }
     }
   }
@@ -102,6 +107,7 @@
     padding: 20px 20px 0;
     box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
     transition: all 2s linear;
+
     .link {
       display: block;
       overflow: hidden;
