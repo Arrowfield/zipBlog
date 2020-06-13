@@ -5,7 +5,7 @@
       <h1 class="title">{{ articleDetail.articleTitle }}</h1>
     </div>
     <Tags :tagDetail="articleDetail"/>
-    <div class="intro-detail text-area" v-loading-circ="loading">
+    <div class="intro-detail text-area" v-loading-circ="loading" @contextmenu.prevent @selectstart.prevent>
       <div v-html="articleDetail.articleContent"></div>
       <div v-show="articleDetail.reprint" class="reprint">
         <i class="icon iconfont icongantanhao-xianxingyuankuang "></i>
