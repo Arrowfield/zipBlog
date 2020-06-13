@@ -5,7 +5,7 @@
       <span> {{tagDetail.articleCreated | truncation}} </span>
     </a>
     <a v-waves href="javascript:"><i class="iconfont iconredu"></i>{{ tagDetail.articleViewCount }} °C</a>
-    <a v-waves href="javascript:"><i class="iconfont iconxx"></i>{{"-" }}</a>
+    <a v-waves href="javascript:"><i class="iconfont iconxx"></i><span class="valine-comment-count" :data-xid="$route.path">{{"-" }}</span></a>
     <Fragment v-if="tagDetail.articleTags">
       <a class="tag" :key="i" v-for="(tmp,i) in tagDetail.articleTags.split(',')" v-waves href="#">
         <i class="iconfont icondaohang1"></i>

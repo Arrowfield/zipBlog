@@ -88,6 +88,7 @@
       // let res = await getArticleList()
       // this.articleList = res.data.data
       // this.total = res.data.total
+      Bus.$emit('getArticleList', this.currPage)
     },
     methods: {
       changeCurrPage(page) {
