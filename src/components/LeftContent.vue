@@ -45,9 +45,9 @@
       <h3>社交功能</h3>
       <div class="fun-items">
         <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i
-          class="iconfont icongithub"></i></a>
+            class="iconfont icongithub"></i></a>
         <a v-waves href="//qm.qq.com/cgi-bin/qm/qr?k=RmZQeDHL_tjQIKwib_rmvEFa7AsOMSj-&noverify=0#" title="768449566"
-           target="_blank"><i class="iconfont iconqq"></i></a>
+          target="_blank"><i class="iconfont iconqq"></i></a>
         <a href="javascript:" class="code-cont">
           <i class="iconfont iconweixin"></i>
           <div class="code">
@@ -64,8 +64,8 @@
       <h3>标签</h3>
       <div class="tags">
         <a href="javascript:"
-           :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
-           v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
+          :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
+          v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
         <a href="javascript:" v-if="tags.length === 0" :style="{background:bgColors[0],color:textColors[0]}">wuwu
           一个标签都没有，，，</a>
       </div>
@@ -102,21 +102,22 @@
     <div class="copyright">
       <p>&copy; 2020 <a href="javascript:">银杏树下</a></p>
       <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
-            target="_blank">粤ICP备20045257号</a></p>
-       <p>粤公网安备<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902002087" target="_blank"> 44030902002087号</a></p>
+          target="_blank">粤ICP备20045257号</a></p>
+      <p>粤公网安备<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902002087" target="_blank">
+          44030902002087号</a></p>
 
 
-<!--      <div style="width:300px;margin:0 auto; padding:20px 0;">-->
-<!--        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902002087"-->
-<!--           style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">-->
-<!--          <img src="" style="float:left;"/>-->
-<!--          <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">粤公网安备 44030902002087号</p></a>-->
-<!--      </div>-->
+      <!--      <div style="width:300px;margin:0 auto; padding:20px 0;">-->
+      <!--        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902002087"-->
+      <!--           style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">-->
+      <!--          <img src="" style="float:left;"/>-->
+      <!--          <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">粤公网安备 44030902002087号</p></a>-->
+      <!--      </div>-->
 
       <!--      <p>Powered by <a href="#">Solo</a></p>-->
       <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
       <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959"
-                                        target="_blank">站长统计</a>
+          target="_blank">站长统计</a>
       </p>
       <p class="data-time">{{ time }}</p>
     </div>
@@ -126,8 +127,12 @@
 
 <script>
   import waves from "@/directive/waves/waves";
-  import {mapState} from 'vuex'
-  import {getArticleList} from "@/api/home";
+  import {
+    mapState
+  } from 'vuex'
+  import {
+    getArticleList
+  } from "@/api/home";
   import setting from "@/settings"
 
   export default {
@@ -182,28 +187,39 @@
           s = Math.round(timestamp % (3600 * 24 * 1000) % (1000 * 3600) % (1000 * 60) / 1000)
           this.time = `${day}天${hours}小时${m}分钟${s}秒`
         }, 1000)
+      },
+      articleList() {
+        try {
+          let params = {
+            page: 1
+          }
+          this.loading = true
+          getArticleList(params).then((res) => {
+            let data = res.data
+            //console.log(res)
+            this.$store.commit("setIndexBaseData", {
+              total: res.data.total
+            })
+            this.$store.commit("article/setDatalist", res.data.data)
+            this.views = data.viewsTotal
+            this.tags = _.take(data.tags, 7)
+            this.$store.commit("setTags", data.tags)
+            this.loading = false
+          }) //获取所有的文章
+        } catch (e) {
+          if (e) throw e
+        }
       }
     },
-    async mounted() {
+    mounted() {
       let agent = navigator.userAgent
       if (agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1) {
         this.isIe = true
       }
       this.getCountImage()
       //异步加载数据
-      try {
-        this.loading = true
-        let res = await getArticleList()
-        let data = res.data
-        this.$store.commit("setIndexBaseData", {total: res.data.total})
-        this.$store.commit("article/setDatalist", res.data.data)
-        this.views = data.viewsTotal
-        this.tags = _.take(data.tags, 7)
-        this.$store.commit("setTags", data.tags)
-        this.loading = false
-      } catch (e) {
-        if (e) throw e
-      }
+      this.articleList()
+      
     },
     beforeDestroy() {
       clearInterval(this.timer)
@@ -221,8 +237,6 @@
 </style>
 
 <style lang="scss" scoped>
-
-
   .left-content-page {
     width: 260px;
     overflow: hidden;
@@ -445,7 +459,8 @@
 
       }
 
-      .article, .views {
+      .article,
+      .views {
         p:nth-child(1) {
           color: #363636;
           margin-bottom: 3px;

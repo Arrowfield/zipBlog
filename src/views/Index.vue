@@ -4,9 +4,9 @@
     <div class="bg"></div>
     <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>
     <transition name="menu">
-      <LeftContent v-show="showMenu" :showMenu="showMenu"/>
+      <LeftContent v-if="showMenu" :showMenu="showMenu"/>
     </transition>
-    <LeftContent v-show="!showMenu"/>
+    <LeftContent v-if="!showMenu"/>
     <RightContent :showMenu.sync="showMenu" :fixed="fixedLeft"/>
     <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">
       <img src="@/assets/img/index/top.png" class="icon go-top" alt="">

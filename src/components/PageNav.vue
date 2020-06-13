@@ -31,6 +31,11 @@
     watch: {
       currPage(val) {
         this.value = val
+      },
+      total(val){
+        if(typeof val === 'number'){
+          this.initPageNum()
+        }
       }
     },
     computed: {
@@ -109,6 +114,7 @@
       },
       initPageNum() {
         this.maxPageNum = Math.ceil(this.total / this.pageSize)
+        console.log(this.maxPageNum)
         if (this.maxPageNum > 10) {
           let num = [], start = [], end = [], center = ['...']
           for (let i = 1; i <= this.maxPageNum; i++) {
@@ -132,7 +138,7 @@
     },
     mounted() {
       this.$nextTick(() => {
-        this.initPageNum()
+        // this.initPageNum()
       })
     }
   }

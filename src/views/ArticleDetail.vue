@@ -7,7 +7,7 @@
     <Tags :tagDetail="articleDetail"/>
     <div class="intro-detail text-area" v-loading-circ="loading">
       <div v-html="articleDetail.articleContent"></div>
-      <div class="reprint">
+      <div v-show="articleDetail.reprint" class="reprint">
         <i class="icon iconfont icongantanhao-xianxingyuankuang "></i>
         <p>文章转载声明：</p>
       </div>

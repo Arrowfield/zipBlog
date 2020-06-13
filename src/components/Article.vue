@@ -80,7 +80,7 @@
     directives: {
       waves
     },
-    async mounted(){
+    mounted(){
       // let res = await getArticleList()
       // this.articleList = res.data.data
       // this.total = res.data.total

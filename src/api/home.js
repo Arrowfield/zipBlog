@@ -8,9 +8,10 @@ export function getUser(params) {
   })
 }
 
-export function getArticleList() {
+export function getArticleList(params) {
   return service({
-    url:"/article/get"
+    url:"/article/get",
+    params
   })
 }
 
