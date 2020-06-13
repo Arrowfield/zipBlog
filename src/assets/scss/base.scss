@@ -72,6 +72,12 @@ input, textarea, button, a, select {
 
 }
 
+@media screen and (min-width: 768px){
+  div.left-content {
+    transform: translate(0) !important;
+  }
+}
+
 @media screen and (max-width: 768px) {
 
   div.left-content {
