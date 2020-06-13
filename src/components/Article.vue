@@ -11,8 +11,8 @@
         </router-link>
         <div class="tags">
           <a v-waves href="#"><i class="iconfont iconrili"></i>{{item.articleCreated | truncation}}</a>
-          <a v-waves href="#"><i class="iconfont iconredu"></i>{{ Math.floor(Math.random() * 1000) }} °C</a>
-          <a v-waves href="#"><i class="iconfont iconxx"></i>{{ Math.floor(Math.random() * 1000) }}</a>
+          <a v-waves href="#"><i class="iconfont iconredu"></i>{{ item.articleViewCount }} °C</a>
+          <a v-waves href="#"><i class="iconfont iconxx"></i>{{ "-" }}</a>
           <a class="tag" :key="i" v-for="(tmp,i) in item.articleTags.split(',')" v-waves href="#"><i
             class="iconfont icondaohang1"></i>{{tmp}}</a>
         </div>

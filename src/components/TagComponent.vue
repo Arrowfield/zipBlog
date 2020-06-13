@@ -4,8 +4,8 @@
       <i class="iconfont iconrili"></i>
       <span> {{tagDetail.articleCreated | truncation}} </span>
     </a>
-    <a v-waves href="javascript:"><i class="iconfont iconredu"></i>{{ Math.floor(Math.random() * 1000) }} °C</a>
-    <a v-waves href="javascript:"><i class="iconfont iconxx"></i>{{ Math.floor(Math.random() * 1000) }}</a>
+    <a v-waves href="javascript:"><i class="iconfont iconredu"></i>{{ tagDetail.articleViewCount }} °C</a>
+    <a v-waves href="javascript:"><i class="iconfont iconxx"></i>{{"-" }}</a>
     <Fragment v-if="tagDetail.articleTags">
       <a class="tag" :key="i" v-for="(tmp,i) in tagDetail.articleTags.split(',')" v-waves href="#">
         <i class="iconfont icondaohang1"></i>
