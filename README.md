@@ -216,3 +216,7 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 + 富文本编辑的时候2个字符的缩进
 + 单篇文章的浏览量以及评论的数量
 + 行高太高 字体太大
+
+#### 2020.06.13篇
+
++ 后端的token鉴权的开发

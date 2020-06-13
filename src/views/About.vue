@@ -74,7 +74,8 @@
         play: false,
         tagDetail: {
           articleCreated: "2020-06-05",
-          articleTags: ""
+          articleTags: "",
+          articleViewCount:0
         }
       }
     },
