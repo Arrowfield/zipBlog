@@ -209,7 +209,7 @@
             this.tags = _.take(data.tags, 7)
             this.$store.commit("setTags", data.tags)
             this.loading = false
-            window.scrollTo(0,0)
+            // window.scrollTo(0,0)
           }) //获取所有的文章
         } catch (e) {
           if (e) throw e
