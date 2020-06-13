@@ -108,11 +108,12 @@
     .intro-detail.text-area{
       font-size: 15px;
       min-height: 200px;
+      background: #fffbf0 !important;
       p{
         margin-bottom: 7px;
         line-height: 28px;
         overflow: hidden;
-        text-indent: 30px; //系统默认的字体大小为16px 最小显示字体为12px
+        text-indent: 2em; //系统默认的字体大小为16px 最小显示字体为12px
       }
       li{
         line-height: 28px;
@@ -121,18 +122,19 @@
         margin-bottom: 7px;
       }
       ul,ol{
-        list-style: disc;
+        /*list-style: disc;*/
         padding-left: 2em;
         margin-bottom:16px;
         color:#738a94;
+
       }
       img{
-        width: auto;
+        /*width: auto;*/
         height: auto;
         max-width: 100%;
         /*text-align: left;*/
         display: inline-block;
-        margin-left: -32px;
+        margin-left: -2em;
       }
     }
   }
@@ -153,6 +155,7 @@
       position: relative;
       img {
         border-radius: 10px;
+        width: 100%;
       }
       .title {
         position: absolute;
@@ -178,10 +181,11 @@
       p{
         // margin-bottom: 16px;
         font-weight: bold;
+
       }
 
       ul{
-        list-style: disc;
+        /*list-style: disc;*/
         padding-left: 2em;
         margin-bottom:16px;
         color:#738a94;
