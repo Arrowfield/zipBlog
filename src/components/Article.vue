@@ -21,27 +21,6 @@
         </article>
       </li>
     </ul>
-<!--    <ul class="article-page" v-else>-->
-<!--      <li>-->
-<!--        <router-link to="#" v-waves class="link" title="#">-->
-<!--          <div class="image-cont">-->
-<!--            <img src="#" alt="">-->
-<!--            <h1 class="title">- 太懒了 一篇文章都没有，，，，</h1>-->
-<!--            <i class="iconfont iconstar"></i>-->
-<!--            <Loading type="circular"/>-->
-<!--          </div>-->
-<!--        </router-link>-->
-<!--        <div class="tags">-->
-<!--          <a v-waves href="#"><i class="iconfont iconrili"></i>-</a>-->
-<!--          <a v-waves href="#"><i class="iconfont iconredu"></i>-°C</a>-->
-<!--          <a v-waves href="#"><i class="iconfont iconxx"></i>-</a>-->
-<!--          <a class="tag" v-waves href="#"><i class="iconfont icondaohang1"></i>-</a>-->
-<!--        </div>-->
-<!--        <article>-->
-<!--          <p class="summary">-</p>-->
-<!--        </article>-->
-<!--      </li>-->
-<!--    </ul>-->
     <PageNav :total="total" :currPage.sync="currPage" @changeCurrPage="changeCurrPage"/>
   </div>
 </template>

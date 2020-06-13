@@ -103,7 +103,10 @@
     <div class="intro fun-list tags-list">
       <h3>公告栏</h3>
       <div class="tags">
-        <video controls muted loop autoplay class="video" src="https://arrowfield.top/Inuyasha.mp4" preload="auto"></video>
+        <i  v-if="paused" class="play iconfont iconplay-circle-fill" @click="handlePlay"></i>
+        <i v-else class="play iconfont iconpoweroff-circle-fill" @click="handlePlay"></i>
+        <video ref="video" poster="../assets/img/index/poster.jpg" muted loop class="video"
+               src="https://arrowfield.top/Inuyasha.mp4" preload="auto"></video>
       </div>
     </div>
 
@@ -156,7 +159,7 @@
         tags: [],
         timer: null,
         time: "",
-
+        paused:true
       }
     },
     computed: {
@@ -181,6 +184,16 @@
       goToPage() {
         // const {href} = this.$router.resolve({path})
         // window.open(href,'_self')
+      },
+      handlePlay(){
+        //console.log(this.$refs.video)
+        if(this.$refs.video.paused) {
+          this.$refs.video.play()
+          this.paused = false
+        }else{
+          this.$refs.video.pause()
+          this.paused = true
+        }
       },
       getCountImage() {
         //let dom = document.getElementById("cnzz_stat_icon_1278967959")
@@ -207,7 +220,7 @@
             page: pageNum
           }
           this.loading = true
-          this.$store.commit("setLoading",true)
+          this.$store.commit("setLoading", true)
           getArticleList(params).then((res) => {
             let data = res.data
             //console.log(res)
@@ -219,7 +232,7 @@
             this.tags = _.take(data.tags, 7)
             this.$store.commit("setTags", data.tags)
             this.loading = false
-            this.$store.commit("setLoading",false)
+            this.$store.commit("setLoading", false)
             // window.scrollTo(0,0)
           }) //获取所有的文章
         } catch (e) {
@@ -351,10 +364,29 @@
       &.tags-list {
         .tags {
           padding: 10px 10px 5px;
+          position: relative;
+          &:hover .play{
+
+            opacity: 1;
+          }
         }
 
-        .video{
+        .play {
+          position: absolute;
+          font-size: 25px;
+          color: white;
+          left:50%;
+          top:50%;
+          transform: translate(-50%,-50%);
+          /*display: none;*/
+          cursor: pointer;
+          opacity: 0;
+          z-index: 100;
+        }
+
+        .video {
           width: 100%;
+          cursor: pointer;
         }
 
         a {
