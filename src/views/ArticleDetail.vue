@@ -7,6 +7,10 @@
     <Tags :tagDetail="articleDetail"/>
     <div class="intro-detail text-area" v-loading-circ="loading">
       <div v-html="articleDetail.articleContent"></div>
+      <div class="reprint">
+        <i class="icon iconfont icongantanhao-xianxingyuankuang "></i>
+        <p>文章转载声明：</p>
+      </div>
     </div>
 
     <div class="intro-detail message">
@@ -70,13 +74,44 @@
 <style lang="scss">
 
   .article-detail-page {
+
+    .reprint{
+      word-wrap: break-word;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      padding: 20px;
+      color: #666;
+      background-color: #f8f8f8;
+      border-left: 2px solid #eee;
+      line-height: 1.5em;
+      position: relative;
+      p{
+        text-indent: 0 !important;
+      }
+      .icon{
+        position: absolute;
+        top: -10px;
+        left: 13px;
+        font-size: 20px;
+        background: #f8f8f8;
+        color: #666;
+        border-radius: 100%;
+        text-align: center;
+        line-height: 24px;
+        padding: 2px;
+        height: 30px;
+        width: 30px;
+        border: 1px solid #eee;
+      }
+    }
+
     .intro-detail.text-area{
       font-size: 15px;
       min-height: 200px;
       p{
         margin-bottom: 7px;
         line-height: 28px;
-
+        overflow: hidden;
         text-indent: 30px; //系统默认的字体大小为16px 最小显示字体为12px
       }
       li{
@@ -129,6 +164,7 @@
         font-weight: 400;
         cursor: auto;
         z-index: 5;
+        line-height: 32px;
       }
     }
 
