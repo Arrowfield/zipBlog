@@ -113,7 +113,7 @@
         margin-bottom: 7px;
         line-height: 28px;
         overflow: hidden;
-        text-indent: 2em; //系统默认的字体大小为16px 最小显示字体为12px
+        //text-indent: 2em; //系统默认的字体大小为16px 最小显示字体为12px
       }
       li{
         line-height: 28px;
@@ -134,7 +134,7 @@
         max-width: 100%;
         /*text-align: left;*/
         display: inline-block;
-        margin-left: -2em;
+        //margin-left: -2em;
       }
     }
   }
@@ -156,6 +156,8 @@
       img {
         border-radius: 10px;
         width: 100%;
+        max-height: 520px;
+        object-fit: cover;
       }
       .title {
         position: absolute;

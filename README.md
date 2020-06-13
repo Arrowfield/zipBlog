@@ -220,3 +220,4 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 #### 2020.06.13篇
 
 + 后端的token鉴权的开发
++ 找到一个手机壁纸 与 电脑壁纸的网站

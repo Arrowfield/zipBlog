@@ -2,10 +2,9 @@
   <div class="index" :class="{'index-change':showMenu}">
     <!--    <CanvasBackground></CanvasBackground>-->
     <div class="bg"></div>
-    <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>
+    <div class="index-mask" v-if="showMenu"  @click="changeMenuStatus"></div>
 
-    <LeftContent :showMenu="showMenu"/>
-
+    <LeftContent :showMenu="showMenu" :class="{action:!isMove}"  :style="{transform:`translate(${offsetLeft}px)`}"/>
 
     <!--    <LeftContent v-if="!showMenu"/>-->
     <RightContent :showMenu.sync="showMenu" :fixed="fixedLeft"/>
@@ -46,7 +45,10 @@
         timer: null,
         leaveTimer: null,
         showTop: false,
-        fixedLeft: false
+        fixedLeft: false,
+        offsetLeft:-260,
+        startX:0,
+        isMove:false
       }
     },
     watch: {
@@ -69,6 +71,8 @@
       },
       changeMenuStatus() {
         this.showMenu = !this.showMenu
+        this.offsetLeft = -260
+        this.isMove = false
       },
       addLoveIcon(e) {
         ProgressSelf({left: e.clientX, top: e.clientY})
@@ -108,7 +112,6 @@
     mounted() {
       document.body.addEventListener("click", this.addLoveIcon)
       document.addEventListener("visibilitychange", () => {
-
         if (document.visibilityState === 'hidden') { //状态判断
           if (this.leaveTimer) clearTimeout(this.leaveTimer)
           changePageTitle("(╮(๑•́ ₃•̀๑)╭)看不到我啦")
@@ -133,15 +136,38 @@
         this.initData()
         //this.drawBubble()
       })
+      document.addEventListener("touchstart",(e)=>{
+        this.startX = e.targetTouches[0].clientX
+        // this.isMove = true
+      })
+      document.addEventListener("touchmove",(e)=>{
+        if(this.startX > 10) return
+        // console.log(e)
+        this.offsetLeft = ( e.targetTouches[0].clientX - 260)
+        if(this.offsetLeft > 0) this.offsetLeft = 0
+        this.isMove = true
+      })
+      document.addEventListener("touchend",(e)=>{
+        if(this.startX > 10) return
+        if(this.offsetLeft < 0) this.offsetLeft = 0
+        this.showMenu = true
+        this.isMove = false
+      })
     },
     beforeDestroy() {
       window.removeEventListener('resize', this.resize)
       window.cancelAnimationFrame(this.timer)
+
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  .action{
+
+
+    transition: all .3s cubic-bezier(0,0,.2,1);
+  }
 
   #canvas {
     position: fixed;

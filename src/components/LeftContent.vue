@@ -99,6 +99,14 @@
       </ul>
     </div>
 
+    <div class="intro fun-list tags-list">
+      <h3>公告栏</h3>
+      <div class="tags">
+
+      </div>
+    </div>
+
+
     <div class="copyright">
       <p>&copy; 2020 <a href="javascript:">银杏树下</a></p>
       <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
@@ -255,6 +263,8 @@
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    /*transition: all .3s cubic-bezier(0,0,.2,1);*/
+
 
     &::-webkit-scrollbar {
       width: 0;

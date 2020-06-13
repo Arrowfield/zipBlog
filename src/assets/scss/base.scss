@@ -75,12 +75,16 @@ input, textarea, button, a, select {
 @media screen and (max-width: 768px) {
 
   div.left-content {
-    display: none;
+    //display: none;
+    z-index: 100;
+    background: white;
+    transform: translate(-260px) ;
 
     &.screen-change {
       z-index: 100;
       background: white;
       display: block;
+      transform: translate(0) !important;
     }
 
     .data-time{
