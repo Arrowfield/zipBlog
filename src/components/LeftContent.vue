@@ -207,6 +207,7 @@
             page: pageNum
           }
           this.loading = true
+          this.$store.commit("setLoading",true)
           getArticleList(params).then((res) => {
             let data = res.data
             //console.log(res)
@@ -218,6 +219,7 @@
             this.tags = _.take(data.tags, 7)
             this.$store.commit("setTags", data.tags)
             this.loading = false
+            this.$store.commit("setLoading",false)
             // window.scrollTo(0,0)
           }) //获取所有的文章
         } catch (e) {

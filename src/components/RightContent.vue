@@ -4,7 +4,7 @@
       <a  :class="{fixed:fixed}" href="javascript:" @click="showMenuFun"><i class="iconfont icondaohang"></i></a>
       <a href="/"><img src="../assets/img/index/kenan_avatar.png" alt=""></a>
     </div>
-    <router-view/>
+    <router-view />
 
     <div class="footer">{{ epigram }}</div>
   </div>
@@ -30,6 +30,7 @@
     props:['showMenu','fixed'],
     watch:{
     },
+
     methods:{
       showMenuFun(){
         this.$emit('update:showMenu',!this.showMenu)
@@ -44,6 +45,9 @@
     position: absolute;
     left: 260px;
     width: 940px;
+
+
+
     .header {
 
       align-items: center;

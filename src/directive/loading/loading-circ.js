@@ -23,6 +23,7 @@ function toggleLoading(el, show) {
     el.setAttribute('loading-id', id)
   } else {
     if(!elLoading[loadingId]) return
+    el.classList.remove('loading-container')
     el.removeChild(elLoading[loadingId])
     el.setAttribute('loading-id','')
     delete elLoading[loadingId]

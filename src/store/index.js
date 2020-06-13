@@ -12,6 +12,7 @@ export default new Vuex.Store({
       articleTotal:"-"
     },
     tags:[],
+    showLoading:false,
     bgColors: [
       "rgba(255,78,106,.15)",
       "rgba(255,170,115,.15)",
@@ -41,6 +42,9 @@ export default new Vuex.Store({
       if(Array.isArray(tags)) {
         state.tags = tags
       }
+    },
+    setLoading(state,value){
+      state.showLoading = value
     }
   },
   actions: {
