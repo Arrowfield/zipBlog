@@ -1,3 +1,7 @@
+/**
+ * 所有的文章相关的接口
+ * @author 768449566@qq.com
+ */
 import service from "@/utils/service";
 
 export function getUser(params) {

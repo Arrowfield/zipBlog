@@ -63,6 +63,7 @@ export default {
   update(el, binding) {
     el.removeEventListener('click', el[context].removeHandle, false)
     el.addEventListener('click', handleClick(el, binding), false)
+    //console.log("attribute update")
   },
   unbind(el) {
     el.removeEventListener('click', el[context].removeHandle, false)

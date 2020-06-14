@@ -89,13 +89,9 @@
     <div class="intro fun-list">
       <h3>存档</h3>
       <ul class="category-list">
-        <li>
-          <a href="">暂无存档</a>
-          <span>0</span>
-        </li>
-        <li>
-          <a href="">-</a>
-          <span>0</span>
+        <li v-for="item in archive">
+          <a v-waves href="javascript:">{{ item.date  }}</a>
+          <span>{{ item.length }}</span>
         </li>
       </ul>
     </div>
@@ -103,7 +99,7 @@
     <div class="intro fun-list tags-list">
       <h3>公告栏</h3>
       <div class="tags">
-        <i  v-if="paused" class="play iconfont iconplay-circle-fill" @click="handlePlay"></i>
+        <i v-if="paused" class="play iconfont iconplay-circle-fill" @click="handlePlay"></i>
         <i v-else class="play iconfont iconpoweroff-circle-fill" @click="handlePlay"></i>
         <video ref="video" poster="../assets/img/index/poster.jpg" autoplay muted loop class="video"
                src="https://arrowfield.top/Inuyasha.mp4" preload="auto"></video>
@@ -131,7 +127,7 @@
       <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959"
                                         target="_blank">站长统计</a>
       </p>
-      <p class="data-time">{{ time }}</p>
+      <p class="data-time" >{{ time }}</p>
     </div>
   </div>
 </template>
@@ -147,6 +143,7 @@
   } from "@/api/home";
   import setting from "@/settings"
   import {Bus} from "@/utils/Bus";
+  import {getIndexData} from "@/api/indexData";
 
   export default {
     name: "LeftContent",
@@ -159,7 +156,8 @@
         tags: [],
         timer: null,
         time: "",
-        paused:true
+        paused: true,
+        archive: []
       }
     },
     computed: {
@@ -167,7 +165,22 @@
         total: state => state.indexBaseData.articleTotal,
         bgColors: state => state.bgColors,
         textColors: state => state.textColors
-      })
+      }),
+      //time() {
+        // let start = new Date(setting.siteStartTime).getTime()
+        // let now, timestamp, day, hours, m, s
+        // now = new Date().getTime()
+        // timestamp = now - start
+        // day = Math.floor(timestamp / (3600 * 24 * 1000))
+        // hours = Math.floor(timestamp % (3600 * 24 * 1000) / (1000 * 3600))
+        // m = Math.floor(timestamp % (3600 * 24 * 1000) % (1000 * 3600) / (1000 * 60))
+        // s = Math.round(timestamp % (3600 * 24 * 1000) % (1000 * 3600) % (1000 * 60) / 1000)
+        //return `${day}天${hours}小时${m}分钟${s}秒`
+        //return new Date()
+      //}
+    },
+    filters: {
+
     },
     directives: {
       waves
@@ -185,12 +198,12 @@
         // const {href} = this.$router.resolve({path})
         // window.open(href,'_self')
       },
-      handlePlay(){
+      handlePlay() {
         //console.log(this.$refs.video)
-        if(this.$refs.video.paused) {
+        if (this.$refs.video.paused) {
           this.$refs.video.play()
           this.paused = false
-        }else{
+        } else {
           this.$refs.video.pause()
           this.paused = true
         }
@@ -199,6 +212,7 @@
         //let dom = document.getElementById("cnzz_stat_icon_1278967959")
         //this.countInnerHtml = `站长统计${dom.innerHTML}`
         //获取网页开始的时间
+        let el = document.getElementsByClassName('data-time')[0]
         let start = new Date(setting.siteStartTime).getTime()
         this.timer = setInterval(() => {
           let now, timestamp, day, hours, m, s
@@ -208,7 +222,8 @@
           hours = Math.floor(timestamp % (3600 * 24 * 1000) / (1000 * 3600))
           m = Math.floor(timestamp % (3600 * 24 * 1000) % (1000 * 3600) / (1000 * 60))
           s = Math.round(timestamp % (3600 * 24 * 1000) % (1000 * 3600) % (1000 * 60) / 1000)
-          this.time = `${day}天${hours}小时${m}分钟${s}秒`
+          //this.time = `${day}天${hours}小时${m}分钟${s}秒`
+          el.innerHTML = `${day}天${hours}小时${m}分钟${s}秒`
         }, 1000)
       },
       articleList(page) {
@@ -238,6 +253,13 @@
         } catch (e) {
           if (e) throw e
         }
+      },
+
+      formatterDate(val) {
+        let date = new Date(parseInt(val))
+
+        let year = date.getFullYear(), month = date.getMonth() + 1
+        return `${year} 年 ${month < 10 ? "0" + month : month} 月`
       }
     },
     mounted() {
@@ -248,6 +270,25 @@
       this.getCountImage()
       //异步加载数据
       this.articleList()
+      getIndexData().then((res) => {
+
+        let data = res.data.archive
+        let tmp = data.map((item) => {
+          return item.archiveTime
+        })
+        let obj = {}, result = [];
+        for (var i = 0, l = tmp.length; i < l; i++) {
+          let item = tmp[i];
+          obj[item] = (obj[item] + 1) || 1;
+        }
+        for (let key in obj) {
+          result.push({
+            date: this.formatterDate(key),
+            length: obj[key]
+          })
+        }
+        this.archive = result
+      })
       Bus.$on('getArticleList', this.articleList)
     },
     beforeDestroy() {
@@ -356,7 +397,8 @@
             color: #fff;
             position: absolute;
             right: 10px;
-            top: 10px;
+            top: 50%;
+            margin-top: -13px;
           }
         }
       }
@@ -365,7 +407,8 @@
         .tags {
           padding: 10px 10px 5px;
           position: relative;
-          &:hover .play{
+
+          &:hover .play {
 
             opacity: 1;
           }
@@ -375,9 +418,9 @@
           position: absolute;
           font-size: 25px;
           color: white;
-          left:50%;
-          top:50%;
-          transform: translate(-50%,-50%);
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
           /*display: none;*/
           cursor: pointer;
           opacity: 0;

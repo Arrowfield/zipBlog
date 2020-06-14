@@ -6,7 +6,7 @@
 
     <LeftContent :showMenu="showMenu" :class="{action:!isMove}"  :style="{transform:`translate(${offsetLeft}px)`}"/>
 
-    <!--    <LeftContent v-if="!showMenu"/>-->
+
     <RightContent :showMenu.sync="showMenu" :fixed="fixedLeft"/>
     <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">
       <img src="@/assets/img/index/top.png" class="icon go-top" alt="">

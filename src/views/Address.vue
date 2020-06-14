@@ -3,7 +3,7 @@
   <RightPanelContainer class="address-page" title="好站推荐">
     <ul class="good-link">
       <li class="link-item" v-for="(item) in linkList">
-        <a :href="item.href" target="_blank" :title="item.title">
+        <a  :href="item.href" target="_blank" :title="item.title">
           <div class="intro-link">
             <p class="title">{{ item.title }}</p>
             <p class="intro">{{ item.intro }}</p>
@@ -43,7 +43,7 @@
     methods: {
       getGoogLink() {
         getLink({type: 1}).then((res) => {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           if (res.data.code !== 200) return
           this.linkList = res.data.data.map((item) => {
             return {

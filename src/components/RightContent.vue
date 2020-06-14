@@ -1,7 +1,7 @@
 <template>
   <div class="right-content">
     <div class="header">
-      <a  :class="{fixed:fixed}" href="javascript:" @click="showMenuFun"><i class="iconfont icondaohang"></i></a>
+      <a   href="javascript:" @click="showMenuFun"><i class="iconfont icondaohang"></i></a>
       <a href="/"><img src="../assets/img/index/kenan_avatar.png" alt=""></a>
     </div>
     <router-view />
