@@ -76,7 +76,7 @@
       <h3>分类</h3>
       <ul class="category-list">
         <li>
-          <a href="">暂无分类</a>
+          <a href="javascript:">暂无分类</a>
           <span>0</span>
         </li>
         <li>
@@ -89,8 +89,8 @@
     <div class="intro fun-list">
       <h3>存档</h3>
       <ul class="category-list">
-        <li v-for="item in archive">
-          <a v-waves href="javascript:">{{ item.date  }}</a>
+        <li v-for="(item,i) in archive">
+          <a @click="searchArticleByDate(i)" v-waves href="javascript:">{{ item.date }}</a>
           <span>{{ item.length }}</span>
         </li>
       </ul>
@@ -127,7 +127,7 @@
       <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959"
                                         target="_blank">站长统计</a>
       </p>
-      <p class="data-time" >{{ time }}</p>
+      <p class="data-time">{{ time }}</p>
     </div>
   </div>
 </template>
@@ -167,21 +167,19 @@
         textColors: state => state.textColors
       }),
       //time() {
-        // let start = new Date(setting.siteStartTime).getTime()
-        // let now, timestamp, day, hours, m, s
-        // now = new Date().getTime()
-        // timestamp = now - start
-        // day = Math.floor(timestamp / (3600 * 24 * 1000))
-        // hours = Math.floor(timestamp % (3600 * 24 * 1000) / (1000 * 3600))
-        // m = Math.floor(timestamp % (3600 * 24 * 1000) % (1000 * 3600) / (1000 * 60))
-        // s = Math.round(timestamp % (3600 * 24 * 1000) % (1000 * 3600) % (1000 * 60) / 1000)
-        //return `${day}天${hours}小时${m}分钟${s}秒`
-        //return new Date()
+      // let start = new Date(setting.siteStartTime).getTime()
+      // let now, timestamp, day, hours, m, s
+      // now = new Date().getTime()
+      // timestamp = now - start
+      // day = Math.floor(timestamp / (3600 * 24 * 1000))
+      // hours = Math.floor(timestamp % (3600 * 24 * 1000) / (1000 * 3600))
+      // m = Math.floor(timestamp % (3600 * 24 * 1000) % (1000 * 3600) / (1000 * 60))
+      // s = Math.round(timestamp % (3600 * 24 * 1000) % (1000 * 3600) % (1000 * 60) / 1000)
+      //return `${day}天${hours}小时${m}分钟${s}秒`
+      //return new Date()
       //}
     },
-    filters: {
-
-    },
+    filters: {},
     directives: {
       waves
     },
@@ -194,6 +192,13 @@
     },
     watch: {},
     methods: {
+      /**
+       * 通过归档进行搜索文章
+       */
+      searchArticleByDate(index) {
+        console.log(this.archive[index])
+        this.$router.push({name:"Article"})
+      },
       goToPage() {
         // const {href} = this.$router.resolve({path})
         // window.open(href,'_self')
@@ -230,6 +235,7 @@
 
         let pageNum = 1
         if (page) pageNum = page
+        //this.$store.commit("article/setDatalist", [])
         try {
           let params = {
             page: pageNum
@@ -284,7 +290,8 @@
         for (let key in obj) {
           result.push({
             date: this.formatterDate(key),
-            length: obj[key]
+            length: obj[key],
+            originDate: key
           })
         }
         this.archive = result
