@@ -39,6 +39,12 @@
         <a v-waves href="//v.sxswyc.top/" class="code-cont" title="视频屋" target="_blank">
           <i class="iconfont iconshipin"></i>
         </a>
+        <a v-waves href="#" class="code-cont" title="日间模式" >
+          <i class="iconfont iconbrightness" style="font-size: 25px"></i>
+        </a>
+        <a v-waves href="#" class="code-cont" title="夜间模式" >
+          <i class="iconfont iconDND_mode" style="font-size: 25px"></i>
+        </a>
       </div>
     </div>
 
