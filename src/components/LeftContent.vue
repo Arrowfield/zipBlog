@@ -281,6 +281,18 @@
         }else{
           document.body.classList.remove('theme-dark')
         }
+      },
+      initSun(){
+        let now = new Date()
+        let hours = now.getHours()
+        // console.log(hours)
+        if(hours > 7 && hours < 22){ //早上7点和晚上10之前都是白色主题 其他时间为夜间主题
+          this.isSun = true
+          document.body.classList.remove('theme-dark')
+        }else{
+          this.isSun = false
+          document.body.classList.add('theme-dark')
+        }
       }
     },
     mounted() {
@@ -288,6 +300,7 @@
       if (agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1) {
         this.isIe = true
       }
+      this.initSun()
       this.getCountImage()
       //异步加载数据
       this.articleList()

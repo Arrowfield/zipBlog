@@ -125,7 +125,7 @@
         /*list-style: disc;*/
         padding-left: 2em;
         margin-bottom:16px;
-        color:#738a94;
+        /*color:#738a94;*/
 
       }
       img{
