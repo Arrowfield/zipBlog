@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import service from "./utils/service"
 
+//样式
+import "./assets/scss/theme-dark.scss";
+
 Vue.config.productionTip = false
 Vue.prototype.$axios = Object.freeze(service)
 

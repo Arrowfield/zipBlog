@@ -18,7 +18,7 @@
     </div>
     <div class="intro menu-list">
       <router-link to="/" v-waves><i class="iconfont iconshouye1"></i>回到首页</router-link>
-      <router-link to="/link" v-waves><i class="iconfont icondaohang"></i>友情链接</router-link>
+      <router-link to="/link" v-waves><i  class="iconfont icondaohang1"></i>友情链接</router-link>
       <router-link to="/tags" v-waves><i class="iconfont iconbiaoqian1"></i>标签</router-link>
       <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
       <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
@@ -39,16 +39,16 @@
         <a v-waves href="//v.sxswyc.top/" class="code-cont" title="视频屋" target="_blank">
           <i class="iconfont iconshipin"></i>
         </a>
-        <a v-waves href="#" class="code-cont" title="日间模式" >
-          <i class="iconfont iconbrightness" style="font-size: 25px"></i>
+        <a @click="toggleTheme"  v-waves href="javascript:" class="code-cont" :title="isSun ? '夜间模式' : '日间模式'" >
+          <i class="iconfont" :class="isSun ? 'iconbrightness' : 'iconDND_mode'" style="font-size: 25px"></i>
         </a>
-        <a v-waves href="#" class="code-cont" title="夜间模式" >
+       <!-- <a v-else v-waves href="#" class="code-cont" title="夜间模式" >
           <i class="iconfont iconDND_mode" style="font-size: 25px"></i>
-        </a>
+        </a>-->
       </div>
     </div>
 
-    <div class="intro fun-list">
+    <div class="intro fun-list" style="overflow: visible">
       <h3>社交功能</h3>
       <div class="fun-items">
         <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i
@@ -107,8 +107,8 @@
       <div class="tags">
         <i v-if="paused" class="play iconfont iconplay-circle-fill" @click="handlePlay"></i>
         <i v-else class="play iconfont iconpoweroff-circle-fill" @click="handlePlay"></i>
-        <video ref="video" poster="../assets/img/index/poster.jpg" autoplay muted loop class="video"
-               src="https://arrowfield.top/Inuyasha.mp4" preload="auto"></video>
+        <video ref="video" poster="../assets/img/index/poster.jpg"  muted loop class="video"
+               src="https://arrowfield.top/Inuyasha.mp4" preload="none"></video>
       </div>
     </div>
 
@@ -163,7 +163,8 @@
         timer: null,
         time: "",
         paused: true,
-        archive: []
+        archive: [],
+        isSun:true
       }
     },
     computed: {
@@ -272,6 +273,14 @@
 
         let year = date.getFullYear(), month = date.getMonth() + 1
         return `${year} 年 ${month < 10 ? "0" + month : month} 月`
+      },
+      toggleTheme(){
+        this.isSun = !this.isSun
+        if(!this.isSun){
+          document.body.classList.add('theme-dark')
+        }else{
+          document.body.classList.remove('theme-dark')
+        }
       }
     },
     mounted() {
@@ -379,7 +388,7 @@
       margin: 20px;
       padding: 15px;
       display: flex;
-
+      overflow: hidden;
       .category-list {
         li {
           border-bottom: 1px solid #eee;
@@ -516,7 +525,7 @@
               background: white;
               box-shadow: 0 0.3rem 2rem rgba(161, 177, 204, .6);
 
-
+              z-index: 1000;
             }
           }
         }

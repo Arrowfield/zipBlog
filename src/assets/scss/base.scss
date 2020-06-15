@@ -8,6 +8,7 @@ body {
   //max-width: 1200px;
   margin: auto !important;
   font-family: Roboto, Noto, Helvetica, Arial, sans-serif;
+  color: #333;
   &.add-mask-panel{
     height: 100%;
     overflow: hidden;
@@ -30,6 +31,11 @@ body {
   //&::-webkit-scrollbar-corner{
   //
   //}
+}
+
+a{
+  color: #333;
+  text-underline: #333;
 }
 
 
@@ -106,7 +112,7 @@ input, textarea, button, a, select {
 
     div.bg {
       //background: #f4f8fb !important;
-      background: transparent !important;
+      //background: transparent !important;
     }
 
     #canvas{

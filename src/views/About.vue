@@ -130,7 +130,10 @@
       background-color: #fff;
       padding: 20px;
       box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
-
+      a{
+        text-decoration: #333;
+        text-decoration-line: underline;
+      }
       &.about p {
         margin-bottom: 16px;
       }
@@ -144,7 +147,7 @@
         list-style: disc;
         padding-left: 2em;
         margin-bottom: 16px;
-        color: #738a94;
+        /*color: #738a94;*/
       }
 
       li {
