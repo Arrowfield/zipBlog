@@ -10,13 +10,25 @@
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1808991_t6xnm56v3l.css">
 </head>
+<style>
+  html {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+    -webkit-filter: grayscale(1);
+  }
+</style>
 <body>
 <noscript>
   <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
     Please enable it to continue.</strong>
 </noscript>
 <div id="app"></div>
-<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278967959'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1278967959%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+<script
+  type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278967959'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1278967959%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 <script>
   let dom = document.getElementById('cnzz_stat_icon_1278967959')
   dom.style.display = "none"
