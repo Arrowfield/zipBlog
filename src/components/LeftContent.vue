@@ -300,7 +300,7 @@
       if (agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1) {
         this.isIe = true
       }
-      this.initSun()
+      //this.initSun()
       this.getCountImage()
       //异步加载数据
       this.articleList()
