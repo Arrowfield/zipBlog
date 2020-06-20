@@ -75,6 +75,8 @@ yum install -y git
 docker pull nginx
 10. 将静态资源部署到nginx上
 
+docker run -p 3306:3306 --name mymysql
+
 docker run \
 --name=nginx01 \
 -p 80:80 \
@@ -83,7 +85,6 @@ docker run \
 -v /nginx/html:/usr/share/nginx/html \
 -v /nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
 -d nginx
-
 
 docker run \
 --name=nginx02 \
