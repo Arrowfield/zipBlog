@@ -77,6 +77,12 @@ docker pull nginx
 
 docker run -p 3306:3306 --name mymysql
 
+
+cd / #切到跟目录
+mkdir zipBlog #创建文件夹
+cd zipBlog
+git clone https://gitee.com/mcan/zipBlog.git 
+
 docker run \
 --name=nginx01 \
 -p 80:80 \
