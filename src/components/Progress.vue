@@ -15,6 +15,7 @@
         //滚动高度 / (窗口高度 - 文档高度) * 100
         //console.log(window.pageYOffset,window.screen.height,window.innerHeight,e.target.documentElement.offsetHeight)
         let dom = document.getElementsByClassName('right-content')[0]
+        if(!dom) return
         this.val = Math.floor(window.pageYOffset / (dom.offsetHeight - window.innerHeight) * 100)
 
       }
