@@ -24,9 +24,12 @@ let series = [
 export const createCanvas = function(options){
     if(!options.id) return
     let c = document.getElementById(options.id)
-    c.width = canvasWidth
-    c.height = canvasHeight
+    c.style.width = canvasWidth + 'px'
+    c.style.height = canvasHeight + 'px'
+    c.width = canvasWidth * window.devicePixelRatio
+    c.height = canvasHeight * window.devicePixelRatio
     let ctx = c.getContext('2d')
+    ctx.scale(devicePixelRatio, devicePixelRatio); //设置缩放比例，防止高清屏模糊
     drawBackground(ctx)
     for(let i=0;i<series.length;i++){  
         draw(ctx,series[i])
@@ -35,7 +38,7 @@ export const createCanvas = function(options){
         ctx.clearRect(0,0,canvasWidth,canvasHeight)
         drawBackground(ctx)
         // 得到鼠标的坐标
-        var x = e.pageX, y =e.pageY
+        var x = e.pageX * window.devicePixelRatio, y =e.pageY * window.devicePixelRatio
         for(let i=0;i<series.length;i++){
             draw(ctx,series[i],{x,y},c)
         }
