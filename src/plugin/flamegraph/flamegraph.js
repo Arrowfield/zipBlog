@@ -7,15 +7,18 @@ const rectHeight = 15
 let series = [
     {
         rect:{x:10,y:566,width:980,height:15},
-        color:"rgb(213,111,15)"
+        color:"rgb(213,111,15)",
+        text:"all"
     },
     {
         rect:{x:10,y:566 - rectHeight - 1,width:979.4,height:15},
-        color:"rgb(217,213,48)"
+        color:"rgb(217,213,48)",
+        text:"mysqld`rec_get_status"
     },
     {
         rect:{x:989.4,y:566-rectHeight - 1,width:.6,height:15},
-        color:"rgb(228,56,25)"
+        color:"rgb(228,56,25)",
+        text:"mysqld`Item::const_item"
     }
 ]
 export const createCanvas = function(options){
@@ -60,6 +63,13 @@ function draw(ctx,option,page,canvas){
     }
     ctx.stroke()
     ctx.fill()
-    ctx.closePath()
+    // ctx.closePath()
+    if(rect.width > 10){
+        ctx.beginPath();
+        ctx.fillStyle = "black"
+        ctx.font = "normal 12px serif";
+        ctx.textBaseline = 'top';
+        ctx.fillText(option.text,rect.x + 2,rect.y)
+    }
 }
 
