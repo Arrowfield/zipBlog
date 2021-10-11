@@ -9,6 +9,15 @@ const setting = {
     axisColor:"#ACB2BF"
 }
 
+const maxTimestamp = 1223
+
+function createAxisX(timeStamp){
+    let minute = Math.floor(Math.floor(timeStamp / 1000) / 60),second = Math.floor(timeStamp % (60 * 1000) / 1000),mm = timeStamp % 1000
+    console.log(minute,second,mm)
+    
+}
+
+
 const textArea = [
     {txt:"00:00",position:""},
     {txt:"00:10",position:""},
@@ -62,6 +71,7 @@ export const targetChart = function(options){
     c.style.height = canvasHeight + 'px'
     c.width = canvasWidth * window.devicePixelRatio
     c.height = canvasHeight * window.devicePixelRatio
+    createAxisX(maxTimestamp)
     let ctx = c.getContext('2d')
     ctx.scale(devicePixelRatio, devicePixelRatio) //设置缩放比例，防止高清屏模糊
     drawAxisX(ctx)
