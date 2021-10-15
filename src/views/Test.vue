@@ -34,7 +34,7 @@
         pathY:"",
         pathX:"",
         series:[],
-        fpsOptions:{}
+        fpsOptions:{width:1600}
       }
     },
     mounted() {

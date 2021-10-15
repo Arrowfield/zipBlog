@@ -23,22 +23,76 @@
 <!--        </g>-->
 <!--      </svg>-->
 
-<!--      &lt;!&ndash; axisX &ndash;&gt;-->
-<!--      <svg x="69" y="331" xmlns="http://www.w3.org/2000/svg" >-->
-<!--        <g stroke="#ACB2BF" stroke-width="2">-->
-<!--          <line x1="0" y1="1" x2="1460" y2="1"/>-->
-<!--          <path :d="pathX"/>-->
-<!--        </g>-->
-<!--      </svg>-->
+      <!-- axisX -->
+
+        <g stroke="#ACB2BF" stroke-width="2">
+          <line
+            :x1="grid.left"
+            :y1="grid.top + grid.height"
+            :x2="options.width - grid.left"
+            :y2="grid.top + grid.height"
+          />
+          <path :d="pathX"/>
+
+          <text
+            text-anchor="middle"
+            stroke="none"
+            fill="#333"
+            v-for="item
+            in xAxisData"
+            :x="item.x"
+            :y="grid.top + grid.height + 22"
+            font-size="12">
+            {{ item.txt }}
+          </text>
+
+        </g>
     </svg>
 </template>
 
 <script>
   export default {
     name: "ChartsMain",
+    data(){
+      return{
+        xAxisData:[]
+      }
+    },
     props:{
-      options:Object
-    }
+      options:{
+        type:Object,
+        // default:()=>{
+        //   return{
+        //     width:1600
+        //   }
+        // }
+      },
+    },
+    computed:{
+      dataAreaWidth(){
+        return this.options.width - 2 * this.grid.left
+      },
+      grid(){
+        if(!this.options.grid) return {left:0,top:0,height:0,width:0}
+        return this.options.grid
+      },
+      pathX(){
+        if(!this.options.xAxis) return ""
+        let maxTimestamp = this.options.xAxis.data[this.options.xAxis.data .length - 1]
+        let sum = 0,count = 0,path = "",rate = this.dataAreaWidth / maxTimestamp,text = []
+        while (sum <= maxTimestamp){
+          let x = sum * rate
+          path += `M ${this.grid.left + x} ${this.grid.top + this.grid.height - 1} L ${this.grid.left + x} ${this.grid.top + this.grid.height + 7}`
+          this.xAxisData.push({
+            txt:this.options.xAxis.format(sum),
+            x:this.grid.left + x
+          })
+          sum += this.options.xAxis.maxInterval
+        }
+        // console.log(count)
+        return path
+      }
+    },
   }
 </script>
 
