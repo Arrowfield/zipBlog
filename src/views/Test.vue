@@ -5,17 +5,8 @@
       <canvas id="fps"></canvas>
     </div>
 
-    <div class="target-svg-style target-style">
-      <svg width="1600" height="400"
-           xmlns="http://www.w3.org/2000/svg">
-        <!-- 修改原点 -->
-        <svg x="70" y="34" xmlns="http://www.w3.org/2000/svg">
-          <g v-for="item in labelInfo" :fill="item.color">
-            <rect :x="item.offsetX" y="0" :width="item.width" height="27"/>
-          </g>
-        </svg>
-
-      </svg>
+    <div id="fps-svg" class="target-svg-style target-style">
+      <charts-main :options="fpsOptions"/>
     </div>
     <p></p>
   </div>
@@ -24,29 +15,66 @@
 <script>
   import {createCanvas} from '@/plugin/flamegraph/flamegraph'
   import {targetChart} from '@/plugin/targetChart/targetChart'
-  import caseDetail from './Test/caseDetail.js'
+  import {caseDetail, caseReport} from './Test/caseDetail.js'
+  import {formatReportData,makeChartsOptions} from "./Test/util";
+  import * as echarts from "@/views/Test/echarts/echarts";
+  import ChartsMain from "./Test/echarts/ChartsMain";
+
   let data = caseDetail.data
   export default {
     name: "Test",
+    components: {ChartsMain},
     data() {
       return {
         labelInfo: [
-          {color: "#5A95F8", width: 0,offsetX:0},
-          {color: "#7F52EE", width: 0,offsetX:0},
-          {color: "#65AD93", width: 0,offsetX:0},
-        ]
+          {color: "#5A95F8", width: 0,offsetX:0,title:""},
+          {color: "#7F52EE", width: 0,offsetX:0,title:""},
+          {color: "#65AD93", width: 0,offsetX:0,title:""},
+        ],
+        pathY:"",
+        pathX:"",
+        series:[],
+        fpsOptions:{}
       }
     },
     mounted() {
-      // createCanvas({id: 'flamegraph'})
-      // targetChart({id: 'fps'})
-      let dataBaseWidth = 1460
-      let maxTimestamp = data.labelInfos[data.labelInfos.length - 1].summary.end_time,sum = 0
-      for (let [index,item] of data.labelInfos.entries()){
-        let width = (item.summary.end_time - item.summary.start_time)/maxTimestamp * dataBaseWidth
-        this.labelInfo[index].width = width
-        this.labelInfo[index].offsetX = sum
-        sum += width
+      // let dataBaseWidth = 1460
+      // let maxTimestamp = data.labelInfos[data.labelInfos.length - 1].summary.end_time,sum = 0
+      // for (let [index,item] of data.labelInfos.entries()){
+      //   let width = (item.summary.end_time - item.summary.start_time)/maxTimestamp * dataBaseWidth
+      //   this.labelInfo[index].width = width
+      //   this.labelInfo[index].offsetX = sum
+      //   this.labelInfo[index].name = item.summary.name
+      //   sum += width
+      // }
+      // this.drawAxisY()
+      // this.drawAxisX()
+
+      let state = {
+        caseDetail:caseDetail.data,caseReport:caseReport.data
+      }
+      state.fullDataList = formatReportData(state)
+      this.fpsOptions = makeChartsOptions(state);
+      console.log(this.fpsOptions)
+    },
+    methods:{
+      drawAxisY(){
+        let fullDataList = formatReportData(caseReport),maxValues = []
+        for(let key in fullDataList){
+          maxValues.push(Math.max(...fullDataList[key]))
+        }
+        this.pathY = ""
+        let step = 8,distance = 240 / step
+        for(let i = 0;i < step + 1;i++){
+          this.pathY += `M 71 ${241 - i * distance} L 63 ${241 - i * distance} `
+        }
+        // console.log(maxValues)
+      },
+      drawAxisX(){
+        let step = 20,distance = 1458 / step
+        for(let i = 0;i < step + 1;i++){
+          this.pathX += `M ${i * distance + 1} 1 L ${i * distance + 1} 8 `
+        }
       }
     }
   }
