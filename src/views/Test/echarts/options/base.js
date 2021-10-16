@@ -5,9 +5,9 @@ export function formatOptions(state, options) {
   options.width = 1600
   if (!options.hasOwnProperty('grid')) {
     options.grid = {
-      left: 100,
-      top: 85,
-      height: 240
+      left: 90,
+      top: 75,
+      height: 250
     }
   }
   options.series = options.series.map((item) => {
@@ -39,7 +39,7 @@ export function formatOptions(state, options) {
       endTime: item.summary.end_time,
       name: item.summary.name,
       color: INDEX_LABEL_COLOR[[index % (INDEX_LABEL_COLOR.length + 1)]],
-      top: 34,
+      top: 25,
       height: 29
     }
   })

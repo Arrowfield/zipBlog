@@ -1,10 +1,14 @@
-import {INDEX_BIG_JANK, INDEX_FPS, INDEX_JANK, INDEX_STUTTER, INDEX_TIMESTAMP} from "../../constant";
+import {INDEX_BIG_JANK,
+  INDEX_FPS, INDEX_JANK, INDEX_LABEL_COLOR, INDEX_STUTTER, INDEX_TIMESTAMP,
+  INDEX_FRAME_COLOR
+} from "../../constant";
 import {formatOptions} from './base'
 
 export default function makeChartsOptions(state) {
 
   return formatOptions(state, {
     title: "FPS",
+    colors:INDEX_LABEL_COLOR,
     yAxis: [
       {
         name: INDEX_FPS, position: 'left',
@@ -55,6 +59,9 @@ export default function makeChartsOptions(state) {
         type:"effectScatter",
         rippleEffect:{
           color: "#FFCB18"
+        },
+        lineStyle: {
+          color: "#FFCB18"
         }
       },
       {
@@ -79,5 +86,12 @@ export default function makeChartsOptions(state) {
       backgroundColor: "#e1e4e9",
       height: 14,
     },
+    legend: {
+      show: true,
+      top:10
+    },
+    flameGraph:{
+      colors:INDEX_FRAME_COLOR
+    }
   })
 }

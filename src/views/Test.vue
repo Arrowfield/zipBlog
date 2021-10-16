@@ -90,7 +90,7 @@
     width: 1460px;
     margin: 40px auto;
     box-shadow: 0 2px 10px rgba(179, 186, 220, .4);
-
+    padding: 20px 0;
     &.target-svg-style{
       width: 1600px;
     }

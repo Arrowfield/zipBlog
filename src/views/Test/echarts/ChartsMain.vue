@@ -1,6 +1,7 @@
 <template>
   <svg class="main-charts" v-if="options.grid" :width="options.width" :height="options.height"
        xmlns="http://www.w3.org/2000/svg">
+    <text font-size="16" font-weight="bold" alignment-baseline="hanging" x="30" y="2">{{ options.title }}</text>
     <!-- 修改原点 label -->
     <charts-labels
       :labelInfos="options.labelInfos"
@@ -30,6 +31,18 @@
       :grid="grid"
       :dataAreaWidth="dataAreaWidth"
     />
+    <charts-mark
+      :rate="rate"
+      :options="options"
+      :dataAreaWidth="dataAreaWidth"
+      :grid="grid"
+    />
+
+    <!--    <charts-flame-graph-->
+    <!--      :grid="grid"-->
+    <!--      :dataAreaWidth="dataAreaWidth"-->
+    <!--      :options="options"-->
+    <!--    />-->
   </svg>
 </template>
 
@@ -39,13 +52,16 @@
   import ChartsLabels from "./ChartsLabels";
   import ChartsDataArea from "./ChartsDataArea";
   import ChartScrollBar from "./ChartScrollBar";
+  import ChartsMark from "./ChartsMark";
+  import ChartsFlameGraph from "./ChartsFlameGraph";
+
   export default {
     name: "ChartsMain",
-    components:{ChartScrollBar, ChartsLabels, ChartsXAxis, ChartsYAxis,ChartsDataArea},
+    components: {ChartsFlameGraph, ChartsMark, ChartScrollBar, ChartsLabels, ChartsXAxis, ChartsYAxis, ChartsDataArea},
     data() {
       return {
         xAxisData: [],
-        yAxisData:[]
+        yAxisData: []
       }
     },
     props: {
@@ -61,8 +77,8 @@
         //if (!this.options.grid) return {left: 0, top: 0, height: 0, width: 0}
         return this.options.grid
       },
-      rate(){
-        if(!this.options.xAxis) return 1
+      rate() {
+        if (!this.options.xAxis) return 1
         let maxTimestamp = this.options.xAxis.data[this.options.xAxis.data.length - 1]
         return this.dataAreaWidth / maxTimestamp
       }
@@ -71,5 +87,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .main-charts{user-select: none;}
+  .main-charts {
+    user-select: none;
+  }
 </style>
