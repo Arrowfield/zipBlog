@@ -1,7 +1,6 @@
 <template>
   <g v-if="dataZoom"
      @mousedown="downScrollBar"
-     @mouseup="upScrollBar"
   >
     <rect
       :x="grid.left"
@@ -11,9 +10,9 @@
       :fill="dataZoom.backgroundColor"
     />
     <rect
-      :x="grid.left + moveBtnX"
+      :x="grid.left + moveBtnLeft"
       :y="grid.top + grid.height + dataZoom.top"
-      :width="dataAreaWidth - moveBtnX"
+      :width="dataAreaWidth - moveBtnLeft + moveBtnRight"
       :height="dataZoom.height"
       :fill="dataZoom.fillerColor"
     />
@@ -25,7 +24,7 @@
     </defs>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" :x="grid.left + moveBtnX" :y="grid.top + grid.height + dataZoom.top - 3">
+    <svg xmlns="http://www.w3.org/2000/svg" :x="grid.left + moveBtnLeft" :y="grid.top + grid.height + dataZoom.top - 3">
       <image
         clip-path="url(#myClip)"
         :xlink:href="dataZoom.handleIcon" :x="leftX" y="0"
@@ -33,7 +32,7 @@
       <rect cursor="e-resize" fill="transparent" x="0" y="0" height="20" :width="dataZoom.handleSize" class="left-btn"/>
     </svg>
 
-    <svg xmlns="http://www.w3.org/2000/svg" :x="grid.left + dataAreaWidth - dataZoom.handleSize"
+    <svg xmlns="http://www.w3.org/2000/svg" :x="moveBtnRight + grid.left + dataAreaWidth - dataZoom.handleSize"
          :y="grid.top + grid.height + dataZoom.top - 3">
       <image clip-path="url(#myClip)" :xlink:href="dataZoom.handleIcon" :x="rightX" y="0"/>
       <rect cursor="e-resize" fill="transparent" x="0" y="0"
@@ -55,8 +54,13 @@
       return {
         leftX: 0,
         rightX: 0,
-        clickX:0,
-        moveBtnX:0
+        clickX: 0,
+
+        moveBtnLeft: 0,
+        moveBtnRight: 0,
+        handleType: -1,
+        originLeft: 0,
+        originRight: 0
       }
     },
     props: {
@@ -69,7 +73,7 @@
     methods: {
       moveScrollBar(e) {
         let el = e.target
-        // hover态
+        // 1.hover态
         if (el.getAttribute('class') === 'left-btn') {
           this.leftX = -this.dataZoom.handleSize
         } else if (el.getAttribute('class') === 'right-btn') {
@@ -78,36 +82,50 @@
           this.leftX = 0
           this.rightX = 0
         }
-
-        let distance = e.clientX - this.clickX
-        if(this.clickX) {
-          if(distance > this.dataAreaWidth - this.dataZoom.handleSize){
-            this.moveBtnX = this.dataAreaWidth - this.dataZoom.handleSize
-          }else if(distance < 0){
-            this.moveBtnX = 0
-          }else{
-            this.moveBtnX = distance
+        // 2.拖动
+        let distance = ""
+        if (this.handleType === 'left') {
+          distance = e.clientX - this.originLeft
+          if (distance > this.dataAreaWidth - this.dataZoom.handleSize) {
+            this.moveBtnLeft = this.dataAreaWidth - this.dataZoom.handleSize
+          } else if (distance < 0) {
+            this.moveBtnLeft = 0
+          } else {
+            this.moveBtnLeft = distance
+          }
+        } else if (this.handleType === 'right') {
+          distance = e.clientX - this.originRight
+          if (distance < -this.dataAreaWidth + this.dataZoom.handleSize) {
+            this.moveBtnRight = -this.dataAreaWidth + this.dataZoom.handleSize
+          } else if (distance > 0) {
+            this.moveBtnRight = 0
+          } else {
+            this.moveBtnRight = distance
           }
         }
       },
-      downScrollBar(e){
-        this.clickX = e.clientX
-        console.log(this.clickX)
-      },
-      upScrollBar(e){
+      downScrollBar(e) {
         let el = e.target
-        this.clickX = this.moveBtnX
+        if (el.getAttribute('class') === 'left-btn') {
+          this.handleType = 'left'
+          this.originLeft = e.clientX - this.moveBtnLeft
+        } else if (el.getAttribute('class') === 'right-btn') {
+          this.handleType = 'right'
+          this.originRight = e.clientX - this.moveBtnRight
+        } else {
+
+        }
+        document.onmousemove = this.moveScrollBar
+        document.onmouseup = this.upScrollBar
+      },
+      upScrollBar(e) {
+        document.onmousemove = null
+        document.onmouseup = null
       }
     },
     mounted() {
-      EventCenter.on(this.$el.parentElement, 'mousemove', this.moveScrollBar)
-      EventCenter.on(this.$el.parentElement, 'mouseup', this.upScrollBar)
-      EventCenter.on(this.$el.parentElement, 'mousedown', this.downScrollBar)
     },
     beforeDestroy() {
-      EventCenter.off(this.$el.parentElement, 'mousemove', this.moveScrollBar)
-      EventCenter.off(this.$el.parentElement, 'mouseup', this.upScrollBar)
-      EventCenter.off(this.$el.parentElement, 'mousedown', this.downScrollBar)
     }
   }
 </script>
