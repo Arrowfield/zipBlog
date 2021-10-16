@@ -24,3 +24,24 @@ export function BinarySearch(arr, target) {
     return -1
   }
 }
+
+
+export const EventCenter =  (() => {
+  let all = {}
+  return {
+    all,
+    on: (element, type,handler) => {
+      element.addEventListener(type,handler)
+    },
+    off: (element, type,handler) => {
+      element.removeEventListener(type,handler)
+      //delete all[type]
+    },
+    emit: (type, event) => {
+      let handlers = all[type]
+      if (handlers) {
+        handlers(event)
+      }
+    }
+  }
+})()

@@ -1,5 +1,5 @@
 <template>
-  <svg v-if="options.grid" :width="options.width" :height="options.height"
+  <svg class="main-charts" v-if="options.grid" :width="options.width" :height="options.height"
        xmlns="http://www.w3.org/2000/svg">
     <!-- 修改原点 label -->
     <charts-labels
@@ -66,5 +66,5 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .main-charts{user-select: none;}
 </style>

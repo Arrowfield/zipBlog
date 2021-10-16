@@ -1,10 +1,12 @@
 class ECharts {
+  constructor() {
+    this.allOptions = []
+  }
   setOptions(options) {
-    console.log()
+  }
+  connect(groups) {
+    this.allOptions = groups
   }
 }
 
-export const init = function (el) {
-  console.log(el)
-  return new ECharts()
-}
+export default new ECharts()

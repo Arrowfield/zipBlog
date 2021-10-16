@@ -21,10 +21,10 @@
   import {createCanvas} from '@/plugin/flamegraph/flamegraph'
   import {targetChart} from '@/plugin/targetChart/targetChart'
   import {caseDetail, caseReport} from './Test/caseDetail.js'
-  import {formatReportData,makeChartsOptions} from "./Test/util";
-  import * as echarts from "@/views/Test/echarts/echarts";
+  import {formatReportData} from "./Test/util";
   import ChartsMain from "./Test/echarts/ChartsMain";
-
+  import echarts from "./Test/echarts/echarts";
+  import makeChartsOptions from './Test/echarts/options/makeFpsOptions'
   let data = caseDetail.data
   export default {
     name: "Test",
@@ -60,7 +60,7 @@
       }
       state.fullDataList = formatReportData(state)
       this.fpsOptions = makeChartsOptions(state);
-      console.log(this.fpsOptions)
+      echarts.connect([this.fpsOptions])
     },
     methods:{
       drawAxisY(){
