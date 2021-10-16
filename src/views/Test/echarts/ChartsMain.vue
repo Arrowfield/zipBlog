@@ -19,7 +19,12 @@
       :options="options"
       :rate="rate"
     />
-    <charts-data-area/>
+    <charts-data-area
+      :rate="rate"
+      :options="options"
+      :dataAreaWidth="dataAreaWidth"
+      :grid="grid"
+    />
     <chart-scroll-bar
       :dataZoom="options.dataZoom"
       :grid="grid"

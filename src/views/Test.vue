@@ -1,17 +1,17 @@
 <template>
   <div class="test-page">
-    <canvas id="flamegraph"></canvas>
-    <div class="target-style">
-      <canvas id="fps"></canvas>
-    </div>
+<!--    <canvas id="flamegraph"></canvas>-->
+<!--    <div class="target-style">-->
+<!--      <canvas id="fps"></canvas>-->
+<!--    </div>-->
 
     <div id="fps-svg" class="target-svg-style target-style">
       <charts-main :options="fpsOptions"/>
     </div>
 
-    <div  class="target-svg-style target-style">
-      <charts-main :options="fpsOptions"/>
-    </div>
+<!--    <div  class="target-svg-style target-style">-->
+<!--      <charts-main :options="fpsOptions"/>-->
+<!--    </div>-->
 
     <p></p>
   </div>

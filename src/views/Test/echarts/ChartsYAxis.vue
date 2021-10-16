@@ -1,10 +1,10 @@
 <template>
   <!-- axisY -->
-  <g>
-    <g v-for="item in yAxis" stroke="#ACB2BF" stroke-width="2">
+  <g class="charts-axis-y" stroke="#ACB2BF" stroke-width="1">
+    <g v-for="item in yAxis" >
 
       <defs>
-        <path :id="options.title + item.name" :d="item.d" />
+        <path :id="options.title + item.name" :d="item.d"/>
       </defs>
 
       <line
@@ -29,6 +29,12 @@
           {{ item.name }}
         </textPath>
       </text>
+
+
+    </g>
+
+    <g v-for="item in splitLine" >
+      <path :d="item.d" stroke-dasharray="2,2"/>
     </g>
   </g>
 </template>
@@ -36,15 +42,20 @@
 <script>
   export default {
     name: "ChartsYAxis",
+    data() {
+      return {
+        splitLine: []
+      }
+    },
     props: {
       options: {
         type: Object,
       },
       grid: Object,
-      dataAreaWidth:[Number,String]
+      dataAreaWidth: [Number, String]
     },
     computed: {
-      top(){
+      top() {
         return this.grid.top
       },
       yAxis() {
@@ -59,16 +70,21 @@
           let rate = this.grid.height / item.max
           item.text = []
           item.path = ''
+          let splitLine = ""
           while (sum <= item.max) {
             if (item.position === 'left') {
               let y = this.grid.top + (this.grid.height - sum * rate)
               let x = this.grid.left - 22
               item.text.push({
                 txt: sum,
-                y:y,
-                x:x,
+                y: y,
+                x: x,
               })
               item.path += `M ${this.grid.left} ${y} L ${this.grid.left - 7} ${y} `
+
+              if (item.splitLine.show) {
+                splitLine += `M ${this.grid.left} ${y} L ${this.grid.left+ this.dataAreaWidth} ${y} `
+              }
             } else {
               let y = this.grid.top + (this.grid.height - sum * rate)
               let x = this.dataAreaWidth + this.grid.left + 22
@@ -82,12 +98,20 @@
             sum += step
           }
           let top = this.top + this.grid.height / 2
-          if(item.position === 'left') {
+          if (item.position === 'left') {
             item.d = `M 50 ${top} L50 ${top - 20}`
-          }else{
+          } else {
             let left = this.dataAreaWidth + this.grid.left + 60
             item.d = `M ${left} ${top} L ${left} ${top - 60}`
           }
+
+          if(item.splitLine.show) {
+            this.splitLine.push({
+              d: splitLine,
+              type: item.splitLine.lineStyle.type
+            })
+          }
+
           return item
         })
       }

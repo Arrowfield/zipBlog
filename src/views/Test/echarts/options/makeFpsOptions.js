@@ -6,8 +6,21 @@ export default function makeChartsOptions(state) {
   return formatOptions(state, {
     title: "FPS",
     yAxis: [
-      {name: INDEX_FPS, position: 'left'},
-      {name: INDEX_JANK, position: 'right'}
+      {
+        name: INDEX_FPS, position: 'left',
+        splitLine: {
+          show:true,
+          lineStyle:{
+            type:"dashed"
+          }
+        }
+      },
+      {
+        name: INDEX_JANK, position: 'right',
+        splitLine:{
+          show:false
+        }
+      }
     ],
     xAxis: {
       data: state.fullDataList[INDEX_TIMESTAMP],
@@ -20,10 +33,37 @@ export default function makeChartsOptions(state) {
       }
     },
     series: [
-      {indexName: INDEX_FPS, data: state.fullDataList[INDEX_FPS]},
-      {indexName: INDEX_JANK, data: state.fullDataList[INDEX_JANK], yAxisIndex: 1},
-      {indexName: INDEX_BIG_JANK, data: state.fullDataList[INDEX_BIG_JANK], yAxisIndex: 1},
-      {indexName: INDEX_STUTTER, data: state.fullDataList[INDEX_STUTTER]}
+      {
+        indexName: INDEX_FPS,
+        data: state.fullDataList[INDEX_FPS],
+        lineStyle: {
+          color: "#C541B1"
+        }
+      },
+      {
+        indexName: INDEX_JANK,
+        data: state.fullDataList[INDEX_JANK],
+        yAxisIndex: 1,
+        lineStyle: {
+          color: "#7F4CE6"
+        }
+      },
+      {
+        indexName: INDEX_BIG_JANK,
+        data: state.fullDataList[INDEX_BIG_JANK],
+        yAxisIndex: 1,
+        type:"effectScatter",
+        rippleEffect:{
+          color: "#FFCB18"
+        }
+      },
+      {
+        indexName: INDEX_STUTTER,
+        data: state.fullDataList[INDEX_STUTTER],
+        lineStyle: {
+          color: "#74BA03"
+        }
+      }
     ],
     labelInfos: [],
     dataZoom: {

@@ -1,6 +1,6 @@
 import {INDEX_LABEL_COLOR} from "../../constant";
 
- export function formatOptions(state, options) {
+export function formatOptions(state, options) {
   options.height = 400
   options.width = 1600
   if (!options.hasOwnProperty('grid')) {
@@ -21,6 +21,11 @@ import {INDEX_LABEL_COLOR} from "../../constant";
     item.max = getAxisRange(options.series.filter(tmp => tmp.yAxisIndex === index))
     if (!item.hasOwnProperty('minInterval')) {
       item.minInterval = 1
+    }
+    if(!item.hasOwnProperty('splitLine')){
+      item.splitLine = {
+        show:true
+      }
     }
     return item
   })

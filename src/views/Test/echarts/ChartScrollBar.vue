@@ -81,24 +81,33 @@
 
         let distance = e.clientX - this.clickX
         if(this.clickX) {
-          this.moveBtnX = distance < 0 ? 0 :distance
+          if(distance > this.dataAreaWidth - this.dataZoom.handleSize){
+            this.moveBtnX = this.dataAreaWidth - this.dataZoom.handleSize
+          }else if(distance < 0){
+            this.moveBtnX = 0
+          }else{
+            this.moveBtnX = distance
+          }
         }
       },
       downScrollBar(e){
         this.clickX = e.clientX
+        console.log(this.clickX)
       },
       upScrollBar(e){
         let el = e.target
-        this.clickX = 0
+        this.clickX = this.moveBtnX
       }
     },
     mounted() {
       EventCenter.on(this.$el.parentElement, 'mousemove', this.moveScrollBar)
       EventCenter.on(this.$el.parentElement, 'mouseup', this.upScrollBar)
+      EventCenter.on(this.$el.parentElement, 'mousedown', this.downScrollBar)
     },
     beforeDestroy() {
       EventCenter.off(this.$el.parentElement, 'mousemove', this.moveScrollBar)
       EventCenter.off(this.$el.parentElement, 'mouseup', this.upScrollBar)
+      EventCenter.off(this.$el.parentElement, 'mousedown', this.downScrollBar)
     }
   }
 </script>
