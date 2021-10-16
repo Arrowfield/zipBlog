@@ -8,6 +8,11 @@
     <div id="fps-svg" class="target-svg-style target-style">
       <charts-main :options="fpsOptions"/>
     </div>
+
+<!--    <div  class="target-svg-style target-style">-->
+<!--      <charts-main :options="fpsOptions"/>-->
+<!--    </div>-->
+
     <p></p>
   </div>
 </template>

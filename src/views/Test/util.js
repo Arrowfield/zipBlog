@@ -34,17 +34,17 @@ export function makeChartsOptions(state) {
     xAxis:{
       data:state.fullDataList[INDEX_TIMESTAMP],
       maxInterval:1000 * 20,
-      minInterval:0,
+      minInterval:1,
       format:function (val) {
         let minute = Math.floor(val / (1000 * 60))
-        let second = val % (1000 * 60) / 1000
+        let second = Math.floor(val % (1000 * 60) / 1000)
         return `${minute < 10 ? ('0' + minute) : minute}:${second < 10 ? ('0' + second) : second}`
       }
     },
     series: [
       {indexName: INDEX_FPS, data: state.fullDataList[INDEX_FPS]},
-      {indexName: INDEX_JANK, data: state.fullDataList[INDEX_JANK]},
-      {indexName: INDEX_BIG_JANK, data: state.fullDataList[INDEX_BIG_JANK]},
+      {indexName: INDEX_JANK, data: state.fullDataList[INDEX_JANK],yAxisIndex:1},
+      {indexName: INDEX_BIG_JANK, data: state.fullDataList[INDEX_BIG_JANK],yAxisIndex:1},
       {indexName: INDEX_STUTTER, data: state.fullDataList[INDEX_STUTTER]}
     ],
   })
@@ -63,14 +63,36 @@ function formatOptions(state,options) {
   options.width = 1600
   if(!options.hasOwnProperty('grid')){
     options.grid = {
-      left:70,
+      left:100,
       top:85,
       height:240
     }
   }
   options.series = options.series.map((item)=>{
-    // console.log()
+    if(!item.hasOwnProperty('yAxisIndex')){
+      item.yAxisIndex = 0
+    }
     return item
   })
+  options.yAxis = options.yAxis.map((item,index)=>{
+    item.min = 0
+    item.max = getAxisRange(options.series.filter(tmp => tmp.yAxisIndex === index))
+    if(!item.hasOwnProperty('minInterval')){
+      item.minInterval = 1
+    }
+    return item
+  })
+
   return options
+}
+function getAxisRange(dataArray){
+  let maxValue = 0
+  for(let item of dataArray){
+    for(let value of item.data){
+      if(value > maxValue){
+        maxValue = value
+      }
+    }
+  }
+  return maxValue
 }
