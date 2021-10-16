@@ -1,19 +1,13 @@
 <template>
-  <svg :width="options.width" :height="options.height"
+  <svg v-if="options.grid" :width="options.width" :height="options.height"
        xmlns="http://www.w3.org/2000/svg">
     <!-- 修改原点 label -->
-    <!--      <svg x="70" y="34" xmlns="http://www.w3.org/2000/svg">-->
-    <!--        <g v-for="item in labelInfo" :fill="item.color">-->
-    <!--          <rect :x="item.offsetX" y="0" :width="item.width" height="27"/>-->
-    <!--          <text :x="item.offsetX + item.width / 2" y="7.5"-->
-    <!--                fill="white"-->
-    <!--                text-anchor="middle"-->
-    <!--                alignment-baseline="hanging"-->
-    <!--                font-size="12">-->
-    <!--            {{item.name}}-->
-    <!--          </text>-->
-    <!--        </g>-->
-    <!--      </svg>-->
+    <charts-labels
+      :labelInfos="options.labelInfos"
+      :dataAreaWidth="dataAreaWidth"
+      :grid="grid"
+      :rate="rate"
+    />
     <charts-y-axis
       :dataAreaWidth="dataAreaWidth"
       :grid="grid"
@@ -23,6 +17,13 @@
       :dataAreaWidth="dataAreaWidth"
       :grid="grid"
       :options="options"
+      :rate="rate"
+    />
+    <charts-data-area/>
+    <chart-scroll-bar
+      :dataZoom="options.dataZoom"
+      :grid="grid"
+      :dataAreaWidth="dataAreaWidth"
     />
   </svg>
 </template>
@@ -30,9 +31,12 @@
 <script>
   import ChartsXAxis from "./ChartsXAxis";
   import ChartsYAxis from "./ChartsYAxis";
+  import ChartsLabels from "./ChartsLabels";
+  import ChartsDataArea from "./ChartsDataArea";
+  import ChartScrollBar from "./ChartScrollBar";
   export default {
     name: "ChartsMain",
-    components:{ChartsXAxis, ChartsYAxis},
+    components:{ChartScrollBar, ChartsLabels, ChartsXAxis, ChartsYAxis,ChartsDataArea},
     data() {
       return {
         xAxisData: [],
@@ -49,9 +53,14 @@
         return this.options.width - 2 * this.grid.left
       },
       grid() {
-        if (!this.options.grid) return {left: 0, top: 0, height: 0, width: 0}
+        //if (!this.options.grid) return {left: 0, top: 0, height: 0, width: 0}
         return this.options.grid
       },
+      rate(){
+        if(!this.options.xAxis) return 1
+        let maxTimestamp = this.options.xAxis.data[this.options.xAxis.data.length - 1]
+        return this.dataAreaWidth / maxTimestamp
+      }
     },
   }
 </script>

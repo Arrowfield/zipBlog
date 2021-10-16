@@ -1,14 +1,19 @@
 <template>
   <!-- axisY -->
-  <svg xmlns="http://www.w3.org/2000/svg">
+  <g>
     <g v-for="item in yAxis" stroke="#ACB2BF" stroke-width="2">
+
+      <defs>
+        <path :id="options.title + item.name" :d="item.d" />
+      </defs>
+
       <line
         :x1="item.position == 'left' ? grid.left : options.width - grid.left - 1"
         :y1="grid.top"
         :x2="item.position == 'left' ? grid.left : options.width - grid.left - 1"
         :y2="grid.top + grid.height"
       />
-      <!--      <path :d="pathY"/>-->
+      <path :d="item.path"/>
       <text
         text-anchor="middle"
         stroke="none"
@@ -19,8 +24,13 @@
         font-size="12">
         {{ tmp.txt }}
       </text>
+      <text font-weight="bold" stroke="none" fill="#333" font-size="12">
+        <textPath :xlink:href="'#' + options.title + item.name">
+          {{ item.name }}
+        </textPath>
+      </text>
     </g>
-  </svg>
+  </g>
 </template>
 
 <script>
@@ -34,6 +44,9 @@
       dataAreaWidth:[Number,String]
     },
     computed: {
+      top(){
+        return this.grid.top
+      },
       yAxis() {
         if (!this.options.yAxis) return []
         let step = 10
@@ -45,21 +58,35 @@
           }
           let rate = this.grid.height / item.max
           item.text = []
+          item.path = ''
           while (sum <= item.max) {
             if (item.position === 'left') {
+              let y = this.grid.top + (this.grid.height - sum * rate)
+              let x = this.grid.left - 22
               item.text.push({
                 txt: sum,
-                y: this.grid.top + (this.grid.height - sum * rate),
-                x: this.grid.left - 22
+                y:y,
+                x:x,
               })
+              item.path += `M ${this.grid.left} ${y} L ${this.grid.left - 7} ${y} `
             } else {
+              let y = this.grid.top + (this.grid.height - sum * rate)
+              let x = this.dataAreaWidth + this.grid.left + 22
               item.text.push({
                 txt: sum,
-                y: this.grid.top + (this.grid.height - sum * rate),
-                x: this.dataAreaWidth + this.grid.left + 22
+                y: y,
+                x: x
               })
+              item.path += `M ${this.dataAreaWidth + this.grid.left - 2} ${y} L ${this.dataAreaWidth + this.grid.left + 7} ${y} `
             }
             sum += step
+          }
+          let top = this.top + this.grid.height / 2
+          if(item.position === 'left') {
+            item.d = `M 50 ${top} L50 ${top - 20}`
+          }else{
+            let left = this.dataAreaWidth + this.grid.left + 60
+            item.d = `M ${left} ${top} L ${left} ${top - 60}`
           }
           return item
         })

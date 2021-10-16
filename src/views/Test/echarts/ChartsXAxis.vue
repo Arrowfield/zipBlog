@@ -39,13 +39,14 @@
         },
         dataAreaWidth:{
           type:[Number,String],
-        }
+        },
+        rate:[Number,String]
       },
       computed:{
         pathX() {
           if (!this.options.xAxis) return ""
           let maxTimestamp = this.options.xAxis.data[this.options.xAxis.data.length - 1]
-          let sum = 0, path = "", rate = this.dataAreaWidth / maxTimestamp, text = []
+          let sum = 0, path = "", rate = this.rate
           let y = this.grid.top + this.grid.height - 1
           let step = 1000 * 20
           if(step > this.options.xAxis.maxInterval){
@@ -64,7 +65,8 @@
           //加上最后一个
           this.xAxisData.push({
             txt: this.options.xAxis.format(maxTimestamp),
-            x: this.grid.left + this.dataAreaWidth
+            x: this.grid.left + this.dataAreaWidth,
+            y: this.grid.top + this.grid.height + 22
           })
           path += `M ${this.grid.left + this.dataAreaWidth - 1} ${y} L ${this.grid.left + this.dataAreaWidth - 1} ${y + 7}`
           return path
