@@ -10,11 +10,13 @@
       :fill="dataZoom.backgroundColor"
     />
     <rect
-      :x="grid.left + moveBtnLeft"
+      cursor="e-resize"
+      :x="grid.left + moveBtnLeft + moveBtnCenter"
       :y="grid.top + grid.height + dataZoom.top"
-      :width="dataAreaWidth - moveBtnLeft + moveBtnRight"
+      :width="rectWidth"
       :height="dataZoom.height"
       :fill="dataZoom.fillerColor"
+      class="center-btn"
     />
 
     <defs>
@@ -24,7 +26,9 @@
     </defs>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" :x="grid.left + moveBtnLeft" :y="grid.top + grid.height + dataZoom.top - 3">
+    <svg xmlns="http://www.w3.org/2000/svg"
+         :x="grid.left + moveBtnLeft + moveBtnCenter"
+         :y="grid.top + grid.height + dataZoom.top - 3">
       <image
         clip-path="url(#myClip)"
         :xlink:href="dataZoom.handleIcon" :x="leftX" y="0"
@@ -32,7 +36,8 @@
       <rect cursor="e-resize" fill="transparent" x="0" y="0" height="20" :width="dataZoom.handleSize" class="left-btn"/>
     </svg>
 
-    <svg xmlns="http://www.w3.org/2000/svg" :x="moveBtnRight + grid.left + dataAreaWidth - dataZoom.handleSize"
+    <svg xmlns="http://www.w3.org/2000/svg"
+         :x="moveBtnCenter + moveBtnRight + grid.left + dataAreaWidth - dataZoom.handleSize"
          :y="grid.top + grid.height + dataZoom.top - 3">
       <image clip-path="url(#myClip)" :xlink:href="dataZoom.handleIcon" :x="rightX" y="0"/>
       <rect cursor="e-resize" fill="transparent" x="0" y="0"
@@ -56,11 +61,13 @@
         rightX: 0,
         clickX: 0,
 
+        handleType: -1,
         moveBtnLeft: 0,
         moveBtnRight: 0,
-        handleType: -1,
+        moveBtnCenter: 0,
         originLeft: 0,
-        originRight: 0
+        originRight: 0,
+        originCenter:0
       }
     },
     props: {
@@ -69,6 +76,11 @@
       grid: {
         type: Object,
       },
+    },
+    computed:{
+      rectWidth(){
+        return this.dataAreaWidth - this.moveBtnLeft + this.moveBtnRight
+      }
     },
     methods: {
       moveScrollBar(e) {
@@ -83,24 +95,33 @@
         let distance = ""
         if (this.handleType === 'left') {
           distance = e.clientX - this.originLeft
-          if (distance > this.dataAreaWidth - this.dataZoom.handleSize) {
-            this.moveBtnLeft = this.dataAreaWidth - this.dataZoom.handleSize
-          } else if (distance < 0) {
-            this.moveBtnLeft = 0
+          if (distance > this.moveBtnRight + this.dataAreaWidth - this.dataZoom.handleSize) {
+            this.moveBtnLeft = this.moveBtnRight + this.dataAreaWidth - this.dataZoom.handleSize
+          } else if (distance < -this.moveBtnCenter) {
+            this.moveBtnLeft = -this.moveBtnCenter
           } else {
             this.moveBtnLeft = distance
           }
         } else if (this.handleType === 'right') {
           distance = e.clientX - this.originRight
-          console.log(this.moveBtnLeft,distance)
-          if (distance < -this.dataAreaWidth + this.dataZoom.handleSize) {
-            this.moveBtnRight = -this.dataAreaWidth + this.dataZoom.handleSize
-          } else if (distance > 0) {
-            this.moveBtnRight = 0
+          if (distance < this.moveBtnLeft - this.dataAreaWidth + this.dataZoom.handleSize) {
+            this.moveBtnRight = this.moveBtnLeft-this.dataAreaWidth + this.dataZoom.handleSize
+          } else if (distance > -this.moveBtnCenter) {
+            this.moveBtnRight =  -this.moveBtnCenter
           } else {
             this.moveBtnRight = distance
           }
+        }else if(this.handleType === 'center') {
+          distance = e.clientX - this.originCenter
+          if(distance < -this.moveBtnLeft){
+            this.moveBtnCenter = -this.moveBtnLeft
+          }else if(distance > -this.moveBtnRight){
+            this.moveBtnCenter = -this.moveBtnRight
+          }else{
+            this.moveBtnCenter = distance
+          }
         }
+        // 3.
       },
       downScrollBar(e) {
         let el = e.target
@@ -110,8 +131,9 @@
         } else if (el.getAttribute('class') === 'right-btn') {
           this.handleType = 'right'
           this.originRight = e.clientX - this.moveBtnRight
-        } else {
-
+        } else if(el.getAttribute('class') === 'center-btn'){
+          this.handleType = 'center'
+          this.originCenter = e.clientX - this.moveBtnCenter
         }
         document.onmousemove = this.moveScrollBar
         document.onmouseup = this.upScrollBar

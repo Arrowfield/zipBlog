@@ -3,6 +3,7 @@
     @mouseover="mouseover"
     @mousemove="mousemove"
     @mouseout="mouseout"
+    @contextmenu.prevent
   >
     <!--    <line x1="10" y1="40" x2="10" y2="40" stroke-width="2" stroke="#333">-->
     <!--      <animate attributeName="x1"   :values="paths[0].valueX" dur="100s" repeatCount="1" />-->
@@ -97,7 +98,7 @@
         // setTimeout(()=>{
         //   this.pathLength = []
         // },1000)
-        console.log(this.pathLength)
+        //console.log(this.pathLength)
       }
 
     },
