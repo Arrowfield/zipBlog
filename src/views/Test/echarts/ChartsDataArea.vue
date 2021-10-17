@@ -4,20 +4,17 @@
     @mousemove="mousemove"
     @mouseout="mouseout"
   >
-
     <!--    <line x1="10" y1="40" x2="10" y2="40" stroke-width="2" stroke="#333">-->
     <!--      <animate attributeName="x1"   :values="paths[0].valueX" dur="100s" repeatCount="1" />-->
     <!--      <animate attributeName="y1"   :values="paths[0].valueY" dur="100s" repeatCount="1" />-->
     <!--    </line>-->
     <g>
       <path
-
         :ref="`path${index}`"
         stroke-width="2"
         fill="none"
         :stroke="item.stroke"
         :d="item.path"
-
         v-for="(item,index) in paths"
       ></path>
     </g>
@@ -125,7 +122,7 @@
 
 <style lang="scss" scoped>
   .my-path {
-    transition: all 1s ease-in-out ;
+    transition: all 1s ease-in-out;
   }
 
 </style>
