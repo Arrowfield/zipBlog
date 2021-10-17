@@ -60,7 +60,6 @@
         leftX: 0,
         rightX: 0,
         clickX: 0,
-
         handleType: -1,
         moveBtnLeft: 0,
         moveBtnRight: 0,
@@ -102,6 +101,8 @@
           } else {
             this.moveBtnLeft = distance
           }
+          // 更新x轴的text
+
         } else if (this.handleType === 'right') {
           distance = e.clientX - this.originRight
           if (distance < this.moveBtnLeft - this.dataAreaWidth + this.dataZoom.handleSize) {
@@ -125,6 +126,10 @@
       },
       downScrollBar(e) {
         let el = e.target
+
+        // if(e.offsetX <= this.grid.left + this.moveBtnLeft + this.moveBtnCenter) {
+        //   this.moveBtnLeft = e.offsetX - this.grid.left - this.dataZoom.handleSize / 2
+        // }
         if (el.getAttribute('class') === 'left-btn') {
           this.handleType = 'left'
           this.originLeft = e.clientX - this.moveBtnLeft
