@@ -1,5 +1,9 @@
 <template>
-  <g>
+  <g
+    @mouseover="mouseover"
+    @mousemove="mousemove"
+    @mouseout="mouseout"
+  >
     <g>
       <path stroke-width="2" fill="none" :stroke="item.stroke" :d="item.path" v-for="item in paths"/>
     </g>
@@ -10,12 +14,29 @@
       :height="grid.height"
       :width="dataAreaWidth"
     />
+
+    <!-- hover的线 -->
+    <line
+      v-show="showHoverLine"
+      stroke-width="2"
+      stroke="#666"
+      :x1="grid.left  + movedX"
+      :y1="grid.top + grid.height"
+      :x2="grid.left + movedX"
+      :y2="grid.top"
+    />
   </g>
 </template>
 
 <script>
   export default {
     name: "ChartsDataArea",
+    data() {
+      return {
+        movedX: 0,
+        showHoverLine: false
+      }
+    },
     props: {
       options: {
         type: Object,
@@ -48,8 +69,27 @@
             path: path
           }
         })
+      },
+    },
+    mounted() {
+
+    },
+    methods: {
+      mousemove(e) {
+        this.movedX = e.offsetX - this.grid.left
+        if(this.movedX > this.dataAreaWidth){
+          this.movedX = this.dataAreaWidth
+        }else if(this.movedX <  0){
+          this.movedX = 0
+        }
+      },
+      mouseover(e){
+        this.showHoverLine = true
+      },
+      mouseout(e){
+        this.showHoverLine = false
       }
-    }
+    },
   }
 </script>
 

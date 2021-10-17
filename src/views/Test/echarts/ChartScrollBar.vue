@@ -78,9 +78,6 @@
           this.leftX = -this.dataZoom.handleSize
         } else if (el.getAttribute('class') === 'right-btn') {
           this.rightX = -this.dataZoom.handleSize
-        } else {
-          this.leftX = 0
-          this.rightX = 0
         }
         // 2.拖动
         let distance = ""
@@ -95,6 +92,7 @@
           }
         } else if (this.handleType === 'right') {
           distance = e.clientX - this.originRight
+          console.log(this.moveBtnLeft,distance)
           if (distance < -this.dataAreaWidth + this.dataZoom.handleSize) {
             this.moveBtnRight = -this.dataAreaWidth + this.dataZoom.handleSize
           } else if (distance > 0) {
@@ -119,6 +117,8 @@
         document.onmouseup = this.upScrollBar
       },
       upScrollBar(e) {
+        this.leftX = 0
+        this.rightX = 0
         document.onmousemove = null
         document.onmouseup = null
       }

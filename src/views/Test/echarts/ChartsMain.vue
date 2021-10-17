@@ -1,6 +1,9 @@
 <template>
   <svg class="main-charts" v-if="options.grid" :width="options.width" :height="options.height"
-       xmlns="http://www.w3.org/2000/svg">
+       xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       version="1.1"
+  >
     <text font-size="16" font-weight="bold" alignment-baseline="hanging" x="30" y="2">{{ options.title }}</text>
     <!-- 修改原点 label -->
     <charts-labels

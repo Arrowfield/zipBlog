@@ -9,9 +9,9 @@
       <charts-main :options="fpsOptions"/>
     </div>
 
-    <!--    <div  class="target-svg-style target-style">-->
-    <!--      <charts-main :options="fpsOptions"/>-->
-    <!--    </div>-->
+    <div class="target-svg-style target-style">
+      <charts-main :options="cpuOptions"/>
+    </div>
 
 <!--    <p-->
 
@@ -23,12 +23,12 @@
 <script>
   import {createCanvas} from '@/plugin/flamegraph/flamegraph'
   import {targetChart} from '@/plugin/targetChart/targetChart'
-  import {caseDetail, caseReport} from './Test/caseDetail.js'
-  import {formatReportData} from "./Test/util";
-  import ChartsMain from "./Test/echarts/ChartsMain";
-  import echarts from "./Test/echarts/echarts";
-  import makeChartsOptions from './Test/echarts/options/makeFpsOptions'
-
+  import {caseDetail, caseReport} from './caseDetail.js'
+  import {formatReportData} from "./util";
+  import ChartsMain from "./echarts/ChartsMain";
+  import echarts from "./echarts/echarts";
+  import makeChartsOptions from './echarts/options/makeFpsOptions'
+  import makeCpuOptions from './echarts/options/makeCpuOptions'
   let data = caseDetail.data
   export default {
     name: "Test",
@@ -43,7 +43,8 @@
         pathY: "",
         pathX: "",
         series: [],
-        fpsOptions: {width: 1600},
+        fpsOptions: {},
+        cpuOptions:{},
         clientX:"",
         clientY:"",
         originX:"",
@@ -68,6 +69,7 @@
       }
       state.fullDataList = formatReportData(state)
       this.fpsOptions = makeChartsOptions(state);
+      this.cpuOptions = makeCpuOptions(state)
       echarts.connect([this.fpsOptions])
     },
     methods: {

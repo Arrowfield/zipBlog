@@ -1,13 +1,47 @@
-import {INDEX_LABEL_COLOR} from "../../constant";
+import {INDEX_LABEL_COLOR, INDEX_TIMESTAMP} from "../../constant";
 
 export function formatOptions(state, options) {
   options.height = 400
   options.width = 1600
+
+  if (!options.hasOwnProperty('colors')) {
+    options.colors = INDEX_LABEL_COLOR
+  }
+
+  if (!options.hasOwnProperty('xAxis')) {
+    options.xAxis = {
+      data: state.fullDataList[INDEX_TIMESTAMP],
+      maxInterval: 1000 * 20,
+      minInterval: 1,
+      format: function (val) {
+        let minute = Math.floor(val / (1000 * 60))
+        let second = Math.floor(val % (1000 * 60) / 1000)
+        return `${minute < 10 ? ('0' + minute) : minute}:${second < 10 ? ('0' + second) : second}`
+      }
+    }
+  }
+
+  if (!options.hasOwnProperty('dataZoom')) {
+    options.dataZoom = {
+      type: "slider",
+      top: 33,
+      handleIcon: require('@/assets/img/icons/btn_normal.png'),
+      handleSize: 22,
+      fillerColor: "#5EB0F4",
+      showDetail: false,
+      showDataShadow: false,
+      start: 0,
+      end: 1,
+      backgroundColor: "#e1e4e9",
+      height: 14,
+    }
+  }
+
   if (!options.hasOwnProperty('grid')) {
     options.grid = {
       left: 90,
-      top: 75,
-      height: 250
+      top: 85,
+      height: 240
     }
   }
   options.series = options.series.map((item) => {
@@ -22,9 +56,9 @@ export function formatOptions(state, options) {
     if (!item.hasOwnProperty('minInterval')) {
       item.minInterval = 1
     }
-    if(!item.hasOwnProperty('splitLine')){
+    if (!item.hasOwnProperty('splitLine')) {
       item.splitLine = {
-        show:true
+        show: true
       }
     }
     return item
@@ -39,7 +73,7 @@ export function formatOptions(state, options) {
       endTime: item.summary.end_time,
       name: item.summary.name,
       color: INDEX_LABEL_COLOR[[index % (INDEX_LABEL_COLOR.length + 1)]],
-      top: 25,
+      top: 35,
       height: 29
     }
   })

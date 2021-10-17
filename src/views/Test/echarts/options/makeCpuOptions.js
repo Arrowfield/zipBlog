@@ -5,14 +5,14 @@ import {
 } from "../../constant";
 import {formatOptions} from './base'
 
-export default function makeChartsOptions(state) {
+export default function makeCpuOptions(state) {
 
   return formatOptions(state, {
-    title: "FPS",
+    title: "CPU Usage",
 
     yAxis: [
       {
-        name: INDEX_FPS, position: 'left',
+        name: "%", position: 'left',
         splitLine: {
           show: true,
           lineStyle: {
@@ -20,12 +20,6 @@ export default function makeChartsOptions(state) {
           }
         }
       },
-      {
-        name: INDEX_JANK, position: 'right',
-        splitLine: {
-          show: false
-        }
-      }
     ],
 
     series: [
