@@ -144,10 +144,6 @@
         document.onmousemove = null
         document.onmouseup = null
       }
-    },
-    mounted() {
-    },
-    beforeDestroy() {
     }
   }
 </script>
