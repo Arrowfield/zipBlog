@@ -9,7 +9,6 @@ export default function makeChartsOptions(state) {
 
   return formatOptions(state, {
     title: "FPS",
-
     yAxis: [
       {
         name: INDEX_FPS, position: 'left',
@@ -73,12 +72,7 @@ export default function makeChartsOptions(state) {
         }
       }
     ],
-    labelInfos: [],
 
-    legend: {
-      show: true,
-      top: 10
-    },
     flameGraph: {
       colors: INDEX_FRAME_COLOR
     }

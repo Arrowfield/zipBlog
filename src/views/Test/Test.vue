@@ -6,11 +6,11 @@
     <!--    </div>-->
 
     <div id="fps-svg" class="target-svg-style target-style">
-      <charts-main :options="fpsOptions"/>
+      <charts-main  :options="fpsOptions"/>
     </div>
 
     <div class="target-svg-style target-style">
-      <charts-main :options="cpuOptions"/>
+      <charts-main  :options="cpuOptions"/>
     </div>
 
 <!--    <p-->

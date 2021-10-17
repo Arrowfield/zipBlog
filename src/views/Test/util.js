@@ -6,18 +6,24 @@ import {
   INDEX_STUTTER,
   INDEX_TIMESTAMP,
   PLATFORM_IOS,
-  INDEX_LABEL_COLOR
+  INDEX_APP,
+  INDEX_TOTAL
 } from './constant'
 
 export const formatReportData = function (state) {
   let result = {}
   let dataList = state.caseReport.report.DataList
   if (state.caseDetail.caseDetail.platform === PLATFORM_IOS) {
+
     result[INDEX_FPS] = getValueFromDataList(dataList, ['IosFps', 'fps'])
     result[INDEX_JANK] = getValueFromDataList(dataList, ['IosFps', 'Jank'])
     result[INDEX_STUTTER] = getValueFromDataList(dataList, ['Stutter', 'Stutter'])
     result[INDEX_BIG_JANK] = getValueFromDataList(dataList, ['BigJank', 'BigJank'])
     result[INDEX_FRAME_TIME] = getValueFromDataList(dataList, ['FrameDetails', 'FrameTimes'])
+
+    result[INDEX_APP] = getValueFromDataList(dataList, ['CpuUsage', 'AppUsage'])
+    result[INDEX_TOTAL] = getValueFromDataList(dataList, ['CpuUsage', 'TotalUsage'])
+
     result[INDEX_TIMESTAMP] = dataList.map((item) => item.TimeStamp)
   }
   return result

@@ -4,6 +4,18 @@ export function formatOptions(state, options) {
   options.height = 400
   options.width = 1600
 
+  let flag = false
+  for(let [index,item] of options.series.entries()){
+    if(state.fullDataList[item.indexName] && state.fullDataList[item.indexName].length > 0){
+      flag = true
+    }else if(!item.data){
+      console.log(item.indexName,'data is empty')
+      options.series.splice(index,1)
+    }
+  }
+  if(!flag) return  null
+
+
   if (!options.hasOwnProperty('colors')) {
     options.colors = INDEX_LABEL_COLOR
   }
@@ -18,6 +30,13 @@ export function formatOptions(state, options) {
         let second = Math.floor(val % (1000 * 60) / 1000)
         return `${minute < 10 ? ('0' + minute) : minute}:${second < 10 ? ('0' + second) : second}`
       }
+    }
+  }
+
+  if(!options.hasOwnProperty('legend')){
+    options.legend = {
+      show: true,
+      top: 10
     }
   }
 
@@ -85,6 +104,7 @@ export function formatOptions(state, options) {
 function getAxisRange(dataArray) {
   let maxValue = 0
   for (let item of dataArray) {
+    if(!item.data) continue
     for (let value of item.data) {
       if (value > maxValue) {
         maxValue = value

@@ -1,5 +1,5 @@
 <template>
-  <svg class="main-charts" v-if="options.grid" :width="options.width" :height="options.height"
+  <svg class="main-charts" v-if="options && options.grid" :width="options.width" :height="options.height"
        xmlns="http://www.w3.org/2000/svg"
        xmlns:xlink="http://www.w3.org/1999/xlink"
        version="1.1"
