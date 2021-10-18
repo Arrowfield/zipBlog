@@ -6,12 +6,12 @@
   >
     <text font-size="16" font-weight="bold" alignment-baseline="hanging" x="30" y="2">{{ options.title }}</text>
     <!-- 修改原点 label -->
-<!--    <charts-labels-->
-<!--      :labelInfos="options.labelInfos"-->
-<!--      :dataAreaWidth="dataAreaWidth"-->
-<!--      :grid="grid"-->
-<!--      :rate="rate"-->
-<!--    />-->
+    <charts-labels
+      :labelInfos="options.labelInfos"
+      :dataAreaWidth="dataAreaWidth"
+      :grid="grid"
+      :rate="rate"
+    />
     <charts-y-axis
       :dataAreaWidth="dataAreaWidth"
       :grid="grid"
@@ -23,12 +23,12 @@
       :options="options"
       :rate="rate"
     />
-<!--    <charts-data-area-->
-<!--      :rate="rate"-->
-<!--      :options="options"-->
-<!--      :dataAreaWidth="dataAreaWidth"-->
-<!--      :grid="grid"-->
-<!--    />-->
+    <charts-data-area
+      :rate="rate"
+      :options="options"
+      :dataAreaWidth="dataAreaWidth"
+      :grid="grid"
+    />
     <chart-scroll-bar
       :dataZoom="options.dataZoom"
       :grid="grid"

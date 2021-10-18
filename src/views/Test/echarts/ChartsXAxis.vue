@@ -17,7 +17,7 @@
       :x="item.x"
       :y="item.y"
       font-size="12">
-      {{ item.txt  }}
+      {{ item.txt }}
     </text>
   </g>
 </template>
@@ -72,6 +72,15 @@
         //   })
         //   sum += step
         // }
+        for (sum; sum < this.maxTimestamp; sum += step) {
+          let x = sum * rate - this.minTimestamp * rate
+          path += `M ${this.grid.left + x} ${y} L ${this.grid.left + x} ${y + 7} `
+          this.xAxisData.push({
+            txt: this.options.xAxis.format(sum),
+            x: this.grid.left + x,
+            y: this.grid.top + this.grid.height + 22
+          })
+        }
         path += `M ${this.grid.left + this.dataAreaWidth - 1} ${y} L ${this.grid.left + this.dataAreaWidth - 1} ${y + 7}`
         return path
       },

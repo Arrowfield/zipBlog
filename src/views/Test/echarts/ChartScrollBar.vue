@@ -145,7 +145,8 @@
           }
           scrollParams.moveBtnRight = temp
           this.$store.commit('setStoreValue',{
-            scrollParams
+            scrollParams,
+            max:1 + temp/(this.dataAreaWidth - this.dataZoom.handleSize)
           })
         } else if (this.handleType === 'center') {
           distance = e.clientX - this.originCenter
