@@ -17,12 +17,14 @@
       :x="item.x"
       :y="item.y"
       font-size="12">
-      {{ item.txt }}
+      {{ item.txt  }}
     </text>
   </g>
 </template>
 
 <script>
+  import {mapGetters} from "vuex";
+
   export default {
     name: "ChartsXAxis",
     data() {
@@ -48,6 +50,8 @@
         let maxTimestamp = this.options.xAxis.data[this.options.xAxis.data.length - 1]
         let sum = 0, path = "", rate = this.rate
         let y = this.grid.top + this.grid.height - 1
+        // 求最大分割线
+
         let step = 1000 * 20
         if (step > this.options.xAxis.maxInterval) {
           step = this.options.xAxis.maxInterval
@@ -55,6 +59,7 @@
         while (sum <= maxTimestamp) {
           let x = sum * rate
           path += `M ${this.grid.left + x} ${y} L ${this.grid.left + x} ${y + 7} `
+          console.log(sum)
           this.xAxisData.push({
             txt: this.options.xAxis.format(sum),
             x: this.grid.left + x,

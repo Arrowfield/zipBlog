@@ -32,21 +32,21 @@
       v-show="showHoverLine"
       stroke-width="2"
       stroke="#666"
-      :x1="grid.left  + movedX"
+      :x1="grid.left  + hoverLineX"
       :y1="grid.top + grid.height"
-      :x2="grid.left + movedX"
+      :x2="grid.left + hoverLineX"
       :y2="grid.top"
     />
   </g>
 </template>
 
 <script>
+  import {mapState} from "vuex";
+
   export default {
     name: "ChartsDataArea",
     data() {
       return {
-        movedX: 0,
-        showHoverLine: false,
         pathLength: []
       }
     },
@@ -63,6 +63,11 @@
       rate: [Number, String]
     },
     computed: {
+      ...mapState({
+        hoverLineX: state => state.caseDetail.hoverLineX,
+        showHoverLine:state => state.caseDetail.showHoverLine
+      }),
+
       paths() {
         let yRate = this.options.yAxis.map((item) => {
           return this.grid.height / item.max
@@ -95,27 +100,31 @@
           let tmp = $el.getTotalLength()
           this.pathLength.push(tmp)
         }
-        // setTimeout(()=>{
-        //   this.pathLength = []
-        // },1000)
-        //console.log(this.pathLength)
       }
-
     },
     methods: {
+      dispatch(type, payload){
+        this.$store.commit(type, payload)
+      },
       mousemove(e) {
-        this.movedX = e.offsetX - this.grid.left
-        if (this.movedX > this.dataAreaWidth) {
-          this.movedX = this.dataAreaWidth
-        } else if (this.movedX < 0) {
-          this.movedX = 0
+        let hoverLineX = 0
+        hoverLineX = e.offsetX - this.grid.left
+        if (hoverLineX > this.dataAreaWidth) {
+          hoverLineX = this.dataAreaWidth
+        } else if (hoverLineX < 0) {
+          hoverLineX = 0
         }
+        this.dispatch("setStoreValue",{hoverLineX})
       },
       mouseover(e) {
-        this.showHoverLine = true
+        this.dispatch("setStoreValue",{
+          showHoverLine:true
+        })
       },
       mouseout(e) {
-        this.showHoverLine = false
+        this.dispatch("setStoreValue",{
+          showHoverLine:false
+        })
       }
     },
   }

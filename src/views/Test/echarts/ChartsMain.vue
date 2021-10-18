@@ -57,6 +57,7 @@
   import ChartScrollBar from "./ChartScrollBar";
   import ChartsMark from "./ChartsMark";
   import ChartsFlameGraph from "./ChartsFlameGraph";
+  import {mapGetters} from "vuex";
 
   export default {
     name: "ChartsMain",
@@ -73,6 +74,10 @@
       },
     },
     computed: {
+      ...mapGetters([
+        "minTimestamp",
+        "maxTimestamp"
+      ]),
       dataAreaWidth() {
         return this.options.width - 2 * this.grid.left
       },
@@ -82,6 +87,8 @@
       },
       rate() {
         if (!this.options.xAxis) return 1
+        let rate = this.dataAreaWidth / (this.maxTimestamp - this.minTimestamp)
+        console.log(rate)
         let maxTimestamp = this.options.xAxis.data[this.options.xAxis.data.length - 1]
         return this.dataAreaWidth / maxTimestamp
       }

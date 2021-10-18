@@ -2,10 +2,10 @@
   <g>
     <g v-for="item in labels" :fill="item.color">
       <rect :x="item.offsetX" :y="item.top" :width="item.width" :height="item.height"/>
-      <text :x="item.offsetX + item.width / 2" :y="item.top + 9"
+      <text :x="item.offsetX + item.width / 2" :y="item.top + item.height / 2"
             fill="white"
             text-anchor="middle"
-            alignment-baseline="hanging"
+            alignment-baseline="middle"
             font-size="12">
         {{item.name}}
       </text>

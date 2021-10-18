@@ -1,6 +1,6 @@
 <template>
   <g v-if="dataZoom"
-     @mousedown="downScrollBar"
+
   >
     <rect
       :x="grid.left"
@@ -10,8 +10,9 @@
       :fill="dataZoom.backgroundColor"
     />
     <rect
+      @mousedown="downScrollBar"
       cursor="e-resize"
-      :x="grid.left + moveBtnLeft + moveBtnCenter"
+      :x="centerBtnX"
       :y="grid.top + grid.height + dataZoom.top"
       :width="rectWidth"
       :height="dataZoom.height"
@@ -27,7 +28,8 @@
 
 
     <svg xmlns="http://www.w3.org/2000/svg"
-         :x="grid.left + moveBtnLeft + moveBtnCenter"
+         @mousedown="downScrollBar"
+         :x="leftBtnX"
          :y="grid.top + grid.height + dataZoom.top - 3">
       <image
         clip-path="url(#myClip)"
@@ -37,7 +39,8 @@
     </svg>
 
     <svg xmlns="http://www.w3.org/2000/svg"
-         :x="moveBtnCenter + moveBtnRight + grid.left + dataAreaWidth - dataZoom.handleSize"
+         @mousedown="downScrollBar"
+         :x="rightBtnX"
          :y="grid.top + grid.height + dataZoom.top - 3">
       <image clip-path="url(#myClip)" :xlink:href="dataZoom.handleIcon" :x="rightX" y="0"/>
       <rect cursor="e-resize" fill="transparent" x="0" y="0"
@@ -52,6 +55,7 @@
 
 <script>
   import {EventCenter} from "../../../utils/utils";
+  import {mapState} from "vuex";
 
   export default {
     name: "ChartScrollBar",
@@ -61,12 +65,12 @@
         rightX: 0,
         clickX: 0,
         handleType: -1,
-        moveBtnLeft: 0,
-        moveBtnRight: 0,
-        moveBtnCenter: 0,
+
         originLeft: 0,
         originRight: 0,
-        originCenter:0
+        originCenter: 0,
+        max: 1,
+        min: 0
       }
     },
     props: {
@@ -76,16 +80,37 @@
         type: Object,
       },
     },
-    computed:{
-      rectWidth(){
-        return this.dataAreaWidth - this.moveBtnLeft + this.moveBtnRight
+    computed: {
+      ...mapState({
+        scrollParams: state => state.caseDetail.scrollParams
+      }),
+      rectWidth() {
+        return this.dataAreaWidth - this.scrollParams.moveBtnLeft + this.scrollParams.moveBtnRight
+      },
+      leftBtnX(){
+        return this.grid.left + this.scrollParams.moveBtnLeft + this.scrollParams.moveBtnCenter
+      },
+      rightBtnX(){
+        return (this.scrollParams.moveBtnCenter +
+          this.scrollParams.moveBtnRight +
+          this.grid.left +
+          this.dataAreaWidth -
+          this.dataZoom.handleSize)
+      },
+      centerBtnX(){
+        return this.grid.left + this.scrollParams.moveBtnLeft + this.scrollParams.moveBtnCenter
       }
     },
     methods: {
-      moveScrollBar(e) {
-        let el = e.target
-        // 1.hover态
+      btnType(el) {
         if (el.getAttribute('class') === 'left-btn') {
+          return 'left'
+        }
+      },
+      moveScrollBar(e) {
+        let el = e.target,scrollParams = this.$store.state.caseDetail.scrollParams
+        // 1.hover态
+        if (this.btnType(el) === 'left') {
           this.leftX = -this.dataZoom.handleSize
         } else if (el.getAttribute('class') === 'right-btn') {
           this.rightX = -this.dataZoom.handleSize
@@ -94,51 +119,62 @@
         let distance = ""
         if (this.handleType === 'left') {
           distance = e.clientX - this.originLeft
-          if (distance > this.moveBtnRight + this.dataAreaWidth - this.dataZoom.handleSize) {
-            this.moveBtnLeft = this.moveBtnRight + this.dataAreaWidth - this.dataZoom.handleSize
-          } else if (distance < -this.moveBtnCenter) {
-            this.moveBtnLeft = -this.moveBtnCenter
+          let temp = 0
+          if (distance > this.scrollParams.moveBtnRight + this.dataAreaWidth - this.dataZoom.handleSize) {
+            temp = this.scrollParams.moveBtnRight + this.dataAreaWidth - this.dataZoom.handleSize
+          } else if (distance < -this.scrollParams.moveBtnCenter) {
+            temp = -this.scrollParams.moveBtnCenter
           } else {
-            this.moveBtnLeft = distance
+            temp = distance
           }
-          // 更新x轴的text
+          scrollParams.moveBtnLeft = temp
 
+          this.$store.commit('setStoreValue',{
+            scrollParams,
+            min:temp/(this.dataAreaWidth - this.dataZoom.handleSize)
+          })
         } else if (this.handleType === 'right') {
           distance = e.clientX - this.originRight
-          if (distance < this.moveBtnLeft - this.dataAreaWidth + this.dataZoom.handleSize) {
-            this.moveBtnRight = this.moveBtnLeft-this.dataAreaWidth + this.dataZoom.handleSize
-          } else if (distance > -this.moveBtnCenter) {
-            this.moveBtnRight =  -this.moveBtnCenter
+          let temp = 0
+          if (distance < this.scrollParams.moveBtnLeft - this.dataAreaWidth + this.dataZoom.handleSize) {
+            temp = this.scrollParams.moveBtnLeft - this.dataAreaWidth + this.dataZoom.handleSize
+          } else if (distance > -this.scrollParams.moveBtnCenter) {
+            temp = - this.scrollParams.moveBtnCenter
           } else {
-            this.moveBtnRight = distance
+            temp = distance
           }
-        }else if(this.handleType === 'center') {
+          scrollParams.moveBtnRight = temp
+          this.$store.commit('setStoreValue',{
+            scrollParams
+          })
+        } else if (this.handleType === 'center') {
           distance = e.clientX - this.originCenter
-          if(distance < -this.moveBtnLeft){
-            this.moveBtnCenter = -this.moveBtnLeft
-          }else if(distance > -this.moveBtnRight){
-            this.moveBtnCenter = -this.moveBtnRight
-          }else{
-            this.moveBtnCenter = distance
+          let temp = 0
+          if (distance < -this.scrollParams.moveBtnLeft) {
+            temp = -this.scrollParams.moveBtnLeft
+          } else if (distance > -this.scrollParams.moveBtnRight) {
+            temp = -this.scrollParams.moveBtnRight
+          } else {
+            temp = distance
           }
+          scrollParams.moveBtnCenter = temp
+          this.$store.commit('setStoreValue',{
+            scrollParams
+          })
         }
-        // 3.
+        // 3. 缩放
       },
       downScrollBar(e) {
         let el = e.target
-
-        // if(e.offsetX <= this.grid.left + this.moveBtnLeft + this.moveBtnCenter) {
-        //   this.moveBtnLeft = e.offsetX - this.grid.left - this.dataZoom.handleSize / 2
-        // }
         if (el.getAttribute('class') === 'left-btn') {
           this.handleType = 'left'
-          this.originLeft = e.clientX - this.moveBtnLeft
+          this.originLeft = e.clientX - this.scrollParams.moveBtnLeft
         } else if (el.getAttribute('class') === 'right-btn') {
           this.handleType = 'right'
-          this.originRight = e.clientX - this.moveBtnRight
-        } else if(el.getAttribute('class') === 'center-btn'){
+          this.originRight = e.clientX - this.scrollParams.moveBtnRight
+        } else if (el.getAttribute('class') === 'center-btn') {
           this.handleType = 'center'
-          this.originCenter = e.clientX - this.moveBtnCenter
+          this.originCenter = e.clientX - this.scrollParams.moveBtnCenter
         }
         document.onmousemove = this.moveScrollBar
         document.onmouseup = this.upScrollBar

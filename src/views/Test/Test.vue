@@ -13,10 +13,10 @@
       <charts-main  :options="cpuOptions"/>
     </div>
 
-<!--    <p-->
+    <div class="target-svg-style target-style">
+      <charts-main  :options="cpuOptions"/>
+    </div>
 
-<!--      @mousedown="testMousedown"-->
-<!--      class="test-move"></p>-->
   </div>
 </template>
 
@@ -29,6 +29,7 @@
   import echarts from "./echarts/echarts";
   import makeChartsOptions from './echarts/options/makeFpsOptions'
   import makeCpuOptions from './echarts/options/makeCpuOptions'
+  import {INDEX_TIMESTAMP} from "./constant";
   let data = caseDetail.data
   export default {
     name: "Test",
@@ -64,10 +65,13 @@
       // this.drawAxisY()
       // this.drawAxisX()
 
-      let state = {
-        caseDetail: caseDetail.data, caseReport: caseReport.data
-      }
+      let state = {caseDetail: caseDetail.data, caseReport: caseReport.data}
       state.fullDataList = formatReportData(state)
+      let timestamp = state.fullDataList[INDEX_TIMESTAMP]
+      this.$store.commit('setStoreValue',{
+        maxTimestamp:timestamp[timestamp.length - 1],
+      })
+
       this.fpsOptions = makeChartsOptions(state);
       this.cpuOptions = makeCpuOptions(state)
       echarts.connect([this.fpsOptions])

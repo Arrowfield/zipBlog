@@ -2,10 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import article from "@/store/modules/article";
-
+import caseDetail from '../views/Test/store/index'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
   state: {
     //articleList:[],
     indexBaseData:{
@@ -50,6 +51,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    article
+    article,
+    caseDetail
   }
 })
