@@ -158,12 +158,12 @@
           } else {
             temp = distance
           }
-          scrollParams.moveBtnCenter = temp
-          console.log(this.dataAreaWidth - this.rightBtnX  - this.grid.left)
+          scrollParams.moveBtnCenter = temp // 偏移量 有正值 有负值
+          console.log(this.scrollParams.moveBtnRight , temp)
           this.$store.commit('setStoreValue',{
             scrollParams,
             min:(this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize),
-            max:1
+            max:1 //- (this.scrollParams.moveBtnRight - temp) / (this.dataAreaWidth - this.dataZoom.handleSize)
           })
         }
         // 3. 缩放
