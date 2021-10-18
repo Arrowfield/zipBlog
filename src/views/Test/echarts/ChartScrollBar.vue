@@ -159,8 +159,11 @@
             temp = distance
           }
           scrollParams.moveBtnCenter = temp
+          console.log(this.dataAreaWidth - this.rightBtnX  - this.grid.left)
           this.$store.commit('setStoreValue',{
-            scrollParams
+            scrollParams,
+            min:(this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize),
+            max:1
           })
         }
         // 3. 缩放
