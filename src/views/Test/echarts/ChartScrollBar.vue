@@ -131,7 +131,7 @@
 
           this.$store.commit('setStoreValue',{
             scrollParams,
-            min:temp/(this.dataAreaWidth - this.dataZoom.handleSize)
+            min:(this.leftBtnX - this.grid.left)/(this.dataAreaWidth - this.dataZoom.handleSize)
           })
         } else if (this.handleType === 'right') {
           distance = e.clientX - this.originRight
@@ -146,7 +146,7 @@
           scrollParams.moveBtnRight = temp
           this.$store.commit('setStoreValue',{
             scrollParams,
-            max:1 + temp/(this.dataAreaWidth - this.dataZoom.handleSize)
+            max:(this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
           })
         } else if (this.handleType === 'center') {
           distance = e.clientX - this.originCenter
@@ -159,11 +159,16 @@
             temp = distance
           }
           scrollParams.moveBtnCenter = temp // 偏移量 有正值 有负值
-          console.log(this.scrollParams.moveBtnRight , temp)
+          console.log(
+            this.rightBtnX,
+            (this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize),
+            (this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
+          )
+
           this.$store.commit('setStoreValue',{
             scrollParams,
             min:(this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize),
-            max:1 //- (this.scrollParams.moveBtnRight - temp) / (this.dataAreaWidth - this.dataZoom.handleSize)
+            max:(this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
           })
         }
         // 3. 缩放

@@ -41,7 +41,7 @@
 </template>
 
 <script>
-  import {mapState} from "vuex";
+  import {mapGetters, mapState} from "vuex";
 
   export default {
     name: "ChartsDataArea",
@@ -65,8 +65,12 @@
     computed: {
       ...mapState({
         hoverLineX: state => state.caseDetail.hoverLineX,
-        showHoverLine:state => state.caseDetail.showHoverLine
+        showHoverLine:state => state.caseDetail.showHoverLine,
       }),
+      ...mapGetters([
+        'minTimestamp',
+        'maxTimestamp'
+      ]),
 
       paths() {
         let yRate = this.options.yAxis.map((item) => {
@@ -77,9 +81,15 @@
         return pathData.map((item, index) => {
           let letter = `M`, path = '', valueX = "", valueY = ""
           for (let [i, tmp] of item.data.entries()) {
-            let x = this.grid.left + timeStamp[i] * this.rate
-            valueX += `${x};`
+            // if(timeStamp[i] * this.rate >= this.dataAreaWidth){
+            //   break
+            // }
+            let x = this.grid.left + (timeStamp[i] - this.minTimestamp) * this.rate
             let y = this.grid.height - tmp * yRate[item.yAxisIndex] + this.grid.top
+            // if(x < this.grid.left){
+            //   x = this.grid.left
+            // }
+            valueX += `${x};`
             valueY += `${y};`
             path += `${letter} ${x} ${y} `
             letter = `L`

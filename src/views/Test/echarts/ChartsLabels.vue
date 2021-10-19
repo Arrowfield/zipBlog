@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import {mapGetters} from "vuex";
+
   export default {
     name: "ChartsLabels",
     props: {
@@ -23,14 +25,19 @@
       rate: [Number, String],
     },
     computed: {
+      ...mapGetters([
+        'minTimestamp',
+        'maxTimestamp'
+      ]),
       labels() {
         if (!this.labelInfos) return []
         let tmp = 0
         return this.labelInfos.map((item) => {
+
           let label = {
             color: item.color,
             width: (item.endTime - item.startTime) * this.rate,
-            offsetX: this.grid.left + tmp,
+            offsetX: this.grid.left + tmp - this.minTimestamp * this.rate,
             top: item.top,
             height: item.height,
             name:item.name
