@@ -1,5 +1,6 @@
 import mutations from './mutations'
 import getters from './getters'
+import actions from './actions'
 const state = {
   scrollParams: {
     moveBtnLeft: 0,
@@ -10,10 +11,13 @@ const state = {
   showHoverLine:false,
   min:0,
   max:1,
-  maxTimestamp:0
+  maxTimestamp:0,
+  timestamps:[]
+
 }
 export default {
   state,
   mutations,
-  getters
+  getters,
+  actions
 }

@@ -159,11 +159,7 @@
             temp = distance
           }
           scrollParams.moveBtnCenter = temp // 偏移量 有正值 有负值
-          console.log(
-            this.rightBtnX,
-            (this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize),
-            (this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
-          )
+
 
           this.$store.commit('setStoreValue',{
             scrollParams,
@@ -172,6 +168,7 @@
           })
         }
         // 3. 缩放
+        this.$store.dispatch('reCalcDatalist')
       },
       downScrollBar(e) {
         let el = e.target

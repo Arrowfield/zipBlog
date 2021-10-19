@@ -13,7 +13,7 @@
       <charts-main  :options="cpuOptions"/>
     </div>
 
-    <div class="target-svg-style target-style">
+    <div class="target-svg-style target-style" v-for="i in 20">
       <charts-main  :options="cpuOptions"/>
     </div>
 
@@ -70,6 +70,7 @@
       let timestamp = state.fullDataList[INDEX_TIMESTAMP]
       this.$store.commit('setStoreValue',{
         maxTimestamp:timestamp[timestamp.length - 1],
+        timestamps:timestamp,
       })
 
       this.fpsOptions = makeChartsOptions(state);
