@@ -141,7 +141,7 @@
         } else if (hoverLineX < 0) {
           hoverLineX = 0
         }
-        let width = e.clientX - this.clickLineX - this.offsetX + 15
+        let width = e.clientX - this.clickLineX - this.offsetX + 10
         this.dragWidth = width < 0 ? 0 : width
         this.dispatch("setStoreValue", {
           hoverLineX,
@@ -171,7 +171,7 @@
         this.dragWidth = 0
         this.dispatch("setStoreValue", {
           showHoverLine: false,
-          showDataDrag:false
+          //showDataDrag:false
         })
       }
     },
