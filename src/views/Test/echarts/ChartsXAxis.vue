@@ -52,26 +52,22 @@
       pathX() {
         if (!this.options.xAxis) return ""
         this.xAxisData = []
-
-        //let maxTimestamp = this.options.xAxis.data[this.options.xAxis.data.length - 1]
         let sum = this.minTimestamp, path = "", rate = this.rate
         let y = this.grid.top + this.grid.height - 1
         // 求最大分割线
-        let step = (this.maxTimestamp - this.minTimestamp) / 15
-        if (step > this.options.xAxis.maxInterval) {
-          step = this.options.xAxis.maxInterval
+        let tick = 15
+
+        if(this.maxTimestamp - this.minTimestamp < 15 * 1000){
+          tick = 10
         }
-        // while (sum <= this.maxTimestamp) {
-        //   let x = sum * rate - this.minTimestamp * rate
-        //   path += `M ${this.grid.left + x} ${y} L ${this.grid.left + x} ${y + 7} `
-        //
-        //   this.xAxisData.push({
-        //     txt: this.options.xAxis.format(sum),
-        //     x: this.grid.left + x,
-        //     y: this.grid.top + this.grid.height + 22
-        //   })
-        //   sum += step
-        // }
+        if(this.maxTimestamp - this.minTimestamp < 5 * 1000){
+          tick = 4
+        }
+        if(this.maxTimestamp - this.minTimestamp < 3 * 1000){
+          tick = 3
+        }
+
+        let step = (this.maxTimestamp - this.minTimestamp) / tick
         for (sum; sum < this.maxTimestamp; sum += step) {
           let x = sum * rate - this.minTimestamp * rate
           path += `M ${this.grid.left + x} ${y} L ${this.grid.left + x} ${y + 7} `

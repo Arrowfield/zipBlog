@@ -18,6 +18,11 @@
 
   export default {
     name: "ChartsLabels",
+    data(){
+      return{
+        textLength:[]
+      }
+    },
     props: {
       labelInfos: Array,
       grid: Object,
@@ -33,18 +38,21 @@
         if (!this.labelInfos) return []
         let tmp = 0
         return this.labelInfos.map((item) => {
-
+          // 裁剪到可是区域
+          let start = item.startTime < this.minTimestamp ? this.minTimestamp : item.startTime
+          let end = item.endTime > this.maxTimestamp ? this.maxTimestamp : item.endTime
+          if(start > end) return
           let label = {
             color: item.color,
-            width: (item.endTime - item.startTime) * this.rate,
-            offsetX: this.grid.left + tmp - this.minTimestamp * this.rate,
+            width: (end - start) * this.rate,
+            offsetX: this.grid.left + tmp ,
             top: item.top,
             height: item.height,
             name:item.name
           }
           tmp += label.width
           return label
-        })
+        }).filter(item => item)
       }
     }
   }

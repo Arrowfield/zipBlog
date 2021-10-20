@@ -24,7 +24,7 @@ export function formatOptions(state, options) {
     options.xAxis = {
       data: state.fullDataList[INDEX_TIMESTAMP],
       maxInterval: 1000 * 90,
-      minInterval: 1,
+      minInterval: 1000 * 3,
       format: function (val) {
         let minute = Math.floor(val / (1000 * 60))
         let second = Math.floor(val % (1000 * 60) / 1000)

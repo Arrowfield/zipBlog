@@ -81,18 +81,14 @@
         return pathData.map((item, index) => {
           let letter = `M`, path = '', valueX = "", valueY = ""
           for (let [i, tmp] of item.data.entries()) {
-            // if(timeStamp[i] * this.rate >= this.dataAreaWidth){
-            //   break
-            // }
-            let x = this.grid.left + (timeStamp[i] - this.minTimestamp) * this.rate
-            let y = this.grid.height - tmp * yRate[item.yAxisIndex] + this.grid.top
-            // if(x < this.grid.left){
-            //   x = this.grid.left
-            // }
-            valueX += `${x};`
-            valueY += `${y};`
-            path += `${letter} ${x} ${y} `
-            letter = `L`
+            if(timeStamp[i] >= this.minTimestamp && timeStamp[i] <= this.maxTimestamp) {
+              let x = this.grid.left + (timeStamp[i] - this.minTimestamp) * this.rate
+              let y = this.grid.height - tmp * yRate[item.yAxisIndex] + this.grid.top
+              valueX += `${x};`
+              valueY += `${y};`
+              path += `${letter} ${x} ${y} `
+              letter = `L`
+            }
           }
           return {
             stroke: item.lineStyle.color,

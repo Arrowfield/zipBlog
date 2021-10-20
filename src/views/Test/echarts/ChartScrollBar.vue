@@ -87,17 +87,17 @@
       rectWidth() {
         return this.dataAreaWidth - this.scrollParams.moveBtnLeft + this.scrollParams.moveBtnRight
       },
-      leftBtnX(){
+      leftBtnX() {
         return this.grid.left + this.scrollParams.moveBtnLeft + this.scrollParams.moveBtnCenter
       },
-      rightBtnX(){
+      rightBtnX() {
         return (this.scrollParams.moveBtnCenter +
           this.scrollParams.moveBtnRight +
           this.grid.left +
           this.dataAreaWidth -
           this.dataZoom.handleSize)
       },
-      centerBtnX(){
+      centerBtnX() {
         return this.grid.left + this.scrollParams.moveBtnLeft + this.scrollParams.moveBtnCenter
       }
     },
@@ -108,7 +108,8 @@
         }
       },
       moveScrollBar(e) {
-        let el = e.target,scrollParams = this.$store.state.caseDetail.scrollParams
+        let el = e.target, scrollParams = this.$store.state.caseDetail.scrollParams
+        let min = 0, max = 1
         // 1.hover态
         if (this.btnType(el) === 'left') {
           this.leftX = -this.dataZoom.handleSize
@@ -128,26 +129,27 @@
             temp = distance
           }
           scrollParams.moveBtnLeft = temp
-
-          this.$store.commit('setStoreValue',{
-            scrollParams,
-            min:(this.leftBtnX - this.grid.left)/(this.dataAreaWidth - this.dataZoom.handleSize)
-          })
+          min = (this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
+          // this.$store.commit('setStoreValue', {
+          //   scrollParams,
+          //   min
+          // })
         } else if (this.handleType === 'right') {
           distance = e.clientX - this.originRight
           let temp = 0
           if (distance < this.scrollParams.moveBtnLeft - this.dataAreaWidth + this.dataZoom.handleSize) {
             temp = this.scrollParams.moveBtnLeft - this.dataAreaWidth + this.dataZoom.handleSize
           } else if (distance > -this.scrollParams.moveBtnCenter) {
-            temp = - this.scrollParams.moveBtnCenter
+            temp = -this.scrollParams.moveBtnCenter
           } else {
             temp = distance
           }
           scrollParams.moveBtnRight = temp
-          this.$store.commit('setStoreValue',{
-            scrollParams,
-            max:(this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
-          })
+          max = (this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
+          // this.$store.commit('setStoreValue', {
+          //   scrollParams,
+          //   max
+          // })
         } else if (this.handleType === 'center') {
           distance = e.clientX - this.originCenter
           let temp = 0
@@ -160,15 +162,25 @@
           }
           scrollParams.moveBtnCenter = temp // 偏移量 有正值 有负值
 
-
-          this.$store.commit('setStoreValue',{
-            scrollParams,
-            min:(this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize),
-            max:(this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
-          })
+          min = (this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
+          max = (this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
+          // this.$store.commit('setStoreValue', {
+          //   scrollParams,
+          //   min,
+          //   max
+          // })
         }
         // 3. 缩放
-        this.$store.dispatch('reCalcDatalist')
+
+        if(this.handleType !== -1 && min < max){
+          console.log(min,max)
+          this.$store.commit('setStoreValue', {
+            scrollParams,
+            min,
+            max
+          })
+          this.$store.dispatch('reCalcDatalist')
+        }
       },
       downScrollBar(e) {
         let el = e.target
@@ -188,6 +200,7 @@
       upScrollBar(e) {
         this.leftX = 0
         this.rightX = 0
+        this.handleType = -1
         document.onmousemove = null
         document.onmouseup = null
       }
