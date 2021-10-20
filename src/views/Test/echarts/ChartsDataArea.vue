@@ -1,5 +1,7 @@
 <template>
   <g
+    @mousedown="mousedown"
+    @mouseup="mouseup"
     @mouseover="mouseover"
     @mousemove="mousemove"
     @mouseout="mouseout"
@@ -20,6 +22,7 @@
       ></path>
     </g>
     <rect
+      ref="eventRect"
       fill="transparent"
       :x="grid.left"
       :y="grid.top"
@@ -32,11 +35,23 @@
       v-show="showHoverLine"
       stroke-width="2"
       stroke="#666"
-      :x1="grid.left  + hoverLineX"
+      :x1="grid.left + hoverLineX"
       :y1="grid.top + grid.height"
       :x2="grid.left + hoverLineX"
       :y2="grid.top"
     />
+
+    <!-- 框选的时候显示的矩形 -->
+
+    <rect
+      v-show="showDataDrag"
+      fill="rgb(210,219,238)"
+      fill-opacity="0.3"
+      :x="grid.left + clickLineX"
+      :y="grid.top"
+      :height="grid.height"
+      :width="dragWidth"/>
+
   </g>
 </template>
 
@@ -47,7 +62,10 @@
     name: "ChartsDataArea",
     data() {
       return {
-        pathLength: []
+        pathLength: [],
+        dragWidth:0,
+        clickLineX:0,
+        offsetX:0
       }
     },
     props: {
@@ -65,7 +83,8 @@
     computed: {
       ...mapState({
         hoverLineX: state => state.caseDetail.hoverLineX,
-        showHoverLine:state => state.caseDetail.showHoverLine,
+        showHoverLine: state => state.caseDetail.showHoverLine,
+        showDataDrag:state => state.caseDetail.showDataDrag
       }),
       ...mapGetters([
         'minTimestamp',
@@ -81,7 +100,7 @@
         return pathData.map((item, index) => {
           let letter = `M`, path = '', valueX = "", valueY = ""
           for (let [i, tmp] of item.data.entries()) {
-            if(timeStamp[i] >= this.minTimestamp && timeStamp[i] <= this.maxTimestamp) {
+            if (timeStamp[i] >= this.minTimestamp && timeStamp[i] <= this.maxTimestamp) {
               let x = this.grid.left + (timeStamp[i] - this.minTimestamp) * this.rate
               let y = this.grid.height - tmp * yRate[item.yAxisIndex] + this.grid.top
               valueX += `${x};`
@@ -102,14 +121,16 @@
     mounted() {
       if (this.options.animation) {
         for (let key in this.$refs) {
-          let $el = this.$refs[key][0]
-          let tmp = $el.getTotalLength()
-          this.pathLength.push(tmp)
+          // let $el = this.$refs[key][0]
+          // let tmp = $el.getTotalLength()
+          // this.pathLength.push(tmp)
         }
       }
+      console.log(this.$refs.eventRect.getBoundingClientRect())
+      this.offsetX = this.$refs.eventRect.getBoundingClientRect().x
     },
     methods: {
-      dispatch(type, payload){
+      dispatch(type, payload) {
         this.$store.commit(type, payload)
       },
       mousemove(e) {
@@ -120,16 +141,37 @@
         } else if (hoverLineX < 0) {
           hoverLineX = 0
         }
-        this.dispatch("setStoreValue",{hoverLineX})
+        let width = e.clientX - this.clickLineX - this.offsetX + 15
+        this.dragWidth = width < 0 ? 0 : width
+        this.dispatch("setStoreValue", {
+          hoverLineX,
+          showHoverLine: false
+        })
       },
       mouseover(e) {
-        this.dispatch("setStoreValue",{
-          showHoverLine:true
+        this.dispatch("setStoreValue", {
+          showHoverLine: true
         })
       },
       mouseout(e) {
-        this.dispatch("setStoreValue",{
-          showHoverLine:false
+        this.dispatch("setStoreValue", {
+          showHoverLine: false
+        })
+      },
+      mousedown(e){
+        this.clickLineX = e.clientX - this.offsetX
+
+        this.dispatch("setStoreValue", {
+          showHoverLine: false,
+          showDataDrag:true
+        })
+      },
+      mouseup(e){
+        // this.clickLineX = 0
+        this.dragWidth = 0
+        this.dispatch("setStoreValue", {
+          showHoverLine: false,
+          showDataDrag:false
         })
       }
     },

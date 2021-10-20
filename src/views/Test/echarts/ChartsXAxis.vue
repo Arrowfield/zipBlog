@@ -51,20 +51,18 @@
       ]),
       pathX() {
         if (!this.options.xAxis) return ""
+        console.log(this.minTimestamp,this.maxTimestamp)
         this.xAxisData = []
         let sum = this.minTimestamp, path = "", rate = this.rate
         let y = this.grid.top + this.grid.height - 1
         // 求最大分割线
         let tick = 15
-
-        if(this.maxTimestamp - this.minTimestamp < 15 * 1000){
-          tick = 10
-        }
-        if(this.maxTimestamp - this.minTimestamp < 5 * 1000){
-          tick = 4
-        }
         if(this.maxTimestamp - this.minTimestamp < 3 * 1000){
           tick = 3
+        }else if(this.maxTimestamp - this.minTimestamp < 5 * 1000){
+          tick = 4
+        }else if(this.maxTimestamp - this.minTimestamp < 40 * 1000){
+          tick = 10
         }
 
         let step = (this.maxTimestamp - this.minTimestamp) / tick

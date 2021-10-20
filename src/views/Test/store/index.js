@@ -12,8 +12,8 @@ const state = {
   min:0,
   max:1,
   maxTimestamp:0,
-  timestamps:[]
-
+  timestamps:[],
+  showDataDrag:false
 }
 export default {
   state,
