@@ -1,11 +1,12 @@
 import './scss/tips.scss'
 
-let bingValue, offsetX, offsetY
+let bindValue, offsetX, offsetY
 
 let dom = document.createElement('DIV')
 dom.classList.add('tips')
 
 function handleMouseenter(el) {
+  dom.innerHTML = bindValue.time
   document.body.appendChild(dom)
 }
 
@@ -20,16 +21,17 @@ function handleMouseleave(el) {
 
 const tip = {
   bind(el, binding) {
-    bingValue = binding.value
+    bindValue = binding.value
     el.onmouseenter = handleMouseenter
     el.onmousemove = handleMousemove
     el.onmouseleave = handleMouseleave
   },
   update(el, binding) {
-
+    // bindValue = binding.value
+    // console.log(bindValue)
   },
   unbind(el) {
-    document.body.removeChild(dom)
+    // document.body.removeChild(dom)
   }
 }
 

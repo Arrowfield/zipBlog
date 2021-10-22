@@ -30,7 +30,6 @@ export const formatReportData = function (state) {
 }
 
 
-
 function getValueFromDataList(data, keyArray) {
   let res = []
   for (let i = 0; i < data.length; i++) {
@@ -47,10 +46,10 @@ function getValueFromDataList(data, keyArray) {
  * @param {string} findVal
  * @return Array
  */
-export  function binarySearch(arr, left, right, findVal) {
+export function binarySearch(arr, left, right, findVal) {
   //当left>right时，就没找到，结束
   if (left > right) {
-    return [left,-1,right];
+    return [left, -1, right];
   }
 
   let mid = Math.floor((left + right) / 2);
@@ -63,8 +62,24 @@ export  function binarySearch(arr, left, right, findVal) {
     //向左递归
     return binarySearch(arr, left, mid - 1, findVal);
   } else {
-    return [left,mid,right];
+    return [left, mid, right];
   }
 }
 
 
+export function getTooltipsData(opts, hoverTime) {
+
+  let timestamps = opts.xAxis.data
+  let index = binarySearch(timestamps, 0, timestamps.length - 1, hoverTime)[2]
+  let res = []
+  for (let item of opts.series) {
+    res.push({
+      key: item.indexName,
+      value: item.data[index]
+    })
+  }
+  return {
+    time: timestamps[index],
+    data: res
+  }
+}

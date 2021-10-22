@@ -1,10 +1,9 @@
 <template>
   <g
-    v-tips
     @mousedown="mousedown"
     @mouseup="mouseup"
     @mouseover="mouseover"
-    @mousemove="mousemove"
+
     @mouseout="mouseout"
     @contextmenu.prevent
   >
@@ -29,7 +28,7 @@
       :y="grid.top"
       :height="grid.height"
       :width="dataAreaWidth"
-
+      @mousemove="mousemove"
     />
 
     <!-- hover的线 -->
@@ -45,16 +44,16 @@
 
     <!-- 框选的时候显示的矩形 -->
 
-    <rect
-      v-show="showDataDrag"
-      fill="rgb(210,219,238)"
-      fill-opacity="0.3"
-      :x="grid.left + clickLineX"
-      :y="grid.top"
-      :height="grid.height"
-      :width="dragWidth"/>
+<!--    <rect-->
+<!--      v-show="showDataDrag"-->
+<!--      fill="rgb(210,219,238)"-->
+<!--      fill-opacity="0.3"-->
+<!--      :x="grid.left + clickLineX"-->
+<!--      :y="grid.top"-->
+<!--      :height="grid.height"-->
+<!--      :width="dragWidth"/>-->
 
-<!--    <charts-tooltips/>-->
+    <charts-tooltips :tooltips="tooltips"/>
 
   </g>
 </template>
@@ -62,6 +61,7 @@
 <script>
   import {mapGetters, mapState} from "vuex";
   import ChartsTooltips from "./ChartsTooltips";
+  import {getTooltipsData} from "../util";
   export default {
     name: "ChartsDataArea",
     components:{ChartsTooltips},
@@ -70,7 +70,8 @@
         pathLength: [],
         dragWidth:0,
         clickLineX:0,
-        offsetX:0
+        offsetX:0,
+        tooltips:{}
       }
     },
     props: {
@@ -131,7 +132,6 @@
           // this.pathLength.push(tmp)
         }
       }
-      console.log(this.$refs.eventRect.getBoundingClientRect())
       this.offsetX = this.$refs.eventRect.getBoundingClientRect().x
     },
     methods: {
@@ -139,6 +139,7 @@
         this.$store.commit(type, payload)
       },
       mousemove(e) {
+        let rect = e.target.getBoundingClientRect()
         let hoverLineX = 0
         hoverLineX = e.offsetX - this.grid.left
         if (hoverLineX > this.dataAreaWidth) {
@@ -146,6 +147,11 @@
         } else if (hoverLineX < 0) {
           hoverLineX = 0
         }
+
+        let hoverTime = (e.clientX - rect.left) / this.rate
+        this.tooltips = getTooltipsData(this.options, hoverTime)
+
+
         let width = e.clientX - this.clickLineX - this.offsetX + 10
         this.dragWidth = width < 0 ? 0 : width
         this.dispatch("setStoreValue", {
