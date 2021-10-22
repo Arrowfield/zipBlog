@@ -12,8 +12,7 @@
       text-anchor="middle"
       stroke="none"
       fill="#333"
-      v-for="item
-            in xAxisData"
+      v-for="item in xAxisData"
       :x="item.x"
       :y="item.y"
       font-size="12">
@@ -24,6 +23,7 @@
 
 <script>
   import {mapGetters} from "vuex";
+  import {binarySearch} from "../util";
 
   export default {
     name: "ChartsXAxis",
@@ -51,31 +51,46 @@
       ]),
       pathX() {
         if (!this.options.xAxis) return ""
-        console.log(this.minTimestamp,this.maxTimestamp)
         this.xAxisData = []
         let sum = this.minTimestamp, path = "", rate = this.rate
-        let y = this.grid.top + this.grid.height - 1
-        // 求最大分割线
-        let tick = 15
-        if(this.maxTimestamp - this.minTimestamp < 3 * 1000){
-          tick = 3
-        }else if(this.maxTimestamp - this.minTimestamp < 5 * 1000){
-          tick = 4
-        }else if(this.maxTimestamp - this.minTimestamp < 40 * 1000){
-          tick = 10
-        }
 
-        let step = (this.maxTimestamp - this.minTimestamp) / tick
-        for (sum; sum < this.maxTimestamp; sum += step) {
-          let x = sum * rate - this.minTimestamp * rate
+        let timestamps =  this.options.xAxis.data
+        let y = this.grid.top + this.grid.height - 1
+        let tick = Math.ceil(timestamps.length / 20)
+
+        let minIndex = binarySearch(timestamps,0,timestamps.length,this.minTimestamp)[2]
+        let maxIndex = binarySearch(timestamps,0,timestamps.length,this.maxTimestamp)[0]
+
+        for(let i = minIndex;i<maxIndex;i += tick){
+          let x = (timestamps[i]  - this.minTimestamp) * rate
+          if(x < 0) continue
           path += `M ${this.grid.left + x} ${y} L ${this.grid.left + x} ${y + 7} `
           this.xAxisData.push({
-            txt: this.options.xAxis.format(sum),
+            txt: this.options.xAxis.format(timestamps[i]),
             x: this.grid.left + x,
             y: this.grid.top + this.grid.height + 22
           })
         }
-        path += `M ${this.grid.left + this.dataAreaWidth - 1} ${y} L ${this.grid.left + this.dataAreaWidth - 1} ${y + 7}`
+
+        // // 求最大分割线
+        // let tick = 15
+        // if(this.maxTimestamp - this.minTimestamp < 5 * 1000){
+        //   tick = 4
+        // }else if(this.maxTimestamp - this.minTimestamp < 40 * 1000){
+        //   tick = 10
+        // }
+        //
+        // let step = (this.maxTimestamp - this.minTimestamp) / tick
+        // for (sum; sum < this.maxTimestamp; sum += step) {
+        //   let x = sum * rate - this.minTimestamp * rate
+        //   path += `M ${this.grid.left + x} ${y} L ${this.grid.left + x} ${y + 7} `
+        //   this.xAxisData.push({
+        //     txt: this.options.xAxis.format(sum),
+        //     x: this.grid.left + x,
+        //     y: this.grid.top + this.grid.height + 22
+        //   })
+        // }
+        //path += `M ${this.grid.left + this.dataAreaWidth - 1} ${y} L ${this.grid.left + this.dataAreaWidth - 1} ${y + 7}`
         return path
       },
     },

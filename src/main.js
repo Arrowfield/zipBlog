@@ -13,10 +13,12 @@ Vue.prototype.$axios = Object.freeze(service)
 //指令插件的导入
 import Loading from "./directive/loading/loading";
 import Waves from "./directive/waves"
+import Tips from './directive/tips'
 import LoadingCirc from "@/directive/loading/loading-circ";
 Vue.use(Loading)
 Vue.use(LoadingCirc)
 Vue.use(Waves)
+Vue.use(Tips)
 
 //lodash工具的使用
 import _ from 'lodash'

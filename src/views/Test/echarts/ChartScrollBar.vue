@@ -130,6 +130,7 @@
           }
           scrollParams.moveBtnLeft = temp
           min = (this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
+          max = (this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
           // this.$store.commit('setStoreValue', {
           //   scrollParams,
           //   min
@@ -145,6 +146,7 @@
             temp = distance
           }
           scrollParams.moveBtnRight = temp
+          min = (this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
           max = (this.rightBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
           // this.$store.commit('setStoreValue', {
           //   scrollParams,
@@ -173,7 +175,6 @@
         // 3. 缩放
 
         if(this.handleType !== -1 && min < max){
-          console.log(min,max)
           this.$store.commit('setStoreValue', {
             scrollParams,
             min,

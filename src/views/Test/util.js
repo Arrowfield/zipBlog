@@ -44,7 +44,7 @@ function getValueFromDataList(data, keyArray) {
  * @param {数组} arr
  * @param {左边的索引} left
  * @param {number} right
- * @param {number} findVal
+ * @param {string} findVal
  * @return Array
  */
 export  function binarySearch(arr, left, right, findVal) {

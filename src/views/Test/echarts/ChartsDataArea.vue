@@ -1,5 +1,6 @@
 <template>
   <g
+    v-tips
     @mousedown="mousedown"
     @mouseup="mouseup"
     @mouseover="mouseover"
@@ -28,6 +29,7 @@
       :y="grid.top"
       :height="grid.height"
       :width="dataAreaWidth"
+
     />
 
     <!-- hover的线 -->
@@ -52,14 +54,17 @@
       :height="grid.height"
       :width="dragWidth"/>
 
+<!--    <charts-tooltips/>-->
+
   </g>
 </template>
 
 <script>
   import {mapGetters, mapState} from "vuex";
-
+  import ChartsTooltips from "./ChartsTooltips";
   export default {
     name: "ChartsDataArea",
+    components:{ChartsTooltips},
     data() {
       return {
         pathLength: [],
@@ -145,7 +150,7 @@
         this.dragWidth = width < 0 ? 0 : width
         this.dispatch("setStoreValue", {
           hoverLineX,
-          showHoverLine: false
+          showHoverLine: true
         })
       },
       mouseover(e) {
