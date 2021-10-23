@@ -174,12 +174,21 @@
         }
         // 3. 缩放
 
-        if(this.handleType !== -1 && min < max){
+        if (this.handleType !== -1 && min < max) {
           this.$store.commit('setStoreValue', {
             scrollParams,
             min,
             max
           })
+
+          // let dragConfig = this.$store.state.caseDetail.dragConfig
+          // this.$store.commit("setStoreValue", {
+          //   dragConfig: {
+          //     width: dragConfig.width,
+          //     x: dragConfig.x - min * this.dataAreaWidth
+          //   }
+          // })
+
           this.$store.dispatch('reCalcDatalist')
         }
       },

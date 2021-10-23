@@ -1,10 +1,10 @@
 <template>
   <g
     @mousedown="mousedown"
-    @mouseup="mouseup"
     @mouseover="mouseover"
     @mouseout="mouseout"
     @contextmenu.prevent
+    @mousemove="mousemove"
   >
     <!--    <line x1="10" y1="40" x2="10" y2="40" stroke-width="2" stroke="#333">-->
     <!--      <animate attributeName="x1"   :values="paths[0].valueX" dur="100s" repeatCount="1" />-->
@@ -27,7 +27,7 @@
       :y="grid.top"
       :height="grid.height"
       :width="dataAreaWidth"
-      @mousemove="mousemove"
+
     />
 
     <!-- hover的线 -->
@@ -48,10 +48,12 @@
     <rect
       fill="rgb(210,219,238)"
       fill-opacity="0.3"
-      :x="dragConfig.x"
+      :x="dragX"
       :y="grid.top"
       :height="grid.height"
-      :width="dragConfig.width"
+      :width="dragWidth"
+      stroke="#D2DBEE"
+      stroke-width="1"
     />
 
     <!-- tooltips -->
@@ -92,7 +94,8 @@
       dataAreaWidth: {
         type: [Number, String],
       },
-      rate: [Number, String]
+      rate: [Number, String],
+      offsetLeft: [Number, String]
     },
     computed: {
       ...mapState({
@@ -106,7 +109,23 @@
         'minTimestamp',
         'maxTimestamp'
       ]),
+      dragX() {
+        if (this.dragConfig.startTime) {
+          // let x = this.dragConfig.x
+          return this.dragConfig.startTime * this.rate + this.offsetLeft - this.minTimestamp * this.rate
+        } else {
+          return 0
+        }
 
+      },
+      dragWidth() {
+        if (this.dragConfig.startTime) {
+          let width = (this.dragConfig.endTime - this.dragConfig.startTime) * this.rate
+          return width < 0 ? 0 : width
+        } else {
+          return 0
+        }
+      },
       paths() {
         let yRate = this.options.yAxis.map((item) => {
           return this.grid.height / item.max
@@ -167,23 +186,37 @@
           })
           eventBus.$emit('makeChartOptionsAll', hoverTime)
         } else { // drag
-          if (hoverLineX > this.clickLineX) {
-            let width = hoverLineX - this.clickLineX
-            this.dispatch("setStoreValue", {
-              dragConfig: {
-                width: width < 0 ? 0 : width,
-                x: this.grid.left + this.clickLineX
-              }
-            })
-          } else {
-            let width = this.clickLineX - hoverLineX
-            this.dispatch("setStoreValue", {
-              dragConfig: {
-                width: width < 0 ? 0 : width,
-                x: this.grid.left + hoverLineX
-              }
-            })
+          // if (hoverLineX > this.clickLineX) {
+          //
+          //   let width = hoverLineX - this.clickLineX
+          //   this.dispatch("setStoreValue", {
+          //     dragConfig: {
+          //       width: width < 0 ? 0 : width,
+          //       x: this.grid.left + this.clickLineX
+          //     }
+          //   })
+          // } else {
+          //   let width = this.clickLineX - hoverLineX
+          //   this.dispatch("setStoreValue", {
+          //     dragConfig: {
+          //       width: width < 0 ? 0 : width,
+          //       x: this.grid.left + hoverLineX
+          //     }
+          //   })
+          // }
+          let startTime = this.clickLineX / this.rate + this.minTimestamp
+          let endTime = hoverLineX / this.rate + this.minTimestamp
+          if(endTime < startTime){
+            let temp = startTime
+            startTime = endTime
+            endTime = temp
           }
+          this.dispatch("setStoreValue", {
+            dragConfig: {
+              startTime,
+              endTime
+            }
+          })
         }
       },
       mouseover(e) {
@@ -205,14 +238,17 @@
           clickLineX: e.clientX - this.offsetX,
           dragConfig: {
             width: 0,
+            x: 0
           }
         })
+        document.onmouseup = this.mouseup
       },
       mouseup(e) {
         this.dispatch("setStoreValue", {
           showHoverLine: false,
           showDataDrag: false
         })
+        document.onmouseup = null
       }
     },
   }
