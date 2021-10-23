@@ -3,7 +3,6 @@
     @mousedown="mousedown"
     @mouseup="mouseup"
     @mouseover="mouseover"
-
     @mouseout="mouseout"
     @contextmenu.prevent
   >
@@ -46,15 +45,16 @@
 
     <!-- 框选的时候显示的矩形 -->
 
-<!--    <rect-->
-<!--      v-show="showDataDrag"-->
-<!--      fill="rgb(210,219,238)"-->
-<!--      fill-opacity="0.3"-->
-<!--      :x="grid.left + clickLineX"-->
-<!--      :y="grid.top"-->
-<!--      :height="grid.height"-->
-<!--      :width="dragWidth"/>-->
+    <rect
+      fill="rgb(210,219,238)"
+      fill-opacity="0.3"
+      :x="dragConfig.x"
+      :y="grid.top"
+      :height="grid.height"
+      :width="dragConfig.width"
+    />
 
+    <!-- tooltips -->
     <charts-tooltips
       v-show="showHoverLine"
       :y="grid.top + 10"
@@ -71,16 +71,15 @@
   import ChartsTooltips from "./ChartsTooltips";
   import {getTooltipsData} from "../util";
   import {eventBus} from "../../../utils/Bus";
+
   export default {
     name: "ChartsDataArea",
-    components:{ChartsTooltips},
+    components: {ChartsTooltips},
     data() {
       return {
         pathLength: [],
-        dragWidth:0,
-        clickLineX:0,
-        offsetX:0,
-        tooltips:{}
+        offsetX: 0,
+        tooltips: {}
       }
     },
     props: {
@@ -97,9 +96,11 @@
     },
     computed: {
       ...mapState({
+        clickLineX: state => state.caseDetail.clickLineX,
         hoverLineX: state => state.caseDetail.hoverLineX,
         showHoverLine: state => state.caseDetail.showHoverLine,
-        showDataDrag:state => state.caseDetail.showDataDrag
+        showDataDrag: state => state.caseDetail.showDataDrag,
+        dragConfig: state => state.caseDetail.dragConfig,
       }),
       ...mapGetters([
         'minTimestamp',
@@ -142,6 +143,8 @@
         }
       }
       this.offsetX = this.$refs.eventRect.getBoundingClientRect().x
+      // https://echarts.apache.org/zh/option.html#brush.throttleDelay
+      // https://echarts.apache.org/zh/option.html#brush
     },
     methods: {
       dispatch(type, payload) {
@@ -156,42 +159,59 @@
         } else if (hoverLineX < 0) {
           hoverLineX = 0
         }
-        let hoverTime = (e.clientX - rect.left) / this.rate + this.minTimestamp
-        setTimeout(()=>{
-          //this.tooltips = getTooltipsData(this.options, hoverTime)
+        if (!this.showDataDrag) { // hover
+          let hoverTime = (e.clientX - rect.left) / this.rate + this.minTimestamp
+          this.dispatch("setStoreValue", {
+            hoverLineX,
+            showHoverLine: true
+          })
           eventBus.$emit('makeChartOptionsAll', hoverTime)
-        })
-        let width = e.clientX - this.clickLineX - this.offsetX + 10
-        this.dragWidth = width < 0 ? 0 : width
-        this.dispatch("setStoreValue", {
-          hoverLineX,
-          showHoverLine: true
-        })
+        } else { // drag
+          if (hoverLineX > this.clickLineX) {
+            let width = e.clientX - this.clickLineX - this.offsetX + 10
+            this.dispatch("setStoreValue", {
+              dragConfig: {
+                width: width < 0 ? 0 : width,
+                x: this.grid.left + this.clickLineX
+              }
+            })
+          } else {
+            let width = this.clickLineX - hoverLineX
+            this.dispatch("setStoreValue", {
+              dragConfig: {
+                width: width < 0 ? 0 : width,
+                x: this.grid.left + hoverLineX
+              }
+            })
+          }
+        }
       },
       mouseover(e) {
-        this.dispatch("setStoreValue", {
-          showHoverLine: true
-        })
+        if (!this.showDataDrag) {
+          this.dispatch("setStoreValue", {
+            showHoverLine: true
+          })
+        }
       },
       mouseout(e) {
         this.dispatch("setStoreValue", {
           showHoverLine: false
         })
       },
-      mousedown(e){
-        this.clickLineX = e.clientX - this.offsetX
-
+      mousedown(e) {
         this.dispatch("setStoreValue", {
           showHoverLine: false,
-          showDataDrag:true
+          showDataDrag: true,
+          clickLineX: e.clientX - this.offsetX,
+          dragConfig: {
+            width: 0,
+          }
         })
       },
-      mouseup(e){
-        // this.clickLineX = 0
-        this.dragWidth = 0
+      mouseup(e) {
         this.dispatch("setStoreValue", {
           showHoverLine: false,
-          //showDataDrag:false
+          showDataDrag: false
         })
       }
     },

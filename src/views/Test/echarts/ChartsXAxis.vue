@@ -53,16 +53,11 @@
         if (!this.options.xAxis) return ""
         this.xAxisData = []
         let sum = this.minTimestamp, path = "", rate = this.rate
-
         let timestamps = this.options.xAxis.data
         let y = this.grid.top + this.grid.height - 1
         let tick = Math.ceil(timestamps.length / 20)
-
         let minIndex = binarySearch(timestamps, 0, timestamps.length, this.minTimestamp)[2]
         let maxIndex = binarySearch(timestamps, 0, timestamps.length, this.maxTimestamp)[0]
-
-
-
         if (maxIndex - minIndex <= tick) {
           tick = 2
         }

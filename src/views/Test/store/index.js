@@ -8,12 +8,14 @@ const state = {
     moveBtnCenter: 0,
   },
   hoverLineX:0,
+  clickLineX:0,
   showHoverLine:false,
   min:0,
   max:1,
   maxTimestamp:0,
   timestamps:[],
-  showDataDrag:false
+  showDataDrag:false,
+  dragConfig:{},
 }
 export default {
   state,
