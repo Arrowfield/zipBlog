@@ -119,6 +119,7 @@
 
       },
       dragWidth() {
+
         if (this.dragConfig.startTime) {
           let start = this.dragConfig.startTime < this.minTimestamp ? this.minTimestamp : this.dragConfig.startTime
           let end = this.dragConfig.endTime > this.maxTimestamp ? this.maxTimestamp : this.dragConfig.endTime
@@ -173,13 +174,13 @@
       },
       mousemove(e) {
         //let rect = e.target.getBoundingClientRect()
-        let hoverLineX = 0
+        let hoverLineX
         hoverLineX = e.offsetX - this.grid.left
-        if (hoverLineX > this.dataAreaWidth) {
-          hoverLineX = this.dataAreaWidth
-        } else if (hoverLineX < 0) {
-          hoverLineX = 0
-        }
+        // if (hoverLineX > this.dataAreaWidth) {
+        //   hoverLineX = this.dataAreaWidth
+        // } else if (hoverLineX < 0) {
+        //   hoverLineX = 0
+        // }
         if (!this.showDataDrag) { // hover
           let hoverTime = hoverLineX / this.rate + this.minTimestamp
           this.dispatch("setStoreValue", {
@@ -243,6 +244,7 @@
             x: 0
           }
         })
+        document.onmousemove = this.mousemove
         document.onmouseup = this.mouseup
       },
       mouseup(e) {
@@ -250,6 +252,7 @@
           showHoverLine: false,
           showDataDrag: false
         })
+        document.onmousemove = null
         document.onmouseup = null
       }
     },
