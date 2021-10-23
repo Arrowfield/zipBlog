@@ -173,9 +173,10 @@
         this.$store.commit(type, payload)
       },
       mousemove(e) {
-        //let rect = e.target.getBoundingClientRect()
+        let rect = e.target.getBoundingClientRect()
         let hoverLineX
         hoverLineX = e.offsetX - this.grid.left
+        //hoverLineX = e.clientX - rect.left  //为什么这种方式是错误的
         // if (hoverLineX > this.dataAreaWidth) {
         //   hoverLineX = this.dataAreaWidth
         // } else if (hoverLineX < 0) {
