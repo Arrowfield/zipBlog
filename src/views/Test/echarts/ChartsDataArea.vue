@@ -60,6 +60,7 @@
       :y="grid.top + 10"
       :x="grid.left + hoverLineX"
       :tooltips="options.tooltips"
+      :opts="options"
     />
 
   </g>
@@ -155,7 +156,7 @@
         } else if (hoverLineX < 0) {
           hoverLineX = 0
         }
-        let hoverTime = (e.clientX - rect.left) / this.rate
+        let hoverTime = (e.clientX - rect.left) / this.rate + this.minTimestamp
         setTimeout(()=>{
           //this.tooltips = getTooltipsData(this.options, hoverTime)
           eventBus.$emit('makeChartOptionsAll', hoverTime)

@@ -1,6 +1,6 @@
 <template>
   <!-- axisX -->
-  <g stroke="#ACB2BF" stroke-width="2">
+  <g stroke="#ACB2BF" stroke-width="1">
     <line
       :x1="grid.left"
       :y1="grid.top + grid.height"
@@ -54,17 +54,23 @@
         this.xAxisData = []
         let sum = this.minTimestamp, path = "", rate = this.rate
 
-        let timestamps =  this.options.xAxis.data
+        let timestamps = this.options.xAxis.data
         let y = this.grid.top + this.grid.height - 1
         let tick = Math.ceil(timestamps.length / 20)
 
-        let minIndex = binarySearch(timestamps,0,timestamps.length,this.minTimestamp)[2]
-        let maxIndex = binarySearch(timestamps,0,timestamps.length,this.maxTimestamp)[0]
+        let minIndex = binarySearch(timestamps, 0, timestamps.length, this.minTimestamp)[2]
+        let maxIndex = binarySearch(timestamps, 0, timestamps.length, this.maxTimestamp)[0]
 
-        for(let i = minIndex;i<maxIndex;i += tick){
-          let x = (timestamps[i]  - this.minTimestamp) * rate
-          if(x < 0) continue
-          path += `M ${this.grid.left + x} ${y} L ${this.grid.left + x} ${y + 7} `
+
+
+        if (maxIndex - minIndex <= tick) {
+          tick = 2
+        }
+        // console.log(minIndex, maxIndex, tick)
+        for (let i = minIndex; i < maxIndex; i += tick) {
+          let x = (timestamps[i] - this.minTimestamp) * rate
+          if (x < 0) continue
+          path += `M ${this.grid.left + x} ${y + 1} L ${this.grid.left + x} ${y + 8} `
           this.xAxisData.push({
             txt: this.options.xAxis.format(timestamps[i]),
             x: this.grid.left + x,

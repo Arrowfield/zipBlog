@@ -5,7 +5,7 @@
       rx="4"
       :x="x + 8"
       :y="y + 10"
-      fill="white" :width="maxTxtLength + 60"
+      fill="white" :width="maxTxtLength + 70"
       :height="tooltipsData.length * 20 + 32"
     />
     <g alignment-baseline="middle" color="#666" font-size="12">
@@ -13,10 +13,18 @@
         :x="x + 18" :y="y + 30"
       >{{ tooltips.time }}
       </text>
-      <text :x="x + 18" :y="y + 30 + (index+1) * 20" v-for="(item,index) of tooltipsData">
-        <tspan :ref="'key' + index">{{ item.key }}</tspan>
-        <tspan :x="x + 18 + maxTxtLength + 20">{{ item.value }}</tspan>
-      </text>
+      <g v-for="(item,index) of tooltipsData">
+        <circle
+          :fill="item.color"
+          :cx="item.cx"
+          :cy="item.cy"
+          :r="item.r"
+        />
+        <text :x="item.x" :y="item.y" >
+          <tspan :ref="'key' + index">{{ item.key }}</tspan>
+          <tspan :x="item.tx">{{ item.value }}</tspan>
+        </text>
+      </g>
     </g>
   </g>
 </template>
@@ -33,11 +41,7 @@
       tooltips: Object,
       y: Number,
       x: Number,
-    },
-    watch: {
-      // tooltips(n) {
-
-      // },
+      opts: Object
     },
     computed: {
       tooltipsData() {
@@ -48,7 +52,14 @@
             this.maxTxtLength = width
           }
         }
-        return this.tooltips.data.map((item) => {
+        return this.tooltips.data.map((item, index) => {
+          item.color = this.opts.series[index].lineStyle.color
+          item.r = 5
+          item.cx = this.x + 18 + item.r
+          item.cy = this.y + 30 + (index + 1) * 20 - 5
+          item.x = item.cx + 10
+          item.y = item.cy + item.r
+          item.tx = item.x + this.maxTxtLength + 10
           return item
         })
       }
