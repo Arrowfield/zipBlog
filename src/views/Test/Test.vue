@@ -6,16 +6,16 @@
     <!--    </div>-->
 
     <div id="fps-svg" class="target-svg-style target-style">
-      <charts-main  :options="fpsOptions"/>
+      <charts-main :options="fpsOptions"/>
     </div>
 
     <div class="target-svg-style target-style">
-      <charts-main  :options="cpuOptions"/>
+      <charts-main :options="cpuOptions"/>
     </div>
 
-<!--    <div class="target-svg-style target-style" v-for="i in 20">-->
-<!--      <charts-main  :options="cpuOptions"/>-->
-<!--    </div>-->
+<!--        <div class="target-svg-style target-style" v-for="i in 50">-->
+<!--          <charts-main  :options="cpuOptions"/>-->
+<!--        </div>-->
 
   </div>
 </template>
@@ -24,12 +24,14 @@
   import {createCanvas} from '@/plugin/flamegraph/flamegraph'
   import {targetChart} from '@/plugin/targetChart/targetChart'
   import {caseDetail, caseReport} from './caseDetail.js'
-  import {formatReportData} from "./util";
+  import {formatReportData, getTooltipsData} from "./util";
   import ChartsMain from "./echarts/ChartsMain";
   import echarts from "./echarts/echarts";
   import makeChartsOptions from './echarts/options/makeFpsOptions'
   import makeCpuOptions from './echarts/options/makeCpuOptions'
   import {INDEX_TIMESTAMP} from "./constant";
+  import {eventBus} from '../../utils/Bus'
+
   let data = caseDetail.data
   export default {
     name: "Test",
@@ -45,11 +47,12 @@
         pathX: "",
         series: [],
         fpsOptions: {},
-        cpuOptions:{},
-        clientX:"",
-        clientY:"",
-        originX:"",
-        originY:"",
+        cpuOptions: {},
+        clientX: "",
+        clientY: "",
+        originX: "",
+        originY: "",
+        chartOptions: []
       }
     },
     mounted() {
@@ -68,14 +71,16 @@
       let state = {caseDetail: caseDetail.data, caseReport: caseReport.data}
       state.fullDataList = formatReportData(state)
       let timestamp = state.fullDataList[INDEX_TIMESTAMP]
-      this.$store.commit('setStoreValue',{
-        maxTimestamp:timestamp[timestamp.length - 1],
-        timestamps:timestamp,
+      this.$store.commit('setStoreValue', {
+        maxTimestamp: timestamp[timestamp.length - 1],
+        timestamps: timestamp,
       })
 
       this.fpsOptions = makeChartsOptions(state);
       this.cpuOptions = makeCpuOptions(state)
-      echarts.connect([this.fpsOptions])
+      //echarts.connect([this.fpsOptions])
+      this.chartOptions.push(this.fpsOptions, this.cpuOptions)
+      eventBus.$on('makeChartOptionsAll', this.makeChartOptionsAll)
     },
     methods: {
       drawAxisY() {
@@ -115,9 +120,15 @@
       },
       testMousemove(e) {
         let el = e.target
-        let offsetX = e.clientX- this.clientX ,offsetY = e.clientY - this.clientY
-        el.style.top =  offsetY  + 'px'
-        el.style.left =  offsetX + 'px'
+        let offsetX = e.clientX - this.clientX, offsetY = e.clientY - this.clientY
+        el.style.top = offsetY + 'px'
+        el.style.left = offsetX + 'px'
+      },
+      makeChartOptionsAll(time) {
+        for(let item of this.chartOptions) {
+          data = getTooltipsData(item,time)
+          item.tooltips = data
+        }
       }
     }
   }

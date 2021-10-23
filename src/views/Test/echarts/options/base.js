@@ -15,7 +15,9 @@ export function formatOptions(state, options) {
   }
   if (!flag) return null
 
-
+  if(!options.tooltips){
+    options.tooltips = {}
+  }
   if (!options.hasOwnProperty('colors')) {
     options.colors = INDEX_LABEL_COLOR
   }

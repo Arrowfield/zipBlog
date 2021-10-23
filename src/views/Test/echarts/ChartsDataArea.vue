@@ -59,7 +59,7 @@
       v-show="showHoverLine"
       :y="grid.top + 10"
       :x="grid.left + hoverLineX"
-      :tooltips="tooltips"
+      :tooltips="options.tooltips"
     />
 
   </g>
@@ -69,6 +69,7 @@
   import {mapGetters, mapState} from "vuex";
   import ChartsTooltips from "./ChartsTooltips";
   import {getTooltipsData} from "../util";
+  import {eventBus} from "../../../utils/Bus";
   export default {
     name: "ChartsDataArea",
     components:{ChartsTooltips},
@@ -154,14 +155,11 @@
         } else if (hoverLineX < 0) {
           hoverLineX = 0
         }
-
         let hoverTime = (e.clientX - rect.left) / this.rate
         setTimeout(()=>{
-          this.tooltips = getTooltipsData(this.options, hoverTime)
+          //this.tooltips = getTooltipsData(this.options, hoverTime)
+          eventBus.$emit('makeChartOptionsAll', hoverTime)
         })
-
-
-
         let width = e.clientX - this.clickLineX - this.offsetX + 10
         this.dragWidth = width < 0 ? 0 : width
         this.dispatch("setStoreValue", {
