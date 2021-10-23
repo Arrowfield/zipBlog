@@ -7,7 +7,12 @@ import {
   INDEX_TIMESTAMP,
   PLATFORM_IOS,
   INDEX_APP,
-  INDEX_TOTAL
+  INDEX_TOTAL,
+  INDEX_MEMORY,
+  INDEX_VIRTUAL_MEMORY,
+  INDEX_AVAILABLE_MEMORY,
+  INDEX_XCODE_MEMORY,
+  INDEX_REAL_MEMORY
 } from './constant'
 
 export const formatReportData = function (state) {
@@ -23,6 +28,13 @@ export const formatReportData = function (state) {
 
     result[INDEX_APP] = getValueFromDataList(dataList, ['CpuUsage', 'AppUsage'])
     result[INDEX_TOTAL] = getValueFromDataList(dataList, ['CpuUsage', 'TotalUsage'])
+
+    result[INDEX_MEMORY] = getValueFromDataList(dataList, ['Ios11MemoryUsage', 'Memory'])
+    result[INDEX_VIRTUAL_MEMORY] = getValueFromDataList(dataList, ['VirtualMemory', 'VirtualMemory'])
+    result[INDEX_AVAILABLE_MEMORY] = getValueFromDataList(dataList, ['AvailableMemory', 'availableMemory'])
+    result[INDEX_XCODE_MEMORY] = getValueFromDataList(dataList, ['Ios11MemoryUsage', 'XcodeMemory'])
+    result[INDEX_REAL_MEMORY] = getValueFromDataList(dataList, ['Ios11MemoryUsage', 'RealMemory'])
+
 
     result[INDEX_TIMESTAMP] = dataList.map((item) => item.TimeStamp)
   }

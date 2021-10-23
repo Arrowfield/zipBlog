@@ -5,6 +5,10 @@ import {
   INDEX_APP,
   INDEX_TOTAL
 } from "../../constant";
+
+
+
+
 import {formatOptions} from './base'
 
 export default function makeCpuOptions(state) {

@@ -1,7 +1,7 @@
 <template>
   <!-- axisY -->
   <g class="charts-axis-y" stroke="#ACB2BF" stroke-width="1">
-    <g v-for="item in yAxis" >
+    <g v-for="item in yAxis">
 
       <defs>
         <path :id="options.title + item.name" :d="item.d"/>
@@ -33,7 +33,7 @@
 
     </g>
 
-    <g v-for="item in splitLine" >
+    <g v-for="item in splitLine">
       <path :d="item.d" stroke-dasharray="2,2"/>
     </g>
   </g>
@@ -61,12 +61,14 @@
       yAxis() {
         if (!this.options.yAxis) return []
         let step = 10
+
         return this.options.yAxis.map((item) => {
           let sum = 0
-          if (item.max < item.minInterval) {
-            item.max = item.minInterval
-            step = item.minInterval
-          }
+          step = Math.ceil(Number(item.max / 6))
+          // if (item.max < item.minInterval) {
+          //   item.max = item.minInterval
+          //   step = item.minInterval
+          // }
           let rate = this.grid.height / item.max
           item.text = []
           item.path = ''
@@ -83,7 +85,7 @@
               item.path += `M ${this.grid.left} ${y} L ${this.grid.left - 7} ${y} `
 
               if (item.splitLine.show) {
-                splitLine += `M ${this.grid.left} ${y} L ${this.grid.left+ this.dataAreaWidth} ${y} `
+                splitLine += `M ${this.grid.left} ${y} L ${this.grid.left + this.dataAreaWidth} ${y} `
               }
             } else {
               let y = this.grid.top + (this.grid.height - sum * rate)
@@ -105,7 +107,7 @@
             item.d = `M ${left} ${top} L ${left} ${top - 60}`
           }
 
-          if(item.splitLine.show) {
+          if (item.splitLine.show) {
             this.splitLine.push({
               d: splitLine,
               type: item.splitLine.lineStyle.type

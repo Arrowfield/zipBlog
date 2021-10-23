@@ -13,6 +13,10 @@
       <charts-main :options="cpuOptions"/>
     </div>
 
+    <div class="target-svg-style target-style">
+      <charts-main :options="memoryOptions"/>
+    </div>
+
 <!--        <div class="target-svg-style target-style" v-for="i in 50">-->
 <!--          <charts-main  :options="cpuOptions"/>-->
 <!--        </div>-->
@@ -29,6 +33,7 @@
   import echarts from "./echarts/echarts";
   import makeChartsOptions from './echarts/options/makeFpsOptions'
   import makeCpuOptions from './echarts/options/makeCpuOptions'
+  import makeMemoryOptions from './echarts/options/makeMemoryOptions'
   import {INDEX_TIMESTAMP} from "./constant";
   import {eventBus} from '../../utils/Bus'
 
@@ -48,6 +53,7 @@
         series: [],
         fpsOptions: {},
         cpuOptions: {},
+        memoryOptions:{},
         clientX: "",
         clientY: "",
         originX: "",
@@ -78,8 +84,13 @@
 
       this.fpsOptions = makeChartsOptions(state);
       this.cpuOptions = makeCpuOptions(state)
+      this.memoryOptions = makeMemoryOptions(state)
       //echarts.connect([this.fpsOptions])
-      this.chartOptions.push(this.fpsOptions, this.cpuOptions)
+      this.chartOptions.push(
+        this.fpsOptions,
+        this.cpuOptions,
+        this.memoryOptions
+      )
       eventBus.$on('makeChartOptionsAll', this.makeChartOptionsAll)
     },
     methods: {
