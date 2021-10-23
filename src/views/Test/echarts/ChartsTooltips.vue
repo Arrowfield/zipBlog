@@ -43,15 +43,24 @@
       x: Number,
       opts: Object
     },
-    computed: {
-      tooltipsData() {
-        if (!this.tooltips.data) return []
-        for (let key in this.$refs) {
+    watch:{
+      tooltipsData(n){
+        if(n){
+          if(this.maxTxtLength) return
+          for (let key in this.$refs) {
           let width = this.$refs[key][0].getBBox().width
           if (width > this.maxTxtLength) {
+            //console.log(width,this.$refs[key][0].getBoundingClientRect(),this.$refs[key][0].getBBox())
             this.maxTxtLength = width
           }
         }
+        }
+      }
+    },
+    computed: {
+      tooltipsData() {
+        if (!this.tooltips.data) return []
+
         return this.tooltips.data.map((item, index) => {
           item.color = this.opts.series[index].lineStyle.color
           item.r = 5
@@ -65,6 +74,7 @@
       }
     },
     mounted() {
+
 
     }
   }
