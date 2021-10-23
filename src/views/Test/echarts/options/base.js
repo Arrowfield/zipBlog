@@ -5,15 +5,15 @@ export function formatOptions(state, options) {
   options.width = 1600
 
   let flag = false
-  for(let [index,item] of options.series.entries()){
-    if(state.fullDataList[item.indexName] && state.fullDataList[item.indexName].length > 0){
+  for (let [index, item] of options.series.entries()) {
+    if (state.fullDataList[item.indexName] && state.fullDataList[item.indexName].length > 0) {
       flag = true
-    }else if(!item.data){
-      console.log(item.indexName,'data is empty')
-      options.series.splice(index,1)
+    } else if (!item.data) {
+      console.log(item.indexName, 'data is empty')
+      options.series.splice(index, 1)
     }
   }
-  if(!flag) return  null
+  if (!flag) return null
 
 
   if (!options.hasOwnProperty('colors')) {
@@ -25,15 +25,20 @@ export function formatOptions(state, options) {
       data: state.fullDataList[INDEX_TIMESTAMP],
       maxInterval: 1000 * 90,
       minInterval: 1000 * 3,
-      format: function (val) {
+      format: function (val, type) {
         let minute = Math.floor(val / (1000 * 60))
         let second = Math.floor(val % (1000 * 60) / 1000)
-        return `${minute < 10 ? ('0' + minute) : minute}:${second < 10 ? ('0' + second) : second}`
-      }
+        let timeStr = `${minute < 10 ? ('0' + minute) : minute}:${second < 10 ? ('0' + second) : second}`
+        if (type === 'MM:ss:mm') {
+          let mm = val % 1000
+          timeStr += `:${mm < 10 ? '00' + mm : mm < 100 ? '0' + mm : mm}`
+        }
+        return timeStr
+      },
     }
   }
 
-  if(!options.hasOwnProperty('legend')){
+  if (!options.hasOwnProperty('legend')) {
     options.legend = {
       show: true,
       top: 10
@@ -104,7 +109,7 @@ export function formatOptions(state, options) {
 function getAxisRange(dataArray) {
   let maxValue = 0
   for (let item of dataArray) {
-    if(!item.data) continue
+    if (!item.data) continue
     for (let value of item.data) {
       if (value > maxValue) {
         maxValue = value

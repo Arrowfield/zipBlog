@@ -6,13 +6,16 @@ let dom = document.createElement('DIV')
 dom.classList.add('tips')
 
 function handleMouseenter(el) {
-  dom.innerHTML = bindValue.time
   document.body.appendChild(dom)
 }
 
 function handleMousemove(el) {
+  //console.log(bindValue)
   dom.style.top = el.clientY  + 'px'
   dom.style.left = el.clientX + 'px'
+  if(bindValue.time) {
+    dom.innerHTML = bindValue.time
+  }
 }
 
 function handleMouseleave(el) {
@@ -27,8 +30,9 @@ const tip = {
     el.onmouseleave = handleMouseleave
   },
   update(el, binding) {
-    // bindValue = binding.value
-    // console.log(bindValue)
+    //bindValue = binding.value
+    //console.log(bindValue)
+
   },
   unbind(el) {
     // document.body.removeChild(dom)

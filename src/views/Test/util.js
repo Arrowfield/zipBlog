@@ -68,7 +68,6 @@ export function binarySearch(arr, left, right, findVal) {
 
 
 export function getTooltipsData(opts, hoverTime) {
-
   let timestamps = opts.xAxis.data
   let index = binarySearch(timestamps, 0, timestamps.length - 1, hoverTime)[2]
   let res = []
@@ -79,7 +78,7 @@ export function getTooltipsData(opts, hoverTime) {
     })
   }
   return {
-    time: timestamps[index],
+    time: opts.xAxis.format(timestamps[index],'MM:ss:mm'),
     data: res
   }
 }

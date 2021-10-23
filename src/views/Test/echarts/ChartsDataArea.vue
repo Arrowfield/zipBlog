@@ -35,7 +35,9 @@
     <line
       v-show="showHoverLine"
       stroke-width="2"
-      stroke="#666"
+      stroke="#ddd"
+      stroke-dashoffset="3"
+      stroke-dasharray="3"
       :x1="grid.left + hoverLineX"
       :y1="grid.top + grid.height"
       :x2="grid.left + hoverLineX"
@@ -53,7 +55,12 @@
 <!--      :height="grid.height"-->
 <!--      :width="dragWidth"/>-->
 
-    <charts-tooltips :tooltips="tooltips"/>
+    <charts-tooltips
+      v-show="showHoverLine"
+      :y="grid.top + 10"
+      :x="grid.left + hoverLineX"
+      :tooltips="tooltips"
+    />
 
   </g>
 </template>
@@ -149,7 +156,10 @@
         }
 
         let hoverTime = (e.clientX - rect.left) / this.rate
-        this.tooltips = getTooltipsData(this.options, hoverTime)
+        setTimeout(()=>{
+          this.tooltips = getTooltipsData(this.options, hoverTime)
+        })
+
 
 
         let width = e.clientX - this.clickLineX - this.offsetX + 10
