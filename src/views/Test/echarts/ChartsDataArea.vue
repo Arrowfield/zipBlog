@@ -151,7 +151,7 @@
         this.$store.commit(type, payload)
       },
       mousemove(e) {
-        let rect = e.target.getBoundingClientRect()
+        //let rect = e.target.getBoundingClientRect()
         let hoverLineX = 0
         hoverLineX = e.offsetX - this.grid.left
         if (hoverLineX > this.dataAreaWidth) {
@@ -160,7 +160,7 @@
           hoverLineX = 0
         }
         if (!this.showDataDrag) { // hover
-          let hoverTime = (e.clientX - rect.left) / this.rate + this.minTimestamp
+          let hoverTime = hoverLineX / this.rate + this.minTimestamp
           this.dispatch("setStoreValue", {
             hoverLineX,
             showHoverLine: true
@@ -168,7 +168,7 @@
           eventBus.$emit('makeChartOptionsAll', hoverTime)
         } else { // drag
           if (hoverLineX > this.clickLineX) {
-            let width = e.clientX - this.clickLineX - this.offsetX + 10
+            let width = hoverLineX - this.clickLineX
             this.dispatch("setStoreValue", {
               dragConfig: {
                 width: width < 0 ? 0 : width,
