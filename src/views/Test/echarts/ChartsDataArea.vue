@@ -111,8 +111,8 @@
       ]),
       dragX() {
         if (this.dragConfig.startTime) {
-          // let x = this.dragConfig.x
-          return this.dragConfig.startTime * this.rate + this.offsetLeft - this.minTimestamp * this.rate
+          let x = (this.dragConfig.startTime - this.minTimestamp) * this.rate + this.offsetLeft
+          return x < this.offsetLeft ? this.offsetLeft : x
         } else {
           return 0
         }
@@ -120,7 +120,9 @@
       },
       dragWidth() {
         if (this.dragConfig.startTime) {
-          let width = (this.dragConfig.endTime - this.dragConfig.startTime) * this.rate
+          let start = this.dragConfig.startTime < this.minTimestamp ? this.minTimestamp : this.dragConfig.startTime
+          let end = this.dragConfig.endTime > this.maxTimestamp ? this.maxTimestamp : this.dragConfig.endTime
+          let width = (end - start) * this.rate
           return width < 0 ? 0 : width
         } else {
           return 0
@@ -206,7 +208,7 @@
           // }
           let startTime = this.clickLineX / this.rate + this.minTimestamp
           let endTime = hoverLineX / this.rate + this.minTimestamp
-          if(endTime < startTime){
+          if (endTime < startTime) {
             let temp = startTime
             startTime = endTime
             endTime = temp
