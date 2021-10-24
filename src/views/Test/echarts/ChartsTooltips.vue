@@ -10,18 +10,19 @@
     />
     <g alignment-baseline="middle" color="#666" font-size="12">
       <text
+        ref="time"
         :x="x + 18" :y="y + 30"
       >{{ tooltips.time }}
       </text>
-      <g v-for="(item,index) of tooltipsData">
+      <g :ref="'key' + index" v-for="(item,index) of tooltipsData">
         <circle
           :fill="item.color"
           :cx="item.cx"
           :cy="item.cy"
           :r="item.r"
         />
-        <text :x="item.x" :y="item.y" >
-          <tspan :ref="'key' + index">{{ item.key }}</tspan>
+        <text :x="item.x" :y="item.y">
+          <tspan>{{ item.key }}</tspan>
           <tspan :x="item.tx">{{ item.value }}</tspan>
         </text>
       </g>
@@ -43,17 +44,21 @@
       x: Number,
       opts: Object
     },
-    watch:{
-      tooltipsData(n){
-        if(n){
-          if(this.maxTxtLength) return
+    watch: {
+      tooltipsData(n) {
+        if (n) {
+          if (this.maxTxtLength) return
+          // this.maxTxtLength = this.$refs.time.getBBox().width
+
           for (let key in this.$refs) {
-          let width = this.$refs[key][0].getBBox().width
-          if (width > this.maxTxtLength) {
-            //console.log(width,this.$refs[key][0].getBoundingClientRect(),this.$refs[key][0].getBBox())
-            this.maxTxtLength = width
+            if (this.$refs[key][0]) {
+              let width = this.$refs[key][0].getBBox().width
+              if (width > this.maxTxtLength) {
+                // console.log(width,this.$refs[key][0])
+                this.maxTxtLength = width
+              }
+            }
           }
-        }
         }
       }
     },

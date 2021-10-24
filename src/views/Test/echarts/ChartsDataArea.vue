@@ -58,7 +58,7 @@
     />
 
     <charts-tooltips
-      v-show="dragConfig.endTime || dragConfig.startTime"
+      v-show="showDragTooltips"
       :y="grid.top + 10"
       :x="dragX + dragWidth"
       :tooltips="options.dragTooltips"
@@ -94,7 +94,8 @@
         pathLength: [],
         offsetX: 0,
         tooltips: {},
-        timer: null
+        timer: null,
+        showDragTooltips:false
       }
     },
     props: {
@@ -241,10 +242,12 @@
               endTime
             }
           })
+          this.showDragTooltips = false
           //不能实时计算
           if (this.timer) clearTimeout(this.timer)
           this.timer = setTimeout(() => {
             eventBus.$emit('makeDragOptionsAll', startTime, endTime)
+            this.showDragTooltips = true
           }, 20)
 
         }
