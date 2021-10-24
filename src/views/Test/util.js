@@ -86,11 +86,12 @@ export function getTooltipsData(opts, hoverTime) {
   for (let item of opts.series) {
     res.push({
       key: item.indexName,
-      value: item.data[index].toFixed('1')
+      value: item.data[index] && item.data[index].toFixed('1')
     })
   }
   return {
     time: opts.xAxis.format(timestamps[index],'MM:ss:mm'),
     data: res
   }
+
 }

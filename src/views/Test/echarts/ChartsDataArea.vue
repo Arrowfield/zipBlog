@@ -1,5 +1,6 @@
 <template>
   <g
+    ref="moveRect"
     @mousedown="mousedown"
     @mouseover="mouseover"
     @mouseout="mouseout"
@@ -173,10 +174,13 @@
         this.$store.commit(type, payload)
       },
       mousemove(e) {
-        let rect = e.target.getBoundingClientRect()
+        // offsetX 相对于父元素的偏移量
+        let rect = this.$refs.moveRect.getBoundingClientRect()
         let hoverLineX
-        hoverLineX = e.offsetX - this.grid.left
-        //hoverLineX = e.clientX - rect.left  //为什么这种方式是错误的
+        // hoverLineX = e.offsetX - this.grid.left
+        // console.log(e.offsetX)
+        hoverLineX = e.clientX - rect.left  //为什么这种方式是错误的
+
         // if (hoverLineX > this.dataAreaWidth) {
         //   hoverLineX = this.dataAreaWidth
         // } else if (hoverLineX < 0) {
@@ -236,10 +240,11 @@
         })
       },
       mousedown(e) {
+        let rect = this.$refs.moveRect.getBoundingClientRect()
         this.dispatch("setStoreValue", {
           showHoverLine: false,
           showDataDrag: true,
-          clickLineX: e.clientX - this.offsetX,
+          clickLineX: e.clientX - rect.left,
           dragConfig: {
             width: 0,
             x: 0
