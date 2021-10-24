@@ -9,14 +9,17 @@ export function formatOptions(state, options) {
     if (state.fullDataList[item.indexName] && state.fullDataList[item.indexName].length > 0) {
       flag = true
     } else if (!item.data) {
-      console.log(item.indexName, 'data is empty')
+      // console.log(item.indexName, 'data is empty')
       options.series.splice(index, 1)
     }
   }
   if (!flag) return null
 
-  if(!options.tooltips){
+  if (!options.hasOwnProperty('tooltips')) {
     options.tooltips = {}
+  }
+  if (!options.hasOwnProperty('dragTooltips')) {
+    options.dragTooltips = {}
   }
   if (!options.hasOwnProperty('colors')) {
     options.colors = INDEX_LABEL_COLOR

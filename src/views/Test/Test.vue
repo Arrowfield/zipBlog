@@ -17,9 +17,9 @@
       <charts-main :options="memoryOptions"/>
     </div>
 
-    <!--        <div class="target-svg-style target-style" v-for="i in 50">-->
-    <!--          <charts-main  :options="cpuOptions"/>-->
-    <!--        </div>-->
+    <!--            <div class="target-svg-style target-style" v-for="i in 100">-->
+    <!--              <charts-main  :options="cpuOptions"/>-->
+    <!--            </div>-->
 
   </div>
 </template>
@@ -28,7 +28,7 @@
   import {createCanvas} from '@/plugin/flamegraph/flamegraph'
   import {targetChart} from '@/plugin/targetChart/targetChart'
   import {caseDetail, caseReport} from './caseDetail.js'
-  import {formatReportData, getTooltipsData} from "./util";
+  import {formatReportData, getDragTooltipsData, getTooltipsData} from "./util";
   import ChartsMain from "./echarts/ChartsMain";
   import echarts from "./echarts/echarts";
   import makeChartsOptions from './echarts/options/makeFpsOptions'
@@ -92,6 +92,7 @@
         this.memoryOptions
       )
       eventBus.$on('makeChartOptionsAll', this.makeChartOptionsAll)
+      eventBus.$on('makeDragOptionsAll', this.makeDragOptionsAll)
       window.onresize = this.resize
       this.resize()
     },
@@ -146,6 +147,12 @@
         for (let item of this.chartOptions) {
           data = getTooltipsData(item, time)
           item.tooltips = data
+        }
+      },
+      makeDragOptionsAll(startTime, endTime) {
+        for (let item of this.chartOptions) {
+          data = getDragTooltipsData(item, startTime, endTime)
+          item.dragTooltips = data
         }
       },
       updateDataAreaWidth(width) {

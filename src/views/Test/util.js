@@ -100,11 +100,11 @@ const findNearestTarget = (arr, target) => {
   return Math.abs(target - arr[l]) <= Math.abs(target - arr[r]) ? l : r;
 }
 
-
+// https://www.cnblogs.com/echolun/p/13971943.html
 export function getTooltipsData(opts, hoverTime) {
   let timestamps = opts.xAxis.data
   //let index = binarySearch(timestamps, 0, timestamps.length - 1, hoverTime)[2]
-  let index = findNearestTarget(timestamps,hoverTime)
+  let index = findNearestTarget(timestamps, hoverTime)
   let res = []
   for (let item of opts.series) {
     res.push({
@@ -116,5 +116,24 @@ export function getTooltipsData(opts, hoverTime) {
     time: opts.xAxis.format(timestamps[index], 'MM:ss:mm'),
     data: res
   }
+}
 
+export function getDragTooltipsData(opts, startTime, endTime) {
+  let timestamps = opts.xAxis.data
+  let startIndex = findNearestTarget(timestamps, startTime)
+  let endIndex = findNearestTarget(timestamps, endTime)
+  console.log(startIndex, endIndex)
+  let res = []
+  // for (let item of opts.series) {
+  //   res.push({
+  //     key: item.indexName,
+  //     value: item.data[index] && item.data[index].toFixed('1')
+  //   })
+  // }
+  let start = opts.xAxis.format(timestamps[startIndex], 'MM:ss:mm')
+  let end = opts.xAxis.format(timestamps[endIndex], 'MM:ss:mm')
+  return {
+    time: `${start}-${end}`,
+    data: res
+  }
 }

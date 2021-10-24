@@ -57,6 +57,14 @@
       stroke-width="1"
     />
 
+    <charts-tooltips
+      v-show="dragConfig.endTime || dragConfig.startTime"
+      :y="grid.top + 10"
+      :x="dragX + dragWidth"
+      :tooltips="options.dragTooltips"
+      :opts="options"
+    />
+
     <!-- tooltips -->
     <charts-tooltips
       v-show="showHoverLine"
@@ -65,6 +73,8 @@
       :tooltips="options.tooltips"
       :opts="options"
     />
+
+
 
   </g>
 </template>
@@ -83,7 +93,8 @@
       return {
         pathLength: [],
         offsetX: 0,
-        tooltips: {}
+        tooltips: {},
+        timer: null
       }
     },
     props: {
@@ -139,7 +150,7 @@
         return pathData.map((item, index) => {
           let letter = `M`, path = '', valueX = "", valueY = "", circles = []
           for (let [i, tmp] of item.data.entries()) {
-            if (timeStamp[i] >= this.minTimestamp  && timeStamp[i] <= this.maxTimestamp ) {
+            if (timeStamp[i] >= this.minTimestamp && timeStamp[i] <= this.maxTimestamp) {
               let x = this.grid.left + (timeStamp[i] - this.minTimestamp) * this.rate
               let y = this.grid.height - tmp * yRate[item.yAxisIndex] + this.grid.top
               valueX += `${x};`
@@ -230,6 +241,12 @@
               endTime
             }
           })
+          //不能实时计算
+          if (this.timer) clearTimeout(this.timer)
+          this.timer = setTimeout(() => {
+            eventBus.$emit('makeDragOptionsAll', startTime, endTime)
+          }, 20)
+
         }
       },
       mouseover(e) {
@@ -250,10 +267,7 @@
           showHoverLine: false,
           showDataDrag: true,
           clickLineX: e.clientX - rect.left,
-          dragConfig: {
-            width: 0,
-            x: 0
-          }
+          dragConfig: {startTime:0, endTime:0}
         })
         document.onmousemove = this.mousemove
         document.onmouseup = this.mouseup
