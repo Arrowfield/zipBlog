@@ -17,9 +17,9 @@
       <charts-main :options="memoryOptions"/>
     </div>
 
-    <!--            <div class="target-svg-style target-style" v-for="i in 100">-->
-    <!--              <charts-main  :options="cpuOptions"/>-->
-    <!--            </div>-->
+<!--    <div class="target-svg-style target-style" v-for="i in 100">-->
+<!--      <charts-main :options="cpuOptions"/>-->
+<!--    </div>-->
 
   </div>
 </template>
