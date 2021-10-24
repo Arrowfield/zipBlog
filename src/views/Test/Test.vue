@@ -17,9 +17,9 @@
       <charts-main :options="memoryOptions"/>
     </div>
 
-<!--        <div class="target-svg-style target-style" v-for="i in 50">-->
-<!--          <charts-main  :options="cpuOptions"/>-->
-<!--        </div>-->
+    <!--        <div class="target-svg-style target-style" v-for="i in 50">-->
+    <!--          <charts-main  :options="cpuOptions"/>-->
+    <!--        </div>-->
 
   </div>
 </template>
@@ -53,7 +53,7 @@
         series: [],
         fpsOptions: {},
         cpuOptions: {},
-        memoryOptions:{},
+        memoryOptions: {},
         clientX: "",
         clientY: "",
         originX: "",
@@ -92,8 +92,15 @@
         this.memoryOptions
       )
       eventBus.$on('makeChartOptionsAll', this.makeChartOptionsAll)
+      window.onresize = this.resize
+      this.resize()
     },
     methods: {
+      resize() {
+        let width = document.documentElement.offsetWidth
+        if (width < 1200) width = 1200
+        this.updateDataAreaWidth(width < 1600 ? width : 1600)
+      },
       drawAxisY() {
         let fullDataList = formatReportData(caseReport), maxValues = []
         for (let key in fullDataList) {
@@ -136,11 +143,19 @@
         el.style.left = offsetX + 'px'
       },
       makeChartOptionsAll(time) {
-        for(let item of this.chartOptions) {
-          data = getTooltipsData(item,time)
+        for (let item of this.chartOptions) {
+          data = getTooltipsData(item, time)
           item.tooltips = data
         }
+      },
+      updateDataAreaWidth(width) {
+        for (let item of this.chartOptions) {
+          item.width = width
+        }
       }
+    },
+    beforeDestroy() {
+      window.onresize = null
     }
   }
 

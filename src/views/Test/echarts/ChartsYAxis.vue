@@ -30,12 +30,12 @@
         </textPath>
       </text>
 
-
+      <g v-for="tem in item.splitLines">
+        <path :d="tem.d" stroke-dasharray="2,2"/>
+      </g>
     </g>
 
-    <g v-for="item in splitLine">
-      <path :d="item.d" stroke-dasharray="2,2"/>
-    </g>
+
   </g>
 </template>
 
@@ -44,7 +44,7 @@
     name: "ChartsYAxis",
     data() {
       return {
-        splitLine: []
+        //splitLine: [] 注意此处的巨坑 在当前组件定义的响应式属性，卡顿严重
       }
     },
     props: {
@@ -86,6 +86,7 @@
 
               if (item.splitLine.show) {
                 splitLine += `M ${this.grid.left} ${y} L ${this.grid.left + this.dataAreaWidth} ${y} `
+                console.log(this.dataAreaWidth)
               }
             } else {
               let y = this.grid.top + (this.grid.height - sum * rate)
@@ -108,12 +109,16 @@
           }
 
           if (item.splitLine.show) {
-            this.splitLine.push({
+            item.splitLines = []
+            // this.splitLine.push({
+            //   d: splitLine,
+            //   type: item.splitLine.lineStyle.type
+            // })
+            item.splitLines.push({
               d: splitLine,
               type: item.splitLine.lineStyle.type
             })
           }
-
           return item
         })
       }
