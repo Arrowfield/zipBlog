@@ -3,7 +3,7 @@ import {
   INDEX_VIRTUAL_MEMORY,
   INDEX_AVAILABLE_MEMORY,
   INDEX_XCODE_MEMORY,
-  INDEX_REAL_MEMORY
+  INDEX_REAL_MEMORY, INDEX_APP, ALGORITHM_AVERAGE, INDEX_TOTAL
 } from "../../constant";
 import {formatOptions} from './base'
 
@@ -22,6 +22,12 @@ export default function makeCpuOptions(state) {
           }
         }
       },
+    ],
+    area: [
+      {indexName: INDEX_MEMORY, type: ALGORITHM_AVERAGE, name: "Avg(Memory)",},
+      {indexName: INDEX_XCODE_MEMORY, type: ALGORITHM_AVERAGE, name: "Avg(XcodeMemory)"},
+      {indexName: INDEX_REAL_MEMORY, type: ALGORITHM_AVERAGE, name: "Avg(RealMemory)"},
+      {indexName: INDEX_AVAILABLE_MEMORY, type: ALGORITHM_AVERAGE, name: "Avg(AvailableMemory)",},
     ],
     series: [
       {

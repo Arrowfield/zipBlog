@@ -12,7 +12,7 @@ import {
   INDEX_VIRTUAL_MEMORY,
   INDEX_AVAILABLE_MEMORY,
   INDEX_XCODE_MEMORY,
-  INDEX_REAL_MEMORY, ALGORITHM_AVERAGE
+  INDEX_REAL_MEMORY, ALGORITHM_AVERAGE, ALGORITHM_VARIANCE
 } from './constant'
 
 export const formatReportData = function (state) {
@@ -123,19 +123,15 @@ export function getDragTooltipsData(opts, startTime, endTime) {
   let startIndex = findNearestTarget(timestamps, startTime)
   let endIndex = findNearestTarget(timestamps, endTime)
   let res = []
-  // for (let item of opts.series) {
-  //   res.push({
-  //     key: item.indexName,
-  //     value: item.data[index] && item.data[index].toFixed('1')
-  //   })
-  // }
-
   if (opts.area) {
     for (let item of opts.area) {
       let data = opts.series.filter((tmp) => tmp.indexName === item.indexName)[0].data, val = -1
       switch (item.type) {
         case ALGORITHM_AVERAGE:
           val = calcAverage(data, startIndex, endIndex).toFixed(1)
+          break
+        case ALGORITHM_VARIANCE:
+          val = calcVariance(data, startIndex, endIndex).toFixed(1)
           break
       }
       res.push({
@@ -157,7 +153,6 @@ export function getDragTooltipsData(opts, startTime, endTime) {
  * {Array} 指标对应的数据集合
  * {Number} 开始下标
  */
-
 function calcAverage(data, start, end) {
   // let a = data.reduce((prev, next) => prev + next, 0)
   // console.log(a / data.length, a, data.length)
@@ -168,4 +163,18 @@ function calcAverage(data, start, end) {
   }
   if (count === 0) return '-'
   return sum / count
+}
+
+/**
+ * 计算方差
+ * @param {array} 指标对应的数据集合
+ * @param {number} 开始下标
+ */
+function calcVariance(data, start, end) {
+  let average = calcAverage(data, start, end), sum = 0, count = 0
+  for (let i = start; i <= end; i++) {
+    sum += Math.pow(data[i] - average, 2)
+    count++
+  }
+  return sum / (end - start + 1)
 }

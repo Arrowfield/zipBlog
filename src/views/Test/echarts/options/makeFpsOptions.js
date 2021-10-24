@@ -2,7 +2,7 @@ import {
   INDEX_BIG_JANK,
   INDEX_FPS, INDEX_JANK, INDEX_LABEL_COLOR, INDEX_STUTTER, INDEX_TIMESTAMP,
   INDEX_FRAME_COLOR,
-  ALGORITHM_AVERAGE
+  ALGORITHM_AVERAGE, ALGORITHM_VARIANCE
 } from "../../constant";
 import {formatOptions} from './base'
 
@@ -30,7 +30,7 @@ export default function makeChartsOptions(state) {
     ],
     area: [
       {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: "Avg(FPS)",},
-      {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: "Var(FPS)"},
+      {indexName: INDEX_FPS, type: ALGORITHM_VARIANCE, name: "Var(FPS)"},
       {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: `FPS>=${threshold1}`},
       {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: `FPS>=${threshold2}`},
       {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: "Drop(FPS)"},
@@ -45,7 +45,7 @@ export default function makeChartsOptions(state) {
         lineStyle: {
           color: "#C541B1"
         },
-        markLine: {
+        markLine: { // 标记线
           data:
             [
               {

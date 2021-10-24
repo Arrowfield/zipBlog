@@ -33,3 +33,4 @@ export {
 }
 
 export const ALGORITHM_AVERAGE = 'average'
+export const ALGORITHM_VARIANCE = 'variance'

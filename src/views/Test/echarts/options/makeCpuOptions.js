@@ -3,7 +3,7 @@ import {
   INDEX_FPS, INDEX_JANK, INDEX_LABEL_COLOR, INDEX_STUTTER, INDEX_TIMESTAMP,
   INDEX_FRAME_COLOR,
   INDEX_APP,
-  INDEX_TOTAL
+  INDEX_TOTAL, ALGORITHM_AVERAGE
 } from "../../constant";
 
 
@@ -25,6 +25,10 @@ export default function makeCpuOptions(state) {
           }
         }
       },
+    ],
+    area: [
+      {indexName: INDEX_APP, type: ALGORITHM_AVERAGE, name: "Avg(AppCPU)",},
+      {indexName: INDEX_TOTAL, type: ALGORITHM_AVERAGE, name: "Avg(TotalCPU)"},
     ],
     series: [
       {
