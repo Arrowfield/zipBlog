@@ -11,15 +11,15 @@
     <!--      <animate attributeName="x1"   :values="paths[0].valueX" dur="100s" repeatCount="1" />-->
     <!--      <animate attributeName="y1"   :values="paths[0].valueY" dur="100s" repeatCount="1" />-->
     <!--    </line>-->
-    <g>
+    <g v-for="(item,index) in paths">
       <path
         :ref="`path${index}`"
         stroke-width="2"
         fill="none"
         :stroke="item.stroke"
         :d="item.path"
-        v-for="(item,index) in paths"
       ></path>
+      <circle :fill="item.stroke" r="2" v-for="c of item.circles" :cy="c.y" :cx="c.x"/>
     </g>
     <rect
       ref="eventRect"
@@ -74,6 +74,7 @@
   import ChartsTooltips from "./ChartsTooltips";
   import {getTooltipsData} from "../util";
   import {eventBus} from "../../../utils/Bus";
+  import {INDEX_FPS, INDEX_JANK} from "../constant";
 
   export default {
     name: "ChartsDataArea",
@@ -120,7 +121,6 @@
 
       },
       dragWidth() {
-
         if (this.dragConfig.startTime) {
           let start = this.dragConfig.startTime < this.minTimestamp ? this.minTimestamp : this.dragConfig.startTime
           let end = this.dragConfig.endTime > this.maxTimestamp ? this.maxTimestamp : this.dragConfig.endTime
@@ -137,22 +137,27 @@
         let timeStamp = this.options.xAxis.data
         let pathData = this.options.series.filter(item => !item.type)
         return pathData.map((item, index) => {
-          let letter = `M`, path = '', valueX = "", valueY = ""
+          let letter = `M`, path = '', valueX = "", valueY = "", circles = []
           for (let [i, tmp] of item.data.entries()) {
-            if (timeStamp[i] >= this.minTimestamp && timeStamp[i] <= this.maxTimestamp) {
+            if (timeStamp[i] >= this.minTimestamp  && timeStamp[i] <= this.maxTimestamp ) {
               let x = this.grid.left + (timeStamp[i] - this.minTimestamp) * this.rate
               let y = this.grid.height - tmp * yRate[item.yAxisIndex] + this.grid.top
               valueX += `${x};`
               valueY += `${y};`
               path += `${letter} ${x} ${y} `
               letter = `L`
+              if ([INDEX_FPS, INDEX_JANK].indexOf(item.indexName) > -1) {
+                circles.push({x, y})
+              }
             }
           }
+
           return {
             stroke: item.lineStyle.color,
             path: path,
             valueX,
-            valueY
+            valueY,
+            circles
           }
         })
       },
