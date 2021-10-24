@@ -159,6 +159,8 @@ export function getDragTooltipsData(opts, startTime, endTime) {
  */
 
 function calcAverage(data, start, end) {
+  // let a = data.reduce((prev, next) => prev + next, 0)
+  // console.log(a / data.length, a, data.length)
   let count = 0, sum = 0
   for (let i = start; i <= end; i++) {
     sum += data[i]
