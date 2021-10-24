@@ -148,7 +148,7 @@
     getArticleList
   } from "@/api/home";
   import setting from "@/settings"
-  import {Bus} from "@/utils/Bus";
+  import {eventBus} from "@/utils/Bus";
   import {getIndexData} from "@/api/indexData";
 
   export default {
@@ -324,7 +324,7 @@
         }
         this.archive = result
       })
-      Bus.$on('getArticleList', this.articleList)
+      eventBus.$on('getArticleList', this.articleList)
     },
     beforeDestroy() {
       clearInterval(this.timer)

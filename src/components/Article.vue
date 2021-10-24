@@ -33,9 +33,10 @@
 
   const testText = '12312345645648789456132131'
   import {mapState} from 'vuex'
-  import {Bus} from "@/utils/Bus";
+  import {eventBus} from "@/utils/Bus";
 
   export default {
+
     name: "Article",
     data() {
       return {
@@ -69,12 +70,12 @@
       // let res = await getArticleList()
       // this.articleList = res.data.data
       // this.total = res.data.total
-      Bus.$emit('getArticleList', this.currPage)
+      eventBus.$emit('getArticleList', this.currPage)
     },
     methods: {
       changeCurrPage(page) {
         console.log('当前的页数是' + page)
-        Bus.$emit('getArticleList', page)
+        eventBus.$emit('getArticleList', page)
       }
     }
   }
