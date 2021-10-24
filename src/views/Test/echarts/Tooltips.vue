@@ -1,10 +1,13 @@
 <template>
   <div v-show="show" :style="{left:left}" class="tooltips">
     <p>{{ data.time }}</p>
-    <div v-for="(item,index) of data.data">
-      <span :style="{backgroundColor:options.series[index].lineStyle.color}" class="circles"></span>
-      <span>{{ item.key }}</span>
-      <span style="margin-left: 20px;float: right">{{ item.value }}</span>
+    <div v-for="(item,index) of data.data" style="display: flex;justify-content: space-between">
+      <div>
+        <span :style="{backgroundColor:options.series[index % options.series.length].lineStyle.color}"
+              class="circles"></span>
+        <span>{{ item.key }}</span>
+      </div>
+      <span style="margin-left: 20px;float: right;white-space: nowrap">{{ item.value }}</span>
     </div>
   </div>
 </template>
@@ -13,7 +16,7 @@
   export default {
     name: "Tooltips",
     props: {
-      show: [Boolean,Number,String],
+      show: [Boolean, Number, String],
       left: [String, Number],
       data: Object,
       options: {

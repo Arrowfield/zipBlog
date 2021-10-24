@@ -16,11 +16,11 @@ export const INDEX_REAL_MEMORY = 'RealMemory'
 export const INDEX_VIRTUAL_MEMORY = 'VirtualMemory'
 export const INDEX_AVAILABLE_MEMORY = 'AvailableMemory'
 
-export const INDEX_LABEL_COLOR = ['#ED5664','#917cbe','#5EBEB5','#c541b1','#FF7327','#4593FD']
+export const INDEX_LABEL_COLOR = ['#ED5664', '#917cbe', '#5EBEB5', '#c541b1', '#FF7327', '#4593FD']
 export const INDEX_FRAME_COLOR = [
-  'rgb(213,111,15)','rgb(217,213,48)',
-  'rgb(221,178,51)','rgb(254,126,11)',
-  'rgb(215,141,30)','rgb(223,35,51)']
+  'rgb(213,111,15)', 'rgb(217,213,48)',
+  'rgb(221,178,51)', 'rgb(254,126,11)',
+  'rgb(215,141,30)', 'rgb(223,35,51)']
 
 export const EMPTY_VALUE = -1
 const PLATFORM_ANDROID = 1
@@ -31,3 +31,5 @@ export {
   INDEX_FRAME_TIME,
   INDEX_TIMESTAMP
 }
+
+export const ALGORITHM_AVERAGE = 'average'

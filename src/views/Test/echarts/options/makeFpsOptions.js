@@ -1,12 +1,14 @@
 import {
   INDEX_BIG_JANK,
   INDEX_FPS, INDEX_JANK, INDEX_LABEL_COLOR, INDEX_STUTTER, INDEX_TIMESTAMP,
-  INDEX_FRAME_COLOR
+  INDEX_FRAME_COLOR,
+  ALGORITHM_AVERAGE
 } from "../../constant";
 import {formatOptions} from './base'
 
 export default function makeChartsOptions(state) {
-
+  let threshold1 = 18
+  let threshold2 = 25
   return formatOptions(state, {
     title: "FPS",
     yAxis: [
@@ -25,6 +27,15 @@ export default function makeChartsOptions(state) {
           show: false
         }
       }
+    ],
+    area: [
+      {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: "Avg(FPS)",},
+      {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: "Var(FPS)"},
+      {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: `FPS>=${threshold1}`},
+      {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: `FPS>=${threshold2}`},
+      {indexName: INDEX_FPS, type: ALGORITHM_AVERAGE, name: "Drop(FPS)"},
+      {indexName: INDEX_JANK, type: ALGORITHM_AVERAGE, name: "Jank(/10min)"},
+      {indexName: INDEX_BIG_JANK, type: ALGORITHM_AVERAGE, name: "BigJank(/10min)"},
     ],
 
     series: [

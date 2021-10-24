@@ -12,7 +12,7 @@ import {
   INDEX_VIRTUAL_MEMORY,
   INDEX_AVAILABLE_MEMORY,
   INDEX_XCODE_MEMORY,
-  INDEX_REAL_MEMORY
+  INDEX_REAL_MEMORY, ALGORITHM_AVERAGE
 } from './constant'
 
 export const formatReportData = function (state) {
@@ -122,7 +122,6 @@ export function getDragTooltipsData(opts, startTime, endTime) {
   let timestamps = opts.xAxis.data
   let startIndex = findNearestTarget(timestamps, startTime)
   let endIndex = findNearestTarget(timestamps, endTime)
-  console.log(startIndex, endIndex)
   let res = []
   // for (let item of opts.series) {
   //   res.push({
@@ -130,10 +129,41 @@ export function getDragTooltipsData(opts, startTime, endTime) {
   //     value: item.data[index] && item.data[index].toFixed('1')
   //   })
   // }
+
+  if (opts.area) {
+    for (let item of opts.area) {
+      let data = opts.series.filter((tmp) => tmp.indexName === item.indexName)[0].data, val = -1
+      switch (item.type) {
+        case ALGORITHM_AVERAGE:
+          val = calcAverage(data, startIndex, endIndex).toFixed(1)
+          break
+      }
+      res.push({
+        key: item.name,
+        value: val
+      })
+    }
+  }
   let start = opts.xAxis.format(timestamps[startIndex], 'MM:ss:mm')
   let end = opts.xAxis.format(timestamps[endIndex], 'MM:ss:mm')
   return {
     time: `${start}-${end}`,
     data: res
   }
+}
+
+/**
+ * 计算平均值
+ * {Array} 指标对应的数据集合
+ * {Number} 开始下标
+ */
+
+function calcAverage(data, start, end) {
+  let count = 0, sum = 0
+  for (let i = start; i <= end; i++) {
+    sum += data[i]
+    count++
+  }
+  if (count === 0) return '-'
+  return sum / count
 }
