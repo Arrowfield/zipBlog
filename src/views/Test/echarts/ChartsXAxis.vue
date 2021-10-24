@@ -59,7 +59,7 @@
         let minIndex = binarySearch(timestamps, 0, timestamps.length, this.minTimestamp)[2]
         let maxIndex = binarySearch(timestamps, 0, timestamps.length, this.maxTimestamp)[0]
         if (maxIndex - minIndex <= tick) {
-          tick = 10
+          tick = 5
         }
         // console.log(minIndex, maxIndex, tick)
         for (let i = minIndex; i < maxIndex; i += tick) {

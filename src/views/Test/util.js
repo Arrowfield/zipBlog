@@ -60,11 +60,14 @@ function getValueFromDataList(data, keyArray) {
  */
 export function binarySearch(arr, left, right, findVal) {
   //当left>right时，就没找到，结束
-  if (left > right) {
-    return [left, -1, right];
-  }
+
 
   let mid = Math.floor((left + right) / 2);
+
+  if (left > right) {
+    return [left, mid, right];
+  }
+
   let midVal = arr[mid];
 
   if (findVal > midVal) {
@@ -79,9 +82,29 @@ export function binarySearch(arr, left, right, findVal) {
 }
 
 
+const findNearestTarget = (arr, target) => {
+  let mid;
+  let l = 0;
+  let r = arr.length - 1;
+  // 保证指针最终停留在相邻的两个数,所以这里是判断是否大于1
+  while (r - l > 1) {
+    mid = Math.floor((l + r) / 2);
+    // 如果目标数比中间小，所以范围在左边
+    if (target < arr[mid]) {
+      r = mid;
+    } else {
+      l = mid;
+    }
+  }
+  // 最后比较这两个数字的绝对差大小即可。
+  return Math.abs(target - arr[l]) <= Math.abs(target - arr[r]) ? l : r;
+}
+
+
 export function getTooltipsData(opts, hoverTime) {
   let timestamps = opts.xAxis.data
-  let index = binarySearch(timestamps, 0, timestamps.length - 1, hoverTime)[2]
+  //let index = binarySearch(timestamps, 0, timestamps.length - 1, hoverTime)[2]
+  let index = findNearestTarget(timestamps,hoverTime)
   let res = []
   for (let item of opts.series) {
     res.push({
@@ -90,7 +113,7 @@ export function getTooltipsData(opts, hoverTime) {
     })
   }
   return {
-    time: opts.xAxis.format(timestamps[index],'MM:ss:mm'),
+    time: opts.xAxis.format(timestamps[index], 'MM:ss:mm'),
     data: res
   }
 
