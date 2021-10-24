@@ -44,28 +44,31 @@
       x: Number,
       opts: Object
     },
+    methods: {
+      updateMaxTextLength() {
+        this.maxTxtLength = this.$refs.time.getBBox().width
+        for (let key in this.$refs) {
+          if (this.$refs[key][0]) {
+            let width = this.$refs[key][0].getBBox().width
+            if (width > this.maxTxtLength) {
+              // console.log(width,this.$refs[key][0])
+              this.maxTxtLength = width
+            }
+          }
+        }
+      }
+    },
     watch: {
       tooltipsData(n) {
         if (n) {
           if (this.maxTxtLength) return
-          // this.maxTxtLength = this.$refs.time.getBBox().width
-
-          for (let key in this.$refs) {
-            if (this.$refs[key][0]) {
-              let width = this.$refs[key][0].getBBox().width
-              if (width > this.maxTxtLength) {
-                // console.log(width,this.$refs[key][0])
-                this.maxTxtLength = width
-              }
-            }
-          }
+          this.updateMaxTextLength()
         }
       }
     },
     computed: {
       tooltipsData() {
         if (!this.tooltips.data) return []
-
         return this.tooltips.data.map((item, index) => {
           item.color = this.opts.series[index].lineStyle.color
           item.r = 5
@@ -79,8 +82,6 @@
       }
     },
     mounted() {
-
-
     }
   }
 </script>

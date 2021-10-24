@@ -28,7 +28,6 @@
       :y="grid.top"
       :height="grid.height"
       :width="dataAreaWidth"
-
     />
 
     <!-- hover的线 -->
@@ -57,23 +56,22 @@
       stroke-width="1"
     />
 
-    <charts-tooltips
-      v-show="showDragTooltips"
-      :y="grid.top + 10"
-      :x="dragX + dragWidth"
-      :tooltips="options.dragTooltips"
-      :opts="options"
-    />
+    <!--    <charts-tooltips-->
+    <!--      v-show="showDragTooltips"-->
+    <!--      :y="grid.top + 10"-->
+    <!--      :x="dragX + dragWidth"-->
+    <!--      :tooltips="options.dragTooltips"-->
+    <!--      :opts="options"-->
+    <!--    />-->
 
     <!-- tooltips -->
-    <charts-tooltips
-      v-show="showHoverLine"
-      :y="grid.top + 10"
-      :x="grid.left + hoverLineX"
-      :tooltips="options.tooltips"
-      :opts="options"
-    />
-
+    <!--    <charts-tooltips-->
+    <!--      v-show="showHoverLine"-->
+    <!--      :y="grid.top + 10"-->
+    <!--      :x="grid.left + hoverLineX"-->
+    <!--      :tooltips="options.tooltips"-->
+    <!--      :opts="options"-->
+    <!--    />-->
 
 
   </g>
@@ -95,7 +93,7 @@
         offsetX: 0,
         tooltips: {},
         timer: null,
-        showDragTooltips:false
+
       }
     },
     props: {
@@ -111,13 +109,24 @@
       rate: [Number, String],
       offsetLeft: [Number, String]
     },
+    watch: {
+      dragWidth(n) {
+        if (n) {
+          this.dispatch("setStoreValue", {
+            dragLineX: this.dragWidth + this.dragX
+          })
+        }
+      },
+    },
     computed: {
       ...mapState({
         clickLineX: state => state.caseDetail.clickLineX,
         hoverLineX: state => state.caseDetail.hoverLineX,
+        dragLineX: state => state.caseDetail.dragLineX,
         showHoverLine: state => state.caseDetail.showHoverLine,
         showDataDrag: state => state.caseDetail.showDataDrag,
         dragConfig: state => state.caseDetail.dragConfig,
+        showDragTooltips: state => state.caseDetail.showDragTooltips
       }),
       ...mapGetters([
         'minTimestamp',
@@ -194,15 +203,7 @@
         // offsetX 相对于父元素的偏移量
         let rect = this.$refs.moveRect.getBoundingClientRect()
         let hoverLineX
-        // hoverLineX = e.offsetX - this.grid.left
-        // console.log(e.offsetX)
         hoverLineX = e.clientX - rect.left  //为什么这种方式是错误的
-
-        // if (hoverLineX > this.dataAreaWidth) {
-        //   hoverLineX = this.dataAreaWidth
-        // } else if (hoverLineX < 0) {
-        //   hoverLineX = 0
-        // }
         if (!this.showDataDrag) { // hover
           let hoverTime = hoverLineX / this.rate + this.minTimestamp
           this.dispatch("setStoreValue", {
@@ -211,24 +212,6 @@
           })
           eventBus.$emit('makeChartOptionsAll', hoverTime)
         } else { // drag
-          // if (hoverLineX > this.clickLineX) {
-          //
-          //   let width = hoverLineX - this.clickLineX
-          //   this.dispatch("setStoreValue", {
-          //     dragConfig: {
-          //       width: width < 0 ? 0 : width,
-          //       x: this.grid.left + this.clickLineX
-          //     }
-          //   })
-          // } else {
-          //   let width = this.clickLineX - hoverLineX
-          //   this.dispatch("setStoreValue", {
-          //     dragConfig: {
-          //       width: width < 0 ? 0 : width,
-          //       x: this.grid.left + hoverLineX
-          //     }
-          //   })
-          // }
           let startTime = this.clickLineX / this.rate + this.minTimestamp
           let endTime = hoverLineX / this.rate + this.minTimestamp
           if (endTime < startTime) {
@@ -240,14 +223,18 @@
             dragConfig: {
               startTime,
               endTime
-            }
+            },
+            showDragTooltips: false
           })
-          this.showDragTooltips = false
+
           //不能实时计算
           if (this.timer) clearTimeout(this.timer)
           this.timer = setTimeout(() => {
             eventBus.$emit('makeDragOptionsAll', startTime, endTime)
-            this.showDragTooltips = true
+            this.dispatch("setStoreValue", {
+              showDragTooltips: true,
+              dragLineX: this.dragWidth + this.dragX
+            })
           }, 20)
 
         }
@@ -270,9 +257,10 @@
           showHoverLine: false,
           showDataDrag: true,
           clickLineX: e.clientX - rect.left,
-          dragConfig: {startTime:0, endTime:0}
+          dragConfig: {startTime: 0, endTime: 0},
+          showDragTooltips: false
         })
-        this.showDragTooltips = false
+
         document.onmousemove = this.mousemove
         document.onmouseup = this.mouseup
       },

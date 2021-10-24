@@ -9,12 +9,14 @@ const state = {
   },
   hoverLineX:0,
   clickLineX:0,
+  dragLineX:0,
   showHoverLine:false,
   min:0,
   max:1,
   maxTimestamp:0,
   timestamps:[],
   showDataDrag:false,
+  showDragTooltips:false,
   dragConfig:{},
 }
 export default {
