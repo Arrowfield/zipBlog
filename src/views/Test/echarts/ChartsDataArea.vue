@@ -272,6 +272,7 @@
           clickLineX: e.clientX - rect.left,
           dragConfig: {startTime:0, endTime:0}
         })
+        this.showDragTooltips = false
         document.onmousemove = this.mousemove
         document.onmouseup = this.mouseup
       },
