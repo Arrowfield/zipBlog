@@ -86,7 +86,7 @@
 
               if (item.splitLine.show) {
                 splitLine += `M ${this.grid.left} ${y} L ${this.grid.left + this.dataAreaWidth} ${y} `
-                console.log(this.dataAreaWidth)
+                //console.log(this.dataAreaWidth)
               }
             } else {
               let y = this.grid.top + (this.grid.height - sum * rate)
