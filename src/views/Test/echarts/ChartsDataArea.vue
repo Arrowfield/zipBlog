@@ -31,17 +31,26 @@
     />
 
     <!-- hover的线 -->
-    <line
-      v-show="showHoverLine"
-      stroke-width="2"
-      stroke="#ddd"
-      stroke-dashoffset="3"
-      stroke-dasharray="3"
-      :x1="grid.left + hoverLineX"
-      :y1="grid.top + grid.height"
-      :x2="grid.left + hoverLineX"
-      :y2="grid.top"
-    />
+    <g v-show="showHoverLine">
+      <line
+        stroke-width="2"
+        stroke="#ddd"
+        stroke-dashoffset="3"
+        stroke-dasharray="3"
+        :x1="grid.left + hoverLineX"
+        :y1="grid.top + grid.height"
+        :x2="grid.left + hoverLineX"
+        :y2="grid.top"
+      />
+      <!-- hover时显示纵坐标 -->
+      <circle
+        :fill="item.color"
+        :cy="grid.top + item.y"
+        :cx="grid.left + hoverLineX" r="4.5"
+        v-for="item of circles"
+      />
+    </g>
+
 
     <!-- 框选的时候显示的矩形 -->
 
@@ -132,6 +141,18 @@
         'minTimestamp',
         'maxTimestamp'
       ]),
+      circles() {
+        if(!this.options.tooltips.data) return []
+        let res = []
+        let yAxis = this.options.yAxis[0]
+        this.options.tooltips.data.map((item,index) => {
+          res.push({
+            y:this.grid.height - item.value * (this.grid.height / yAxis.max),
+            color: this.options.series[index].lineStyle.color
+          })
+        })
+        return res
+      },
       dragX() {
         if (this.dragConfig.startTime) {
           let x = (this.dragConfig.startTime - this.minTimestamp) * this.rate + this.offsetLeft
