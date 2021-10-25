@@ -45,7 +45,9 @@ export const formatReportData = function (state) {
 function getValueFromDataList(data, keyArray) {
   let res = []
   for (let i = 0; i < data.length; i++) {
-    res.push(data[i][keyArray[0]][keyArray[1]])
+    if(data[i][keyArray[0]]) {
+      res.push(data[i][keyArray[0]][keyArray[1]])
+    }
   }
   return res
 }

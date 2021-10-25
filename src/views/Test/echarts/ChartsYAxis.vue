@@ -29,14 +29,41 @@
           {{ item.name }}
         </textPath>
       </text>
-
+      <!-- 分割线 -->
       <g v-for="tem in item.splitLines">
         <path :d="tem.d" stroke-dasharray="2,2"/>
       </g>
     </g>
 
+    <!-- 标记线 -->
+    <line
+      v-for="item of markLine"
+      stroke-dasharray="4,2"
+      stroke-dashoffset="0"
+      stroke="#91cc75"
+      stroke-width="1"
+      :y2="grid.top"
+      :x2="grid.left + dataAreaWidth"
+      :x1="grid.left"
+      :y1="grid.top"/>
 
+<!--    <path d="M 4 0 A 4 4 0 1 1 4 -0.0004" fill="#91cc75" fill-opacity="1" stroke="none"-->
+<!--          transform="matrix(0,-1,1,0,110.2,268.9111)"/>-->
+<!--    <path-->
+<!--      d="M 110.2 269.5 L 991.8 269.5"-->
+<!--      fill="none"-->
+<!--      stroke="#91cc75"-->
+<!--      stroke-width="1"-->
+<!--      paint-order="fill"-->
+<!--      stroke-opacity="1"-->
+<!--      stroke-dasharray="4,2"-->
+<!--      stroke-dashoffset="0"-->
+<!--      stroke-linecap="butt"-->
+<!--      stroke-miterlimit="10"/>-->
+<!--    <path d="M 0 0 L 5.3333 16 L 0 12 L -5.3333 16 L 0 0 Z" fill="#91cc75" fill-opacity="1" stroke="none"-->
+<!--          transform="matrix(0,1,-1,0,991.8,268.9111)"></path>-->
   </g>
+
 </template>
 
 <script>
@@ -55,6 +82,20 @@
       dataAreaWidth: [Number, String]
     },
     computed: {
+      markLine() {
+        return this.options.series.map((item) => {
+          if (item.markLine) {
+            console.log(item.markLine)
+            return {
+              y: 0,
+              value:""
+            }
+          }else{
+            return null
+          }
+
+        }).filter(item => item)
+      },
       top() {
         return this.grid.top
       },

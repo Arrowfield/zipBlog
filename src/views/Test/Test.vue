@@ -28,7 +28,7 @@
   import {createCanvas} from '@/plugin/flamegraph/flamegraph'
   import {targetChart} from '@/plugin/targetChart/targetChart'
   import {caseDetail } from './caseDetail.js'
-  import {caseReport } from './caseDetail01.js'
+  import {caseReport } from './caseReport.js'
   import {formatReportData, getDragTooltipsData, getTooltipsData} from "./util";
   import ChartsMain from "./echarts/ChartsMain";
   import echarts from "./echarts/echarts";
@@ -74,7 +74,7 @@
       // }
       // this.drawAxisY()
       // this.drawAxisX()
-
+      //https://stackoverflow.com/questions/8125006/google-chrome-developer-toolkit-is-slow
       let state = {caseDetail: caseDetail.data, caseReport: caseReport.data}
       state.fullDataList = formatReportData(state)
       let timestamp = state.fullDataList[INDEX_TIMESTAMP]
