@@ -82,6 +82,7 @@ export function formatOptions(state, options) {
   options.yAxis = options.yAxis.map((item, index) => {
     item.min = 0
     item.max = getAxisRange(options.series.filter(tmp => tmp.yAxisIndex === index))
+    item.max = item.max < 1 ? 1 : item.max
     if (!item.hasOwnProperty('minInterval')) {
       item.minInterval = 1
     }

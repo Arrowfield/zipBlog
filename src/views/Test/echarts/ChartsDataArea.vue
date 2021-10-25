@@ -155,6 +155,7 @@
         let yRate = this.options.yAxis.map((item) => {
           return this.grid.height / item.max
         })
+
         let timeStamp = this.options.xAxis.data
         let pathData = this.options.series.filter(item => !item.type)
         return pathData.map((item, index) => {
@@ -163,6 +164,7 @@
             if (timeStamp[i] >= this.minTimestamp && timeStamp[i] <= this.maxTimestamp) {
               let x = this.grid.left + (timeStamp[i] - this.minTimestamp) * this.rate
               let y = this.grid.height - tmp * yRate[item.yAxisIndex] + this.grid.top
+
               valueX += `${x};`
               valueY += `${y};`
               path += `${letter} ${x} ${y} `

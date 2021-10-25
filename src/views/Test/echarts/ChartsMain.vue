@@ -75,7 +75,7 @@
   import ChartsFlameGraph from "./ChartsFlameGraph";
   import {mapGetters, mapState} from "vuex";
   import Tooltips from "./Tooltips";
-
+  //https://perfdog.qq.com/case_detail/1815579
   export default {
     name: "ChartsMain",
     components: {
