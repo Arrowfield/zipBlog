@@ -155,7 +155,7 @@ export function getDragTooltipsData(opts, startTime, endTime) {
  * {Array} 指标对应的数据集合
  * {Number} 开始下标
  */
-function calcAverage(data, start, end) {
+export function calcAverage(data, start, end) {
   // let a = data.reduce((prev, next) => prev + next, 0)
   // console.log(a / data.length, a, data.length)
   let count = 0, sum = 0

@@ -36,37 +36,39 @@
     </g>
 
     <!-- 标记线 -->
-    <line
-      v-for="item of markLine"
-      stroke-dasharray="4,2"
-      stroke-dashoffset="0"
-      stroke="#91cc75"
-      stroke-width="1"
-      :y2="grid.top"
-      :x2="grid.left + dataAreaWidth"
-      :x1="grid.left"
-      :y1="grid.top"/>
-
-<!--    <path d="M 4 0 A 4 4 0 1 1 4 -0.0004" fill="#91cc75" fill-opacity="1" stroke="none"-->
-<!--          transform="matrix(0,-1,1,0,110.2,268.9111)"/>-->
-<!--    <path-->
-<!--      d="M 110.2 269.5 L 991.8 269.5"-->
-<!--      fill="none"-->
-<!--      stroke="#91cc75"-->
-<!--      stroke-width="1"-->
-<!--      paint-order="fill"-->
-<!--      stroke-opacity="1"-->
-<!--      stroke-dasharray="4,2"-->
-<!--      stroke-dashoffset="0"-->
-<!--      stroke-linecap="butt"-->
-<!--      stroke-miterlimit="10"/>-->
-<!--    <path d="M 0 0 L 5.3333 16 L 0 12 L -5.3333 16 L 0 0 Z" fill="#91cc75" fill-opacity="1" stroke="none"-->
-<!--          transform="matrix(0,1,-1,0,991.8,268.9111)"></path>-->
+    <g v-for="item of markLine">
+      <line
+        stroke-linecap="butt"
+        stroke-dasharray="4,2"
+        stroke-dashoffset="0"
+        stroke="#91cc75"
+        stroke-width="1"
+        :y2="grid.top +  item.y"
+        :x2="grid.left + dataAreaWidth"
+        :x1="grid.left"
+        :y1="grid.top +  item.y"/>
+      <path d="M 4 0 A 4 4 0 1 1 4 -0.0004" fill="#91cc75" fill-opacity="1" stroke="none"
+            :transform="`matrix(0,-1,1,0,${grid.left},${grid.top +  item.y})`"/>
+      <path d="M 0 0 L 5.3333 16 L 0 12 L -5.3333 16 L 0 0 Z" fill="#91cc75" fill-opacity="1" stroke="none"
+            :transform="`matrix(0,1,-1,0,${grid.left + dataAreaWidth},${grid.top +  item.y})`"></path>
+      <text
+        alignment-baseline="middle"
+        stroke="none"
+        fill="#333"
+        font-size="12"
+        :x="grid.left + dataAreaWidth + 10"
+        :y="grid.top +  item.y">
+        {{ item.value.toFixed(1) }}
+      </text>
+    </g>
   </g>
 
 </template>
 
 <script>
+  import {ALGORITHM_AVERAGE} from "../constant";
+  import {calcAverage} from "../util";
+
   export default {
     name: "ChartsYAxis",
     data() {
@@ -83,18 +85,24 @@
     },
     computed: {
       markLine() {
-        return this.options.series.map((item) => {
+        let res = []
+        this.options.series.map((item) => {
           if (item.markLine) {
-            console.log(item.markLine)
-            return {
-              y: 0,
-              value:""
+            let value = 0, y
+            let yAxis = this.options.yAxis.filter(tmp => item.yAxisIndex !== 1)[0]
+            for (let tmp of item.markLine.data) {
+              switch (tmp.type) {
+                case ALGORITHM_AVERAGE:
+                  value = calcAverage(item.data, 0, item.data.length - 1)
+                  y = this.grid.height - value * (this.grid.height / yAxis.max)
+                  res.push({value, y})
+                  break
+              }
             }
-          }else{
-            return null
           }
-
-        }).filter(item => item)
+        })
+        console.log(res)
+        return res
       },
       top() {
         return this.grid.top
