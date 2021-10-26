@@ -105,17 +105,23 @@
     methods: {
       loadFile(e) {
         let file = e.target.files[0]
-        let blob = new Blob([file], {type: "application/octet-stream"})
+        //let blob = new Blob([file], {type: "application/octet-stream"})
         let read = new FileReader()
-        read.readAsArrayBuffer(blob)
+        read.readAsArrayBuffer(file)
         read.onload = function () {
           let view = new Uint16Array(this.result);
           //console.log(this.result)
-          let utf8decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
-          view = utf8decoder.decode(view)
-          console.log(JSON.parse(view))
-          // https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings
-          // https://www.cnblogs.com/qianxiaox/p/14019522.html
+          //let utf8decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
+          //view = utf8decoder.decode(view)
+          //console.log(JSON.parse(view))
+          // https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings 所有的编码
+          // https://www.cnblogs.com/qianxiaox/p/14019522.html // pb.js
+          // https://zhuanlan.zhihu.com/p/372217495 // 二进制转图片
+
+          var data = new Blob([view],
+            { type: "application/json" }); //type类型可自定义
+          console.log(data)
+
         }
       },
       resize() {
