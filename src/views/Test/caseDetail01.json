@@ -1,4 +1,4 @@
-export const caseReport = {
+{
   "ret": 0,
   "msg": "ok",
   "data": {

@@ -1,5 +1,6 @@
 <template>
   <div class="test-page">
+    <input type="file" @change="loadFile"/>
     <!--    <canvas id="flamegraph"></canvas>-->
     <!--    <div class="target-style">-->
     <!--      <canvas id="fps"></canvas>-->
@@ -17,9 +18,9 @@
       <charts-main :options="memoryOptions"/>
     </div>
 
-<!--    <div class="target-svg-style target-style" v-for="i in 100">-->
-<!--      <charts-main :options="cpuOptions"/>-->
-<!--    </div>-->
+    <!--    <div class="target-svg-style target-style" v-for="i in 100">-->
+    <!--      <charts-main :options="cpuOptions"/>-->
+    <!--    </div>-->
 
   </div>
 </template>
@@ -27,8 +28,8 @@
 <script>
   import {createCanvas} from '@/plugin/flamegraph/flamegraph'
   import {targetChart} from '@/plugin/targetChart/targetChart'
-  import {caseDetail } from './caseDetail.js'
-  import {caseReport } from './caseReport.js'
+  import {caseDetail} from './caseDetail.js'
+  import {caseReport} from './caseReport.js'
   import {formatReportData, getDragTooltipsData, getTooltipsData} from "./util";
   import ChartsMain from "./echarts/ChartsMain";
   import echarts from "./echarts/echarts";
@@ -37,7 +38,7 @@
   import makeMemoryOptions from './echarts/options/makeMemoryOptions'
   import {INDEX_TIMESTAMP} from "./constant";
   import {eventBus} from '../../utils/Bus'
-
+  import 'fast-text-encoding'
   let data = caseDetail.data
   export default {
     name: "Test",
@@ -63,6 +64,10 @@
       }
     },
     mounted() {
+
+      // const encoder = new TextEncoder()
+      // const view = encoder.encode('€')
+      // console.log(view); // Uint8Array(3) [226, 130, 172]
       // let dataBaseWidth = 1460
       // let maxTimestamp = data.labelInfos[data.labelInfos.length - 1].summary.end_time,sum = 0
       // for (let [index,item] of data.labelInfos.entries()){
@@ -98,6 +103,21 @@
       this.resize()
     },
     methods: {
+      loadFile(e) {
+        let file = e.target.files[0]
+        let blob = new Blob([file], {type: "application/octet-stream"})
+        let read = new FileReader()
+        read.readAsArrayBuffer(blob)
+        read.onload = function () {
+          let view = new Uint16Array(this.result);
+          //console.log(this.result)
+          let utf8decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
+          view = utf8decoder.decode(view)
+          console.log(JSON.parse(view))
+          // https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings
+          // https://www.cnblogs.com/qianxiaox/p/14019522.html
+        }
+      },
       resize() {
         let width = document.documentElement.offsetWidth
         if (width < 1200) width = 1200
