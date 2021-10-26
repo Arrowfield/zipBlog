@@ -23,7 +23,7 @@
 
 <script>
   import {mapGetters} from "vuex";
-  import {binarySearch} from "../util";
+  import {binarySearch, findNearestTarget} from "../util";
 
   export default {
     name: "ChartsXAxis",
@@ -55,16 +55,20 @@
         let sum = this.minTimestamp, path = "", rate = this.rate
         let timestamps = this.options.xAxis.data
         let y = this.grid.top + this.grid.height - 1
-        let tick = Math.ceil(timestamps.length / 18)
-        let minIndex = binarySearch(timestamps, 0, timestamps.length, this.minTimestamp)[2]
-        let maxIndex = binarySearch(timestamps, 0, timestamps.length, this.maxTimestamp)[0]
-        if(maxIndex - minIndex <= 5){
-          tick = 1
-        }else if(maxIndex - minIndex <= tick) {
-          tick = 5
-        }else if (maxIndex - minIndex <= tick * 3) {
-          tick = 10
-        }
+        console.time('start')
+        // let minIndex = binarySearch(timestamps, 0, timestamps.length, this.minTimestamp)[2]
+        // let maxIndex = binarySearch(timestamps, 0, timestamps.length, this.maxTimestamp)[0]
+        let minIndex = findNearestTarget(timestamps, this.minTimestamp)
+        let maxIndex = findNearestTarget(timestamps, this.maxTimestamp)
+        console.timeEnd('start')
+        let tick = Math.ceil((maxIndex - minIndex) / 18)
+        // if(maxIndex - minIndex <= 5){
+        //   tick = 1
+        // }else if(maxIndex - minIndex <= tick) {
+        //   tick = 5
+        // }else if (maxIndex - minIndex <= tick * 3) {
+        //   tick = 10
+        // }
         for (let i = minIndex; i < maxIndex; i += tick) {
           let x = (timestamps[i] - this.minTimestamp) * rate
           if (x < 0) continue

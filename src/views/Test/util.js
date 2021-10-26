@@ -52,14 +52,14 @@ function getValueFromDataList(data, keyArray) {
   return res
 }
 
-/**
- *
- * @param {数组} arr
- * @param {左边的索引} left
- * @param {number} right
- * @param {number} findVal
- * @return Array
- */
+// /**
+//  *
+//  * @param {数组} arr
+//  * @param {左边的索引} left
+//  * @param {number} right
+//  * @param {number} findVal
+//  * @return Array
+//  */
 export function binarySearch(arr, left, right, findVal) {
   //当left>right时，就没找到，结束
 
@@ -84,7 +84,7 @@ export function binarySearch(arr, left, right, findVal) {
 }
 
 
-const findNearestTarget = (arr, target) => {
+export const findNearestTarget = (arr, target) => {
   let mid;
   let l = 0;
   let r = arr.length - 1;
