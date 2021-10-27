@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+package com.perfdog.proto;
+
+message ATraceData
+{
+    int64 startTime = 1;
+    int32 duration = 2;
+    int32 level = 3;
+    string name = 4;
+}
+
+message ATraceDataList
+{
+    int32 tid = 1;
+    string threadName = 2;
+    repeated ATraceData data = 3;
+}
+
+message ScheduleData
+{
+    int64 startTime = 1;
+    int32 duration = 2;
+    int32 level = 3;
+    string name = 4;
+    int32 tid = 5;
+    int64 state = 6;
+}
+
+message ScheduleDataList
+{
+    int32 cpu = 1;
+    repeated ScheduleData data = 2;
+}
+
+message TraceDataTest
+{
+    oneof value{
+        ATraceDataList aTrace = 1;
+        ScheduleDataList cpuSchedule = 2;
+    }
+}

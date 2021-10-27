@@ -39,7 +39,45 @@
   import {INDEX_TIMESTAMP} from "./constant";
   import {eventBus} from '../../utils/Bus'
   import 'fast-text-encoding'
+
   let data = caseDetail.data
+  /* start */
+  import protoRoot from '@/proto/proto'
+  import protobuf from 'protobufjs'
+  console.log(protoRoot.lookupType)
+  // 请求体message
+  const PBMessageRequest = protoRoot.lookup('com.perfdog.proto.TdwTraceNode')
+  // 响应体的message
+  const PBMessageResponse = protoRoot.lookup('com.perfdog.proto.TraceDataTest')
+
+  console.log(PBMessageResponse)
+  const apiVersion = '1.0.0'
+  const token = 'my_token'
+
+
+  function transformResponseFactory(responseType) {
+    return function transformResponse(rawResponse) {
+      // 判断response是否是arrayBuffer
+      if (rawResponse == null || !isArrayBuffer(rawResponse)) {
+        return rawResponse
+      }
+      try {
+        const buf = protobuf.util.newBuffer(rawResponse)
+        // decode响应体
+        const decodedResponse = PBMessageResponse.decode(buf)
+        if (decodedResponse.messageData && responseType) {
+          const model = protoRoot.lookup(responseType)
+          decodedResponse.messageData = model.decode(decodedResponse.messageData)
+        }
+        return decodedResponse
+      } catch (err) {
+        return err
+      }
+    }
+  }
+
+
+  /* end */
   export default {
     name: "Test",
     components: {ChartsMain},
@@ -64,7 +102,7 @@
       }
     },
     mounted() {
-
+      //console.log(protoRoot)
       // const encoder = new TextEncoder()
       // const view = encoder.encode('€')
       // console.log(view); // Uint8Array(3) [226, 130, 172]
@@ -104,23 +142,30 @@
     },
     methods: {
       loadFile(e) {
+
+        function isArrayBuffer (obj) {
+          return Object.prototype.toString.call(obj) === '[object ArrayBuffer]'
+        }
+
+        //https://juejin.cn/post/6844903699458818062#heading-8
         let file = e.target.files[0]
         //let blob = new Blob([file], {type: "application/octet-stream"})
         let read = new FileReader()
         read.readAsArrayBuffer(file)
-        read.onload = function () {
-          let view = new Uint16Array(this.result);
-          //console.log(this.result)
-          //let utf8decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
-          //view = utf8decoder.decode(view)
-          //console.log(JSON.parse(view))
-          // https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings 所有的编码
-          // https://www.cnblogs.com/qianxiaox/p/14019522.html // pb.js
-          // https://zhuanlan.zhihu.com/p/372217495 // 二进制转图片
+        read.onload =  function() {
+          if(isArrayBuffer(this.result)){
+            //console.log(1231)
+          }
 
-          var data = new Blob([view],
-            { type: "application/json" }); //type类型可自定义
-          console.log(data)
+          const buf = protobuf.util.newBuffer(this.result)
+          //console.log(buf)
+          // decode响应体
+          let reader =  new protobuf.Reader(buf)
+          //console.log(reader)
+          const decodedResponse = PBMessageResponse.decodeDelimited(buf)
+
+          console.log(decodedResponse)
+
 
         }
       },

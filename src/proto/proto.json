@@ -1,0 +1,1272 @@
+{
+  "nested": {
+    "com": {
+      "nested": {
+        "perfdog": {
+          "nested": {
+            "proto": {
+              "nested": {
+                "PBCpuFreq": {
+                  "fields": {
+                    "CpuClock": {
+                      "rule": "repeated",
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBCoreUsage": {
+                  "fields": {
+                    "CoreUsage": {
+                      "rule": "repeated",
+                      "type": "float",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBCpuUsage": {
+                  "fields": {
+                    "AppUsage": {
+                      "type": "float",
+                      "id": 1
+                    },
+                    "TotalUsage": {
+                      "type": "float",
+                      "id": 2
+                    }
+                  }
+                },
+                "PBGpuUsage": {
+                  "fields": {
+                    "Unilization": {
+                      "type": "float",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBGpuFreq": {
+                  "fields": {
+                    "GpuClock": {
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBAndroidFps": {
+                  "fields": {
+                    "fps": {
+                      "type": "float",
+                      "id": 1
+                    },
+                    "Jank": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "InterFrame": {
+                      "type": "float",
+                      "id": 3
+                    }
+                  }
+                },
+                "PBIosFps": {
+                  "fields": {
+                    "fps": {
+                      "type": "float",
+                      "id": 1
+                    },
+                    "Jank": {
+                      "type": "int32",
+                      "id": 2
+                    }
+                  }
+                },
+                "PBNetworkUsage": {
+                  "fields": {
+                    "UpSpeed": {
+                      "type": "double",
+                      "id": 1
+                    },
+                    "DownSpeed": {
+                      "type": "double",
+                      "id": 2
+                    }
+                  }
+                },
+                "PBScreenShot": {
+                  "fields": {
+                    "FileName": {
+                      "type": "string",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBMemoryDetail": {
+                  "fields": {
+                    "Gfx": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "GL": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "NativePss": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "Unknown": {
+                      "type": "int32",
+                      "id": 4
+                    },
+                    "JavaHeap": {
+                      "type": "int32",
+                      "id": 5
+                    }
+                  }
+                },
+                "PBAndroidMemoryUsage": {
+                  "fields": {
+                    "Memory": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "SwapMemory": {
+                      "type": "int32",
+                      "id": 2
+                    }
+                  }
+                },
+                "PBIos10MemoryUsage": {
+                  "fields": {
+                    "RealMemory": {
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBIos11MemoryUsage": {
+                  "fields": {
+                    "Memory": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "RealMemory": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "XcodeMemory": {
+                      "type": "int32",
+                      "id": 3
+                    }
+                  }
+                },
+                "PBPowerItem": {
+                  "fields": {
+                    "mA": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "Voltage": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "Power": {
+                      "type": "int32",
+                      "id": 3
+                    }
+                  }
+                },
+                "PBPower": {
+                  "fields": {
+                    "PowerItem": {
+                      "rule": "repeated",
+                      "type": "PBPowerItem",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBCpuTemperature": {
+                  "fields": {
+                    "CpuTemperature": {
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBBatteryTemperature": {
+                  "fields": {
+                    "BatteryTemperature": {
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBFrameDetails": {
+                  "fields": {
+                    "FrameTimes": {
+                      "rule": "repeated",
+                      "type": "double",
+                      "id": 1
+                    },
+                    "InterFrameIndex": {
+                      "rule": "repeated",
+                      "type": "int32",
+                      "id": 2
+                    }
+                  }
+                },
+                "PBIosCtxSwitch": {
+                  "fields": {
+                    "CtxSwitchValue": {
+                      "type": "int64",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBIosGPUUsage": {
+                  "fields": {
+                    "Render": {
+                      "type": "float",
+                      "id": 1
+                    },
+                    "Tiler": {
+                      "type": "float",
+                      "id": 2
+                    },
+                    "Device": {
+                      "type": "float",
+                      "id": 3
+                    }
+                  }
+                },
+                "PBIosWakeup": {
+                  "fields": {
+                    "WakeupValue": {
+                      "type": "int64",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBNote": {
+                  "fields": {
+                    "Text": {
+                      "type": "string",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBLabel": {
+                  "fields": {
+                    "StartTime": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "EndTime": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "Text": {
+                      "type": "string",
+                      "id": 3
+                    }
+                  }
+                },
+                "PBBigJank": {
+                  "fields": {
+                    "BigJank": {
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBStutter": {
+                  "fields": {
+                    "Stutter": {
+                      "type": "float",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBVirtualMemory": {
+                  "fields": {
+                    "VirtualMemory": {
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBAvailableMemory": {
+                  "fields": {
+                    "availableMemory": {
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBIosEnergyUsage": {
+                  "fields": {
+                    "cpu": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "gpu": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "network": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "location": {
+                      "type": "int32",
+                      "id": 4
+                    },
+                    "display": {
+                      "type": "int32",
+                      "id": 5
+                    },
+                    "overhead": {
+                      "type": "int32",
+                      "id": 6
+                    }
+                  }
+                },
+                "BlueEyeData": {
+                  "oneofs": {
+                    "Fps": {
+                      "oneof": [
+                        "AndroidFps",
+                        "IosFps"
+                      ]
+                    },
+                    "MemoryUsage": {
+                      "oneof": [
+                        "AndroidMemoryUsage",
+                        "Ios10MemoryUsage",
+                        "Ios11MemoryUsage"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "TimeStamp": {
+                      "type": "int64",
+                      "id": 1
+                    },
+                    "CpuUsage": {
+                      "type": "PBCpuUsage",
+                      "id": 2
+                    },
+                    "CpuFreq": {
+                      "type": "PBCpuFreq",
+                      "id": 3
+                    },
+                    "GpuUsage": {
+                      "type": "PBGpuUsage",
+                      "id": 4
+                    },
+                    "GpuFreq": {
+                      "type": "PBGpuFreq",
+                      "id": 5
+                    },
+                    "AndroidFps": {
+                      "type": "PBAndroidFps",
+                      "id": 6
+                    },
+                    "IosFps": {
+                      "type": "PBIosFps",
+                      "id": 7
+                    },
+                    "AndroidMemoryUsage": {
+                      "type": "PBAndroidMemoryUsage",
+                      "id": 8
+                    },
+                    "Ios10MemoryUsage": {
+                      "type": "PBIos10MemoryUsage",
+                      "id": 9
+                    },
+                    "Ios11MemoryUsage": {
+                      "type": "PBIos11MemoryUsage",
+                      "id": 10
+                    },
+                    "ScreenShot": {
+                      "type": "PBScreenShot",
+                      "id": 11
+                    },
+                    "NetworkUsage": {
+                      "type": "PBNetworkUsage",
+                      "id": 12
+                    },
+                    "Power": {
+                      "type": "PBPower",
+                      "id": 13
+                    },
+                    "CpuTemperature": {
+                      "type": "PBCpuTemperature",
+                      "id": 14
+                    },
+                    "FrameDetails": {
+                      "type": "PBFrameDetails",
+                      "id": 15
+                    },
+                    "CoreUsage": {
+                      "type": "PBCoreUsage",
+                      "id": 16
+                    },
+                    "CtxSwitch": {
+                      "type": "PBIosCtxSwitch",
+                      "id": 17
+                    },
+                    "IosGPUUsage": {
+                      "type": "PBIosGPUUsage",
+                      "id": 18
+                    },
+                    "IosWakeup": {
+                      "type": "PBIosWakeup",
+                      "id": 19
+                    },
+                    "Note": {
+                      "type": "PBNote",
+                      "id": 20
+                    },
+                    "MemoryDetail": {
+                      "type": "PBMemoryDetail",
+                      "id": 21
+                    },
+                    "IsDelete": {
+                      "type": "bool",
+                      "id": 22
+                    },
+                    "BigJank": {
+                      "type": "PBBigJank",
+                      "id": 23
+                    },
+                    "VirtualMemory": {
+                      "type": "PBVirtualMemory",
+                      "id": 24
+                    },
+                    "IosEnergyUsage": {
+                      "type": "PBIosEnergyUsage",
+                      "id": 25
+                    },
+                    "BatteryTemperature": {
+                      "type": "PBBatteryTemperature",
+                      "id": 26
+                    },
+                    "NormalizedCpuUsage": {
+                      "type": "PBCpuUsage",
+                      "id": 27
+                    },
+                    "NormalizedCoreUsage": {
+                      "type": "PBCoreUsage",
+                      "id": 28
+                    },
+                    "AvailableMemory": {
+                      "type": "PBAvailableMemory",
+                      "id": 29
+                    },
+                    "MaliGpuCounterBasic": {
+                      "type": "PBMaliGpuCounterBasic",
+                      "id": 30
+                    },
+                    "MaliGpuCounterMemory": {
+                      "type": "PBMaliGpuCounterMemory",
+                      "id": 31
+                    },
+                    "MaliGpuCounterShader": {
+                      "type": "PBMaliGpuCounterShader",
+                      "id": 32
+                    },
+                    "Stutter": {
+                      "type": "PBStutter",
+                      "id": 33
+                    },
+                    "IosGPUCounterBasic": {
+                      "type": "PBIosGPUCounterBasics",
+                      "id": 34
+                    },
+                    "IosGPUCounterMemory": {
+                      "type": "PBIosGPUCounterMemory",
+                      "id": 35
+                    },
+                    "IosGPUCounterShader": {
+                      "type": "PBIosGPUCounterShader",
+                      "id": 36
+                    },
+                    "QComGpuCounterBasic": {
+                      "type": "PBQComGpuCounterBasic",
+                      "id": 37
+                    },
+                    "QComGpuCounterMemory": {
+                      "type": "PBQComGpuCounterMemory",
+                      "id": 38
+                    },
+                    "QComGpuCounterShader": {
+                      "type": "PBQComGpuCounterShader",
+                      "id": 39
+                    },
+                    "PVRGpuCounterBasic": {
+                      "type": "PBPVRGpuCounterBasic",
+                      "id": 40
+                    },
+                    "PVRGpuCounterMemory": {
+                      "type": "PBPVRGpuCounterMemory",
+                      "id": 41
+                    },
+                    "PVRGpuCounterShader": {
+                      "type": "PBPVRGpuCounterShader",
+                      "id": 42
+                    },
+                    "IosGPUCounterSampleCount": {
+                      "type": "PBIosGPUCounterSampleCount",
+                      "id": 43
+                    }
+                  }
+                },
+                "PHONE_TYPE": {
+                  "values": {
+                    "NONE": 0,
+                    "ANDROID": 1,
+                    "IOS": 2
+                  }
+                },
+                "DeviceDetail": {
+                  "fields": {
+                    "Info": {
+                      "type": "string",
+                      "id": 1
+                    },
+                    "Value": {
+                      "type": "string",
+                      "id": 2
+                    }
+                  }
+                },
+                "PBDeviceDetailList": {
+                  "fields": {
+                    "DeviceDetailList": {
+                      "rule": "repeated",
+                      "type": "DeviceDetail",
+                      "id": 1
+                    }
+                  }
+                },
+                "PBStatisticSetting": {
+                  "fields": {
+                    "FpsThreshold0": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "FpsThreshold1": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "NetworkFlowPeriod": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "CPUThreshold0": {
+                      "type": "int32",
+                      "id": 4
+                    },
+                    "CPUThreshold1": {
+                      "type": "int32",
+                      "id": 5
+                    },
+                    "FrameTimeThreshold": {
+                      "type": "int32",
+                      "id": 6
+                    },
+                    "FrameTimeDeltaThreshold": {
+                      "type": "int32",
+                      "id": 7
+                    },
+                    "FpsDeltaThreshold": {
+                      "type": "int32",
+                      "id": 8
+                    }
+                  }
+                },
+                "PBMaliGpuCounterBasic": {
+                  "fields": {
+                    "NonFragmentUtilization": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 1
+                    },
+                    "FragmentUtilization": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 2
+                    },
+                    "TilerUtilization": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 3
+                    },
+                    "GpuActiveCycle": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 4
+                    }
+                  }
+                },
+                "PBMaliGpuCounterMemory": {
+                  "fields": {
+                    "L2LoadStoreRead": {
+                      "type": "google.protobuf.Int32Value",
+                      "id": 1
+                    },
+                    "L2TextureRead": {
+                      "type": "google.protobuf.Int32Value",
+                      "id": 2
+                    },
+                    "BusRead": {
+                      "type": "google.protobuf.Int32Value",
+                      "id": 3
+                    },
+                    "BusWrite": {
+                      "type": "google.protobuf.Int32Value",
+                      "id": 4
+                    }
+                  }
+                },
+                "PBMaliGpuCounterShader": {
+                  "fields": {
+                    "OverDraw": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 2
+                    },
+                    "PixelThroughput": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 3
+                    },
+                    "NonFragmentWarps": {
+                      "type": "google.protobuf.Int64Value",
+                      "id": 4
+                    },
+                    "FragmentWarps": {
+                      "type": "google.protobuf.Int64Value",
+                      "id": 5
+                    }
+                  }
+                },
+                "PBQComGpuCounterBasic": {
+                  "fields": {
+                    "GpuUtilization": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 1
+                    },
+                    "GpuBusBusy": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 2
+                    },
+                    "ShadersBusy": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 3
+                    },
+                    "PreClippedPolygonsPerSecond": {
+                      "type": "google.protobuf.Int64Value",
+                      "id": 4
+                    }
+                  }
+                },
+                "PBQComGpuCounterMemory": {
+                  "fields": {
+                    "ReadTotal": {
+                      "type": "google.protobuf.Int32Value",
+                      "id": 1
+                    },
+                    "WriteTotal": {
+                      "type": "google.protobuf.Int32Value",
+                      "id": 2
+                    },
+                    "TextureL2Miss": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 3
+                    },
+                    "StalledOnSystemMemory": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 4
+                    }
+                  }
+                },
+                "PBQComGpuCounterShader": {
+                  "fields": {
+                    "VerticesShadedPerSecond": {
+                      "type": "google.protobuf.Int64Value",
+                      "id": 1
+                    },
+                    "FragmentsShadedPerSecond": {
+                      "type": "google.protobuf.Int64Value",
+                      "id": 2
+                    }
+                  }
+                },
+                "PBPVRGpuCounterBasic": {
+                  "fields": {
+                    "RendererActive": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 1
+                    },
+                    "TilerActive": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 2
+                    },
+                    "HSREfficiency": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 3
+                    },
+                    "SPMActive": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 4
+                    }
+                  }
+                },
+                "PBPVRGpuCounterMemory": {
+                  "fields": {
+                    "GPUMemoryReadRate": {
+                      "type": "google.protobuf.Int32Value",
+                      "id": 1
+                    },
+                    "GPUMemoryWriteRate": {
+                      "type": "google.protobuf.Int32Value",
+                      "id": 2
+                    },
+                    "GPUMemoryTotalRate": {
+                      "type": "google.protobuf.Int32Value",
+                      "id": 3
+                    },
+                    "GPUMemoryInterfaceLoad": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 4
+                    }
+                  }
+                },
+                "PBPVRGpuCounterShader": {
+                  "fields": {
+                    "ShadedVerticesPerSecond": {
+                      "type": "google.protobuf.Int64Value",
+                      "id": 1
+                    },
+                    "ShadedPixelsPerSecond": {
+                      "type": "google.protobuf.Int64Value",
+                      "id": 2
+                    },
+                    "OverDraw": {
+                      "type": "google.protobuf.FloatValue",
+                      "id": 3
+                    }
+                  }
+                },
+                "PBIosGPUCounterBasics": {
+                  "fields": {
+                    "TotalOccupancy": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 1
+                    },
+                    "VertexOccupancy": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 2
+                    },
+                    "FragmentOccupancy": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 3
+                    },
+                    "ComputeOccupancy": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 4
+                    }
+                  }
+                },
+                "PBIosGPUCounterMemory": {
+                  "fields": {
+                    "BufferReadLimiter": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 1
+                    },
+                    "BufferLoadUtilization": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 2
+                    },
+                    "TextureSampleLimiter": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 3
+                    },
+                    "TextureSampleUtilization": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 4
+                    },
+                    "GpuReadBandwidth": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 5
+                    },
+                    "GpuWriteBandwidth": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 6
+                    }
+                  }
+                },
+                "PBIosGPUCounterShader": {
+                  "fields": {
+                    "AluLimiter": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 1
+                    },
+                    "AluUtilization": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 2
+                    },
+                    "F32Utilization": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 3
+                    },
+                    "F16Utilization": {
+                      "type": "google.protobuf.DoubleValue",
+                      "id": 4
+                    }
+                  }
+                },
+                "PBIosGPUCounterSampleCount": {
+                  "fields": {
+                    "value": {
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "BlueEyeDataList": {
+                  "fields": {
+                    "DataList": {
+                      "rule": "repeated",
+                      "type": "BlueEyeData",
+                      "id": 1
+                    },
+                    "LabelList": {
+                      "rule": "repeated",
+                      "type": "PBLabel",
+                      "id": 2
+                    },
+                    "DeviceModel": {
+                      "type": "string",
+                      "id": 3
+                    },
+                    "OSType": {
+                      "type": "PHONE_TYPE",
+                      "id": 4
+                    },
+                    "OSVersion": {
+                      "type": "string",
+                      "id": 5
+                    },
+                    "AppDisplayName": {
+                      "type": "string",
+                      "id": 6
+                    },
+                    "AppVersion": {
+                      "type": "string",
+                      "id": 7
+                    },
+                    "AppPackageName": {
+                      "type": "string",
+                      "id": 8
+                    },
+                    "CaseName": {
+                      "type": "string",
+                      "id": 9
+                    },
+                    "RamSize": {
+                      "type": "int32",
+                      "id": 10
+                    },
+                    "CpuType": {
+                      "type": "string",
+                      "id": 11
+                    },
+                    "GpuType": {
+                      "type": "string",
+                      "id": 12
+                    },
+                    "DeviceDetailList": {
+                      "type": "PBDeviceDetailList",
+                      "id": 13
+                    },
+                    "ClientVersion": {
+                      "type": "string",
+                      "id": 14
+                    },
+                    "AbsDataStartTime": {
+                      "type": "google.protobuf.Int64Value",
+                      "id": 15
+                    },
+                    "DataSource": {
+                      "type": "int32",
+                      "id": 16
+                    },
+                    "StatisticSetting": {
+                      "type": "PBStatisticSetting",
+                      "id": 17
+                    },
+                    "AppSubVersion": {
+                      "type": "string",
+                      "id": 18
+                    }
+                  }
+                },
+                "ATraceData": {
+                  "fields": {
+                    "startTime": {
+                      "type": "int64",
+                      "id": 1
+                    },
+                    "duration": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "level": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "name": {
+                      "type": "string",
+                      "id": 4
+                    }
+                  }
+                },
+                "ATraceDataList": {
+                  "fields": {
+                    "tid": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "threadName": {
+                      "type": "string",
+                      "id": 2
+                    },
+                    "data": {
+                      "rule": "repeated",
+                      "type": "ATraceData",
+                      "id": 3
+                    }
+                  }
+                },
+                "ScheduleData": {
+                  "fields": {
+                    "startTime": {
+                      "type": "int64",
+                      "id": 1
+                    },
+                    "duration": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "level": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "name": {
+                      "type": "string",
+                      "id": 4
+                    },
+                    "tid": {
+                      "type": "int32",
+                      "id": 5
+                    },
+                    "state": {
+                      "type": "int64",
+                      "id": 6
+                    }
+                  }
+                },
+                "ScheduleDataList": {
+                  "fields": {
+                    "cpu": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "data": {
+                      "rule": "repeated",
+                      "type": "ScheduleData",
+                      "id": 2
+                    }
+                  }
+                },
+                "TraceDataTest": {
+                  "oneofs": {
+                    "value": {
+                      "oneof": [
+                        "aTrace",
+                        "cpuSchedule"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "aTrace": {
+                      "type": "ATraceDataList",
+                      "id": 1
+                    },
+                    "cpuSchedule": {
+                      "type": "ScheduleDataList",
+                      "id": 2
+                    }
+                  }
+                },
+                "ATraceDataSlim": {
+                  "fields": {
+                    "startTime": {
+                      "type": "int64",
+                      "id": 1
+                    },
+                    "duration": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "level": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "name": {
+                      "type": "int32",
+                      "id": 4
+                    }
+                  }
+                },
+                "ATraceDataSlimList": {
+                  "fields": {
+                    "tid": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "threadName": {
+                      "type": "string",
+                      "id": 2
+                    },
+                    "names": {
+                      "rule": "repeated",
+                      "type": "string",
+                      "id": 3
+                    },
+                    "data": {
+                      "rule": "repeated",
+                      "type": "ATraceData",
+                      "id": 4
+                    }
+                  }
+                },
+                "ScheduleDataSlim": {
+                  "fields": {
+                    "startTime": {
+                      "type": "int64",
+                      "id": 1
+                    },
+                    "duration": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "level": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "name": {
+                      "type": "int32",
+                      "id": 4
+                    },
+                    "tid": {
+                      "type": "int32",
+                      "id": 5
+                    },
+                    "state": {
+                      "type": "int64",
+                      "id": 6
+                    }
+                  }
+                },
+                "ScheduleDataSlimList": {
+                  "fields": {
+                    "cpu": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "names": {
+                      "rule": "repeated",
+                      "type": "string",
+                      "id": 2
+                    },
+                    "data": {
+                      "rule": "repeated",
+                      "type": "ScheduleData",
+                      "id": 3
+                    }
+                  }
+                },
+                "TraceDataTestSlim": {
+                  "oneofs": {
+                    "value": {
+                      "oneof": [
+                        "aTrace",
+                        "cpuSchedule"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "aTrace": {
+                      "type": "ATraceDataSlimList",
+                      "id": 1
+                    },
+                    "cpuSchedule": {
+                      "type": "ScheduleDataSlimList",
+                      "id": 2
+                    }
+                  }
+                },
+                "TdwScheduleNode": {
+                  "fields": {
+                    "startTime": {
+                      "type": "int64",
+                      "id": 1
+                    },
+                    "duration": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "level": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "name": {
+                      "type": "string",
+                      "id": 4
+                    },
+                    "tid": {
+                      "type": "int32",
+                      "id": 5
+                    },
+                    "state": {
+                      "type": "int64",
+                      "id": 6
+                    }
+                  }
+                },
+                "TdwATraceNode": {
+                  "fields": {
+                    "startTime": {
+                      "type": "int64",
+                      "id": 1
+                    },
+                    "duration": {
+                      "type": "int32",
+                      "id": 2
+                    },
+                    "level": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "name": {
+                      "type": "string",
+                      "id": 4
+                    }
+                  }
+                },
+                "TdwTraceNode": {
+                  "oneofs": {
+                    "value": {
+                      "oneof": [
+                        "aTrace",
+                        "cpuSchedule"
+                      ]
+                    }
+                  },
+                  "fields": {
+                    "aTrace": {
+                      "type": "TdwATraceNode",
+                      "id": 1
+                    },
+                    "cpuSchedule": {
+                      "type": "TdwScheduleNode",
+                      "id": 2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "google": {
+      "nested": {
+        "protobuf": {
+          "nested": {
+            "DoubleValue": {
+              "fields": {
+                "value": {
+                  "type": "double",
+                  "id": 1
+                }
+              }
+            },
+            "FloatValue": {
+              "fields": {
+                "value": {
+                  "type": "float",
+                  "id": 1
+                }
+              }
+            },
+            "Int64Value": {
+              "fields": {
+                "value": {
+                  "type": "int64",
+                  "id": 1
+                }
+              }
+            },
+            "UInt64Value": {
+              "fields": {
+                "value": {
+                  "type": "uint64",
+                  "id": 1
+                }
+              }
+            },
+            "Int32Value": {
+              "fields": {
+                "value": {
+                  "type": "int32",
+                  "id": 1
+                }
+              }
+            },
+            "UInt32Value": {
+              "fields": {
+                "value": {
+                  "type": "uint32",
+                  "id": 1
+                }
+              }
+            },
+            "BoolValue": {
+              "fields": {
+                "value": {
+                  "type": "bool",
+                  "id": 1
+                }
+              }
+            },
+            "StringValue": {
+              "fields": {
+                "value": {
+                  "type": "string",
+                  "id": 1
+                }
+              }
+            },
+            "BytesValue": {
+              "fields": {
+                "value": {
+                  "type": "bytes",
+                  "id": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
