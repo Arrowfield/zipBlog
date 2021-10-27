@@ -158,15 +158,11 @@
           }
 
           const buf = protobuf.util.newBuffer(this.result)
-          //console.log(buf)
-          // decode响应体
-          let reader =  new protobuf.Reader(buf)
-          //console.log(reader)
-          const decodedResponse = PBMessageResponse.decodeDelimited(buf)
-
-          console.log(decodedResponse)
-
-
+          var reader = protobuf.Reader.create(buf);
+          while (reader.pos < reader.len) {
+            let msg = PBMessageResponse.decodeDelimited(reader)
+            console.log(msg)
+          }
         }
       },
       resize() {
