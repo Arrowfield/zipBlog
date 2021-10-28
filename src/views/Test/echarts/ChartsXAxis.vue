@@ -55,12 +55,12 @@
         let sum = this.minTimestamp, path = "", rate = this.rate
         let timestamps = this.options.xAxis.data
         let y = this.grid.top + this.grid.height - 1
-        console.time('start')
+        //console.time('start')
         // let minIndex = binarySearch(timestamps, 0, timestamps.length, this.minTimestamp)[2]
         // let maxIndex = binarySearch(timestamps, 0, timestamps.length, this.maxTimestamp)[0]
         let minIndex = findNearestTarget(timestamps, this.minTimestamp)
         let maxIndex = findNearestTarget(timestamps, this.maxTimestamp)
-        console.timeEnd('start')
+        //console.timeEnd('start')
         let tick = Math.ceil((maxIndex - minIndex) / 18)
         // if(maxIndex - minIndex <= 5){
         //   tick = 1

@@ -29,7 +29,7 @@
   import {createCanvas} from '@/plugin/flamegraph/flamegraph'
   import {targetChart} from '@/plugin/targetChart/targetChart'
   import {caseDetail} from './caseDetail.js'
-  import {caseReport} from './caseReport.js'
+  import {caseReport} from './caseDetail.js'
   import {formatReportData, getDragTooltipsData, getTooltipsData} from "./util";
   import ChartsMain from "./echarts/ChartsMain";
   import echarts from "./echarts/echarts";
@@ -44,13 +44,13 @@
   /* start */
   import protoRoot from '@/proto/proto'
   import protobuf from 'protobufjs'
-  console.log(protoRoot.lookupType)
+
   // 请求体message
   const PBMessageRequest = protoRoot.lookup('com.perfdog.proto.TdwTraceNode')
   // 响应体的message
   const PBMessageResponse = protoRoot.lookup('com.perfdog.proto.TraceDataTest')
 
-  console.log(PBMessageResponse)
+
   const apiVersion = '1.0.0'
   const token = 'my_token'
 

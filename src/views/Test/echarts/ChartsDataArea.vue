@@ -6,6 +6,7 @@
     @mouseout="mouseout"
     @contextmenu.prevent
     @mousemove="mousemove"
+    @wheel="handleWheel"
   >
     <!--    <line x1="10" y1="40" x2="10" y2="40" stroke-width="2" stroke="#333">-->
     <!--      <animate attributeName="x1"   :values="paths[0].valueX" dur="100s" repeatCount="1" />-->
@@ -135,7 +136,9 @@
         showHoverLine: state => state.caseDetail.showHoverLine,
         showDataDrag: state => state.caseDetail.showDataDrag,
         dragConfig: state => state.caseDetail.dragConfig,
-        showDragTooltips: state => state.caseDetail.showDragTooltips
+        showDragTooltips: state => state.caseDetail.showDragTooltips,
+        min:state => state.caseDetail.min,
+        max:state => state.caseDetail.max,
       }),
       ...mapGetters([
         'minTimestamp',
@@ -294,6 +297,31 @@
         })
         document.onmousemove = null
         document.onmouseup = null
+      },
+      handleWheel(event){
+        event.preventDefault()
+        var delta = 0;
+        event = window.event || event;
+        //delta = event.wheelDelta ? (event.wheelDelta / 120) : (- event.detail / 3);
+        console.log(event)
+        // this.$store.commit('setStoreValue', {
+        //   min:0,
+        //   max:1
+        // })
+        if(event.wheelDelta > 0){ // 增幅什么定
+          console.log('1放大')
+          if(this.min > this.max) return
+          this.$store.commit('setStoreValue', {
+            min:this.min + 0.001,
+            max:this.max - 0.001
+          })
+        }else{
+          console.log('2缩小')
+          this.$store.commit('setStoreValue', {
+            min:this.min - 0.001 < 0 ? 0 : this.min - 0.001,
+            max:this.max + 0.001 > 1 ? 1 : this.max + 0.001
+          })
+        }
       }
     },
   }
