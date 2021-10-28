@@ -3,6 +3,7 @@
 
   >
     <rect
+      ref="event"
       :x="grid.left"
       :y="grid.top + grid.height + dataZoom.top"
       :width="dataAreaWidth"
@@ -10,6 +11,7 @@
       :fill="dataZoom.backgroundColor"
     />
     <rect
+
       @mousedown="downScrollBar"
       cursor="e-resize"
       :x="centerBtnX"
@@ -176,7 +178,7 @@
           }
 
         } else if (this.handleType === 'center') {
-          distance = e.clientX -  this.originCenter
+          distance = e.clientX -  this.originCenter // 得到该矩形距离offsetX
           // let temp = 0
           // if (distance < -this.scrollParams.moveBtnLeft) {
           //   temp = -this.scrollParams.moveBtnLeft
@@ -186,23 +188,23 @@
           //   temp = distance
           // }
           // scrollParams.moveBtnCenter = temp // 偏移量 有正值 有负值
-          console.log(distance)
+          // console.log(distance)
+          //
+          // let percent = distance / this.dataAreaWidth
 
-          let percent = distance / this.dataAreaWidth
 
-          // if(max == 1) return
 
-          //console.log(distance, percent)
-          if(percent < 0){
-            min = min + percent
-            max = max + percent
-          }else{
-            min = min + percent
-            max = max + percent
-          }
-
-          if(max > 1) max = 1
-          if(min < 0) min = 0
+          console.log(distance,this.rect.left)
+          // if(percent < 0){
+          //   min = min + percent
+          //   max = max + percent
+          // }else{
+          //   min = min + percent
+          //   max = max + percent
+          // }
+          //
+          // if(max > 1) max = 1
+          // if(min < 0) min = 0
           // max = max + percent
 
           // min = (this.leftBtnX - this.grid.left) / (this.dataAreaWidth - this.dataZoom.handleSize)
@@ -237,7 +239,7 @@
       },
       downScrollBar(e) {
         let el = e.target
-        this.rect = el.getBoundingClientRect()
+        this.rect = this.$refs.event.getBoundingClientRect()
 
         if (el.getAttribute('class') === 'left-btn') {
           this.handleType = 'left'
@@ -249,7 +251,7 @@
           //console.log(this.originRight)
         } else if (el.getAttribute('class') === 'center-btn') {
           this.handleType = 'center'
-          this.originCenter = e.clientX
+          this.originCenter = e.clientX - this.rect.left
         }
         document.onmousemove = this.moveScrollBar
         document.onmouseup = this.upScrollBar

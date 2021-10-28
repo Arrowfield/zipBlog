@@ -21,7 +21,7 @@
     <!--    <div class="target-svg-style target-style" v-for="i in 100">-->
     <!--      <charts-main :options="cpuOptions"/>-->
     <!--    </div>-->
-
+    <div class="test-move" @mousedown="testMousedown"></div>
   </div>
 </template>
 
@@ -191,6 +191,7 @@
       testMousedown(e) {
         let el = e.target
         this.clientX = e.clientX - el.offsetLeft
+        console.log(this.clientX)
         this.clientY = e.clientY - el.offsetTop
         // el.style.transform =`translate(50%,50%)`
         // this.originX = el.offsetLeft
@@ -208,6 +209,7 @@
       testMousemove(e) {
         let el = e.target
         let offsetX = e.clientX - this.clientX, offsetY = e.clientY - this.clientY
+
         el.style.top = offsetY + 'px'
         el.style.left = offsetX + 'px'
       },
