@@ -308,20 +308,20 @@
         //   min:0,
         //   max:1
         // })
-        if(event.wheelDelta > 0){ // 增幅什么定
-          console.log('1放大')
-          if(this.min > this.max) return
-          this.$store.commit('setStoreValue', {
-            min:this.min + 0.001,
-            max:this.max - 0.001
-          })
-        }else{
-          console.log('2缩小')
-          this.$store.commit('setStoreValue', {
-            min:this.min - 0.001 < 0 ? 0 : this.min - 0.001,
-            max:this.max + 0.001 > 1 ? 1 : this.max + 0.001
-          })
-        }
+        // if(event.wheelDelta > 0){ // 增幅什么定
+        //   console.log('1放大')
+        //   if(this.min > this.max) return
+        //   this.$store.commit('setStoreValue', {
+        //     min:this.min + 0.001,
+        //     max:this.max - 0.001
+        //   })
+        // }else{
+        //   console.log('2缩小')
+        //   this.$store.commit('setStoreValue', {
+        //     min:this.min - 0.001 < 0 ? 0 : this.min - 0.001,
+        //     max:this.max + 0.001 > 1 ? 1 : this.max + 0.001
+        //   })
+        // }
       }
     },
   }
