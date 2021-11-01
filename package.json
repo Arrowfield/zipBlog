@@ -11,6 +11,14 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
+
+
+    "prerender-spa-plugin": "^3.4.0",
+
+
+
+
+
     "fast-text-encoding": "^1.0.3",
     "lodash": "^4.17.15",
     "protobufjs": "^6.11.2",
