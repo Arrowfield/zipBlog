@@ -90,7 +90,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   linkActiveClass: 'active',
   base: process.env.BASE_URL,
   scrollBehavior (to, from, savedPosition) {
