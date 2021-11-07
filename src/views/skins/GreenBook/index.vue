@@ -71,15 +71,17 @@
         </div>
       </div>
     </div>
+    <vue-footer/>
   </div>
 </template>
 
 <script>
   import VueHeader from "./header";
+  import VueFooter from "./footer";
   // console.log(window.location)
   export default {
     name: "index",
-    components: {VueHeader},
+    components: {VueHeader,VueFooter},
     data() {
       return {
         bodyImage: require('@/assets/images/index/header-bg.jpg'),

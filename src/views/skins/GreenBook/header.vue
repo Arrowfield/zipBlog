@@ -94,7 +94,6 @@
       }
     },
     mounted() {
-      console.log(this.$el)
       let headroom  = new Headroom(this.$el,{
         // 在元素没有固定之前，垂直方向的偏移量（以px为单位）
         offset : 0,
