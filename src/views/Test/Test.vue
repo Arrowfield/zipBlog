@@ -26,8 +26,8 @@
 </template>
 
 <script>
-  import {createCanvas} from '@/plugin/flamegraph/flamegraph'
-  import {targetChart} from '@/plugin/targetChart/targetChart'
+  import {createCanvas} from '@/plugins/flamegraph/flamegraph'
+  import {targetChart} from '@/plugins/targetChart/targetChart'
   import {caseDetail} from './caseDetail.js'
   import {caseReport} from './caseReport.js'
   import {formatReportData, getDragTooltipsData, getTooltipsData} from "./util";

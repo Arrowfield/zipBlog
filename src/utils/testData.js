@@ -32,13 +32,13 @@ export default {
       href: "https://www.cnblogs.com/mumu2/p/12035072.html",
       title: "webstorm最新激活码2019",
       intro: "网址里面有 lookdiv.com 里面的钥匙就是lookdiv.com 打开网址，获取密钥，复制到激活里面就好了。 关注一下~ 有问题直接私信。",
-      imgUrl: require("@/assets/img/address/address01.jpg")
+      imgUrl: require("@/assets/images/address/address01.jpg")
     },
     {
       href: "https://www.bilibili.com/bangumi/play/ep290152?bsource=baidu_aladdin",
       title: "B站超清犬夜叉",
       intro: "在B站可以看犬夜叉啦，，，，哈哈",
-      imgUrl: require("../assets/img/error/loading_error.png")
+      imgUrl: require("../assets/images/error/loading_error.png")
     },
     {
       href: "https://v.qq.com/x/cover/m441e3rjq9kwpsc/d0034b19k4y.html",

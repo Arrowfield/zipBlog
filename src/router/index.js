@@ -84,8 +84,8 @@ const routes = [
   {path: '/test',name: 'test',component: () => import('@/views/Test/Test.vue')},
   {
     path: '*',
-    name: '404',
-    component: () => import('../views/404')
+    name: 'Error',
+    component: () => import('../views/Error')
   }
 ]
 

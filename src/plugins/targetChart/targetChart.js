@@ -150,7 +150,7 @@ function drawScrollbar(ctx){
     ctx.fill()
     //绘制按钮
     const image = new Image()
-    image.src = require('../../assets/img/icons/btn_normal.png')
+    image.src = require('../../assets/images/icons/btn_normal.png')
     ctx.drawImage(image, 0,0,22,20,0,-1.5,22,20)
     ctx.drawImage(image, 0,0,22,20,1320 - 22,-1.5,22,20)
     ctx.translate(-70,-330)

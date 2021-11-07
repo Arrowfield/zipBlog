@@ -21,7 +21,7 @@
             <p class="intro">-</p>
           </div>
           <div class="logo">
-            <img src="../assets/img/error/loading_error.png" alt=""/>
+            <img src="../assets/images/error/loading_error.png" alt=""/>
           </div>
         </a>
       </li>

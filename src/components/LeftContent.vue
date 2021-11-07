@@ -2,8 +2,8 @@
   <div class="left-content " :class="{'screen-change':showMenu,'is-ie':isIe}">
     <div class="avatar">
       <a href="/">
-        <!--        <img src="../assets/img/index/avatar.gif" title="Z 的技术博客" alt="">-->
-        <img src="../assets/img/index/kenan_avatar.png" title="Z 的技术博客" alt="">
+        <!--        <img src="../assets/images/index/avatar.gif" title="Z 的技术博客" alt="">-->
+        <img src="../assets/images/index/kenan_avatar.png" title="Z 的技术博客" alt="">
       </a>
     </div>
     <div class="intro">
@@ -58,7 +58,7 @@
         <a href="javascript:" class="code-cont">
           <i class="iconfont iconweixin"></i>
           <div class="code">
-            <img alt="" src="../assets/img/index/code.jpg">
+            <img alt="" src="../assets/images/index/code.jpg">
           </div>
         </a>
         <a v-waves href="javascript:" class="code-cont" title="登录">
@@ -107,7 +107,7 @@
       <div class="tags">
         <i v-if="paused" class="play iconfont iconplay-circle-fill" @click="handlePlay"></i>
         <i v-else class="play iconfont iconpoweroff-circle-fill" @click="handlePlay"></i>
-        <video ref="video" poster="../assets/img/index/poster.jpg"  muted loop class="video"
+        <video ref="video" poster="../assets/images/index/poster.jpg"  muted loop class="video"
                src="https://arrowfield.top/Inuyasha.mp4" preload="none"></video>
       </div>
     </div>

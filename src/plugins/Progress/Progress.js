@@ -4,7 +4,7 @@
  * @param value
  * @param max
  */
-import Progress from "@/plugin/Progress/Progress.vue";
+import Progress from "@/plugins/Progress/Progress.vue";
 
 import Vue from 'vue'
 let instance;

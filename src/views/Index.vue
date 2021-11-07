@@ -9,7 +9,7 @@
 
     <RightContent :showMenu.sync="showMenu" :fixed="fixedLeft"/>
     <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">
-      <img src="@/assets/img/index/top.png" class="icon go-top" alt="">
+      <img src="@/assets/images/index/top.png" class="icon go-top" alt="">
     </div>
     <!--    <div class="small-screen">-->
     <!--      <i class=" iconfont iconzhidingtop"></i>-->
@@ -21,7 +21,7 @@
 <script>
   import RightContent from '@/components/RightContent'
   import LeftContent from "@/components/LeftContent";
-  import ProgressSelf from '../plugin/Progress/Progress'
+  import ProgressSelf from '../plugins/Progress/Progress'
   import CanvasBackground from "../components/canvas-background/CanvasBackground";
   import {drawBubble} from "../components/canvas-background/drewCanvas";
   import changePageTitle from '@/utils/changePageTitle'
@@ -266,7 +266,7 @@
     background: #f4f8fb;
     height: 100%;
     /*opacity: .7;*/
-    background: url("../assets/img/index/header-bg.jpg") no-repeat center;
+    background: url("../assets/images/index/header-bg.jpg") no-repeat center;
     background-size: cover;
     width: 100%;
     position: fixed;

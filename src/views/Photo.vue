@@ -5,7 +5,7 @@
       <li>
         <a href="javascript:" title="" >
           <img
-            src="../assets/img/index/kenan_avatar.png"
+            src="../assets/images/index/kenan_avatar.png"
             alt="">
           <p>2020.02.07</p>
         </a>
@@ -15,7 +15,7 @@
       <li>
         <a href="javascript:" title="" >
           <img
-            src="../assets/img/photo/avatar.jpg"
+            src="../assets/images/photo/avatar.jpg"
             alt="">
           <p>2020.05.10</p>
         </a>
@@ -24,7 +24,7 @@
       <li>
         <a href="javascript:" title="" >
           <img
-            src="../assets/img/index/avatar.gif"
+            src="../assets/images/index/avatar.gif"
             alt="">
           <p>2020.05.08</p>
         </a>
@@ -34,7 +34,7 @@
       <li>
         <a href="javascript:" title="" >
           <img
-            src="../assets/img/photo/time.png"
+            src="../assets/images/photo/time.png"
             alt="">
           <p>2020.02.08</p>
         </a>
@@ -43,7 +43,7 @@
       <li>
         <a href="javascript:" title="" >
           <img
-            src="../assets/img/photo/jinmu.png"
+            src="../assets/images/photo/jinmu.png"
             alt="">
           <p>2020.02.08</p>
         </a>
@@ -52,7 +52,7 @@
       <li>
         <a href="javascript:" title="" >
           <img
-            src="../assets/img/photo/me.jpg"
+            src="../assets/images/photo/me.jpg"
             alt="">
           <p>2020.02.07</p>
         </a>

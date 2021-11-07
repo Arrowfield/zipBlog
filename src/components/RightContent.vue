@@ -2,7 +2,7 @@
   <div class="right-content">
     <div class="header">
       <a   href="javascript:" @click="showMenuFun"><i class="iconfont icondaohang"></i></a>
-      <a href="/"><img src="../assets/img/index/kenan_avatar.png" alt=""></a>
+      <a href="/"><img src="../assets/images/index/kenan_avatar.png" alt=""></a>
     </div>
     <router-view />
 

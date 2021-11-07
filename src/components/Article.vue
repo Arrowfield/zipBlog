@@ -9,6 +9,7 @@
             <i v-if="index < 2" class="iconfont iconstar"></i>
           </div>
         </router-link>
+
         <div class="tags">
           <a v-waves href="#"><i class="iconfont iconrili"></i>{{item.articleCreated | truncation}}</a>
           <a v-waves href="#"><i class="iconfont iconredu"></i>{{ item.articleViewCount }} °C</a>
@@ -21,6 +22,7 @@
         </article>
       </li>
     </ul>
+
     <PageNav :total="total" :currPage.sync="currPage" @changeCurrPage="changeCurrPage"/>
   </div>
 </template>
@@ -30,11 +32,10 @@
   import PageNav from "@/components/PageNav";
   import {getArticleList} from "@/api/home";
   import Loading from "./Loading";
-
-  const testText = '12312345645648789456132131'
   import {mapState} from 'vuex'
   import {eventBus} from "@/utils/Bus";
 
+  const testText = '12312345645648789456132131'
   export default {
 
     name: "Article",
@@ -62,7 +63,7 @@
         return `${year}年${month}月${day}日`
       }
     },
-    components: {PageNav, Loading},
+    components: { PageNav, Loading},
     directives: {
       waves
     },

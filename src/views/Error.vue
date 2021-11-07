@@ -3,10 +3,10 @@
     <div class="canter-info">
       <h2>404 Not Fount</h2>
 
-        <img src="@/assets/img/error/404.gif"/>
+        <img src="@/assets/images/error/404.gif"/>
 
       <div class="a-error">
-        Please <a href="/start?referer=https%3A%2F%2Fwww.inkdp.cn%2Fadmin-index.do%23main">start</a> or return to <a href="/">Index</a>.
+        Please start or return to Index .
       </div>
     </div>
   </div>

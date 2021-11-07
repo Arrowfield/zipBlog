@@ -1,124 +1,30 @@
-# zipBlog
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-#### 项目名称
-+ zipBlog
-
 #### 开发个人博客
 + 前端：vue + vue-cli + vue-router + vuex + axios
 + 后端：springboot + mybatis + mysql
-
 #### 前后端代码托管
-
 + [前台](https://gitee.com/mcan/zipBlog.git)
 + [后台](https://gitee.com/mcan/zipBlogServer.git)
-
 #### 部署线上
-
+如果有安装错误的node_modules依赖包，可以使用rimraf删除
 ```shell script
-1. 购买云虚拟主机
-CentOS 7.3 64位
-2. 配置java运行环境以及docker
-java
-yum install java-1.8.0-openjdk 运行环境
-yum install java-1.8.0-openjdk-devel.x86_64 开发环境
-docker
-yum update
-yum install docker
-
-终止8080端口
-netstat -tunlp|grep 8080
-kill 01 pid
-
-3. 打包成jar包
-nohup java -jar zip-blog-serve-0.0.1-SNAPSHOT.jar --server.port=8080 &
-
-4. 运行即可
-5. 检查防火墙
-systemctl status firewalld
-service firewalld stop
-6.配置入方向安全组
-121.199.58.113
-3306
-7. 静态资源放在nginx下
-8. 后端接口放在tomcat下
-9. 云服务器需要装的node,git,nginx环境
-yum install -y nodejs
-yum install -y git
-docker pull nginx
-10. 将静态资源部署到nginx上
-
-docker run -p 3306:3306 --name mymysql
-
-
-cd / #切到跟目录
-mkdir zipBlog #创建文件夹
-cd zipBlog
-git clone https://gitee.com/mcan/zipBlog.git 
-
-docker run \
---name=nginx01 \
--p 80:80 \
--v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
--v /nginx/logs:/var/log/nginx \
--v /nginx/html:/usr/share/nginx/html \
--v /nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
--d nginx
-
-docker run \
---name=nginx02 \
--p 80:80 \
--p 443:443 \
--v /nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
--v /nginx/logs:/var/log/nginx \
--v /nginx/html:/usr/share/nginx/html \
--v /nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
--v /nginx/conf.d/cert/:/etc/nginx/cert \
--d nginx
-
+# 全局安装yarn
+npm install -g yarn --registry=https://registry.npm.taobao.org
+yarn install
+yarn serve
+# 打包
+yarn build
 ```
-
 #### 简介
-+ 两个服务器
-  + vps
-  + 阿里云 
++ 两个服务器：vps 阿里云 
 #### tips
-
 + 快速删除node包
 ````shell script
-全局代理
+#全局代理
 npm config set registry https://registry.npm.taobao.org
 cnpm install rimraf -g 
-// 使用命令删除 
-rimraf node_modules // 也可以删除其它文件夹或文件
-jarb上传工具
+#使用命令删除 
+rimraf node_modules # 也可以删除其它文件夹或文件
+#jarb上传工具
 yum -y install lrzsz
 rz -y
 
@@ -130,7 +36,7 @@ rz -y
 
 #### 接入云评论
 ```shell script
-#npm install --save vuepress-plugin-comment
+#npm install --save vuepress-plugins-comment
 npm install valine --save
 
 git config --global https.proxy 127.0.0.1:12639
@@ -231,61 +137,4 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 
 win:cnpm
 mac:npm
-```json
-{
-  "name": "zipBlog",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "proto": "pbjs -t json-module -w commonjs -o src/proto/proto.js  src/proto/*.proto"
-  },
-  "dependencies": {
-    "axios": "^0.19.2",
-    "core-js": "^3.6.4",
-    "fast-text-encoding": "^1.0.3",
-    "lodash": "^4.17.15",
-    "prerender-spa-plugin": "^3.4.0",
-    "protobufjs": "^6.11.2",
-    "valine": "^1.4.14",
-    "vue": "^2.6.11",
-    "vue-fragment": "^1.5.1",
-    "vue-router": "^3.1.6",
-    "vuepress-plugin-comment": "^0.7.3",
-    "vuex": "^3.1.3"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.3.0",
-    "@vue/cli-plugin-eslint": "^4.3.0",
-    "@vue/cli-service": "^4.3.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
-}
 
-```

@@ -54,7 +54,7 @@ export function formatOptions(state, options) {
     options.dataZoom = {
       type: "slider",
       top: 33,
-      handleIcon: require('@/assets/img/icons/btn_normal.png'),
+      handleIcon: require('@/assets/images/icons/btn_normal.png'),
       handleSize: 22,
       fillerColor: "#5EB0F4",
       showDetail: false,
