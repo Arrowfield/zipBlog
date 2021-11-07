@@ -1,3 +1,5 @@
 export default [
-  {path: "/green", component: () => import('@/views/skins/GreenBook/index.vue')}
+    {path: "/", component: () => import('@/views/skins/GreenBook/index.vue')},
+    {path: "/archive", component: () => import('@/views/skins/GreenBook/archives.vue')},
+    {path: "/download", component: () => import('@/views/skins/GreenBook/download.vue')}
 ]

@@ -1,9 +1,9 @@
 <template>
   <header ref="header" id="header" class="header bg-white animated">
     <div class="navbar-container">
-      <a :href="headerConfig.siteUrl" class="navbar-logo">
+      <router-link to="/" class="navbar-logo">
         <img :src="headerConfig.avatar" alt=""/>
-      </a>
+      </router-link>
       <div class="navbar-menu">
 
         <router-link :key="index" v-for="(item,index) of headerConfig.navMenu" :to="item.route">
@@ -56,7 +56,7 @@
             {title: "影视", route: "/archive", children: []},
             {title: "相册", route: "/archive", children: []},
             {title: "简笔", route: "/archive", children: []},
-            {title: "下载", route: "/archive", children: []},
+            {title: "下载", route: "/download", children: []},
             {title: "音乐", route: "/archive", children: []},
             {title: "友链", route: "/archive", children: []},
             {title: "关于", route: "/archive", children: []},

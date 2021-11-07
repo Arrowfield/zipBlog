@@ -593,7 +593,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   top: 100%;
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
-  margin: 0 0 0 -95px;
+  margin: 0 0 0 -50px;
   padding: 0;
   -webkit-transition: -webkit-transform .3s;
   transition: -webkit-transform .3s;
@@ -618,10 +618,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   font-size: 15px;
   line-height: 2.2;
   display: block;
-  width: 140px;
+  width: 100px;
+  text-align: center;
   margin: 0;
   padding: 8px 25px;
-  background-color: #eee
+  background-color: #eee;
 }
 
 .navbar-search {
@@ -1023,8 +1024,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .page-page {
-  max-width: 700px;
-  padding: 130px 25px 20px
+  max-width: 970px;
+  padding: 130px 25px 20px;;
 }
 
 .post-content p {
@@ -1138,7 +1139,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .post-data, .post-data a {
   font-size: 12px;
-  color: #5f5f5f
+  color: #5f5f5f;
+  /*color: white;*/
 }
 
 .post-tags {
@@ -1271,11 +1273,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   position: relative;
   margin: 10px auto;
   padding: 0 30px;
-  color: #5f5f5f
+  color: white;
 }
 
 .archive-page .categorys-title a {
-  color: #5f5f5f
+  color: white;
 }
 
 .archive-page .categorys-title::before {

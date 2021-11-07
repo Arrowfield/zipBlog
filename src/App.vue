@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <Progress/>
     <router-view/>
   </div>
@@ -14,15 +14,9 @@
     name: "App",
     components: {Progress},
     methods: {},
-    // async mounted() {
-    //   let res = await getUser()
-    //   console.log(res)
-    // }
+
   }
 </script>
 
 <style lang="scss" src="./assets/scss/base.scss"></style>
-<style>
-  @import "./assets/scss/prism.css";
-
-</style>
+<style src="./assets/scss/prism.css"></style>

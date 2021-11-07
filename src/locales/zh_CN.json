@@ -1,5 +1,10 @@
 {
   "message": "你好 i18n !!",
   "new-articles": "最新文章",
-  "new-comments": "最新评论"
+  "new-comments": "最新评论",
+  "articles":"文章",
+  "labels": "标签",
+  "comments":"评论",
+  "ip":"IP数",
+  "views":"浏览量"
 }
