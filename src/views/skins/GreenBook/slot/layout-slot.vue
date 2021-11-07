@@ -17,11 +17,17 @@
     components: {VueFooter, VueHeader},
     data() {
       return {
-        bodyImage: require('@/assets/images/index/header-bg.jpg'),
+
       }
     },
     props:{
-      className:String
+      className:String,
+      bodyImage:{
+        type:String,
+        default:()=>{
+          return require('@/assets/images/index/header-bg.jpg')
+        }
+      }
     }
   }
 </script>
