@@ -4,13 +4,12 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import changePageTitle from '../utils/changePageTitle'
-
+import greenBook from "./greenBook";
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
-
 
 
 const routes = [
@@ -82,6 +81,7 @@ const routes = [
     ]
   },
   {path: '/test',name: 'test',component: () => import('@/views/Test/Test.vue')},
+  ...greenBook,
   {
     path: '*',
     name: 'Error',

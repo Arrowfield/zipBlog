@@ -7,7 +7,16 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
   ? '/web/'
   : '/',
-  pluginOptions: {},
+  pluginOptions: {
+    i18n: {
+      locale: 'en',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableInSFC: true,
+      includeLocales: false,
+      enableBridge: true
+    }
+  },
   devServer: {
     disableHostCheck: true,
     port: 8091

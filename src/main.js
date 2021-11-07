@@ -26,12 +26,16 @@ Vue.prototype._ = _
 
 //全局组件
 import RightPanelContainer from '@/components/RightPanelContainer'
+
+import i18n from './i18n'
 Vue.component('RightPanelContainer',RightPanelContainer)
 
 new Vue({
   router,
   store,
   render: h => h(App),
+  i18n,
+
   mounted() {
     //document.dispatchEvent(new Event('render-event'))
   }

@@ -28,8 +28,8 @@
 <script>
   import {createCanvas} from '@/plugins/flamegraph/flamegraph'
   import {targetChart} from '@/plugins/targetChart/targetChart'
-  import {caseDetail} from './caseDetail.js'
-  import {caseReport} from './caseReport.js'
+  // import {caseDetail} from './caseDetail.js'
+  // import {caseReport} from './caseReport.js'
   import {formatReportData, getDragTooltipsData, getTooltipsData} from "./util";
   import ChartsMain from "./echarts/ChartsMain";
   import echarts from "./echarts/echarts";
@@ -39,6 +39,9 @@
   import {INDEX_TIMESTAMP} from "./constant";
   import {eventBus} from '../../utils/Bus'
   import 'fast-text-encoding'
+
+  let caseDetail = {data:{}}
+  let caseReport = {}
 
   let data = caseDetail.data
   /* start */
