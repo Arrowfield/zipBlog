@@ -1302,11 +1302,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   position: relative;
   margin: 10px auto;
   padding: 0 30px;
-  color: white;
+  color: #313131;
 }
 
 .archive-page .categorys-title a {
-  color: white;
+  color: #313131;
 }
 
 .archive-page .categorys-title::before {
