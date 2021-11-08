@@ -91,7 +91,7 @@
         indexIntro: {
           color: settings.textColors[0],
           indexImg: require('./images/0.jpg'),
-          href: window.location.origin,
+          href: '/',
           title: "ZipFang ` Blog",
           motto: "大道至简 大简至极",
           links: [
