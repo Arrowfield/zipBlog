@@ -213,7 +213,7 @@ table {
   border-spacing: 0;
   border-collapse: collapse;
   word-wrap: normal;
-  word-break: normal
+  word-break: break-word;
 }
 
 table th {
@@ -996,7 +996,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   position: relative;
   width: 100%;
   height: 300px;
-  margin-top: 70px
+  /*margin-top: 70px*/
 }
 
 .post-header-thumb-op {
@@ -1008,14 +1008,15 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   background-size: cover;
   -webkit-filter: blur(4px);
   -moz-filter: blur(4px);
-  filter: blur(4px)
+  filter: blur(4px);
+  background-position-y:-133PX;
 }
 
 .post-header-thumb-cover {
   position: relative;
   width: 100%;
   height: 300px;
-  margin-top: 70px;
+  /*margin-top: 70px;*/
   background-color: rgba(0, 0, 0, .5);
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .3);
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, .3);
