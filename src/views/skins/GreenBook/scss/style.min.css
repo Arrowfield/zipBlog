@@ -33,7 +33,7 @@ html {
 }
 
 body {
-  font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+  font-family: Lato,'Josefin Sans','PingFang SC',sans-serif;
   font-size: 14px;
   line-height: 1.8;
   margin: 0 auto;
@@ -518,22 +518,23 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .navbar-logo {
   font-size: 22px;
-  line-height: 22px;
+  line-height: 37px;
   position: absolute;
   top: 50%;
   left: 0;
   display: block;
   width: auto;
   max-width: 50%;
-  height: 22px;
-  margin-top: -10px;
+  height: 37px;
+  /*margin-top: -18px;*/
   margin-left: 25px;
-  text-decoration: none
+  text-decoration: none;
+  transform: translateY(-50%);
 }
 
 .navbar-logo img {
   width: auto;
-  height: 22px;
+  height: 37px;
   outline: 0
 }
 
@@ -1980,7 +1981,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .footer-meta .meta-copyright .info-logo img {
-  height: 64px;
+  height: 37px;
   margin-bottom: 12px
 }
 
@@ -1988,7 +1989,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   font-size: 13px;
   line-height: 20px;
   margin: 0;
-  color: #767676
+  overflow: hidden;
+  white-space: nowrap;
+
+  color: #767676;
 }
 
 .footer-meta .meta-copyright .info-text a {

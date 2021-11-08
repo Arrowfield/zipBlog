@@ -42,7 +42,7 @@
       return {
         headerConfig: {
           siteUrl: window.location.href,
-          avatar: require('./images/logo.png'),
+          avatar: require('./images/logo1.png'),
           navMenu: [
             {
               title: "分类", route: "/archive",

@@ -7,7 +7,6 @@
         </div>
       </div>
     </div>
-
     <div class="footer-meta">
       <div class="footer-container">
         <div class="meta-item meta-copyright">
@@ -16,7 +15,15 @@
               <img :src="footerIntro.imgUrl" alt=""/>
             </a>
             <div class="info-text">
-              <p>{{ footerIntro.motto }}</p>
+              <p>
+                {{ footerIntro.motto }}
+                {{ interest[0].name }}
+                <span
+                  v-for="(item,index) of interest[0].replace"
+                  :style="{color: settings.textColors[index % settings.textColors.length]}">
+                  {{item}}
+                </span>
+              </p>
               <p>{{ footerIntro.copyRight }}</p>
               <p>{{ footerIntro.recordNo }}</p>
             </div>
@@ -44,10 +51,13 @@
 </template>
 
 <script>
+  import settings from "../../../settings";
+
   export default {
     name: "vue-footer",
     data() {
       return {
+        settings,
         socialContact: [
           {title: "WEIBO", route: "/"},
           {title: "ZHIHU", route: "/"},
@@ -57,7 +67,7 @@
         ],
         footerIntro: {
           route: "/",
-          imgUrl: "https://rawchen.com/logo-footer.png",
+          imgUrl: require("./images/logo1.png"),
           imgAlt: "",
           motto: "大道至简 大简至极",
           copyRight: "© 2018-2021 ZipFang ` Blog",
@@ -83,6 +93,11 @@
           {title: "laojian : 谢谢老哥，成功了，我原来没开dhcp，现在能用上了", route: "/"},
           {title: "laojian : 我是小米路由mini刷的老毛子，我试成功了，", route: "/"},
         ],
+        interest: [
+          {name: "写博客", replace: "!!!∑(ﾟДﾟノ)ノ"},
+          {name: "去看海", replace: "Fight!!(ｏ^-^)尸~''☆ミ☆ミ"},
+          {name: "极简化", replace: "o((⊙﹏⊙))o"}
+        ]
       }
     },
   }
@@ -103,12 +118,13 @@
   }
 
   .footer-social .social-list a {
-    &:hover{
+    &:hover {
       color: #eb5050;
     }
   }
-  .footer-meta .meta-posts li a,.footer-meta .meta-comments li a{
-    &:hover{
+
+  .footer-meta .meta-posts li a, .footer-meta .meta-comments li a {
+    &:hover {
       border-bottom: 3px solid #cdcdcd;
       color: black;
     }

@@ -1,5 +1,5 @@
 export default  {
-  title: 'Z 的个人博客',
+  title: 'ZipFang ` Blog',
   fixedHeader: true,
   sidebarLogo: true,
   appConfig:{

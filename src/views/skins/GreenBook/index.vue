@@ -58,7 +58,7 @@
                     {{ item.views }}
                   </span>
               </div>
-              <div class="item-meta-hr  bg-orange"></div>
+              <div :style="{backgroundColor:item.color}" class="item-meta-hr"></div>
               <div class="item-content">
                 <p>{{ item.abstract }}...</p>
               </div>
@@ -75,6 +75,7 @@
   import VueHeader from "./header";
   import VueFooter from "./footer";
   import LayoutSlot from "./slot/layout-slot";
+  import settings from "../../../settings";
   // console.log(window.location)
   export default {
     name: "index",
@@ -83,6 +84,7 @@
       return {
 
         indexIntro: {
+          color:settings.textColors[0],
           indexImg: require('./images/0.jpg'),
           href: window.location.origin,
           title: "ZipFang ` Blog",
@@ -97,6 +99,7 @@
         },
         articleList: [
           {
+            color:settings.textColors[1],
             url: "/article-detail/0",
             src: "https://cdn.rawchen.com/2021/03/sdyun/00.jpg",
             title: "新人云服务器，且行且珍惜",
@@ -108,6 +111,7 @@
             abstract: "购买地址：腾讯云：[https://cloud.tencent.com/act/cps/redirect?redirect=1575&amp;cps_key=b58209dca42a9decdae2f276d61acd77&amp;from=console)阿里云：https://www.aliyun.com"
           },
           {
+            color:settings.textColors[2],
             url: "/article-detail/0",
             src: "https://rawchen.com/usr/themes/rawchen/images/thumbs/1.jpg",
             title: "记录下之前始终困扰的限速问题",
