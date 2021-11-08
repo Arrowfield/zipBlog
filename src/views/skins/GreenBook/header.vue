@@ -22,8 +22,8 @@
       </router-link>
 
       <!-- 移动端显示 -->
-      <div class="navbar-mobile-menu" :class="{'navbar-mobile-menu-on':showMobileMenu}">
-        <span @click="showMobileMenu = !showMobileMenu" class="icon-menu cross"><span class="middle"></span></span>
+      <div @click="showMobileMenu = !showMobileMenu" class="navbar-mobile-menu" :class="{'navbar-mobile-menu-on':showMobileMenu}">
+        <span  class="icon-menu cross"><span class="middle"></span></span>
         <ul ref="mobileMenu">
           <li :class="{'navbar-menu-categorys':item.children.length > 0}"
               :key="index"
@@ -132,9 +132,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
+    right: unset;
     width: 100px;
-    margin: 5px 0 0 -195px;
+    margin: 5px 0 0 -95px;
     border-radius: 15px;
     background-color: rgba(255,255,255,.95);
     -webkit-transition: .5s;

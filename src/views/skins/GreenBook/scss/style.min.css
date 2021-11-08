@@ -1,5 +1,6 @@
 @charset 'UTF-8';
 * {
+  -webkit-tap-highlight-color: transparent;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -610,7 +611,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .navbar-mobile-menu li {
   position: relative;
-  display: inline;
+  display: block;
   margin: 0;
   text-decoration: none
 }
