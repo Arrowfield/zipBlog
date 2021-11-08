@@ -20,7 +20,10 @@
                 {{ interest[0].name }}
                 <span
                   v-for="(item,index) of interest[0].replace"
-                  :style="{color: settings.textColors[index % settings.textColors.length]}">
+                  :style="{
+                    color: settings.textColors[index % settings.textColors.length],
+                    visibility:index<maxLength ? 'visible':'hidden'
+                  }">
                   {{item}}
                 </span>
               </p>
@@ -57,6 +60,7 @@
     name: "vue-footer",
     data() {
       return {
+        timer: null,
         settings,
         socialContact: [
           {title: "WEIBO", route: "/"},
@@ -94,12 +98,23 @@
           {title: "laojian : 我是小米路由mini刷的老毛子，我试成功了，", route: "/"},
         ],
         interest: [
-          {name: "写博客", replace: "!!!∑(ﾟДﾟノ)ノ"},
-          {name: "去看海", replace: "Fight!!(ｏ^-^)尸~''☆ミ☆ミ"},
+          {name: "写博客", replace: "!!ﾟДﾟノ)ノ"},
+          {name: "去看海", replace: "ｏ^-^)尸~''☆ミ☆ミ"},
           {name: "极简化", replace: "o((⊙﹏⊙))o"}
-        ]
+        ],
+        maxLength: 7
       }
     },
+    mounted() {
+      let flag = -1
+      // this.timer = setInterval(() => {
+      //   if(this.maxLength === 0 || this.maxLength === 8) flag = -flag
+      //   this.maxLength += flag
+      // }, 50)
+    },
+    beforeDestroy() {
+      this.timer = null
+    }
   }
 </script>
 

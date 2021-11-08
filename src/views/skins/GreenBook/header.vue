@@ -22,9 +22,9 @@
       </router-link>
 
       <!-- 移动端显示 -->
-      <div class="navbar-mobile-menu" onclick="">
+      <div class="navbar-mobile-menu navbar-mobile-menu-on">
         <span class="icon-menu cross"><span class="middle"></span></span>
-        <ul>
+        <ul ref="mobileMenu">
           <li :key="index" v-for="(item,index) of headerConfig.navMenu">
             <router-link :to="item.route">{{ item.title }}</router-link>
           </li>
@@ -94,22 +94,24 @@
       }
     },
     mounted() {
-      let headroom  = new Headroom(this.$el,{
-        // 在元素没有固定之前，垂直方向的偏移量（以px为单位）
-        offset : 0,
-        // scroll tolerance in px before state changes
-        tolerance : 0,
-        // 对于每个状态都可以自定义css classes
-        classes : {
-          // 当元素初始化后所设置的class
-          initial : "headroom",
-          // 向上滚动时设置的class
-          pinned : "slideDown",
-          // 向下滚动时所设置的class
-          unpinned : "slideUp"
+      new Headroom(this.$el, {
+        offset: 0,
+        tolerance: 0,
+        classes: {
+          initial: "headroom",
+          pinned: "slideDown",
+          unpinned: "slideUp"
         }
-      });
-      headroom.init();
+      }).init();
+      // new Headroom(this.$refs.mobileMenu, {
+      //   offset: 0,
+      //   tolerance: 0,
+      //   classes: {
+      //     initial: "headroom",
+      //     pinned: "slideDown",
+      //     unpinned: "slideUp"
+      //   }
+      // }).init()
     }
   }
 </script>

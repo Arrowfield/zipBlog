@@ -563,6 +563,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   cursor: pointer
 }
 
+.header.animated.slideUp .navbar-mobile-menu-on ul {
+  transform: translate(210px,0);
+}
+
 .navbar-mobile-menu:active, .navbar-mobile-menu:hover {
   cursor: pointer
 }

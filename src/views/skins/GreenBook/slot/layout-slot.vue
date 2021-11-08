@@ -25,7 +25,8 @@
       bodyImage:{
         type:String,
         default:()=>{
-          return require('@/assets/images/index/header-bg.jpg')
+          //return require('@/assets/images/index/header-bg.jpg')
+          return require('../images/bg.png')
         }
       }
     }
@@ -36,7 +37,7 @@
   .bg-gray {
     background-position: left top;
     background-size: auto;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-attachment: fixed;
     background-color: #f7f7f7 !important;
   }
