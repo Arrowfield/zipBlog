@@ -11,9 +11,28 @@
       </div>
     </div>
     <div id="post-content" class="post-content">
-    <blockquote><p><a href="https://pan.rawchen.com" target="_blank">https://pan.rawchen.com</a><br><a
-      href="https://blog.yoyling.com/file" target="_blank">https://blog.yoyling.com/file</a></p></blockquote>
+      <blockquote><p><a href="https://pan.rawchen.com" target="_blank">https://pan.rawchen.com</a><br><a
+        href="https://blog.yoyling.com/file" target="_blank">https://blog.yoyling.com/file</a></p></blockquote>
     </div>
+    <table>
+      <thead>
+      <tr>
+        <th>{{ $t('content') }}</th>
+        <th>{{ $t('down-link') }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="item of download[0].children">
+        <td v-if="item.isStrong">
+          <strong>{{ item.name }}</strong>
+        </td>
+        <td v-else>{{ item.name }}</td>
+        <td>
+          <a :href="item.link" target="_blank">{{ item.link }}</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </layout-slot>
 </template>
 
@@ -26,7 +45,25 @@
     data() {
       return {
         downInfo: {},
-        bodyImage: require('./images/bg.png')
+        bodyImage: require('./images/bg.png'),
+        download: [
+          {
+            title: "",
+            children: [
+              {name: "v2rayN-V3.28.zip", link: "https://cdn.rawchen.com/files/v2rayN-V3.28.zip", isStrong: true},
+              {name: "v2rayNG_V1.5.16.apk", link: "https://cdn.rawchen.com/files/v2rayN-V3.28.zip"},
+              {name: "Resource_Hacker 5.1.5", link: "https://cdn.rawchen.com/files/v2rayN-V3.28.zip"}
+            ]
+          },
+          {
+            title: "API中文文档",
+            children: [
+              {name: "v2rayN-V3.28.zip", link: "https://cdn.rawchen.com/files/v2rayN-V3.28.zip"},
+              {name: "v2rayNG_V1.5.16.apk", link: "https://cdn.rawchen.com/files/v2rayN-V3.28.zip"},
+              {name: "Resource_Hacker 5.1.5", link: "https://cdn.rawchen.com/files/v2rayN-V3.28.zip"}
+            ]
+          }
+        ]
       }
     }
   }

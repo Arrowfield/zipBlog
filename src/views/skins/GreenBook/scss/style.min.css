@@ -208,7 +208,6 @@ hr {
 
 table {
   font-size: 13px;
-  display: block;
   overflow: auto;
   width: 100%;
   border-spacing: 0;
@@ -223,8 +222,10 @@ table th {
 
 table td, table th {
   padding: 6px 13px;
-  white-space: nowrap;
-  border: 1px solid #ddd
+  /*white-space: nowrap;
+  */
+  border: 1px solid #ddd;
+  text-align: center;
 }
 
 table tr {
@@ -1981,10 +1982,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .footer-meta .footer-container {
   width: 100%;
-  max-width: 960px;
+  max-width: 1040px;
   height: 250px;
   margin: 0 auto;
-  padding: 0 80px
+  /*padding: 0 80px*/
 }
 
 .footer-meta .meta-item {

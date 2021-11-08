@@ -28,7 +28,19 @@
                 </span>
               </p>
               <p>{{ footerIntro.copyRight }}</p>
-              <p>{{ footerIntro.recordNo }}</p>
+              <p>
+                <a class="link-border" :href="footerIntro.recordNo.link" target="_blank">{{ footerIntro.recordNo.name }}</a>
+              </p>
+              <p>
+                <a class="link-border" :href="footerIntro.public.link" target="_blank">{{ footerIntro.public.name }}</a>
+              </p>
+              <p style="padding-top: 5px;">
+                <a v-for="item of footerSocial"
+                   :href="item.link"
+                   :title="item.title" target="blank">
+                  <i :class="item.icon" class="fa footer-icon" style="padding-right: 5px;" aria-hidden="true"></i>
+                </a>
+              </p>
             </div>
           </div>
         </div>
@@ -75,7 +87,14 @@
           imgAlt: "",
           motto: "大道至简 大简至极",
           copyRight: "© 2018-2021 ZipFang ` Blog",
-          recordNo: "鄂ICP备2021016558号"
+          recordNo: {
+            name: "鄂ICP备2021016558号",
+            link: "https://beian.miit.gov.cn/"
+          },
+          public: {
+            name: "粤公网安备44030902003044号",
+            link: "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902003044"
+          }
         },
         newArticles: [
           {title: "记录下之前始终困扰的限速问题", route: "/"},
@@ -102,7 +121,14 @@
           {name: "去看海", replace: "ｏ^-^)尸~''☆ミ☆ミ"},
           {name: "极简化", replace: "o((⊙﹏⊙))o"}
         ],
-        maxLength: 7
+        maxLength: 7,
+        footerSocial: [
+          {icon: "fa-github-alt", link: "https://github.com/Arrowfield", title: "GitHub"},
+          {icon: "fa-comments", link: "https://github.com/Arrowfield", title: "QQ"},
+          {icon: "fa-telegram", link: "https://github.com/Arrowfield", title: "Twitter"},
+          {icon: "fa-feed", link: "https://github.com/Arrowfield", title: "Feed"},
+          {icon: "fa-envelope", link: "https://github.com/Arrowfield", title: "Email"},
+        ]
       }
     },
     mounted() {
@@ -111,7 +137,8 @@
       //   if(this.maxLength === 0 || this.maxLength === 8) flag = -flag
       //   this.maxLength += flag
       // }, 50)
-    },
+    }
+    ,
     beforeDestroy() {
       this.timer = null
     }
@@ -144,4 +171,43 @@
       color: black;
     }
   }
+
+  .footer-icon {
+    font-size: 29px;
+    padding-left: 5px;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+  }
+
+  .footer-icon:hover {
+    color: #fd6464;
+    transform: rotate(-15deg);
+    -webkit-transform: rotate(-15deg);
+    -moz-transform: rotate(-15deg);
+    -o-transform: rotate(-15deg);
+    -ms-transform: rotate(-15deg);
+  }
+
+  i.fa.fa-telegram.footer-icon {
+    font-size: 24px;
+  }
+
+  .link-border {
+    background-image: linear-gradient(transparent 85%, #ff9898 5px);
+    background-size: 0;
+    background-repeat: no-repeat;
+    display: inline;
+    transition: 0.2s ease;
+    color: #5f5f5f;
+    /*padding-left: 5px;*/
+    /*padding-right: 5px;*/
+
+    &:hover {
+      color: #000;
+      background-size: 100%;
+    }
+  }
+
 </style>

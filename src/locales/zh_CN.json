@@ -6,5 +6,8 @@
   "labels": "标签",
   "comments":"评论",
   "ip":"IP数",
-  "views":"浏览量"
+  "views":"浏览量",
+  "content":"内容",
+  "down-link":"下载链接",
+  "document": "API中文文档"
 }
