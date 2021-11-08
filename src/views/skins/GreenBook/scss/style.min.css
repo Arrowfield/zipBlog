@@ -624,7 +624,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   z-index: 1;
   top: 100%;
   right: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
   /*clip: rect(1px, 1px, 1px, 1px);*/
   margin: 0;
   padding: 0;

@@ -148,17 +148,7 @@
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     border-left: 8px solid rgba(255,255,255,.95);
-    content: ''
-  }
-
-  .navbar-mobile-menu .navbar-menu-categorys ul:before {
-    position: absolute;
-    top: 9px;
-    right: -7px;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-left: 8px solid rgba(255,255,255,.95);
-    content: ''
+    content: '';
   }
 
   .navbar-menu a {
