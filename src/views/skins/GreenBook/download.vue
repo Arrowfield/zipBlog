@@ -75,19 +75,7 @@
     padding: 130px 25px 20px;;
   }
 
-  .post-title:before {
-    font-weight: 600;
-    content: '[';
-    color: #ea5055;
-    margin-right: 5px;
-  }
 
-  .post-title:after {
-    font-weight: 600;
-    content: ']';
-    color: #ea5055;
-    margin-left: 5px;
-  }
 
   .down-page {
     background-repeat: repeat;
