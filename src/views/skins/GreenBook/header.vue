@@ -22,11 +22,20 @@
       </router-link>
 
       <!-- 移动端显示 -->
-      <div class="navbar-mobile-menu navbar-mobile-menu-on">
-        <span class="icon-menu cross"><span class="middle"></span></span>
+      <div class="navbar-mobile-menu" :class="{'navbar-mobile-menu-on':showMobileMenu}">
+        <span @click="showMobileMenu = !showMobileMenu" class="icon-menu cross"><span class="middle"></span></span>
         <ul ref="mobileMenu">
-          <li :key="index" v-for="(item,index) of headerConfig.navMenu">
-            <router-link :to="item.route">{{ item.title }}</router-link>
+          <li :class="{'navbar-menu-categorys':item.children.length > 0}"
+              :key="index"
+              v-for="(item,index) of headerConfig.navMenu">
+            <router-link :to="item.route">
+              {{ item.title }}
+            </router-link>
+            <ul v-if="item.children.length > 0">
+              <li v-for="tmp of item.children">
+                <router-link :to="tmp.route">{{ tmp.title }}</router-link>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -65,7 +74,8 @@
         },
         beforeScrollTop: 0,
         afterScrollTop: 0,
-        up: -1
+        up: -1,
+        showMobileMenu: false
       }
     },
     methods: {
@@ -117,6 +127,40 @@
 </script>
 <style src="./scss/style.min.css"></style>
 <style lang="scss" scoped>
+
+  .navbar-mobile-menu .navbar-menu-categorys ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100px;
+    margin: 5px 0 0 -195px;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,.95);
+    -webkit-transition: .5s;
+    transition: .5s
+  }
+
+  .navbar-mobile-menu .navbar-menu-categorys ul:before {
+    position: absolute;
+    top: 9px;
+    right: -7px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid rgba(255,255,255,.95);
+    content: ''
+  }
+
+  .navbar-mobile-menu .navbar-menu-categorys ul:before {
+    position: absolute;
+    top: 9px;
+    right: -7px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid rgba(255,255,255,.95);
+    content: ''
+  }
+
   .navbar-menu a {
     padding: 30px 15px;
     position: relative;
