@@ -1069,6 +1069,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 }
 
+
+
 .page-page {
   max-width: 970px;
   padding: 130px 25px 20px;;
@@ -1078,7 +1080,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   font-size: 16px;
   line-height: 2;
   word-wrap: break-word;
-  word-break: break-word
+  word-break: break-word;
 }
 
 .post-content h1 {
@@ -1130,8 +1132,25 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .post-content p a {
-  color: #313131;
-  border-bottom: 1px solid #ccc
+  color: #4c94dd;
+  border-bottom: 1px dotted #ccc;
+  position: relative;
+}
+
+
+.post-content p a::after {
+  background: currentColor;
+  content: '';
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  top: 100%;
+  transform: translateX(-50%);
+  transition: width .2s ease;
+  width: 0;
+}
+.post-content p a:hover::after{
+  width: 100%;
 }
 
 .post-content p a:hover {
@@ -2284,7 +2303,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 
   .footer-meta .meta-copyright .info-text p {
-    text-align: right
+    text-align: right;
+    max-width: 180px;
+    overflow: hidden;
   }
 
   .post-onelist-item-container .onelist-item-thumb {
@@ -2473,4 +2494,25 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     -webkit-transform: translateY(0);
     opacity: 1
   }
+}
+
+#rewardButton button {
+  outline: none;
+  color: #fff;
+  background: linear-gradient(to right, #fa7a46, #ff5656);
+  width: 118px;
+  height: 41px;
+  border-radius: 2px;
+  cursor: pointer;
+  line-height: 42px;
+  font-weight: bold;
+  font-size: 18px;
+  -webkit-transition: opacity 0.15s ease-out;
+  -moz-transition: opacity 0.15s ease-out;
+  transition: opacity 0.15s ease-out;
+}
+#rewardButton button:hover {
+  opacity: .8;
+  filter: alpha(opacity=80);
+  color: #fff;
 }

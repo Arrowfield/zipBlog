@@ -124,10 +124,10 @@
         maxLength: 7,
         footerSocial: [
           {icon: "fa-github-alt", link: "https://github.com/Arrowfield", title: "GitHub"},
-          {icon: "fa-comments", link: "https://github.com/Arrowfield", title: "QQ"},
+          {icon: "fa-comments", link: "tencent://message/?uin=768449566", title: "QQ"},
           {icon: "fa-telegram", link: "https://twitter.com/zipfang", title: "Twitter"},
           {icon: "fa-feed", link: "https://github.com/Arrowfield", title: "Feed"},
-          {icon: "fa-envelope", link: "https://github.com/Arrowfield", title: "Email"},
+          {icon: "fa-envelope", link: "http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=nP3u7vPr_vX58Pj65uzc7e2y--Px", title: "Email"},
         ]
       }
     },
