@@ -67,7 +67,7 @@
             {title: "简笔", route: "/archive", children: []},
             {title: "下载", route: "/download", children: []},
             {title: "音乐", route: "/archive", children: []},
-            {title: "友链", route: "/archive", children: []},
+            {title: "友链", route: "/links", children: []},
             {title: "关于", route: "/archive", children: []},
           ],
           searchPage: "/search"
