@@ -1,68 +1,73 @@
 <template>
-  <footer id="footer" class="footer">
-    <div class="footer-social">
-      <div class="footer-container clearfix">
-        <div class="social-list">
-          <a v-for="item of socialContact" target="_blank" :href="item.route">{{ item.title }}</a>
+  <div>
+    <footer id="footer" class="footer">
+      <div class="footer-social">
+        <div class="footer-container clearfix">
+          <div class="social-list">
+            <a v-for="item of socialContact" target="_blank" :href="item.route">{{ item.title }}</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="footer-meta">
-      <div class="footer-container">
-        <div class="meta-item meta-copyright">
-          <div class="meta-copyright-info">
-            <a :href="footerIntro.route" class="info-logo">
-              <img :src="footerIntro.imgUrl" alt=""/>
-            </a>
-            <div class="info-text">
-              <p>
-                {{ footerIntro.motto }}
-                {{ interest[0].name }}
-                <span
-                  v-for="(item,index) of interest[0].replace"
-                  :style="{
+      <div class="footer-meta">
+        <div class="footer-container">
+          <div class="meta-item meta-copyright">
+            <div class="meta-copyright-info">
+              <a :href="footerIntro.route" class="info-logo">
+                <img :src="footerIntro.imgUrl" alt=""/>
+              </a>
+              <div class="info-text">
+                <p>
+                  {{ footerIntro.motto }}
+                  {{ interest[0].name }}
+                  <span
+                    v-for="(item,index) of interest[0].replace"
+                    :style="{
                     color: settings.textColors[index % settings.textColors.length],
                     visibility:index<maxLength ? 'visible':'hidden'
                   }">
                   {{item}}
                 </span>
-              </p>
-              <p>{{ footerIntro.copyRight }}</p>
-              <p>
-                <a class="link-border" :href="footerIntro.recordNo.link" target="_blank">{{ footerIntro.recordNo.name }}</a>
-              </p>
-              <p>
-                <a class="link-border" :href="footerIntro.public.link" target="_blank">{{ footerIntro.public.name }}</a>
-              </p>
-              <p style="padding-top: 5px;">
-                <a v-for="item of footerSocial"
-                   :href="item.link"
-                   :title="item.title" target="blank">
-                  <i :class="item.icon" class="fa footer-icon" style="padding-right: 5px;" aria-hidden="true"></i>
-                </a>
-              </p>
+                </p>
+                <p>{{ footerIntro.copyRight }}</p>
+                <p>
+                  <a class="link-border" :href="footerIntro.recordNo.link" target="_blank">{{ footerIntro.recordNo.name
+                    }}</a>
+                </p>
+                <p>
+                  <a class="link-border" :href="footerIntro.public.link" target="_blank">{{ footerIntro.public.name
+                    }}</a>
+                </p>
+                <p style="padding-top: 5px;">
+                  <a v-for="item of footerSocial"
+                     :href="item.link"
+                     :title="item.title" target="blank">
+                    <i :class="item.icon" class="fa footer-icon" style="padding-right: 5px;" aria-hidden="true"></i>
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="meta-item meta-posts">
-          <h3 class="meta-title">{{ $t('new-articles') }}</h3>
-          <ul style="padding: 0;margin: 0">
-            <li v-for="item of newArticles">
-              <router-link :to="item.route">{{ item.title }}</router-link>
-            </li>
-          </ul>
-        </div>
-        <div class="meta-item meta-comments">
-          <h3 class="meta-title">{{ $t('new-comments') }}</h3>
-          <ul style="padding: 0;margin: 0">
-            <li v-for="item of newComments">
-              <router-link :to="item.route">{{ item.title }}</router-link>
-            </li>
-          </ul>
+          <div class="meta-item meta-posts">
+            <h3 class="meta-title">{{ $t('new-articles') }}</h3>
+            <ul style="padding: 0;margin: 0">
+              <li v-for="item of newArticles">
+                <router-link :to="item.route">{{ item.title }}</router-link>
+              </li>
+            </ul>
+          </div>
+          <div class="meta-item meta-comments">
+            <h3 class="meta-title">{{ $t('new-comments') }}</h3>
+            <ul style="padding: 0;margin: 0">
+              <li v-for="item of newComments">
+                <router-link :to="item.route">{{ item.title }}</router-link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+    <a @click="backPageTop" href="javascript:" class="cd-top cd-is-visible cd-fade-out"></a>
+  </div>
 </template>
 
 <script>
@@ -127,7 +132,11 @@
           {icon: "fa-comments", link: "tencent://message/?uin=768449566", title: "QQ"},
           {icon: "fa-telegram", link: "https://twitter.com/zipfang", title: "Twitter"},
           {icon: "fa-feed", link: "https://github.com/Arrowfield", title: "Feed"},
-          {icon: "fa-envelope", link: "http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=nP3u7vPr_vX58Pj65uzc7e2y--Px", title: "Email"},
+          {
+            icon: "fa-envelope",
+            link: "http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=nP3u7vPr_vX58Pj65uzc7e2y--Px",
+            title: "Email"
+          },
         ]
       }
     },
@@ -141,6 +150,14 @@
     ,
     beforeDestroy() {
       this.timer = null
+    },
+    methods: {
+      backPageTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        })
+      }
     }
   }
 </script>

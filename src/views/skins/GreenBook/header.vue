@@ -62,11 +62,11 @@
                 {title: "计算科学", route: ""},
               ]
             },
-            {title: "影视", route: "/archive", children: []},
-            {title: "相册", route: "/archive", children: []},
-            {title: "简笔", route: "/archive", children: []},
+            {title: "影视", route: "/movies", children: []},
+            {title: "相册", route: "/photos", children: []},
+            {title: "简笔", route: "/cross", children: []},
             {title: "下载", route: "/download", children: []},
-            {title: "音乐", route: "/archive", children: []},
+            {title: "音乐", route: "/music", children: []},
             {title: "友链", route: "/links", children: []},
             {title: "关于", route: "/archive", children: []},
           ],
@@ -126,6 +126,8 @@
   }
 </script>
 <style src="./scss/style.min.css"></style>
+<style src="./scss/top-style.css"></style>
+<style src="./scss/DoubanBoard.css"></style>
 <style lang="scss" scoped>
 
   .navbar-mobile-menu .navbar-menu-categorys ul {

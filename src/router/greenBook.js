@@ -4,4 +4,7 @@ export default [
   {path: "/download", component: () => import('@/views/skins/GreenBook/download.vue')},
   {path: "/article-detail/:id", component: () => import('@/views/skins/GreenBook/article.vue')},
   {path: "/links", component: () => import('@/views/skins/GreenBook/links.vue')},
+  {path: "/movies", component: () => import('@/views/skins/GreenBook/movies.vue')},
+  {path: "/photos", component: () => import('@/views/skins/GreenBook/photos.vue')},
+  // {path: "/cross", component: () => import('@/views/skins/GreenBook/links.vue')},
 ]
