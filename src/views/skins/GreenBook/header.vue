@@ -166,6 +166,8 @@
         content: '';
       }
 
+      li{display: inline;overflow: hidden}
+
       position: absolute;
       left: 50%;
       width: 100px;
@@ -210,6 +212,7 @@
   .navbar-menu a:hover {
     background-color: #ffeded54;
     color: #ec5454;
+    border-radius: 15px;
 
     &:before {
       left: 0;
