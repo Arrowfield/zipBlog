@@ -44,7 +44,7 @@ body {
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:#f3f3f3;
+  background-color: #f3f3f3;
 }
 
 body > :first-child {
@@ -166,7 +166,7 @@ blockquote {
   /*padding: 0 10px 0 20px;*/
   /*border-left: 4px solid #ddd*/
   padding: 8px 20px;
-  background: linear-gradient(to right,#dceaff, #ededed);
+  background: linear-gradient(to right, #dceaff, #ededed);
   border-left: 4px solid #70a6ff;
   border-radius: 0 5px 5px 0;
   margin-bottom: 10px;
@@ -179,13 +179,13 @@ blockquote {
 /*  word-break: break-word*/
 /*}*/
 
-blockquote:before{
+blockquote:before {
   background: #70a6ff;
   border-radius: 50%;
   color: #fff;
   /* content: "Ãƒâ€”"; */
   content: "\0021";
-  font-family: Dosis,"Source Sans Pro","Helvetica Neue",Arial,sans-serif;
+  font-family: Dosis, "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   height: 21px;
   line-height: 21px;
@@ -195,7 +195,6 @@ blockquote:before{
   text-align: center;
   width: 21px;
 }
-
 
 
 hr {
@@ -312,7 +311,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .bg-white {
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255, 255, 255, 0.9);
 
   backdrop-filter: blur(20px);
 }
@@ -569,7 +568,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .header.animated.slideUp .navbar-mobile-menu-on ul {
-  transform: translate(210px,0);
+  transform: translate(210px, 0);
 }
 
 .navbar-mobile-menu:active, .navbar-mobile-menu.navbar-mobile-menu-on {
@@ -620,8 +619,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   text-decoration: none
 }
 
-.navbar-mobile-menu.navbar-mobile-menu-on ul{
-  transform: translateX(0) translateY(0) translateZ(0) ;
+.navbar-mobile-menu.navbar-mobile-menu-on ul {
+  transform: translateX(0) translateY(0) translateZ(0);
 }
 
 .navbar-mobile-menu ul {
@@ -936,7 +935,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   position: relative;
   max-width: 700px;
   margin: 0 auto;
-  padding: 38px 20px ;
+  padding: 38px 20px;
 }
 
 .post-onelist-item-container .onelist-item-thumb {
@@ -1012,7 +1011,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   -webkit-filter: blur(4px);
   -moz-filter: blur(4px);
   filter: blur(4px);
-  background-position-y:-133PX;
+  background-position-y: -133PX;
 }
 
 .post-header-thumb-cover {
@@ -1048,7 +1047,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .post-header-thumb-meta a {
-  color: #fff
+  color: #fff;
+  border-bottom: 1px dashed #ffffff;
 }
 
 .post-header-thumb-container .post-tags {
@@ -1063,8 +1063,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .post-page {
-  max-width: 700px;
-  padding: 30px 25px 20px
+  max-width: 970px;
+  padding: 30px 25px 20px;
+  box-shadow: 0 0 55px 0 rgb(0 0 0 / 3%);
+
 }
 
 .page-page {
@@ -1074,24 +1076,41 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .post-content p {
   font-size: 16px;
-  line-height:2;
+  line-height: 2;
   word-wrap: break-word;
   word-break: break-word
 }
 
-.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
+.post-content h1 {
   font-weight: 500;
   position: relative;
-  margin: 20px 0
+
+  margin: 20px 10px 20px 0;
+  padding-left: 9px;
+  border-left: 6px solid #ea5055;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.post-content h2:before{
+  border-radius: 50%;
+  background-color: #ea5055;
+  content: '';
+  width: 8px;
+  display: inline-block;
+  height: 8px;
+  vertical-align: middle;
+  margin-bottom: .18em;
+  margin-right: 8px;
 }
 
 .post-content h1::before, .post-content h2::before, .post-content h3::before, .post-content h4::before, .post-content h5::before, .post-content h6::before {
-  font-weight: 600;
-  position: absolute;
-  top: 0;
-  left: -15px;
-  content: '#';
-  color: #eb5055
+  /*font-weight: 600;*/
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: -15px;*/
+  /*content: '#';*/
+  /*color: #eb5055*/
 }
 
 .post-content pre {
@@ -1181,6 +1200,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .post-title {
   font-size: 21px
 }
+
 .post-title:before {
   font-weight: 600;
   content: '[';

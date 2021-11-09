@@ -3,7 +3,7 @@
     <div class="footer-social">
       <div class="footer-container clearfix">
         <div class="social-list">
-          <router-link v-for="item of socialContact" :to="item.route">{{ item.title }}</router-link>
+          <a v-for="item of socialContact" target="_blank" :href="item.route">{{ item.title }}</a>
         </div>
       </div>
     </div>
@@ -75,11 +75,11 @@
         timer: null,
         settings,
         socialContact: [
-          {title: "WEIBO", route: "/"},
-          {title: "ZHIHU", route: "/"},
+          {title: "WEIBO", route: "https://weibo.com/u/5996293209"},
+          {title: "ZHIHU", route: "https://www.zhihu.com/people/ziping-38"},
           {title: "RSS", route: "/"},
-          {title: "GITHUB", route: "/"},
-          {title: "TWITTER", route: "/"}
+          {title: "GITHUB", route: "https://github.com/Arrowfield"},
+          {title: "TWITTER", route: "https://twitter.com/zipfang"}
         ],
         footerIntro: {
           route: "/",
@@ -125,7 +125,7 @@
         footerSocial: [
           {icon: "fa-github-alt", link: "https://github.com/Arrowfield", title: "GitHub"},
           {icon: "fa-comments", link: "https://github.com/Arrowfield", title: "QQ"},
-          {icon: "fa-telegram", link: "https://github.com/Arrowfield", title: "Twitter"},
+          {icon: "fa-telegram", link: "https://twitter.com/zipfang", title: "Twitter"},
           {icon: "fa-feed", link: "https://github.com/Arrowfield", title: "Feed"},
           {icon: "fa-envelope", link: "https://github.com/Arrowfield", title: "Email"},
         ]
