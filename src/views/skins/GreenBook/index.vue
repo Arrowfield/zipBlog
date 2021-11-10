@@ -27,11 +27,11 @@
           </div>
         </div>
 
-        <div class="post-onelist-item" v-for="item of articleList">
+        <div class="post-onelist-item" v-for="(item,i) of articleList">
           <div class="post-onelist-item-container">
             <router-link :to="item.url">
-              <div class="onelist-item-thumb  bg-deepgrey"
-                   :style="{backgroundImage:`url(${item.src})`}">
+              <div class="onelist-item-thumb"
+                   :style="{backgroundImage:`url(${item.src})`}" :class="bgClassList[i % bgClassList.length]">
               </div>
             </router-link>
             <div class="onelist-item-info">
@@ -76,6 +76,8 @@
   </layout-slot>
 </template>
 
+
+
 <script>
   import VueHeader from "./header";
   import VueFooter from "./footer";
@@ -87,10 +89,10 @@
     components: {LayoutSlot, VueHeader, VueFooter},
     data() {
       return {
-
+        bgClassList:['bg-white','bg-grey','bg-deepgrey','bg-blue','bg-purple','bg-green','bg-yellow','bg-red','bg-orange'],
         indexIntro: {
           color: settings.textColors[0],
-          indexImg: require('./images/0.jpg'),
+          indexImg: require('./images/logo2.jpg'),
           href: '/',
           title: "ZipFang ` Blog",
           motto: "大道至简 大简至极",

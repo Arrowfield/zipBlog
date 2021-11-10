@@ -18,7 +18,7 @@
     </div>
     <div class="intro menu-list">
       <router-link to="/" v-waves><i class="iconfont iconshouye1"></i>回到首页</router-link>
-      <router-link to="/link" v-waves><i  class="iconfont icondaohang1"></i>友情链接</router-link>
+      <router-link to="/links" v-waves><i  class="iconfont icondaohang1"></i>友情链接</router-link>
       <router-link to="/tags" v-waves><i class="iconfont iconbiaoqian1"></i>标签</router-link>
       <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
       <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>

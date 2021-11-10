@@ -34,9 +34,9 @@ html {
 }
 
 body {
-  font-family: 'Arizonia', cursive;
+
   /*font-family:Lato,'Josefin Sans','PingFang SC',sans-serif;*/
-  /* font-family:'PingFang SC','Microsoft YaHei',sans-serif; */
+   font-family:'PingFang SC','Microsoft YaHei',sans-serif;
   font-size: 14px;
   line-height: 1.8;
   margin: 0 auto;
@@ -1208,6 +1208,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   text-overflow: ellipsis
 }
 
+
+
 .post-content .flinks li a {
   font-size: 16px;
   position: relative;
@@ -1306,6 +1308,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
   .post-onelist-item-container .onelist-item-thumb {
     min-height: 180px
+  }
+}
+
+@media (max-width: 320px) {
+  .post-content .flinks li {
+    width: 100%;
   }
 }
 

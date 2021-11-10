@@ -7,7 +7,7 @@
     <LeftContent :showMenu="showMenu" :class="{action:!isMove}"  :style="{transform:`translate(${offsetLeft}px)`}"/>
 
 
-    <RightContent :showMenu.sync="showMenu" :fixed="fixedLeft"/>
+<!--    <RightContent :showMenu.sync="showMenu" :fixed="fixedLeft"/>-->
     <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">
       <img src="@/assets/images/index/top.png" class="icon go-top" alt="">
     </div>
@@ -21,9 +21,9 @@
 <script>
   import RightContent from '@/components/RightContent'
   import LeftContent from "@/components/LeftContent";
-  import ProgressSelf from '../plugins/Progress/Progress'
-  import CanvasBackground from "../components/canvas-background/CanvasBackground";
-  import {drawBubble} from "../components/canvas-background/drewCanvas";
+  import ProgressSelf from '../../../plugins/Progress/Progress'
+  import CanvasBackground from "../../../components/canvas-background/CanvasBackground";
+  import {drawBubble} from "../../../components/canvas-background/drewCanvas";
   import changePageTitle from '@/utils/changePageTitle'
 
   export default {
@@ -266,7 +266,7 @@
     background: #f4f8fb;
     height: 100%;
     /*opacity: .7;*/
-    background: url("../assets/images/index/header-bg.jpg") no-repeat center;
+    background: url("../../../assets/images/index/header-bg.jpg") no-repeat center;
     background-size: cover;
     width: 100%;
     position: fixed;

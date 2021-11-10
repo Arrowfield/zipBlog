@@ -21,14 +21,13 @@
           <p>数据没有加载到</p>
         </a>
       </li>
-
     </ul>
   </RightPanelContainer>
 </template>
 
 <script>
   import RightPanelContainer from '@/components/RightPanelContainer'
-  import {getLink} from '../api/linkFriend'
+  import {getLink} from '@/api/linkFriend'
 
   export default {
     name: "LinkFriend",

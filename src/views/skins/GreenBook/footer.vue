@@ -127,9 +127,11 @@
           {name: "极简化", replace: "o((⊙﹏⊙))o"}
         ],
         maxLength: 7,
+        //https://www.feiniaomy.com/post/166.html
         footerSocial: [
           {icon: "fa-github-alt", link: "https://github.com/Arrowfield", title: "GitHub"},
-          {icon: "fa-comments", link: "tencent://message/?uin=768449566", title: "QQ"},
+          //{icon: "fa-comments", link: "tencent://message/?uin=768449566", title: "QQ"},
+          {icon: "fa-comments", link: "http://wpa.qq.com/msgrd?v=3&uin=768449566&site=qq&menu=yes", title: "QQ"},
           {icon: "fa-telegram", link: "https://twitter.com/zipfang", title: "Twitter"},
           {icon: "fa-feed", link: "https://github.com/Arrowfield", title: "Feed"},
           {
@@ -174,6 +176,9 @@
     ::-webkit-scrollbar-track {
       /* background-color: #eee; */
     }
+  }
+  .footer{
+    font-family: 'Arizonia', cursive;
   }
 
   .footer-social .social-list a {

@@ -129,6 +129,7 @@
 <style src="./scss/top-style.css"></style>
 <style src="./scss/DoubanBoard.css"></style>
 <style lang="scss" scoped>
+  .header{font-family: 'Arizonia', cursive;}
 
   .navbar-mobile-menu .navbar-menu-categorys ul {
     position: absolute;
@@ -140,7 +141,8 @@
     border-radius: 15px;
     background-color: rgba(255,255,255,.95);
     -webkit-transition: .5s;
-    transition: .5s
+    transition: .5s;
+
   }
 
   .navbar-mobile-menu .navbar-menu-categorys ul:before {

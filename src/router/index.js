@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 import changePageTitle from '../utils/changePageTitle'
 import greenBook from "./greenBook";
+import nexmoe from "./nexmoe";
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -80,7 +81,8 @@ const routes = [
   //     }
   //   ]
   // },
-  ...greenBook,
+  // ...greenBook,
+  ...nexmoe,
   {path: '/test',name: 'test',component: () => import('@/views/Test/Test.vue')},
   {
     path: '*',
