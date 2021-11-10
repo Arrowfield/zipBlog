@@ -14,75 +14,8 @@ VueRouter.prototype.push = function push(location) {
 
 
 const routes = [
-  // {
-  //   path: '/',
-  //   component: () => import('../views/Index'),
-  //   children: [
-  //     {
-  //       path: "",
-  //       name: "Article",
-  //       component: () => import("../components/Article"),
-  //       meta: {
-  //         title: '首页'
-  //       }
-  //     },
-  //     {
-  //       path:"article/:id",
-  //       component:()=> import("@/views/ArticleDetail"),
-  //
-  //     },
-  //     {
-  //       path: "link",
-  //       name: "LinkFriend",
-  //       component: () => import("../views/LinkFriend"),
-  //       meta: {
-  //         title: '友情链接'
-  //       }
-  //     },
-  //     {
-  //       path: "mood",
-  //       name: "Mood",
-  //       component: () => import("../views/Mood"),
-  //       meta: {
-  //         title: '心情随笔'
-  //       }
-  //     },
-  //     {
-  //       path: "address",
-  //       name: "Address",
-  //       component: () => import("../views/Address"),
-  //       meta: {
-  //         title: '好站推荐'
-  //       }
-  //     },
-  //     {
-  //       path: "tags",
-  //       name: "Tags",
-  //       component: () => import("../views/Tags"),
-  //       meta: {
-  //         title: '标签'
-  //       }
-  //     },
-  //     {
-  //       path: "about",
-  //       name: "About",
-  //       component: () => import("../views/About"),
-  //       meta: {
-  //         title: '关于'
-  //       }
-  //     },
-  //     {
-  //       path: "photo",
-  //       name: "Photo",
-  //       component: () => import("../views/Photo"),
-  //       meta: {
-  //         title: '相册'
-  //       }
-  //     }
-  //   ]
-  // },
-  //...greenBook,
-  ...nexmoe,
+  ...greenBook,
+  //...nexmoe,
   {path: '/test',name: 'test',component: () => import('@/views/Test/Test.vue')},
   {
     path: '*',
