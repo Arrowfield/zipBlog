@@ -1,6 +1,6 @@
 <template>
   <layout-slot>
-      <RightPanelContainer class="link-page" title="友情链接">
+      <RightPanelContainer class="main-content-right" title="友情链接">
         <ul class="link-list">
 
           <li v-for="(item,i) in linkFriend">
@@ -63,63 +63,4 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  .link-page {
-    margin-left: 260px;
-    width: calc(100% - 260px);
-    .link-list {
-      display: flex;
-      flex-wrap: wrap;
 
-      li {
-        transition: all .03s;
-        width: 100px;
-        margin: 5px;
-        border-radius: 4px;
-        border: 1px solid #eee;
-        /*font-size: 0;*/
-        overflow: hidden;
-
-        .img-panel {
-          /*width: 98px;*/
-          height: 98px;
-        }
-
-        a {
-          display: block;
-        }
-
-        p {
-          font-size: 13px;
-          color: #606266;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          padding: 3px 10px 5px;
-        }
-
-        .item-img {
-          width: 98px;
-          height: 98px;
-          overflow: hidden;
-        }
-
-        img {
-          vertical-align: top;
-          object-fit: cover;
-          transition: all .2s linear;
-
-          &:hover {
-            transform: scale(1.02);
-          }
-        }
-      }
-    }
-  }
-  @media screen and (max-width: 768px) {
-    .link-page{
-      width: 100%;
-      margin: 80px  0 0;
-    }
-  }
-</style>

@@ -658,3 +658,4 @@
     }
   }
 </style>
+<style lang="scss" src="./scss/style.scss"></style>

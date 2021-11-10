@@ -1,20 +1,26 @@
 <template>
-  <RightPanelContainer class="link-page" title="标签">
-    <div class="tags">
-      <a href="javascript:" :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
-         v-for="(item,i) in tags"># {{ item }}</a>
-      <a href="javascript:" v-if="tags.length === 0" :style="{background:bgColors[0],color:textColors[0]}">wuwu 一个标签都没有，，，</a>
-    </div>
-  </RightPanelContainer>
+  <layout-slot>
+    <RightPanelContainer class="main-content-right" title="标签">
+      <div class="tags">
+        <a href="javascript:"
+           :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
+           v-for="(item,i) in tags"># {{ item }}</a>
+        <a href="javascript:" v-if="tags.length === 0" :style="{background:bgColors[0],color:textColors[0]}">wuwu
+          一个标签都没有，，，</a>
+      </div>
+    </RightPanelContainer>
+  </layout-slot>
 </template>
 
 <script>
   import RightPanelContainer from '@/components/RightPanelContainer'
   import {mapState} from 'vuex'
+  import LayoutSlot from "./slot/layout-slot";
 
   export default {
     name: "Tags",
     components: {
+      LayoutSlot,
       RightPanelContainer,
     },
     data() {

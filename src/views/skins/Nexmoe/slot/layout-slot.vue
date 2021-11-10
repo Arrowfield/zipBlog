@@ -111,7 +111,7 @@
       }
     },
     mounted() {
-      document.body.addEventListener("click", this.addLoveIcon)
+      //document.body.addEventListener("click", this.addLoveIcon)
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === 'hidden') { //状态判断
           if (this.leaveTimer) clearTimeout(this.leaveTimer)
@@ -133,8 +133,8 @@
       this.width = window.innerWidth
       this.height = window.innerHeight
       this.$nextTick(() => { //要等到width，height 赋值完之后 在初始化
-        this.ctx = this.$refs.canvas.getContext('2d')
-        this.initData()
+        // this.ctx = this.$refs.canvas.getContext('2d')
+        // this.initData()
         //this.drawBubble()
       })
       document.addEventListener("touchstart", (e) => {

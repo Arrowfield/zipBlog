@@ -14,8 +14,8 @@
 
 <style lang="scss" scoped>
   .panel-cont{
-    width: 100%;
-    margin: 45px auto;
+    /*width: 100%;*/
+    /*margin: 45px auto;*/
     border-radius: 10px;
     background-color: rgb(255,255,255);
     padding: 20px;
