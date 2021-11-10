@@ -1,70 +1,75 @@
 <template>
-  <div class="about-page article-detail-page">
-    <div class="img-cont" v-waves>
-      <img :src="articleDetail.articleImgURL" alt="">
-      <h1 class="title">{{ articleDetail.articleTitle }}</h1>
-    </div>
-    <Tags :tagDetail="articleDetail"/>
-    <div class="intro-detail text-area" v-loading-circ="loading" @contextmenu.prevent @selectstart.prevent>
-      <div v-html="articleDetail.articleContent"></div>
-      <div v-show="articleDetail.reprint" class="reprint">
-        <i class="icon iconfont icongantanhao-xianxingyuankuang "></i>
-        <p>文章转载声明：</p>
+  <layout-slot>
+    <div class="about-page article-detail-page main-content-right">
+      <div class="img-cont" v-waves>
+        <img :src="articleDetail.articleImgURL" alt="">
+        <h1 class="title">{{ articleDetail.articleTitle }}</h1>
       </div>
-    </div>
-
-    <div class="intro-detail message">
-      <p style="margin-bottom:0">留言</p>
-      <div class="message">
-       <Message :idName="'articleDetail'+articleDetail.zid"/>
+      <TagComponent :tagDetail="articleDetail"/>
+      <div class="intro-detail text-area" v-loading-circ="loading" @contextmenu.prevent @selectstart.prevent>
+        <div v-html="articleDetail.articleContent"></div>
+        <div v-show="articleDetail.reprint" class="reprint">
+          <i class="icon iconfont icongantanhao-xianxingyuankuang "></i>
+          <p>文章转载声明：</p>
+        </div>
       </div>
-<!--      <Comment :postId="articleDetail.zid" />-->
-    </div>
 
-  </div>
+      <div class="intro-detail message">
+        <p style="margin-bottom:0">留言</p>
+        <div class="message">
+          <Message :idName="'articleDetail'+articleDetail.zid"/>
+        </div>
+        <!--      <Comment :postId="articleDetail.zid" />-->
+      </div>
+
+    </div>
+  </layout-slot>
 </template>
 
 <script>
-  import Tags from "@/components/TagComponent";
+  import TagComponent from "./tag-component";
   import Message from '@/components/Message'
   import Comment from '@/components/Comment'
-  import {getArticleById,recordCount} from "@/api/home";
+  import {getArticleById, recordCount} from "@/api/home";
   import changePageTitle from "@/utils/changePageTitle";
+  import LayoutSlot from "./slot/layout-slot";
+
   export default {
     name: "ArticleDetail",
     components: {
-      Tags,
+      LayoutSlot,
+      TagComponent,
       Message,
       Comment,
     },
-    data(){
-      return{
-        play:false,
-        articleDetail:{
-          zid:Math.random() * 10000
+    data() {
+      return {
+        play: false,
+        articleDetail: {
+          zid: Math.random() * 10000
         },
-        loading:false
+        loading: false
       }
     },
-    beforeRouteEnter (to, from, next) {
+    beforeRouteEnter(to, from, next) {
       next(vm => {
         // console.log(vm.$data.articleDetail)
       })
     },
-    methods:{
-      async getArticleDetail(){
+    methods: {
+      async getArticleDetail() {
         this.loading = true
-        let res = await getArticleById({zid:this.$route.params.id})
-        this.articleDetail = Object.assign({},res.data.data)
+        let res = await getArticleById({zid: this.$route.params.id})
+        this.articleDetail = Object.assign({}, res.data.data)
         changePageTitle(this.articleDetail.articleTitle)
         this.loading = false
       },
       //记录文章的浏览量进行埋点
-      recordArticleViewCount(){
-        recordCount({zid:this.$route.params.id})
+      recordArticleViewCount() {
+        recordCount({zid: this.$route.params.id})
       }
     },
-    mounted(){
+    mounted() {
       this.getArticleDetail()
       this.recordArticleViewCount()
     }
@@ -75,7 +80,7 @@
 
   .article-detail-page {
 
-    .reprint{
+    .reprint {
       word-wrap: break-word;
       margin-bottom: 20px;
       border-radius: 6px;
@@ -85,10 +90,12 @@
       border-left: 2px solid #eee;
       line-height: 1.5em;
       position: relative;
-      p{
+
+      p {
         text-indent: 0 !important;
       }
-      .icon{
+
+      .icon {
         position: absolute;
         top: -10px;
         left: 13px;
@@ -105,30 +112,35 @@
       }
     }
 
-    .intro-detail.text-area{
+    .intro-detail.text-area {
       font-size: 15px;
       min-height: 200px;
       background: #fffbf0 !important;
-      p{
+
+      p {
         margin-bottom: 7px;
         line-height: 28px;
         overflow: hidden;
         //text-indent: 2em; //系统默认的字体大小为16px 最小显示字体为12px
       }
-      li{
+
+      li {
         line-height: 28px;
       }
-      h1,h2,h3{
+
+      h1, h2, h3 {
         margin-bottom: 7px;
       }
-      ul,ol{
+
+      ul, ol {
         /*list-style: disc;*/
         padding-left: 2em;
-        margin-bottom:16px;
+        margin-bottom: 16px;
         /*color:#738a94;*/
 
       }
-      img{
+
+      img {
         /*width: auto;*/
         height: auto;
         max-width: 100%;
@@ -146,19 +158,22 @@
   .about-page {
     margin-top: 20px;
 
-    .message{
-      margin-top:16px;
+    .message {
+      margin-top: 16px;
     }
+
     .img-cont {
       overflow: hidden;
-
       position: relative;
+      min-height: 80px;
+
       img {
         border-radius: 10px;
         width: 100%;
         max-height: 520px;
         object-fit: cover;
       }
+
       .title {
         position: absolute;
         bottom: 0;
@@ -173,33 +188,33 @@
       }
     }
 
-    .intro-detail{
+    .intro-detail {
       margin-bottom: 20px;
       border-radius: 10px;
       background-color: #fff;
       padding: 20px;
       box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
 
-      p{
+      p {
         // margin-bottom: 16px;
         font-weight: bold;
 
       }
 
-      ul{
+      ul {
         /*list-style: disc;*/
         padding-left: 2em;
-        margin-bottom:16px;
-        color:#738a94;
+        margin-bottom: 16px;
+        color: #738a94;
       }
 
-      li{
+      li {
         line-height: 24px;
       }
 
-      li.play-music{
-        i{
-          margin-left:5px;
+      li.play-music {
+        i {
+          margin-left: 5px;
           font-size: 20px;
           cursor: pointer;
         }

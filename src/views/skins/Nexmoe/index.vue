@@ -26,31 +26,37 @@
     <!--    </div>-->
 
 
-    <div v-loading-circ="showLoading" class="down-file post-lists main-content-right">
-      <ul class="article-page" v-if="articleList.length > 0">
-        <li v-for="(item,index) in articleList" :key="index">
-          <router-link :to="/article/ + item.zid" v-waves class="link" :title="item.articleTitle">
-            <div class="image-cont">
-              <img :src="item.articleImgURL" alt="">
-              <h1 class="title">{{item.articleTitle}}</h1>
-              <i v-if="index < 2" class="iconfont iconstar"></i>
+    <div class="down-file post-lists main-content-right">
+      <div v-if="showLoading" class="douban-loadmore">加载中...</div>
+      <div v-if="articleList.length > 0">
+        <ul class="article-page">
+          <li v-for="(item,index) in articleList" :key="index" class="clearfix">
+            <router-link :to="/article/ + item.zid" v-waves class="link" :title="item.articleTitle">
+              <div class="image-cont">
+                <!--              <img :src="item.articleImgURL" alt="">-->
+
+                <i v-if="index < 2" class="iconfont iconstar"></i>
+              </div>
+            </router-link>
+            <h1 class="title">{{item.articleTitle}}</h1>
+            <div class="tags">
+              <a v-waves href="#"><i class="iconfont iconrili"></i>{{item.articleCreated | truncation}}</a>
+              <a v-waves href="#"><i class="iconfont iconredu"></i>{{ item.articleViewCount }} °C</a>
+              <!--          <a v-waves href="#"><i class="iconfont iconxx"></i><span class="valine-comment-count" :data-xid="`/article/${item.zid}`">{{ "-" }}</span></a>-->
+              <a class="tag" :key="i" v-for="(tmp,i) in item.articleTags.split(',')" v-waves href="#"><i
+                class="iconfont icondaohang1"></i>{{tmp}}</a>
             </div>
-          </router-link>
-
-          <div class="tags">
-            <a v-waves href="#"><i class="iconfont iconrili"></i>{{item.articleCreated | truncation}}</a>
-            <a v-waves href="#"><i class="iconfont iconredu"></i>{{ item.articleViewCount }} °C</a>
-            <!--          <a v-waves href="#"><i class="iconfont iconxx"></i><span class="valine-comment-count" :data-xid="`/article/${item.zid}`">{{ "-" }}</span></a>-->
-            <a class="tag" :key="i" v-for="(tmp,i) in item.articleTags.split(',')" v-waves href="#"><i
-              class="iconfont icondaohang1"></i>{{tmp}}</a>
-          </div>
-          <article>
-            <p class="summary">{{item.articleAbstract}}</p>
-          </article>
-        </li>
-      </ul>
-
-      <!--          <PageNav :total="total" :currPage.sync="currPage" @changeCurrPage="changeCurrPage"/>-->
+            <article>
+              <p class="summary">{{item.articleAbstract}}</p>
+            </article>
+          </li>
+        </ul>
+        <page-nav
+          :total="total"
+          :currPage.sync="currPage"
+          @changeCurrPage="changeCurrPage"
+        />
+      </div>
     </div>
 
 
@@ -58,7 +64,7 @@
 </template>
 
 <script>
-  import RightContent from '@/components/RightContent'
+
   import VueHeader from "./header.vue";
   import ProgressSelf from '../../../plugins/Progress/Progress'
   import CanvasBackground from "../../../components/canvas-background/CanvasBackground";
@@ -66,14 +72,16 @@
   import changePageTitle from '@/utils/changePageTitle'
   import LayoutSlot from "./slot/layout-slot";
   import {getArticleList} from "../../../api/home";
+  import PageNav from './page-nav'
 
   export default {
     components: {
       LayoutSlot,
-      RightContent,
+
       //LeftContent,
       VueHeader,
-      CanvasBackground
+      CanvasBackground,
+      PageNav
     },
     name: "Index",
     data() {
@@ -93,7 +101,10 @@
         startX: 0,
         isMove: false,
         articleList: [],
-        showLoading: false
+        showLoading: false,
+        total: 0,
+        currPage: 1,
+
       }
     },
     filters: {
@@ -117,7 +128,11 @@
       }
     },
     methods: {
+      changeCurrPage(page) {
+        this.postArticleList(page)
+      },
       postArticleList(page) {
+        this.articleList = []
         let pageNum = 1
         if (page) pageNum = page
         //this.$store.commit("article/setDatalist", [])
@@ -125,13 +140,13 @@
           let params = {
             page: pageNum
           }
-          this.loading = true
+          this.showLoading = true
           this.$store.commit("setLoading", true)
           getArticleList(params).then((res) => {
             let data = res.data
             //console.log(res)
             // this.$store.commit("setIndexBaseData", {
-            //   total: res.data.total
+            //   total:
             // })
             // this.$store.commit("article/setDatalist", res.data.data)
             // this.views = data.viewsTotal
@@ -141,6 +156,8 @@
             // this.$store.commit("setLoading", false)
             // window.scrollTo(0,0)
             this.articleList = res.data.data
+            this.total = res.data.total
+            this.showLoading = false
           }) //获取所有的文章
         } catch (e) {
           if (e) throw e
@@ -354,7 +371,11 @@
   .post-lists {
     min-height: 120px;
     border-radius: 10px;
-    ul{list-style: none}
+
+    ul {
+      list-style: none
+    }
+
     li {
 
       margin: 20px auto;
@@ -367,7 +388,6 @@
       .link {
         display: block;
         overflow: hidden;
-        margin-bottom: 10px;
         border-radius: 10px;
       }
 
@@ -390,8 +410,8 @@
         }
 
         .title {
-          position: absolute;
-          bottom: 0;
+          /*position: absolute;*/
+          /*bottom: 0;*/
           padding: 15px;
           color: #fff;
           font-size: 2em;
@@ -413,11 +433,16 @@
         }
       }
 
+      .title {
+        margin: 10px 0;
+        font-size: 22px;
+      }
+
       article {
         color: #444;
         font-family: microsoft yahei, serif;
         margin-bottom: 20px;
-        padding: 10px 0;
+        /*padding: 10px 0;*/
 
         p {
           overflow: hidden;
@@ -474,6 +499,22 @@
         }
       }
     }
+  }
+
+  .douban-loadmore {
+    display: block;
+    padding: 0.3em;
+    background: black;
+    color: white;
+    transition: 0.2s;
+    margin: 20px auto !important;
+    width: 6em;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .douban-loadmore:hover {
+    background: rgba(0, 0, 0, 0.6);
   }
 
 </style>

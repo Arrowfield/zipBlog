@@ -3,10 +3,10 @@
     <RightPanelContainer class="main-content-right" title="标签">
       <div class="about-page ">
         <div class="img-cont" v-waves>
-          <img src="https://arrowfield.top/5e42925d412fdc2e940edf3acb31fca5.jpg?imageView2/0/q/75" alt="">
-          <h1 class="title">关于我</h1>
+          <img src="https://cdn.zipblog.top/5e42925d412fdc2e940edf3acb31fca5.jpg?imageView2/0/q/75" alt="">
         </div>
-        <Tags :tagDetail="tagDetail"/>
+        <h1 class="title">关于我</h1>
+        <tag-component :tagDetail="tagDetail"/>
         <div class="intro-detail about">
           <p>我是谁</p>
           <ul>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-  import Tags from "@/components/TagComponent";
+  import TagComponent from "./tag-component";
   import Message from '@/components/Message'
   import Comment from '@/components/Comment'
   import LayoutSlot from "./slot/layout-slot";
@@ -72,7 +72,7 @@
 
     components: {
       LayoutSlot,
-      Tags,
+      TagComponent,
       Message,
       Comment,
       RightPanelContainer
@@ -121,17 +121,20 @@
         //}
       }
 
-      .title {
-        position: absolute;
-        bottom: 0;
-        padding: 15px;
-        color: #fff;
-        font-size: 2em;
-        width: 100%;
-        font-weight: 400;
-        cursor: auto;
-        z-index: 5;
-      }
+
+    }
+
+    .title {
+      /*position: absolute;*/
+      /*bottom: 0;*/
+      /*padding: 15px;*/
+      /*color: #fff;*/
+      /*font-size: 2em;*/
+      /*width: 100%;*/
+      /*font-weight: 400;*/
+      /*cursor: auto;*/
+      /*z-index: 5;*/
+      font-size: 22px;
     }
 
     .intro-detail {

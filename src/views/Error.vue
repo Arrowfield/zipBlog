@@ -2,9 +2,7 @@
   <div class="error-page">
     <div class="canter-info">
       <h2>404 Not Fount</h2>
-
         <img src="@/assets/images/error/404.gif"/>
-
       <div class="a-error">
         Please start or return to Index .
       </div>

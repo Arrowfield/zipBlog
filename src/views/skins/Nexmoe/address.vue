@@ -1,40 +1,48 @@
 <!-- page 好站推荐 -->
 <template>
-  <RightPanelContainer class="address-page" title="好站推荐">
-    <ul class="good-link">
-      <li class="link-item" v-for="(item) in linkList">
-        <a  :href="item.href" target="_blank" :title="item.title">
-          <div class="intro-link">
-            <p class="title">{{ item.title }}</p>
-            <p class="intro">{{ item.intro }}</p>
-          </div>
-          <div class="logo">
-            <img :src="item.imgUrl" alt=""/>
-          </div>
-        </a>
-      </li>
+  <layout-slot>
+    <RightPanelContainer class="address-page main-content-right" title="好站推荐">
+      <ul class="good-link">
+        <li class="link-item" v-for="(item) in linkList">
+          <a :href="item.href" target="_blank" :title="item.title">
+            <div class="intro-link">
+              <p class="title">{{ item.title }}</p>
+              <p class="intro">{{ item.intro }}</p>
+            </div>
+            <div class="logo">
+              <img :src="item.imgUrl" alt=""/>
+            </div>
+          </a>
+        </li>
 
-      <li class="link-item" v-if="linkList.length === 0">
-        <a href="javascript:" title="没有加载到数据">
-          <div>
-            <p class="title">没有加载到数据</p>
-            <p class="intro">-</p>
-          </div>
-          <div class="logo">
-            <img src="../assets/images/error/loading_error.png" alt=""/>
-          </div>
-        </a>
-      </li>
+        <li class="link-item" v-if="linkList.length === 0">
+          <a href="javascript:" title="没有加载到数据">
+            <div>
+              <p class="title">没有加载到数据</p>
+              <p class="intro">-</p>
+            </div>
+            <div class="logo">
+              <img src="../../../assets/images/error/loading_error.png" alt=""/>
+            </div>
+          </a>
+        </li>
 
-    </ul>
-  </RightPanelContainer>
+      </ul>
+    </RightPanelContainer>
+  </layout-slot>
 </template>
 
 <script>
   import {getLink} from "@/api/linkFriend";
+  import RightPanelContainer from "./slot/RightPanelContainer";
+  import LayoutSlot from "./slot/layout-slot";
 
   export default {
     name: "Address",
+    components: {
+      LayoutSlot,
+      RightPanelContainer
+    },
     data() {
       return {
         linkList: []

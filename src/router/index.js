@@ -81,8 +81,8 @@ const routes = [
   //     }
   //   ]
   // },
-  ...greenBook,
-  //...nexmoe,
+  //...greenBook,
+  ...nexmoe,
   {path: '/test',name: 'test',component: () => import('@/views/Test/Test.vue')},
   {
     path: '*',

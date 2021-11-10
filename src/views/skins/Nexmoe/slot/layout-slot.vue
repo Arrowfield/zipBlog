@@ -1,20 +1,22 @@
 <template>
-  <div class="index clearfix" :class="{'index-change':showMenu}">
-    <!--    <CanvasBackground></CanvasBackground>-->
-<!--    <div class="bg"></div>-->
-<!--    <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>-->
-    <vue-header
-      :showMenu.sync="showMenu"
-      :class="{action:!isMove}"
-    />
-    <slot/>
-<!--    <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">-->
-<!--      <img src="@/assets/images/index/top.png" class="icon go-top" alt="">-->
-<!--    </div>-->
-    <!--    <div class="small-screen">-->
-    <!--      <i class=" iconfont iconzhidingtop"></i>-->
-    <!--    </div>-->
-<!--    <canvas :width="width" :height="height" id="canvas" ref="canvas"></canvas>-->
+  <div class="layout-slot-page clearfix">
+    <div class="index  " :class="{'index-change':showMenu}">
+      <!--    <CanvasBackground></CanvasBackground>-->
+      <!--    <div class="bg"></div>-->
+      <!--    <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>-->
+      <vue-header
+        :showMenu.sync="showMenu"
+        :class="{action:!isMove}"
+      />
+      <slot/>
+      <!--    <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">-->
+      <!--      <img src="@/assets/images/index/top.png" class="icon go-top" alt="">-->
+      <!--    </div>-->
+      <!--    <div class="small-screen">-->
+      <!--      <i class=" iconfont iconzhidingtop"></i>-->
+      <!--    </div>-->
+      <!--    <canvas :width="width" :height="height" id="canvas" ref="canvas"></canvas>-->
+    </div>
   </div>
 </template>
 
@@ -262,17 +264,24 @@
     }
   }
 
+  .layout-slot-page {
+    background: url("../images/header-bg.jpg") no-repeat left top;
+    min-height: 100vh;
+    background-attachment: fixed;
+
+  }
+
   .index .bg {
     background: #f4f8fb;
     height: 100%;
-    /*opacity: .7;*/
-    background: url("../images/header-bg.jpg") no-repeat center;
+    /*;*/
+
     background-size: cover;
     width: 100%;
     position: fixed;
     z-index: -1;
     left: 0;
-    /*background-attachment: fixed;*/
+    /**/
   }
 
   .clearfix:after, .clearfix:before {

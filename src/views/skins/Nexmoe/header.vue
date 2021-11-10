@@ -26,7 +26,7 @@
         <router-link to="/links" v-waves><i class="iconfont icondaohang1"></i>友情链接</router-link>
         <router-link to="/tags" v-waves><i class="iconfont iconbiaoqian1"></i>标签</router-link>
         <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
-        <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
+        <router-link to="/photos" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
         <router-link to="/mood" v-waves><i class="iconfont iconziyuan"></i>心情随笔</router-link>
         <router-link to="/address" v-waves><i class="iconfont iconlianjie1"></i>好站推荐</router-link>
       </div>
@@ -98,7 +98,7 @@
         <ul class="category-list">
           <li v-for="(item,i) in archive">
             <a @click="searchArticleByDate(i)" v-waves href="javascript:">{{ item.date }}</a>
-            <span>{{ item.length }}</span>
+            <span>{{ item.articleNumber }}</span>
           </li>
         </ul>
       </div>
@@ -175,12 +175,13 @@
         paused: true,
         archive: [],
         isSun: true,
-        offsetLeft:-260
+        offsetLeft: -260,
+        total: '-',
       }
     },
     computed: {
       ...mapState({
-        total: state => state.indexBaseData.articleTotal,
+        // total: state => state.indexBaseData.articleTotal,
         bgColors: state => state.bgColors,
         textColors: state => state.textColors
       }),
@@ -204,8 +205,8 @@
     props: {
       showMenu: [Boolean],
       //offsetLeft: {
-        //type: [Number, String],
-        // default:0
+      //type: [Number, String],
+      // default:0
       //}
     },
     watch: {},
@@ -214,7 +215,7 @@
         // this.showMenu = !this.showMenu
         // this.offsetLeft = -260
         // this.isMove = false
-        this.$emit('update:showMenu',!this.showMenu)
+        this.$emit('update:showMenu', !this.showMenu)
       },
       /**
        * 通过归档进行搜索文章
@@ -282,6 +283,32 @@
           this.isSun = false
           document.body.classList.add('theme-dark')
         }
+      },
+      postHeaderInfo() {
+        getArticleList().then(({data}) => {
+          this.total = data.total
+          this.tags = data.tags
+        })
+      },
+      postArchiveInfo() {
+        this.archive = []
+        getIndexData().then(({data}) => {
+          let hash = {}
+          data.archive.forEach((item) => {
+            if (!hash[item.archiveTime]) {
+              hash[item.archiveTime] = 1
+            } else {
+              hash[item.archiveTime]++
+            }
+          })
+          for (let key in hash) {
+            this.archive.push({
+              date: this.formatterDate(key),
+              articleNumber: hash[key],
+              originDate: key
+            })
+          }
+        })
       }
     },
     mounted() {
@@ -290,29 +317,12 @@
       //   this.isIe = true
       // }
       // //this.initSun()
-      // this.getCountImage()
+      //this.getCountImage()
       // //异步加载数据
-      // this.articleList()
-      // getIndexData().then((res) => {
-      //
-      //   let data = res.data.archive
-      //   let tmp = data.map((item) => {
-      //     return item.archiveTime
-      //   })
-      //   let obj = {}, result = [];
-      //   for (var i = 0, l = tmp.length; i < l; i++) {
-      //     let item = tmp[i];
-      //     obj[item] = (obj[item] + 1) || 1;
-      //   }
-      //   for (let key in obj) {
-      //     result.push({
-      //       date: this.formatterDate(key),
-      //       length: obj[key],
-      //       originDate: key
-      //     })
-      //   }
-      //   this.archive = result
-      // })
+      //this.articleList()
+      this.postHeaderInfo()
+      this.postArchiveInfo()
+
       // eventBus.$on('getArticleList', this.articleList)
 
 
@@ -583,8 +593,7 @@
 
       }
 
-      .article,
-      .views {
+      .article, .views {
         p:nth-child(1) {
           color: #363636;
           margin-bottom: 3px;
@@ -711,7 +720,7 @@
     .nav-mobile-header {
       display: flex;
     }
-    .nav-mobile-mask{
+    .nav-mobile-mask {
       display: block;
     }
   }

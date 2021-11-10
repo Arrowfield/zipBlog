@@ -16,6 +16,7 @@
   import RightPanelContainer from './slot/RightPanelContainer'
   import {mapState} from 'vuex'
   import LayoutSlot from "./slot/layout-slot";
+  import {getTags} from "../../../api/tag";
 
   export default {
     name: "Tags",
@@ -24,25 +25,31 @@
       RightPanelContainer,
     },
     data() {
-      return {}
+      return {
+        tags: []
+      }
     },
     computed: {
       getTagsColor() {
       },
       ...mapState({
-        tags: state => state.tags,
+        // tags: state => state.tags,
         bgColors: state => state.bgColors,
         textColors: state => state.textColors
       })
     },
-    methods: {},
-    async mounted() {
-      try {
-
-
-      } catch (e) {
-        throw e
+    methods: {
+      postPageTags() {
+        getTags().then(({data}) => {
+          console.log(data)
+          if(data.code === 200) {
+            this.tags = data.data
+          }
+        })
       }
+    },
+    async mounted() {
+      this.postPageTags()
     }
   }
 </script>

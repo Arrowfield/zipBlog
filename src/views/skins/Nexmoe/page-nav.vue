@@ -146,8 +146,8 @@
 
 <style lang="scss" scoped>
   .page-nav {
-    margin-top: -10px;
-    margin-bottom: 20px;
+    //margin-top: -10px;
+    //margin-bottom: 20px;
     text-align: center;
     padding: 20px 0;
     background: white;
