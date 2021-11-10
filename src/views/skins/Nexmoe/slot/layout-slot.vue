@@ -1,17 +1,14 @@
 <template>
-  <div class="index" :class="{'index-change':showMenu}">
+  <div class="index clearfix" :class="{'index-change':showMenu}">
     <!--    <CanvasBackground></CanvasBackground>-->
 <!--    <div class="bg"></div>-->
 <!--    <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>-->
-
     <vue-header
       :showMenu="showMenu"
       :class="{action:!isMove}"
       :style="{transform:`translate(${offsetLeft}px)`}"
     />
-
-
-    <!--    <RightContent :showMenu.sync="showMenu" :fixed="fixedLeft"/>-->
+    <slot/>
 <!--    <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">-->
 <!--      <img src="@/assets/images/index/top.png" class="icon go-top" alt="">-->
 <!--    </div>-->
@@ -23,21 +20,20 @@
 </template>
 
 <script>
-  import RightContent from '@/components/RightContent'
-  import VueHeader from "./header.vue";
-  import ProgressSelf from '../../../plugins/Progress/Progress'
-  import CanvasBackground from "../../../components/canvas-background/CanvasBackground";
-  import {drawBubble} from "../../../components/canvas-background/drewCanvas";
+  // import VueHeader from '@/components/RightContent'
+  import VueHeader from "../header";
+  import ProgressSelf from '@/plugins/Progress/Progress'
+  import CanvasBackground from "@/components/canvas-background/CanvasBackground";
+  import {drawBubble} from "@/components/canvas-background/drewCanvas";
   import changePageTitle from '@/utils/changePageTitle'
+
 
   export default {
     components: {
-      RightContent,
-      //LeftContent,
       VueHeader,
       CanvasBackground
     },
-    name: "Index",
+    name: "layout-slot",
     data() {
       return {
         showMenu: false,
@@ -115,7 +111,7 @@
       }
     },
     mounted() {
-      //document.body.addEventListener("click", this.addLoveIcon)
+      document.body.addEventListener("click", this.addLoveIcon)
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === 'hidden') { //状态判断
           if (this.leaveTimer) clearTimeout(this.leaveTimer)
@@ -271,13 +267,22 @@
     background: #f4f8fb;
     height: 100%;
     /*opacity: .7;*/
-    background: url("../../../assets/images/index/header-bg.jpg") no-repeat center;
+    background: url("../images/header-bg.jpg") no-repeat center;
     background-size: cover;
     width: 100%;
     position: fixed;
     z-index: -1;
     left: 0;
     /*background-attachment: fixed;*/
+  }
+
+  .clearfix:after, .clearfix:before {
+    display: table;
+    content: ''
+  }
+
+  .clearfix:after {
+    clear: both
   }
 
 </style>

@@ -1,37 +1,41 @@
 <template>
-  <RightPanelContainer class="link-page" title="友情链接">
-    <ul class="link-list">
+  <layout-slot>
+      <RightPanelContainer class="link-page" title="友情链接">
+        <ul class="link-list">
 
-      <li v-for="(item,i) in linkFriend">
-        <a :href="item.href" :title="item.title" target="_blank">
-          <div class="item-img">
-            <img
-              :src="item.imgUrl"
-              alt="">
-          </div>
-          <p>{{ item.title }}</p>
-        </a>
-      </li>
+          <li v-for="(item,i) in linkFriend">
+            <a :href="item.href" :title="item.title" target="_blank">
+              <div class="item-img">
+                <img
+                  :src="item.imgUrl"
+                  alt="">
+              </div>
+              <p>{{ item.title }}</p>
+            </a>
+          </li>
 
-      <li v-if="linkFriend.length === 0">
-        <a href="javascript:" title="没有加载到数据">
-          <div class="item-img">
-            <img src="" alt="">
-          </div>
-          <p>数据没有加载到</p>
-        </a>
-      </li>
-    </ul>
-  </RightPanelContainer>
+          <li v-if="linkFriend.length === 0">
+            <a href="javascript:" title="没有加载到数据">
+              <div class="item-img">
+                <img src="" alt="">
+              </div>
+              <p>数据没有加载到</p>
+            </a>
+          </li>
+        </ul>
+      </RightPanelContainer>
+  </layout-slot>
 </template>
 
 <script>
   import RightPanelContainer from '@/components/RightPanelContainer'
   import {getLink} from '@/api/linkFriend'
+  import LayoutSlot from "./slot/layout-slot";
 
   export default {
     name: "LinkFriend",
     components: {
+      LayoutSlot,
       RightPanelContainer
     },
     data() {
@@ -61,6 +65,8 @@
 
 <style lang="scss" scoped>
   .link-page {
+    margin-left: 260px;
+    width: calc(100% - 260px);
     .link-list {
       display: flex;
       flex-wrap: wrap;
@@ -108,6 +114,12 @@
           }
         }
       }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .link-page{
+      width: 100%;
+      margin: 80px  0 0;
     }
   }
 </style>

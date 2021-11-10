@@ -1,5 +1,4 @@
 <template>
-
   <div class="panel-cont">
     <h2 class="link-title">{{title}}</h2>
     <slot></slot>
@@ -16,7 +15,7 @@
 <style lang="scss" scoped>
   .panel-cont{
     width: 100%;
-    margin: 20px auto;
+    margin: 45px auto;
     border-radius: 10px;
     background-color: rgb(255,255,255);
     padding: 20px;

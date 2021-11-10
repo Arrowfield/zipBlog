@@ -3,7 +3,7 @@
     <div class="avatar">
       <a href="/">
         <!--        <img src="../assets/images/index/avatar.gif" title="Z 的技术博客" alt="">-->
-        <img src="../assets/images/index/kenan_avatar.png" title="Z 的技术博客" alt="">
+        <img src="../../../assets/images/index/kenan_avatar.png" title="Z 的技术博客" alt="">
       </a>
     </div>
     <div class="intro">
@@ -47,7 +47,6 @@
         </a>-->
       </div>
     </div>
-
     <div class="intro fun-list" style="overflow: visible">
       <h3>社交功能</h3>
       <div class="fun-items">
@@ -58,7 +57,7 @@
         <a href="javascript:" class="code-cont">
           <i class="iconfont iconweixin"></i>
           <div class="code">
-            <img alt="" src="../assets/images/index/code.jpg">
+            <img alt="" src="../../../assets/images/index/code.jpg">
           </div>
         </a>
         <a v-waves href="javascript:" class="code-cont" title="登录">
@@ -66,7 +65,6 @@
         </a>
       </div>
     </div>
-
     <div class="intro fun-list tags-list">
       <h3>标签</h3>
       <div class="tags">
@@ -77,7 +75,6 @@
           一个标签都没有，，，</a>
       </div>
     </div>
-
     <div class="intro fun-list">
       <h3>分类</h3>
       <ul class="category-list">
@@ -91,7 +88,6 @@
         </li>
       </ul>
     </div>
-
     <div class="intro fun-list">
       <h3>存档</h3>
       <ul class="category-list">
@@ -101,18 +97,15 @@
         </li>
       </ul>
     </div>
-
     <div class="intro fun-list tags-list">
       <h3>公告栏</h3>
       <div class="tags">
         <i v-if="paused" class="play iconfont iconplay-circle-fill" @click="handlePlay"></i>
         <i v-else class="play iconfont iconpoweroff-circle-fill" @click="handlePlay"></i>
-        <video ref="video" poster="../assets/images/index/poster.jpg"  muted loop class="video"
+        <video ref="video" poster="../../../assets/images/index/poster.jpg" muted loop class="video"
                src="https://arrowfield.top/Inuyasha.mp4" preload="none"></video>
       </div>
     </div>
-
-
     <div class="copyright">
       <p>&copy; 2020 <a href="javascript:">银杏树下</a></p>
       <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
@@ -135,6 +128,8 @@
       </p>
       <p class="data-time">{{ time }}</p>
     </div>
+
+    <!-- nav mobile -->
   </div>
 </template>
 
@@ -397,8 +392,8 @@
     .intro {
       border-radius: 10px;
       background-color: #fff;
-      box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
-      margin: 20px;
+      /*box-shadow: 0 0 1rem rgba(161, 177, 204, .4);*/
+      margin: 20px 20px 0 0;
       padding: 15px;
       display: flex;
       overflow: hidden;
