@@ -4,9 +4,8 @@
 <!--    <div class="bg"></div>-->
 <!--    <div class="index-mask" v-if="showMenu" @click="changeMenuStatus"></div>-->
     <vue-header
-      :showMenu="showMenu"
+      :showMenu.sync="showMenu"
       :class="{action:!isMove}"
-      :style="{transform:`translate(${offsetLeft}px)`}"
     />
     <slot/>
 <!--    <div class="go-top-panel" :class="{show:showTop}" @click.stop="goTop">-->
@@ -47,7 +46,7 @@
         leaveTimer: null,
         showTop: false,
         fixedLeft: false,
-        offsetLeft: -260,
+
         startX: 0,
         isMove: false
       }

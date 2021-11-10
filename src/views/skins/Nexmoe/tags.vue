@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import RightPanelContainer from '@/components/RightPanelContainer'
+  import RightPanelContainer from './slot/RightPanelContainer'
   import {mapState} from 'vuex'
   import LayoutSlot from "./slot/layout-slot";
 

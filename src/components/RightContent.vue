@@ -33,7 +33,7 @@
 
     methods:{
       showMenuFun(){
-        this.$emit('update:showMenu',!this.showMenu)
+        //this.$emit('update:showMenu',!this.showMenu)
       }
     },
   }

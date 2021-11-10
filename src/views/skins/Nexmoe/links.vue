@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import RightPanelContainer from '@/components/RightPanelContainer'
+  import RightPanelContainer from './slot/RightPanelContainer'
   import {getLink} from '@/api/linkFriend'
   import LayoutSlot from "./slot/layout-slot";
 

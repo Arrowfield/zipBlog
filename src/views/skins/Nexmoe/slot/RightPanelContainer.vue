@@ -41,6 +41,7 @@
       position: absolute;
       bottom: -1px;
       left: -20px;
+      z-index: 10;
     }
 
     &::after {
@@ -55,6 +56,7 @@
       border-radius: 6px;
       box-shadow: 0 2px 12px rgba(255, 78, 106, .85);
       /*display: block;*/
+      z-index: 11;
 
     }
   }

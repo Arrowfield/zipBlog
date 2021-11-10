@@ -53,16 +53,7 @@
       })
     },
 
-    filters: {
-      truncation(val) {
-        let date = new Date(val.replace(/-/g, "/"))
-        let year = date.getFullYear()
-        let month = date.getMonth() + 1
-        let day = date.getDate()
-        month = month < 10 ? "0" + month : month
-        return `${year}年${month}月${day}日`
-      }
-    },
+
     components: { PageNav, Loading},
     directives: {
       waves

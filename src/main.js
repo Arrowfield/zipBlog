@@ -25,10 +25,10 @@ import _ from 'lodash'
 Vue.prototype._ = _
 
 //全局组件
-import RightPanelContainer from '@/components/RightPanelContainer'
+//import RightPanelContainer from '@/components/RightPanelContainer'
 
 import i18n from './i18n'
-Vue.component('RightPanelContainer',RightPanelContainer)
+//Vue.component('RightPanelContainer',RightPanelContainer)
 
 new Vue({
   router,

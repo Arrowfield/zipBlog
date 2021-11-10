@@ -66,7 +66,7 @@
   import Message from '@/components/Message'
   import Comment from '@/components/Comment'
   import LayoutSlot from "./slot/layout-slot";
-
+  import  RightPanelContainer from  './slot/RightPanelContainer'
   export default {
     name: "About",
 
@@ -74,7 +74,8 @@
       LayoutSlot,
       Tags,
       Message,
-      Comment
+      Comment,
+      RightPanelContainer
     },
     data() {
       return {

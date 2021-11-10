@@ -1,136 +1,151 @@
 <template>
-  <div class="left-content " :class="{'screen-change':showMenu,'is-ie':isIe}">
-    <div class="avatar">
-      <a href="/">
-        <!--        <img src="../assets/images/index/avatar.gif" title="Z 的技术博客" alt="">-->
-        <img src="../../../assets/images/index/kenan_avatar.png" title="Z 的技术博客" alt="">
+  <!-- navBar -->
+  <nav>
+    <div
+      class="left-content "
+      :style="{transform:`translate(${offsetLeft}px)`}"
+      :class="{'screen-change':showMenu,'is-ie':isIe}">
+      <div class="avatar">
+        <a href="/">
+          <!--        <img src="../assets/images/index/avatar.gif" title="Z 的技术博客" alt="">-->
+          <img src="../../../assets/images/index/kenan_avatar.png" title="Z 的技术博客" alt="">
+        </a>
+      </div>
+      <div class="intro">
+        <div class="article">
+          <p>文章</p>
+          <p>{{ total }}</p>
+        </div>
+        <div class="views">
+          <p>浏览</p>
+          <p>{{ views }}</p>
+        </div>
+      </div>
+      <div class="intro menu-list">
+        <router-link to="/" v-waves><i class="iconfont iconshouye1"></i>回到首页</router-link>
+        <router-link to="/links" v-waves><i class="iconfont icondaohang1"></i>友情链接</router-link>
+        <router-link to="/tags" v-waves><i class="iconfont iconbiaoqian1"></i>标签</router-link>
+        <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
+        <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
+        <router-link to="/mood" v-waves><i class="iconfont iconziyuan"></i>心情随笔</router-link>
+        <router-link to="/address" v-waves><i class="iconfont iconlianjie1"></i>好站推荐</router-link>
+      </div>
+      <div class="intro fun-list">
+        <h3>功能按钮</h3>
+        <div class="fun-items btn">
+          <a v-waves href="#" title="搜索"><i class="iconfont iconhuabanfuben"></i></a>
+          <a v-waves href="#" title="ssr"><i class="iconfont iconwifi"></i></a>
+          <!--        <a v-waves href="#">-->
+          <!--          <i class="iconfont iconshuji"></i>-->
+          <!--        </a>-->
+          <a v-waves href="http://music.sxswyc.top/" class="code-cont" title="音乐馆" target="_blank">
+            <i class="iconfont iconyinyue"></i>
+          </a>
+          <a v-waves href="//v.sxswyc.top/" class="code-cont" title="视频屋" target="_blank">
+            <i class="iconfont iconshipin"></i>
+          </a>
+          <a @click="toggleTheme" v-waves href="javascript:" class="code-cont" :title="isSun ? '夜间模式' : '日间模式'">
+            <i class="iconfont" :class="isSun ? 'iconbrightness' : 'iconDND_mode'" style="font-size: 25px"></i>
+          </a>
+          <!-- <a v-else v-waves href="#" class="code-cont" title="夜间模式" >
+             <i class="iconfont iconDND_mode" style="font-size: 25px"></i>
+           </a>-->
+        </div>
+      </div>
+      <div class="intro fun-list" style="overflow: visible">
+        <h3>社交功能</h3>
+        <div class="fun-items">
+          <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i
+            class="iconfont icongithub"></i></a>
+          <a v-waves href="//qm.qq.com/cgi-bin/qm/qr?k=RmZQeDHL_tjQIKwib_rmvEFa7AsOMSj-&noverify=0#" title="768449566"
+             target="_blank"><i class="iconfont iconqq"></i></a>
+          <a href="javascript:" class="code-cont">
+            <i class="iconfont iconweixin"></i>
+            <div class="code">
+              <img alt="" src="../../../assets/images/index/code.jpg">
+            </div>
+          </a>
+          <a v-waves href="javascript:" class="code-cont" title="登录">
+            <i class="iconfont icondenglu"></i>
+          </a>
+        </div>
+      </div>
+      <div class="intro fun-list tags-list">
+        <h3>标签</h3>
+        <div class="tags">
+          <a href="javascript:"
+             :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
+             v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
+          <a href="javascript:" v-if="tags.length === 0" :style="{background:bgColors[0],color:textColors[0]}">wuwu
+            一个标签都没有，，，</a>
+        </div>
+      </div>
+      <div class="intro fun-list">
+        <h3>分类</h3>
+        <ul class="category-list">
+          <li>
+            <a href="javascript:">暂无分类</a>
+            <span>0</span>
+          </li>
+          <li>
+            <a href="">-</a>
+            <span>0</span>
+          </li>
+        </ul>
+      </div>
+      <div class="intro fun-list">
+        <h3>存档</h3>
+        <ul class="category-list">
+          <li v-for="(item,i) in archive">
+            <a @click="searchArticleByDate(i)" v-waves href="javascript:">{{ item.date }}</a>
+            <span>{{ item.length }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="intro fun-list tags-list">
+        <h3>公告栏</h3>
+        <div class="tags">
+          <i v-if="paused" class="play iconfont iconplay-circle-fill" @click="handlePlay"></i>
+          <i v-else class="play iconfont iconpoweroff-circle-fill" @click="handlePlay"></i>
+          <video ref="video" poster="../../../assets/images/index/poster.jpg" muted loop class="video"
+                 src="https://arrowfield.top/Inuyasha.mp4" preload="none"></video>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2020 <a href="javascript:">银杏树下</a></p>
+        <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
+              target="_blank">粤ICP备20045257号</a></p>
+        <p>粤公网安备<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902002087" target="_blank">
+          44030902002087号</a></p>
+
+
+        <!--      <div style="width:300px;margin:0 auto; padding:20px 0;">-->
+        <!--        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902002087"-->
+        <!--           style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">-->
+        <!--          <img src="" style="float:left;"/>-->
+        <!--          <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">粤公网安备 44030902002087号</p></a>-->
+        <!--      </div>-->
+
+        <!--      <p>Powered by <a href="#">Solo</a></p>-->
+        <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
+        <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959"
+                                          target="_blank">站长统计</a>
+        </p>
+        <p class="data-time">{{ time }}</p>
+      </div>
+    </div>
+    <!-- nav mobile -->
+
+    <!-- nav mask -->
+    <div v-if="showMenu" class="nav-mobile-mask" @click="toggleNavbar"></div>
+    <div class="nav-mobile-header">
+      <a
+        href="javascript:"
+        @click="toggleNavbar">
+        <i class="iconfont icondaohang"></i>
       </a>
     </div>
-    <div class="intro">
-      <div class="article">
-        <p>文章</p>
-        <p>{{ total }}</p>
-      </div>
-      <div class="views">
-        <p>浏览</p>
-        <p>{{ views }}</p>
-      </div>
-    </div>
-    <div class="intro menu-list">
-      <router-link to="/" v-waves><i class="iconfont iconshouye1"></i>回到首页</router-link>
-      <router-link to="/links" v-waves><i  class="iconfont icondaohang1"></i>友情链接</router-link>
-      <router-link to="/tags" v-waves><i class="iconfont iconbiaoqian1"></i>标签</router-link>
-      <router-link to="/about" v-waves><i class="iconfont iconguanyu"></i>关于我</router-link>
-      <router-link to="/photo" v-waves><i class="iconfont iconxiangce"></i>相册</router-link>
-      <router-link to="/mood" v-waves><i class="iconfont iconziyuan"></i>心情随笔</router-link>
-      <router-link to="/address" v-waves><i class="iconfont iconlianjie1"></i>好站推荐</router-link>
-    </div>
-    <div class="intro fun-list">
-      <h3>功能按钮</h3>
-      <div class="fun-items btn">
-        <a v-waves href="#" title="搜索"><i class="iconfont iconhuabanfuben"></i></a>
-        <a v-waves href="#" title="ssr"><i class="iconfont iconwifi"></i></a>
-        <!--        <a v-waves href="#">-->
-        <!--          <i class="iconfont iconshuji"></i>-->
-        <!--        </a>-->
-        <a v-waves href="http://music.sxswyc.top/" class="code-cont" title="音乐馆" target="_blank">
-          <i class="iconfont iconyinyue"></i>
-        </a>
-        <a v-waves href="//v.sxswyc.top/" class="code-cont" title="视频屋" target="_blank">
-          <i class="iconfont iconshipin"></i>
-        </a>
-        <a @click="toggleTheme"  v-waves href="javascript:" class="code-cont" :title="isSun ? '夜间模式' : '日间模式'" >
-          <i class="iconfont" :class="isSun ? 'iconbrightness' : 'iconDND_mode'" style="font-size: 25px"></i>
-        </a>
-       <!-- <a v-else v-waves href="#" class="code-cont" title="夜间模式" >
-          <i class="iconfont iconDND_mode" style="font-size: 25px"></i>
-        </a>-->
-      </div>
-    </div>
-    <div class="intro fun-list" style="overflow: visible">
-      <h3>社交功能</h3>
-      <div class="fun-items">
-        <a v-waves href="//github.com/Arrowfield" title="https://github.com/Arrowfield" target="_blank"><i
-          class="iconfont icongithub"></i></a>
-        <a v-waves href="//qm.qq.com/cgi-bin/qm/qr?k=RmZQeDHL_tjQIKwib_rmvEFa7AsOMSj-&noverify=0#" title="768449566"
-           target="_blank"><i class="iconfont iconqq"></i></a>
-        <a href="javascript:" class="code-cont">
-          <i class="iconfont iconweixin"></i>
-          <div class="code">
-            <img alt="" src="../../../assets/images/index/code.jpg">
-          </div>
-        </a>
-        <a v-waves href="javascript:" class="code-cont" title="登录">
-          <i class="iconfont icondenglu"></i>
-        </a>
-      </div>
-    </div>
-    <div class="intro fun-list tags-list">
-      <h3>标签</h3>
-      <div class="tags">
-        <a href="javascript:"
-           :style="{background:bgColors[i%(bgColors.length - 1)],color:textColors[i%(textColors.length - 1)]}"
-           v-loading-self="loading" v-for="(item,i) in tags"># {{ item }}</a>
-        <a href="javascript:" v-if="tags.length === 0" :style="{background:bgColors[0],color:textColors[0]}">wuwu
-          一个标签都没有，，，</a>
-      </div>
-    </div>
-    <div class="intro fun-list">
-      <h3>分类</h3>
-      <ul class="category-list">
-        <li>
-          <a href="javascript:">暂无分类</a>
-          <span>0</span>
-        </li>
-        <li>
-          <a href="">-</a>
-          <span>0</span>
-        </li>
-      </ul>
-    </div>
-    <div class="intro fun-list">
-      <h3>存档</h3>
-      <ul class="category-list">
-        <li v-for="(item,i) in archive">
-          <a @click="searchArticleByDate(i)" v-waves href="javascript:">{{ item.date }}</a>
-          <span>{{ item.length }}</span>
-        </li>
-      </ul>
-    </div>
-    <div class="intro fun-list tags-list">
-      <h3>公告栏</h3>
-      <div class="tags">
-        <i v-if="paused" class="play iconfont iconplay-circle-fill" @click="handlePlay"></i>
-        <i v-else class="play iconfont iconpoweroff-circle-fill" @click="handlePlay"></i>
-        <video ref="video" poster="../../../assets/images/index/poster.jpg" muted loop class="video"
-               src="https://arrowfield.top/Inuyasha.mp4" preload="none"></video>
-      </div>
-    </div>
-    <div class="copyright">
-      <p>&copy; 2020 <a href="javascript:">银杏树下</a></p>
-      <p><a href="http://www.beian.miit.gov.cn/?spm=a2c4g.11186623.2.16.27c57dc6ACGjxx"
-            target="_blank">粤ICP备20045257号</a></p>
-      <p>粤公网安备<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902002087" target="_blank">
-        44030902002087号</a></p>
-
-
-      <!--      <div style="width:300px;margin:0 auto; padding:20px 0;">-->
-      <!--        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030902002087"-->
-      <!--           style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">-->
-      <!--          <img src="" style="float:left;"/>-->
-      <!--          <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">粤公网安备 44030902002087号</p></a>-->
-      <!--      </div>-->
-
-      <!--      <p>Powered by <a href="#">Solo</a></p>-->
-      <!--      <p>Theme <a href="#">solo-nexmoe</a> by <a href="#">InkDP</a></p>-->
-      <p v-html="" class="count-img"><a href="https://new.cnzz.com/v1/login.php?siteid=1278967959"
-                                        target="_blank">站长统计</a>
-      </p>
-      <p class="data-time">{{ time }}</p>
-    </div>
-
-    <!-- nav mobile -->
-  </div>
+  </nav>
 </template>
 
 
@@ -159,7 +174,8 @@
         time: "",
         paused: true,
         archive: [],
-        isSun:true
+        isSun: true,
+        offsetLeft:-260
       }
     },
     computed: {
@@ -187,19 +203,25 @@
     },
     props: {
       showMenu: [Boolean],
-      showMenuFun: {
-        type: [Boolean, String],
-        // default:true
-      }
+      //offsetLeft: {
+        //type: [Number, String],
+        // default:0
+      //}
     },
     watch: {},
     methods: {
+      toggleNavbar() {
+        // this.showMenu = !this.showMenu
+        // this.offsetLeft = -260
+        // this.isMove = false
+        this.$emit('update:showMenu',!this.showMenu)
+      },
       /**
        * 通过归档进行搜索文章
        */
       searchArticleByDate(index) {
         console.log(this.archive[index])
-        this.$router.push({name:"Article"})
+        this.$router.push({name: "Article"})
       },
       goToPage() {
         // const {href} = this.$router.resolve({path})
@@ -233,35 +255,7 @@
           el.innerHTML = `${day}天${hours}小时${m}分钟${s}秒`
         }, 1000)
       },
-      articleList(page) {
 
-        let pageNum = 1
-        if (page) pageNum = page
-        //this.$store.commit("article/setDatalist", [])
-        try {
-          let params = {
-            page: pageNum
-          }
-          this.loading = true
-          this.$store.commit("setLoading", true)
-          getArticleList(params).then((res) => {
-            let data = res.data
-            //console.log(res)
-            this.$store.commit("setIndexBaseData", {
-              total: res.data.total
-            })
-            this.$store.commit("article/setDatalist", res.data.data)
-            this.views = data.viewsTotal
-            this.tags = _.take(data.tags, 7)
-            this.$store.commit("setTags", data.tags)
-            this.loading = false
-            this.$store.commit("setLoading", false)
-            // window.scrollTo(0,0)
-          }) //获取所有的文章
-        } catch (e) {
-          if (e) throw e
-        }
-      },
 
       formatterDate(val) {
         let date = new Date(parseInt(val))
@@ -269,57 +263,59 @@
         let year = date.getFullYear(), month = date.getMonth() + 1
         return `${year} 年 ${month < 10 ? "0" + month : month} 月`
       },
-      toggleTheme(){
+      toggleTheme() {
         this.isSun = !this.isSun
-        if(!this.isSun){
+        if (!this.isSun) {
           document.body.classList.add('theme-dark')
-        }else{
+        } else {
           document.body.classList.remove('theme-dark')
         }
       },
-      initSun(){
+      initSun() {
         let now = new Date()
         let hours = now.getHours()
         // console.log(hours)
-        if(hours > 7 && hours < 22){ //早上7点和晚上10之前都是白色主题 其他时间为夜间主题
+        if (hours > 7 && hours < 22) { //早上7点和晚上10之前都是白色主题 其他时间为夜间主题
           this.isSun = true
           document.body.classList.remove('theme-dark')
-        }else{
+        } else {
           this.isSun = false
           document.body.classList.add('theme-dark')
         }
       }
     },
     mounted() {
-      let agent = navigator.userAgent
-      if (agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1) {
-        this.isIe = true
-      }
-      //this.initSun()
-      this.getCountImage()
-      //异步加载数据
-      this.articleList()
-      getIndexData().then((res) => {
+      // let agent = navigator.userAgent
+      // if (agent.indexOf("MSIE") > -1 || agent.indexOf("Edge") > -1) {
+      //   this.isIe = true
+      // }
+      // //this.initSun()
+      // this.getCountImage()
+      // //异步加载数据
+      // this.articleList()
+      // getIndexData().then((res) => {
+      //
+      //   let data = res.data.archive
+      //   let tmp = data.map((item) => {
+      //     return item.archiveTime
+      //   })
+      //   let obj = {}, result = [];
+      //   for (var i = 0, l = tmp.length; i < l; i++) {
+      //     let item = tmp[i];
+      //     obj[item] = (obj[item] + 1) || 1;
+      //   }
+      //   for (let key in obj) {
+      //     result.push({
+      //       date: this.formatterDate(key),
+      //       length: obj[key],
+      //       originDate: key
+      //     })
+      //   }
+      //   this.archive = result
+      // })
+      // eventBus.$on('getArticleList', this.articleList)
 
-        let data = res.data.archive
-        let tmp = data.map((item) => {
-          return item.archiveTime
-        })
-        let obj = {}, result = [];
-        for (var i = 0, l = tmp.length; i < l; i++) {
-          let item = tmp[i];
-          obj[item] = (obj[item] + 1) || 1;
-        }
-        for (let key in obj) {
-          result.push({
-            date: this.formatterDate(key),
-            length: obj[key],
-            originDate: key
-          })
-        }
-        this.archive = result
-      })
-      eventBus.$on('getArticleList', this.articleList)
+
     },
     beforeDestroy() {
       clearInterval(this.timer)
@@ -392,11 +388,12 @@
     .intro {
       border-radius: 10px;
       background-color: #fff;
-      /*box-shadow: 0 0 1rem rgba(161, 177, 204, .4);*/
-      margin: 20px 20px 0 0;
+      box-shadow: 0 0 1rem rgba(161, 177, 204, .4);
+      margin: 20px 20px 0 20px;
       padding: 15px;
       display: flex;
       overflow: hidden;
+
       .category-list {
         li {
           border-bottom: 1px solid #eee;
@@ -657,5 +654,68 @@
       height: 170px;
     }
   }
+
+  .nav-mobile-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .4);
+    /*z-index: 100;*/
+    z-index: 20;
+    display: none;
+  }
+
+  .nav-mobile-header {
+
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    display: none;
+    height: 76px;
+
+    a {
+      width: 36px;
+      height: 56px;
+      line-height: 56px;
+      text-align: center;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0 4px;
+      color: #9ca2a8;
+
+      i {
+        font-size: 24px;
+      }
+
+      &.fixed {
+        position: fixed;
+        top: 40px;
+        left: -3px;
+        z-index: 99;
+        background: #333;
+        color: white;
+        opacity: .5;
+      }
+    }
+
+
+    img {
+      width: 100%;
+    }
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .nav-mobile-header {
+      display: flex;
+    }
+    .nav-mobile-mask{
+      display: block;
+    }
+  }
+
+
 </style>
 <style lang="scss" src="./scss/style.scss"></style>
