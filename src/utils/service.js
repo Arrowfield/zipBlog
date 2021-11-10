@@ -5,7 +5,7 @@ const baseURL = process.env.VUE_APP_NO_PROXY
 
 const service = axios.create({
   baseURL,
-  timeout:50000,
+  // timeout:50000,
   // retry: 2,
   // retryInterval: 5000,
   onDownloadProgress: function (event) {
