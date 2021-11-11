@@ -28,7 +28,7 @@
       </div>
     </div>
     <!-- 文章主体 -->
-    <article class="main-content post-page" itemscope="" itemtype="http://schema.org/Article">
+    <article 	class="main-content post-page" itemscope="" itemtype="http://schema.org/Article">
       <!-- mobile -->
       <div class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -89,7 +89,7 @@
 <script>
   import LayoutSlot from "./slot/layout-slot";
   import settings from "../../../settings";
-
+  import Prism from 'prismjs'
   export default {
     name: "vue-article",
     components: {LayoutSlot},
@@ -134,10 +134,23 @@
         },
       }
     },
+    mounted() {
+      // Prism.highlightAll()
+      this.$nextTick(()=>{
+        Prism.plugins.toolbar.registerButton('hello-world', {
+          text: 'Hello World!', // required
+          onClick: function (env) { // optional
+            alert('This code snippet is written in ' + env.language + '.');
+          }
+        });
+      })
+
+      console.log()
+    }
 
   }
 </script>
-<style src="./scss/okaikia.css"></style>
+<!--<style src="./scss/okaikia.css"></style>-->
 <style lang="scss" scoped>
   .article-main {
 
