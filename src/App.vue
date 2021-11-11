@@ -19,4 +19,4 @@
 </script>
 
 <style lang="scss" src="./assets/scss/base.scss"></style>
-<style src="./assets/scss/prism.css"></style>
+<!--style src="./assets/scss/prism.css"></style-->

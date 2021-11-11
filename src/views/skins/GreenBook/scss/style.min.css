@@ -279,6 +279,27 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   clear: both
 }
 
+.post-content pre {
+  box-shadow: 0px 0px 3px rgba(0,0,0,.35);
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,.35);
+  overflow-x: auto;
+  margin: 20px 0;
+  border-radius: 6px;
+  /* background: #31313124; */
+  text-shadow: none;
+  padding: 0;
+}
+
+.post-content pre code {
+  border-radius: 6px;
+  /* max-height: 500px; */
+  line-height: 20px;
+  margin: 0;
+  padding: 1.3em;
+  /* color: #313131; */
+  background-color: #2b2e33;
+}
+
 .clearfix {
   zoom: 1
 }
@@ -1106,6 +1127,17 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin-right: 8px;
 }
 
+.post-content h3:before {
+  background-color: #ea5055;
+  content: '';
+  width: 6px;
+  display: inline-block;
+  height: 3px;
+  vertical-align: middle;
+  margin-bottom: 0.18em;
+  margin-right: 8px;
+}
+
 .post-content h1::before, .post-content h2::before, .post-content h3::before, .post-content h4::before, .post-content h5::before, .post-content h6::before {
   /*font-weight: 600;*/
   /*position: absolute;*/
@@ -1124,11 +1156,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .post-content pre code {
-  line-height: 20px;
-  margin: 0;
-  padding: 1.3em;
-  color: #313131;
-  background-color: #f7f7f7
+  /*line-height: 20px;*/
+  /*margin: 0;*/
+  /*padding: 1.3em;*/
+  /*color: #313131;*/
+  /*background-color: #f7f7f7*/
 }
 
 .post-content p a {
