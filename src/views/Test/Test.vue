@@ -28,8 +28,8 @@
 <script>
   import {createCanvas} from '@/plugins/flamegraph/flamegraph'
   import {targetChart} from '@/plugins/targetChart/targetChart'
-  // import {caseDetail} from './caseDetail.js'
-  // import {caseReport} from './caseReport.js'
+  import {caseDetail} from './caseDetail.js'
+  import {caseReport} from './caseReport.js'
   import {formatReportData, getDragTooltipsData, getTooltipsData} from "./util";
   import ChartsMain from "./echarts/ChartsMain";
   import echarts from "./echarts/echarts";
@@ -40,8 +40,8 @@
   import {eventBus} from '../../utils/Bus'
   import 'fast-text-encoding'
 
-  let caseDetail = {data:{}}
-  let caseReport = {}
+  // let caseDetail = {data:{}}
+  // let caseReport = {}
 
   let data = caseDetail.data
   /* start */
@@ -122,6 +122,7 @@
       // this.drawAxisX()
       //https://stackoverflow.com/questions/8125006/google-chrome-developer-toolkit-is-slow
       let state = {caseDetail: caseDetail.data, caseReport: caseReport.data}
+      console.log(state)
       state.fullDataList = formatReportData(state)
       let timestamp = state.fullDataList[INDEX_TIMESTAMP]
       this.$store.commit('setStoreValue', {

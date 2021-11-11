@@ -137,23 +137,24 @@
         showDataDrag: state => state.caseDetail.showDataDrag,
         dragConfig: state => state.caseDetail.dragConfig,
         showDragTooltips: state => state.caseDetail.showDragTooltips,
-        min:state => state.caseDetail.min,
-        max:state => state.caseDetail.max,
+        min: state => state.caseDetail.min,
+        max: state => state.caseDetail.max,
       }),
       ...mapGetters([
         'minTimestamp',
         'maxTimestamp'
       ]),
       circles() {
-        if(!this.options.tooltips.data) return []
+        if (!this.options.tooltips.data) return []
         let res = []
         let yAxis = this.options.yAxis[0]
-        this.options.tooltips.data.map((item,index) => {
+        this.options.tooltips.data.map((item, index) => {
+          if (!item.value) return null
           res.push({
-            y:this.grid.height - item.value * (this.grid.height / yAxis.max),
+            y: this.grid.height - item.value * (this.grid.height / yAxis.max),
             color: this.options.series[index].lineStyle.color
           })
-        })
+        }).filter(item => item)
         return res
       },
       dragX() {
@@ -298,7 +299,7 @@
         document.onmousemove = null
         document.onmouseup = null
       },
-      handleWheel(event){
+      handleWheel(event) {
         event.preventDefault()
         var delta = 0;
         event = window.event || event;
