@@ -1,47 +1,51 @@
 <template>
-  <layout-slot class="down-page" class-name="page-page" :bodyImage="bodyImage">
-    <div class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        下载 </h1>
-      <div class="post-data">
-        <time datetime="2020-04-28T10:02:00+08:00" itemprop="datePublished">
-          <i class="fa fa-clock-o" aria-hidden="true"> </i> 2020-04-28
-        </time>&nbsp;&nbsp; <i class="fa fa-comments-o" aria-hidden="true"></i> <a href="#comments"> 7 评论</a>&nbsp;&nbsp;
-        <i class="fa fa-eye" aria-hidden="true"></i> 5279 浏览
+  <layout-slot class="down-page" :bodyImage="bodyImage">
+    <article class="main-content page-page">
+      <div class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          下载 </h1>
+        <div class="post-data">
+          <time datetime="2020-04-28T10:02:00+08:00" itemprop="datePublished">
+            <i class="fa fa-clock-o" aria-hidden="true"> </i> 2020-04-28
+          </time>&nbsp;&nbsp; <i class="fa fa-comments-o" aria-hidden="true"></i> <a href="#comments"> 7 评论</a>&nbsp;&nbsp;
+          <i class="fa fa-eye" aria-hidden="true"></i> 5279 浏览
+        </div>
       </div>
-    </div>
-    <div id="post-content" class="post-content">
-      <blockquote><p><a href="https://pan.rawchen.com" target="_blank">https://pan.rawchen.com</a><br><a
-        href="https://blog.yoyling.com/file" target="_blank">https://blog.yoyling.com/file</a></p></blockquote>
-    </div>
-    <table>
-      <thead>
-      <tr>
-        <th>{{ $t('content') }}</th>
-        <th>{{ $t('down-link') }}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="item of download[0].children">
-        <td v-if="item.isStrong">
-          <strong>{{ item.name }}</strong>
-        </td>
-        <td v-else>{{ item.name }}</td>
-        <td>
-          <a :href="item.link" target="_blank">{{ item.link }}</a>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+      <div id="post-content" class="post-content">
+        <blockquote><p><a href="https://pan.rawchen.com" target="_blank">https://pan.rawchen.com</a><br><a
+          href="https://blog.yoyling.com/file" target="_blank">https://blog.yoyling.com/file</a></p></blockquote>
+      </div>
+      <table>
+        <thead>
+        <tr>
+          <th>{{ $t('content') }}</th>
+          <th>{{ $t('down-link') }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item of download[0].children">
+          <td v-if="item.isStrong">
+            <strong>{{ item.name }}</strong>
+          </td>
+          <td v-else>{{ item.name }}</td>
+          <td>
+            <a :href="item.link" target="_blank">{{ item.link }}</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </article>
+    <message/>
   </layout-slot>
 </template>
 
 <script>
   import LayoutSlot from "./slot/layout-slot";
+  import Message from "../../../components/Message";
 
   export default {
     name: "download",
-    components: {LayoutSlot},
+    components: {Message, LayoutSlot},
     data() {
       return {
         downInfo: {},
@@ -74,7 +78,6 @@
     max-width: 970px;
     padding: 130px 25px 20px;;
   }
-
 
 
   .down-page {
