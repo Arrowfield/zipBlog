@@ -35,6 +35,14 @@
   #comments .vpanel,#comments .vcards{
     background: white;
   }
+
+  #comments .vpanel textarea{
+    height: 120px !important;
+    overflow-y: hidden !important;
+    resize: none;
+    background: url("https://rawchen.com/usr/themes/rawchen/images/comments-bg.jpg") no-repeat center right;
+    background-size: 200px;
+  }
   #comments .vcards>.vcard{
     padding: 10px;
   }
