@@ -314,9 +314,15 @@
         let delta = 0;
         event = window.event || event;
         delta = event.wheelDelta ? (event.wheelDelta / 120) : (-event.detail / 3);
-        let rate = this.xAxisTick * 1000 / this.timestamps[this.timestamps.length - 1]
+
+        let distance = 1000
+        if(this.max <= this.min  + 2 * this.dataZoom.handleSize / this.dataAreaWidth){
+          // distance = 18
+        }
+
+        let rate = this.xAxisTick * distance / this.timestamps[this.timestamps.length - 1]
         delta *= rate
-        console.log(delta)
+
         /*
         * 跨度4s delta 4000ms 4ms
         * 跨度3s delta 3000ms 3ms
