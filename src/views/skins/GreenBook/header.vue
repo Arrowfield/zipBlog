@@ -217,7 +217,7 @@
   .navbar-menu a:hover {
     background-color: #ffeded54;
     color: #ec5454;
-    border-radius: 15px;
+    /*border-radius: 15px;*/
 
     &:before {
       left: 0;

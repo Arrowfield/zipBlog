@@ -10,7 +10,7 @@
           </div>
         </div>
         <div id="post-content" class="post-content">
-          <ul div="" class="flinks">
+          <ul div="" class="flinks" style="margin-left: -5px">
             <li><a href="http://alkaidchen.com" target="_blank"><img src="https://cdn.rawchen.com/logo/alkaidchen.jpg">AlkaidChen</a></li>
             <li><a href="https://www.ihewro.com/" target="_blank"><img src="https://cdn.rawchen.com/logo/ihewro.jpg">友人C</a></li>
             <li><a href="https://blogwe.com/" target="_blank"><img src="https://cdn.rawchen.com/logo/blogwe.jpg">博客我们</a></li>

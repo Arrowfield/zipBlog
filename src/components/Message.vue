@@ -24,10 +24,18 @@
           appKey: 'HsPRcF8z6wsC6oKKRHIK4lQ9',
           path: this.$route.path,
           requiredFields:['nick','mail'],
-          avatar:"monsterid"
+          avatar:"monsterid",
+          placeholder:"来都来了，看都看了，想说点什么吗 0_o"
         })
       })
     },
   }
 </script>
-
+<style lang="scss">
+  #comments .vpanel,#comments .vcards{
+    background: white;
+  }
+  #comments .vcards>.vcard{
+    padding: 10px;
+  }
+</style>
