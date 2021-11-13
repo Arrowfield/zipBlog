@@ -52,23 +52,17 @@
       pathX() {
         if (!this.options.xAxis) return ""
         this.xAxisData = []
-        let sum = this.minTimestamp, path = "", rate = this.rate
+        let sum = Math.floor(Number(this.minTimestamp)), path = "", rate = this.rate
         let timestamps = this.options.xAxis.data
         let y = this.grid.top + this.grid.height - 1
-        //console.time('start')
-        // let minIndex = binarySearch(timestamps, 0, timestamps.length, this.minTimestamp)[2]
-        // let maxIndex = binarySearch(timestamps, 0, timestamps.length, this.maxTimestamp)[0]
+
         let minIndex = findNearestTarget(timestamps, this.minTimestamp)
         let maxIndex = findNearestTarget(timestamps, this.maxTimestamp)
-        //console.timeEnd('start')
         let tick = Math.ceil((maxIndex - minIndex) / 18)
-        // if(maxIndex - minIndex <= 5){
-        //   tick = 1
-        // }else if(maxIndex - minIndex <= tick) {
-        //   tick = 5
-        // }else if (maxIndex - minIndex <= tick * 3) {
-        //   tick = 10
-        // }
+        if(tick ===0) tick = 1
+        this.$store.commit('setStoreValue',{
+          xAxisTick:tick
+        })
         for (let i = minIndex; i < maxIndex; i += tick) {
           let x = (timestamps[i] - this.minTimestamp) * rate
           if (x < 0) continue
@@ -80,16 +74,17 @@
           })
         }
 
+
+
         // // 求最大分割线
-        // let tick = 15
-        // if(this.maxTimestamp - this.minTimestamp < 5 * 1000){
-        //   tick = 4
-        // }else if(this.maxTimestamp - this.minTimestamp < 40 * 1000){
-        //   tick = 10
+        // let splitNumber = 15
+        // if(this.maxTimestamp - this.minTimestamp < splitNumber * 1000){
+        //   splitNumber = (this.maxTimestamp - this.minTimestamp) / 1000
         // }
+        // let distance = Math.floor((this.maxTimestamp - this.minTimestamp) / splitNumber)
         //
-        // let step = (this.maxTimestamp - this.minTimestamp) / tick
-        // for (sum; sum < this.maxTimestamp; sum += step) {
+        //
+        // for (sum; sum < this.maxTimestamp; sum += distance) {
         //   let x = sum * rate - this.minTimestamp * rate
         //   path += `M ${this.grid.left + x} ${y} L ${this.grid.left + x} ${y + 7} `
         //   this.xAxisData.push({

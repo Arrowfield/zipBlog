@@ -48,6 +48,7 @@
     font-size: 12px;
     /*visibility: hidden;*/
     //opacity: 0;
+    p{margin:0}
   }
 
   .circles {

@@ -18,6 +18,7 @@ const state = {
   showDataDrag:false,
   showDragTooltips:false,
   dragConfig:{},
+  xAxisTick:0,
 }
 export default {
   state,

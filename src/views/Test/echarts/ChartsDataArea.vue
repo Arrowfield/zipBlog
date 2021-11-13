@@ -139,11 +139,16 @@
         showDragTooltips: state => state.caseDetail.showDragTooltips,
         min: state => state.caseDetail.min,
         max: state => state.caseDetail.max,
+        xAxisTick: state => state.caseDetail.xAxisTick,
+        timestamps:state => state.caseDetail.timestamps,
       }),
       ...mapGetters([
         'minTimestamp',
         'maxTimestamp'
       ]),
+      dataZoom(){
+        return this.options.dataZoom
+      },
       circles() {
         if (!this.options.tooltips.data) return []
         let res = []
@@ -186,9 +191,14 @@
         return pathData.map((item, index) => {
           let letter = `M`, path = '', valueX = "", valueY = "", circles = []
           for (let [i, tmp] of item.data.entries()) {
-            if (timeStamp[i] >= this.minTimestamp && timeStamp[i] <= this.maxTimestamp) {
+            if (timeStamp[i] >= this.minTimestamp   && timeStamp[i] <= this.maxTimestamp ) {
+
+              // if((timeStamp[i] - this.minTimestamp)  < 0){
+              //   continue
+              // }
               let x = this.grid.left + (timeStamp[i] - this.minTimestamp) * this.rate
               let y = this.grid.height - tmp * yRate[item.yAxisIndex] + this.grid.top
+
 
               valueX += `${x};`
               valueY += `${y};`
@@ -301,28 +311,53 @@
       },
       handleWheel(event) {
         event.preventDefault()
-        var delta = 0;
+        let delta = 0;
         event = window.event || event;
-        //delta = event.wheelDelta ? (event.wheelDelta / 120) : (- event.detail / 3);
-        console.log(event)
-        // this.$store.commit('setStoreValue', {
-        //   min:0,
-        //   max:1
-        // })
-        // if(event.wheelDelta > 0){ // 增幅什么定
-        //   console.log('1放大')
-        //   if(this.min > this.max) return
-        //   this.$store.commit('setStoreValue', {
-        //     min:this.min + 0.001,
-        //     max:this.max - 0.001
-        //   })
-        // }else{
-        //   console.log('2缩小')
-        //   this.$store.commit('setStoreValue', {
-        //     min:this.min - 0.001 < 0 ? 0 : this.min - 0.001,
-        //     max:this.max + 0.001 > 1 ? 1 : this.max + 0.001
-        //   })
-        // }
+        delta = event.wheelDelta ? (event.wheelDelta / 120) : (-event.detail / 3);
+        let rate = this.xAxisTick * 1000 / this.timestamps[this.timestamps.length - 1]
+        delta *= rate
+        console.log(delta)
+        /*
+        * 跨度4s delta 4000ms 4ms
+        * 跨度3s delta 3000ms 3ms
+        * 跨度2s delta 2000ms 2ms
+        * 跨度1s delta 1000ms 1ms
+        *
+        * 4000ms
+        *
+        * 最小的间隔 1000ms
+        *
+        *
+        * google
+        * 最大间隔 500ms
+        * 最小间隔 0.02ms
+        * */
+        let percent  = (event.clientX - this.$refs.moveRect.getBoundingClientRect().left) / this.dataAreaWidth
+
+        let min = this.min + delta * percent, max = this.max - delta * (1 - percent)
+
+        if (min < 0) {
+          min = 0
+        }else if(min > 1 - this.dataZoom.handleSize / this.dataAreaWidth){
+          min = 1 - this.dataZoom.handleSize / this.dataAreaWidth
+        }
+
+        if (max > 1) {
+          max = 1
+        }else if(max < this.dataZoom.handleSize / this.dataAreaWidth){
+          max = this.dataZoom.handleSize / this.dataAreaWidth
+        }
+        if(max <= min + this.dataZoom.handleSize / this.dataAreaWidth){
+          return
+        }
+
+
+        this.$store.commit('setStoreValue', {
+          min,
+          max,
+        })
+
+
       }
     },
   }
