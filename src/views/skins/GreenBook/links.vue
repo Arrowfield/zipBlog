@@ -88,14 +88,16 @@
             <li><a href="https://python4fun.gitee.io" target="_blank"><img src="https://cdn.rawchen.com/logo/python4fun.png">喵星趣学堂</a></li>
           </ul><h2>申请友链样式:</h2><blockquote><p>Name：RawChen<br>Addr：<a href="https://rawchen.com" target="_blank">https://rawchen.com</a><br>Logo：<a href="https://rawchen.com/favicon.png" target="_blank">https://rawchen.com/favicon.png</a></p></blockquote><p>欢迎来互换友链，也可以在这个页面下方留言都行。<br>我会记着,感谢曾经给予我帮助的人。</p>	</div>
       </article>
+      <message/>
     </layout-slot>
 </template>
 
 <script>
     import LayoutSlot from "./slot/layout-slot";
+    import Message from "../../../components/Message";
     export default {
         name: "links",
-      components: {LayoutSlot}
+      components: {Message, LayoutSlot}
     }
 </script>
 
