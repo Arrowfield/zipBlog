@@ -121,9 +121,9 @@
 
 
     <!-- 评论系统 -->
-    <div class="comment-container">
-      <message/>
-    </div>
+
+    <message/>
+
 
     <!-- 目录 -->
     <div id="directory-content" class="directory-content initial headroom--not-bottom headroom--not-top unpinned">

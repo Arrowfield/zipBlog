@@ -1,5 +1,7 @@
 <template>
+  <div class="comment-container">
   <div id="comments"></div>
+  </div>
 </template>
 
 <script>
@@ -20,7 +22,9 @@
           el: "#comments",
           appId: 'i6UzLvqubKd7cmpuvLNmcKot-gzGzoHsz',
           appKey: 'HsPRcF8z6wsC6oKKRHIK4lQ9',
-          path: this.$route.path
+          path: this.$route.path,
+          requiredFields:['nick','mail'],
+          avatar:"monsterid"
         })
       })
     },

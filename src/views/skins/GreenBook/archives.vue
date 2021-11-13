@@ -1,5 +1,5 @@
 <template>
-  <layout-slot className="archive-page">
+  <layout-slot className="archive-page main-content" class="bg-gray">
     <fieldset>
       <legend>统计信息</legend>
       <div class="archives-count">

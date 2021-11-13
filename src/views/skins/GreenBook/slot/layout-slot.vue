@@ -1,7 +1,7 @@
 <template>
   <div >
     <vue-header/>
-    <div class="main-content clearfix" :class="className">
+    <div class="clearfix" :class="className">
       <slot></slot>
     </div>
     <vue-footer/>

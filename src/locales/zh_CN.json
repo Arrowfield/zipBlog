@@ -10,5 +10,6 @@
   "content":"内容",
   "down-link":"下载链接",
   "document": "API中文文档",
-  "statement":"本文由 <a href=\"XXX\" style=\"border-bottom: 1px dashed #a0a0a0;\">YYY</a> 发表， 最后编辑时间为：ZZZ<br>"
+  "statement":"本文由 <a href=\"XXX\" style=\"border-bottom: 1px dashed #a0a0a0;\">YYY</a> 发表， 最后编辑时间为：ZZZ<br>",
+  "running-time":"运行时长："
 }
