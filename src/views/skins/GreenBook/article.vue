@@ -201,15 +201,10 @@
       }
     },
     mounted() {
-      // Prism.highlightAll()
-      // this.$nextTick(() => {
-      //   Prism.plugins.toolbar.registerButton('hello-world', {
-      //     text: 'Hello World!', // required
-      //     onClick: function (env) { // optional
-      //       alert('This code snippet is written in ' + env.language + '.');
-      //     }
-      //   });
-      // })
+      //
+      this.$nextTick(() => {
+        Prism.highlightAll()
+      })
 
      // console.log(Prism.plugins)
 
