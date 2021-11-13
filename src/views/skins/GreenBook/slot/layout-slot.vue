@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray" :style="{backgroundImage:`url(${bodyImage})`}">
+  <div >
     <vue-header/>
     <div class="main-content clearfix" :class="className">
       <slot></slot>
@@ -31,14 +31,9 @@
       }
     }
   }
+  //class="bg-gray" :style="{backgroundImage:`url(${bodyImage})`}"
 </script>
 
-<style scoped>
-  .bg-gray {
-    background-position: left top;
-    background-size: auto;
-    background-repeat: repeat;
-    background-attachment: fixed;
-    background-color: #f7f7f7 !important;
-  }
+<style lang="scss" scoped>
+
 </style>

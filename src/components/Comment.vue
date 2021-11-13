@@ -6,9 +6,14 @@
   </Fragment>
 </template>
 <script>
+  /**
+   * 畅言评论的接入
+   * @author 768449566@qq.com
+   */
   import {
     Fragment
   } from 'vue-fragment'
+
   export default {
     name: "Comment",
     components: {
@@ -85,13 +90,14 @@
             window[key] = undefined;
           }
         }
-      } catch (error) {}
+      } catch (error) {
+      }
     }
   }
 </script>
 <style lang="scss" scoped>
   .comment-box {
     background: #fff;
-    
+
   }
 </style>

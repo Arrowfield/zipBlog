@@ -28,7 +28,7 @@
       </div>
     </div>
     <!-- 文章主体 -->
-    <article 	class="main-content post-page" itemscope="" itemtype="http://schema.org/Article">
+    <article class="main-content post-page" itemscope="" itemtype="http://schema.org/Article">
       <!-- mobile -->
       <div class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -49,9 +49,9 @@
       </div>
 
       <div id="post-content" class="post-content" itemprop="articleBody">
-<!--        <p class="post-tags">-->
-<!--          <a v-for="item of articleDetail.tags" href="https://rawchen.com/tag/OneDrive/">{{ item.name }}</a>-->
-<!--        </p>-->
+        <!--        <p class="post-tags">-->
+        <!--          <a v-for="item of articleDetail.tags" href="https://rawchen.com/tag/OneDrive/">{{ item.name }}</a>-->
+        <!--        </p>-->
         <!-- body start -->
         <div v-html="articleDetail.body"></div>
         <!-- body end -->
@@ -120,9 +120,32 @@
     </article>
 
 
+    <!-- 评论系统 -->
+    <div class="comment-container">
+      <message/>
+    </div>
+
     <!-- 目录 -->
     <div id="directory-content" class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
-      <div id="directory"><ul><li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li><li><a href="#directory047730034661277412">2 使用方法</a><ul><li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li><li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a><ul><li><a href="#directory047730034661277415">2.2.1 preHandle</a></li><li><a href="#directory047730034661277416">2.2.2 postHandle</a></li><li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li></ul></li><li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li><li><a href="#directory047730034661277419">2.4 使用场景</a></li></ul></li></ul></div>
+      <div id="directory">
+        <ul>
+          <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>
+          <li><a href="#directory047730034661277412">2 使用方法</a>
+            <ul>
+              <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>
+              <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>
+                <ul>
+                  <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>
+                  <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>
+                  <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>
+                </ul>
+              </li>
+              <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>
+              <li><a href="#directory047730034661277419">2.4 使用场景</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </layout-slot>
 </template>
@@ -131,9 +154,11 @@
   import LayoutSlot from "./slot/layout-slot";
   import settings from "../../../settings";
   import Prism from 'prismjs'
+  import Message from "../../../components/Message";
+
   export default {
     name: "vue-article",
-    components: {LayoutSlot},
+    components: {Message, LayoutSlot},
     data() {
       return {
         articleDetail: {
@@ -177,7 +202,7 @@
     },
     mounted() {
       // Prism.highlightAll()
-      this.$nextTick(()=>{
+      this.$nextTick(() => {
         Prism.plugins.toolbar.registerButton('hello-world', {
           text: 'Hello World!', // required
           onClick: function (env) { // optional

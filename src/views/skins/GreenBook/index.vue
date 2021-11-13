@@ -1,5 +1,5 @@
 <template>
-  <layout-slot className="index-page onelist-page">
+  <layout-slot className="index-page onelist-page" class="bg-gray">
     <div class="post-lists">
       <div class="post-lists-body">
         <div class="post-onelist-item">
