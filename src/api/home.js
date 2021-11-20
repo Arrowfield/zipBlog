@@ -12,6 +12,14 @@ export function getUser(params) {
   })
 }
 
+export function getUserInfo(data) {
+  return service({
+    url:"/user/message",
+    method:"POST",
+    data,
+  })
+}
+
 export function getArticleList(params) {
   return service({
     url:"/article/get",

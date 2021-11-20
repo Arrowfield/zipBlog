@@ -46,6 +46,8 @@
 
 <script>
 
+  import {getUserInfo} from "../../../api/home";
+
   export default {
     name: "vue-header",
     data() {
@@ -102,27 +104,20 @@
           }
           top = document.documentElement.scrollTop
         }
+      },
+      getUserInfo(){
+        getUserInfo().then(({data})=>{
+
+        })
       }
     },
     mounted() {
       new Headroom(this.$el, {
         offset: 0,
         tolerance: 0,
-        classes: {
-          initial: "headroom",
-          pinned: "slideDown",
-          unpinned: "slideUp"
-        }
+        classes: {initial: "headroom", pinned: "slideDown", unpinned: "slideUp"}
       }).init();
-      // new Headroom(this.$refs.mobileMenu, {
-      //   offset: 0,
-      //   tolerance: 0,
-      //   classes: {
-      //     initial: "headroom",
-      //     pinned: "slideDown",
-      //     unpinned: "slideUp"
-      //   }
-      // }).init()
+      this.getUserInfo()
     }
   }
 </script>
