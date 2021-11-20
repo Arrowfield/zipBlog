@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {getSelfToken} from "./auth";
 
 
 const baseURL = process.env.VUE_APP_NO_PROXY
@@ -9,8 +10,27 @@ const service = axios.create({
   // retry: 2,
   // retryInterval: 5000,
   onDownloadProgress: function (event) {
+
   }
 })
+
+
+service.interceptors.request.use(
+  config => {
+    // if (store.getters.token) {
+    //   config.headers['X-Token'] = getToken()
+    //
+    // }
+    config.headers['B-Token'] = getSelfToken()
+    return config
+  },
+  error => {
+    // do something with request error
+    console.log(error) // for debug
+    return Promise.reject(error)
+  }
+)
+
 
 // service.interceptors.response.use(res => res,function(err){
 //   let config = err.config

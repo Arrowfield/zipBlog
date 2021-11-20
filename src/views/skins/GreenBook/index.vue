@@ -19,7 +19,7 @@
                 <p>{{ indexIntro.motto }}</p>
               </div>
               <div class="item-meta" style="font-size: 15px">
-                <router-link v-for="item of indexIntro.links" :to="item.route">
+                <router-link v-for="(item,index) of indexIntro.links" :to="item.route" :key="index">
                   {{item.title}}
                 </router-link>
               </div>
@@ -83,6 +83,8 @@
   import VueFooter from "./footer";
   import LayoutSlot from "./slot/layout-slot";
   import settings from "../../../settings";
+  import {getIndexData} from "../../../api/indexData";
+  import {getArticleList} from "../../../api/home";
   // console.log(window.location)
   export default {
     name: "index",
@@ -132,6 +134,26 @@
           },
         ],
       }
+    },
+    methods:{
+      postArchiveList(){
+        getIndexData().then((data)=>{
+          //console.log(data)
+        })
+      },
+      postArticleList(){
+        let params = {
+          pageNo: 1,
+          pageSize: 10,
+          cmd:1
+        }
+        getArticleList(params).then(({data})=>{
+          console.log(data)
+        })
+      }
+    },
+    mounted() {
+      this.postArticleList()
     }
   }
 </script>
