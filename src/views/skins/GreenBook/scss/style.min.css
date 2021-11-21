@@ -579,7 +579,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   z-index: 10;
   display: inline-block;
   width: auto;
-  padding-right: 5px
+  padding-right: 5px;
+  white-space: nowrap;
 }
 
 .navbar-menu a {
