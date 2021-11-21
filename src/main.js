@@ -20,6 +20,14 @@ Vue.use(LoadingCirc)
 Vue.use(Waves)
 Vue.use(Tips)
 
+// 全局过滤器
+import * as filters from '@/filters/dataFormat'
+
+Object.keys(filters).forEach(key=>{
+  console.log(key)
+  Vue.filter(key,filters[key])//插入过滤器名和对应方法
+})
+
 //lodash工具的使用
 import _ from 'lodash'
 Vue.prototype._ = _

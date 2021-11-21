@@ -114,7 +114,7 @@
       },
       initPageNum() {
         this.maxPageNum = Math.ceil(this.total / this.pageSize)
-        // console.log(this.maxPageNum)
+        this.nums = []
         if (this.maxPageNum > 10) {
           let num = [], start = [], end = [], center = ['...']
           for (let i = 1; i <= this.maxPageNum; i++) {
