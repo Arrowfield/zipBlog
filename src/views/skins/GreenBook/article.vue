@@ -51,9 +51,9 @@
       </div>
 
       <div id="post-content" class="post-content" itemprop="articleBody">
-        <!--        <p class="post-tags">-->
-        <!--          <a v-for="item of articleDetail.tags" href="https://rawchen.com/tag/OneDrive/">{{ item.name }}</a>-->
-        <!--        </p>-->
+        <p class="post-tags">
+          <a v-for="item of articleDetail.tags" href="https://rawchen.com/tag/OneDrive/">{{ item.name }}</a>
+        </p>
         <!-- body start -->
         <div v-html="articleDetail.body"></div>
         <!-- body end -->
