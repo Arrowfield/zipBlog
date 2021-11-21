@@ -6,7 +6,7 @@
       </router-link>
       <div class="navbar-menu">
 
-        <router-link :key="index" v-for="(item,index) of headerConfig.navMenu" :to="item.route">
+        <router-link :class="{current:$route.path === item.route}" :key="index" v-for="(item,index) of headerConfig.navMenu" :to="item.route">
           {{ item.title }}
           <ul v-if="item.children.length > 0">
             <li v-for="tmp of item.children">
@@ -71,7 +71,7 @@
             {title: "下载", route: "/download", children: []},
             {title: "音乐", route: "/music", children: []},
             {title: "友链", route: "/links", children: []},
-            {title: "关于", route: "/archive", children: []},
+            {title: "关于", route: "/about", children: []},
           ],
           searchPage: "/search"
         },

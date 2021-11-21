@@ -10,5 +10,6 @@ export default [
   {path: "/links", component: () => import('@/views/skins/GreenBook/links.vue')},
   {path: "/movies", component: () => import('@/views/skins/GreenBook/movies.vue')},
   {path: "/photos", component: () => import('@/views/skins/GreenBook/photos.vue')},
+  {path: "/about", component: () => import('@/views/skins/GreenBook/about.vue')},
   // {path: "/cross", component: () => import('@/views/skins/GreenBook/links.vue')},
 ]

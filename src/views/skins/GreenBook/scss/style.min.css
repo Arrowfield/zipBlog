@@ -1212,13 +1212,94 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .post-content p img {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  max-width: 100%;
-  height: auto;
-  margin: 20px auto
+  /*position: relative;*/
+  /*display: block;*/
+  /*overflow: hidden;*/
+  /*max-width: 100%;*/
+  /*height: auto;*/
+  /*margin: 20px auto*/
 }
+
+
+
+
+.about-contact {
+  font-family: 'PingFang SC','Microsoft YaHei',sans-serif;
+  overflow:hidden;
+  margin-left: -7px;
+}
+
+.about-contact .qq,.about-contact .email,.about-contact .telegram {
+  float: left;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 25px;
+  margin: 15px 6px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 31.5%;
+}
+
+.about-contact .qq {
+  background-color: #ff8888;
+}
+
+.about-contact .email {
+  background-color: #a0cfcf;
+}
+
+.about-contact .telegram {
+  background-color: #80cddc;
+}
+
+.about-contact .qq:hover, .about-contact .email:hover, .about-contact .telegram:hover {
+  opacity: 0.8;
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+}
+
+.about-contact .content {
+  font-weight: bold;
+  color: #fff;
+  line-height: 30px;
+  font-size: 16px;
+  letter-spacing: .5px;
+}
+
+.about-contact i {
+  position: absolute;
+  font-size: 60px;
+  font-weight: bold;
+  color: #fff;
+  left: 16px;
+  bottom: 8px;
+  opacity: .4;
+  transform: rotate(20deg);
+}
+
+
+#githubChart {
+  box-shadow: none;
+  webkit-box-shadow:none;
+  width: 97%;
+  padding: 5px;
+  margin-left: 0;
+  border: 4px dotted #fcce8a;
+}
+
+@media (max-width: 720px) {
+  #githubChart {
+    width: 97.8%;
+  }
+}
+
+@media (max-width: 450px) {
+  #githubChart {
+    width: 96%;
+  }
+}
+
 
 .post-content input.text {
   display: inline-block;
@@ -2710,6 +2791,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 @media screen and (max-width: 720px) {
   .post-next-prev .padd .next-prev {
     width: 95%;
+  }
+  .about-contact .qq, .about-contact .email, .about-contact .telegram {
+    float: none;
+    width: inherit;
   }
 }
 
