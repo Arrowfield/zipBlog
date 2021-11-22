@@ -18,7 +18,8 @@
             v-if="articleDetail.category"
             href="https://rawchen.com/category/enjoy/">{{ articleDetail.category.title }}</a>&nbsp;&nbsp;
             <i class="fa fa-comments-o" aria-hidden="true"></i>
-            <a v-if="articleDetail.comments" href="#comments"> {{ articleDetail.comments.number }} {{ $t('comments') }}</a>&nbsp;&nbsp;
+            <a v-if="articleDetail.comments" href="#comments"> {{ articleDetail.comments.number }} {{ $t('comments')
+              }}</a>&nbsp;&nbsp;
             <i class="fa fa-eye" aria-hidden="true"></i>
             {{ articleDetail.views }} {{ $t('views') }}
           </div>
@@ -41,10 +42,12 @@
                                                                                  aria-hidden="true"> </i> {{
             articleDetail.time | dateFormat('{y}-{m}-{d}') }}
           </time>&nbsp;&nbsp;
-          <i v-if="articleDetail.category" class="fa fa-tags" aria-hidden="true"></i> <a href="https://rawchen.com/category/enjoy/">{{
+          <i v-if="articleDetail.category" class="fa fa-tags" aria-hidden="true"></i> <a
+          href="https://rawchen.com/category/enjoy/">{{
           articleDetail.category.title }}</a>&nbsp;&nbsp;
           <i class="fa fa-comments-o" aria-hidden="true"></i>
-          <a v-if="articleDetail.comments" href="#comments"> {{ articleDetail.comments.number }} {{ $t('comments') }}</a>&nbsp;&nbsp;
+          <a v-if="articleDetail.comments" href="#comments"> {{ articleDetail.comments.number }} {{ $t('comments')
+            }}</a>&nbsp;&nbsp;
           <i class="fa fa-eye" aria-hidden="true"></i>
           {{ articleDetail.views }} {{ $t('views') }}
         </div>
@@ -129,27 +132,35 @@
 
 
     <!-- 目录 -->
-<!--    <div id="directory-content" class="directory-content initial headroom&#45;&#45;not-bottom headroom&#45;&#45;not-top unpinned">-->
-<!--      <div id="directory">-->
-<!--        <ul>-->
-<!--          <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
-<!--          <li><a href="#directory047730034661277412">2 使用方法</a>-->
-<!--            <ul>-->
-<!--              <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>-->
-<!--              <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>-->
-<!--                <ul>-->
-<!--                  <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>-->
-<!--                  <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>-->
-<!--                  <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>-->
-<!--                </ul>-->
-<!--              </li>-->
-<!--              <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>-->
-<!--              <li><a href="#directory047730034661277419">2.4 使用场景</a></li>-->
-<!--            </ul>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <div id="directory-content" class="directory-content initial headroom&#45;&#45;not-bottom headroom&#45;&#45;not-top unpinned">-->
+    <!--      <div id="directory">-->
+    <!--        <ul>-->
+    <!--          <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
+    <!--          <li><a href="#directory047730034661277412">2 使用方法</a>-->
+    <!--            <ul>-->
+    <!--              <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>-->
+    <!--              <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>-->
+    <!--                <ul>-->
+    <!--                  <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>-->
+    <!--                  <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>-->
+    <!--                  <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>-->
+    <!--                </ul>-->
+    <!--              </li>-->
+    <!--              <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>-->
+    <!--              <li><a href="#directory047730034661277419">2.4 使用场景</a></li>-->
+    <!--            </ul>-->
+    <!--          </li>-->
+    <!--        </ul>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+
+    <div ref="outline" id="directory-content"
+         class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
+
+    </div>
+
+
   </layout-slot>
 </template>
 
@@ -159,6 +170,7 @@
   // import Prism from 'prismjs'
   import Message from "../../../components/Message";
   import {getArticleById} from "@/api/home";
+
   import VditorPreview from 'vditor/dist/method.min'
 
   export default {
@@ -170,8 +182,8 @@
     data() {
       return {
         articleDetail: {
-          comments:{},
-          footerStatement:{},
+          comments: {},
+          footerStatement: {},
           category: {},
         },
       }
@@ -209,22 +221,26 @@
               comments: {number: 10, url: "/"},
               views: 100,
               abstract: "购买地址：腾讯云：[https://cloud.tencent.com/act/cps/redirect?redirect=1575&amp;cps_key=b58209dca42a9decdae2f276d61acd77&amp;from=console)阿里云：https://www.aliyun.com",
-              tags:article.articleTags.split(",").map(item=>({
-                name:item,
-                url:""
+              tags: article.articleTags.split(",").map(item => ({
+                name: item,
+                url: ""
               })),
-              body :""
+              body: ""
             }
 
-            VditorPreview.preview(this.$refs.article_main,article.articleContent,{
+            VditorPreview.preview(this.$refs.article_main, article.articleContent, {
               //_lutePath:"",
-              mode: "dark"
+              mode: "dark",
+              after:()=>{
+                let html = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline)
+                // console.log(html)
+              }
             })
             //VditorPreview.highlightRender('IHljs',this.$refs.article_main)
           }
           // console.log(this.articleDetail)
         })
-      }
+      },
     }
 
   }
