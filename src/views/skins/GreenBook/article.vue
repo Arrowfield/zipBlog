@@ -55,7 +55,7 @@
           <a v-for="item of articleDetail.tags" href="https://rawchen.com/tag/OneDrive/">{{ item.name }}</a>
         </p>
         <!-- body start -->
-        <div v-html="articleDetail.body"></div>
+        <div ref="article_main" v-html="articleDetail.body"></div>
         <!-- body end -->
       </div>
       <p class="post-info">
@@ -129,36 +129,37 @@
 
 
     <!-- 目录 -->
-    <div id="directory-content" class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
-      <div id="directory">
-        <ul>
-          <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>
-          <li><a href="#directory047730034661277412">2 使用方法</a>
-            <ul>
-              <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>
-              <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>
-                <ul>
-                  <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>
-                  <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>
-                  <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>
-                </ul>
-              </li>
-              <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>
-              <li><a href="#directory047730034661277419">2.4 使用场景</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
+<!--    <div id="directory-content" class="directory-content initial headroom&#45;&#45;not-bottom headroom&#45;&#45;not-top unpinned">-->
+<!--      <div id="directory">-->
+<!--        <ul>-->
+<!--          <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
+<!--          <li><a href="#directory047730034661277412">2 使用方法</a>-->
+<!--            <ul>-->
+<!--              <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>-->
+<!--              <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>-->
+<!--                <ul>-->
+<!--                  <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>-->
+<!--                  <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>-->
+<!--                  <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>-->
+<!--                </ul>-->
+<!--              </li>-->
+<!--              <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>-->
+<!--              <li><a href="#directory047730034661277419">2.4 使用场景</a></li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </div>-->
   </layout-slot>
 </template>
 
 <script>
   import LayoutSlot from "./slot/layout-slot";
   import settings from "../../../settings";
-  import Prism from 'prismjs'
+  // import Prism from 'prismjs'
   import Message from "../../../components/Message";
   import {getArticleById} from "@/api/home";
+  import VditorPreview from 'vditor/dist/method.min'
 
   export default {
     name: "vue-article",
@@ -177,9 +178,9 @@
     },
     mounted() {
       //
-      this.$nextTick(() => {
-        Prism.highlightAll()
-      })
+      // this.$nextTick(() => {
+      //   Prism.highlightAll()
+      // })
 
       this.getArticleDetail()
 
@@ -193,7 +194,7 @@
           id: this.id
         }
         getArticleById(params).then(({data}) => {
-          console.log(data)
+          // console.log(data)
           if (data.code === 200) {
             let article = data.data
             this.articleDetail = {
@@ -212,11 +213,16 @@
                 name:item,
                 url:""
               })),
-              body : article.articleContent
+              body :""
             }
 
+            VditorPreview.preview(this.$refs.article_main,article.articleContent,{
+              //_lutePath:"",
+              mode: "dark"
+            })
+            //VditorPreview.highlightRender('IHljs',this.$refs.article_main)
           }
-          console.log(this.articleDetail)
+          // console.log(this.articleDetail)
         })
       }
     }

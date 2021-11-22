@@ -38,15 +38,15 @@
   import makeMemoryOptions from './echarts/options/makeMemoryOptions'
   import {INDEX_TIMESTAMP} from "./constant";
   import {eventBus} from '../../utils/Bus'
-  import 'fast-text-encoding'
+  // import 'fast-text-encoding'
 
   // let caseDetail = {data:{}}
   // let caseReport = {}
 
   let data = caseDetail.data
   /* start */
-  import protoRoot from '@/proto/proto'
-  import protobuf from 'protobufjs'
+  // import protoRoot from '@/proto/proto'
+  // import protobuf from 'protobufjs'
 
   // 请求体message
   const PBMessageRequest = protoRoot.lookup('com.perfdog.proto.TdwTraceNode')

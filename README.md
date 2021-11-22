@@ -62,7 +62,7 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 ```
 
 #### 网站缺陷更新日志
-##### 2020.06.03篇
+#### 2020.06.03篇
 
 + 1、文章与浏览处的统计是写死的，目前没有调用接口
 + 2、文章的图片十分模糊，变形严重
@@ -137,4 +137,16 @@ yum install libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86
 
 win:cnpm
 mac:npm
+
+```json
+{
+ "core-js": "^3.6.4",
+ "fast-text-encoding": "^1.0.3",
+ "lodash": "^4.17.15",
+ "prerender-spa-plugin": "^3.4.0",
+ "protobufjs": "^6.11.2",
+ "vue-fragment": "^1.5.2",
+ "vuepress-plugin-comment": "^0.7.3"
+}
+```
 

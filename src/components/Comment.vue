@@ -1,23 +1,23 @@
 <template>
-  <Fragment>
+
     <div class="comment-box">
       <div id="SOHUCS" :sid="'ddp-blog-'+postId"></div>
     </div>
-  </Fragment>
+
 </template>
 <script>
   /**
    * 畅言评论的接入
    * @author 768449566@qq.com
    */
-  import {
-    Fragment
-  } from 'vue-fragment'
+  // import {
+  //   Fragment
+  // } from 'vue-fragment'
 
   export default {
     name: "Comment",
     components: {
-      Fragment
+      //Fragment
     },
     props: {
       postId: {

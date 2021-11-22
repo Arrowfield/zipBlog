@@ -203,3 +203,11 @@ input, textarea, button, a, select {
     }
   }
 }
+/* 样式重制 */
+.post-page{
+  .vditor-reset h1, .vditor-reset h2{
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .hljs{background: white}
+}

@@ -6,27 +6,27 @@
     </a>
     <a v-waves href="javascript:"><i class="iconfont iconredu"></i>{{ tagDetail.articleViewCount }} °C</a>
     <a v-waves href="javascript:"><i class="iconfont iconxx"></i><span class="valine-comment-count" :data-xid="$route.path">{{"-" }}</span></a>
-    <Fragment v-if="tagDetail.articleTags">
+    
       <a class="tag" :key="i" v-for="(tmp,i) in tagDetail.articleTags.split(',')" v-waves href="#">
         <i class="iconfont icondaohang1"></i>
         <span>{{tmp}}</span>
       </a>
-    </Fragment>
+    
   </div>
 </template>
 
 <script>
   // import waves from "@/directive/waves/waves";
-  import {
-    Fragment
-  } from 'vue-fragment'
+  // import {
+  //   Fragment
+  // } from 'vue-fragment'
 
   export default {
     name: "Tags",
     directives: {
       // waves
     },
-    components: {Fragment},
+    //components: {Fragment},
     filters: {
       truncation(val) {
         if (!val) return "-"

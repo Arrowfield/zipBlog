@@ -283,14 +283,14 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .post-content pre {
-  box-shadow: 0px 0px 3px rgba(0,0,0,.35);
-  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,.35);
-  overflow-x: auto;
-  margin: 20px 0;
-  border-radius: 6px;
-  /* background: #31313124; */
-  text-shadow: none;
-  padding: 0;
+  /*box-shadow: 0px 0px 3px rgba(0,0,0,.35);*/
+  /*-webkit-box-shadow: 0px 0px 3px rgba(0,0,0,.35);*/
+  /*overflow-x: auto;*/
+  /*margin: 20px 0;*/
+  /*border-radius: 6px;*/
+  /*!* background: #31313124; *!*/
+  /*text-shadow: none;*/
+  /*padding: 0;*/
 }
 
 .post-content pre code {
@@ -1209,7 +1209,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   overflow: hidden;
   max-width: 100%;
   height: auto;
-  margin: 0 auto
+  margin: 0 auto;
+  box-shadow: 0 0px 3px rgba(31,35,37,0.1);
 }
 
 .post-content p img {
@@ -2988,3 +2989,5 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   /* font-weight: 600; */
   color: #eb5055
 }
+
+
