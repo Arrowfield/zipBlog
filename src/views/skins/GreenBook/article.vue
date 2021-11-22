@@ -132,27 +132,27 @@
 
 
     <!-- 目录 -->
-    <!--    <div id="directory-content" class="directory-content initial headroom&#45;&#45;not-bottom headroom&#45;&#45;not-top unpinned">-->
-    <!--      <div id="directory">-->
-    <!--        <ul>-->
-    <!--          <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
-    <!--          <li><a href="#directory047730034661277412">2 使用方法</a>-->
-    <!--            <ul>-->
-    <!--              <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>-->
-    <!--              <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>-->
-    <!--                <ul>-->
-    <!--                  <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>-->
-    <!--                  <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>-->
-    <!--                  <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>-->
-    <!--                </ul>-->
-    <!--              </li>-->
-    <!--              <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>-->
-    <!--              <li><a href="#directory047730034661277419">2.4 使用场景</a></li>-->
-    <!--            </ul>-->
-    <!--          </li>-->
-    <!--        </ul>-->
-    <!--      </div>-->
-    <!--    </div>-->
+        <div  id="directory-content" class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
+          <div id="directory" >
+<!--            <ul>-->
+<!--              <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
+<!--              <li><a href="#directory047730034661277412">2 使用方法</a>-->
+<!--                <ul>-->
+<!--                  <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>-->
+<!--                  <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>-->
+<!--                    <ul>-->
+<!--                      <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>-->
+<!--                      <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>-->
+<!--                      <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>-->
+<!--                    </ul>-->
+<!--                  </li>-->
+<!--                  <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>-->
+<!--                  <li><a href="#directory047730034661277419">2.4 使用场景</a></li>-->
+<!--                </ul>-->
+<!--              </li>-->
+<!--            </ul>-->
+          </div>
+        </div>
 
 
     <div ref="outline" id="directory-content"
@@ -186,6 +186,7 @@
           footerStatement: {},
           category: {},
         },
+        outline:""
       }
     },
     mounted() {
@@ -232,8 +233,11 @@
               //_lutePath:"",
               mode: "dark",
               after:()=>{
-                let html = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline)
-                // console.log(html)
+                // this.outline = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline)
+                // console.log(this.outline)
+
+
+
               }
             })
             //VditorPreview.highlightRender('IHljs',this.$refs.article_main)
