@@ -7,7 +7,6 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
   ? process.env.VUE_APP_STATIC_PATH
   : '/',
-  integrity:true,
   outputDir:'resources',
   pluginOptions: {
     i18n: {
