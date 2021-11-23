@@ -155,6 +155,7 @@
     },
     methods: {
       handlePage(page) {
+        window.scrollTo(0, 0)
         this.currPage = page
         this.$router.push({path: "/", query: {page: page}})
         this.postArticleList()
@@ -165,9 +166,9 @@
         })
       },
       postArticleList() {
-        window.scrollTo(0, 0)
+
         // this.total = 0
-        this.articleList = []
+        //this.articleList = []
         let params = {
           pageNo: this.currPage,
           pageSize: 10,
