@@ -5,8 +5,10 @@ const path = require('path')
 module.exports = {
   lintOnSave: false,
   publicPath: process.env.NODE_ENV === 'production'
-  ? '/web/'
+  ? process.env.VUE_APP_STATIC_PATH
   : '/',
+  integrity:true,
+  outputDir:'resources',
   pluginOptions: {
     i18n: {
       locale: 'en',
