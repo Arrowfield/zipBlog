@@ -150,12 +150,13 @@
           },
         */],
         total: 0,
-        currPage:1
+        currPage: 1
       }
     },
     methods: {
-      handlePage(page){
+      handlePage(page) {
         this.currPage = page
+        this.$router.push({path: "/", query: {page: page}})
         this.postArticleList()
       },
       postArchiveList() {
@@ -164,7 +165,7 @@
         })
       },
       postArticleList() {
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
         // this.total = 0
         this.articleList = []
         let params = {
@@ -196,13 +197,17 @@
       }
     },
     mounted() {
+
+      if(this.$route.query.page > 0){
+        this.currPage = this.$route.query.page
+      }
       this.postArticleList()
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .index-page-nav{
+  .index-page-nav {
     background: transparent;
     box-shadow: none;
   }

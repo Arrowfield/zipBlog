@@ -1,7 +1,9 @@
 <template>
   <div class="page-nav" v-if="total > pageSize">
     <button v-show="maxPageNum > 10" :disabled="currPage === 1" @click="prevPage"><<</button>
-    <button  v-for="(item,i) in nums" :class="{active:item === currPage,'no-num':typeof item === 'string'}" @click="changePage(item)">{{item}}</button>
+    <button
+      v-for="(item,i) in nums"
+      :class="{active:item == currPage,'no-num':typeof item === 'string'}" @click="changePage(item)">{{item}}</button>
     <button v-show="maxPageNum > 10" :disabled="currPage === maxPageNum" @click="nextPage">>></button>
     <input v-show="maxPageNum > 10" v-model="value" type="text" @blur="jumpPage"/>
   </div>
@@ -15,7 +17,7 @@
         type: [Number, String],
         default: 0
       },
-      currPage: [Number],
+      currPage: [Number,String],
       pageSize: {
         type: Number,
         default: 10
