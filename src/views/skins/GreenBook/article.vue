@@ -132,33 +132,33 @@
 
 
     <!-- 目录 -->
-        <div  id="directory-content" class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
-          <div id="directory" >
-<!--            <ul>-->
-<!--              <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
-<!--              <li><a href="#directory047730034661277412">2 使用方法</a>-->
-<!--                <ul>-->
-<!--                  <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>-->
-<!--                  <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>-->
+    <div id="directory-content" class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
+      <div id="directory" v-html="outline">
 <!--                    <ul>-->
-<!--                      <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>-->
-<!--                      <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>-->
-<!--                      <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>-->
+<!--                      <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
+<!--                      <li><a href="#directory047730034661277412">2 使用方法</a>-->
+<!--                        <ul>-->
+<!--                          <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>-->
+<!--                          <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>-->
+<!--                            <ul>-->
+<!--                              <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>-->
+<!--                              <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>-->
+<!--                              <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>-->
+<!--                            </ul>-->
+<!--                          </li>-->
+<!--                          <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>-->
+<!--                          <li><a href="#directory047730034661277419">2.4 使用场景</a></li>-->
+<!--                        </ul>-->
+<!--                      </li>-->
 <!--                    </ul>-->
-<!--                  </li>-->
-<!--                  <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>-->
-<!--                  <li><a href="#directory047730034661277419">2.4 使用场景</a></li>-->
-<!--                </ul>-->
-<!--              </li>-->
-<!--            </ul>-->
-          </div>
-        </div>
-
-
-    <div ref="outline" id="directory-content"
-         class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
-
+      </div>
     </div>
+
+
+        <div ref="outline"
+             class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
+
+        </div>
 
 
   </layout-slot>
@@ -173,6 +173,8 @@
 
   import VditorPreview from 'vditor/dist/method.min'
 
+
+
   export default {
     name: "vue-article",
     components: {Message, LayoutSlot},
@@ -186,7 +188,7 @@
           footerStatement: {},
           category: {},
         },
-        outline:""
+        outline: ""
       }
     },
     mounted() {
@@ -202,6 +204,45 @@
       // Prism.plugins.toolbar.hook({element:document.body})
     },
     methods: {
+
+      getCatalog(textHtml) {
+        let converter = document.createElement("DIV")
+        converter.innerHTML = textHtml
+        let elements = converter.getElementsByTagName('*')
+        let h_list = []
+        for (let i = 0; i < elements.length; i++) {
+          let item = elements[i]
+          if (item.tagName.substr(0, 1).toUpperCase() === 'H') {
+            let id = item.getAttribute('id')
+            if (!id) {
+              id = 'header-' + i
+              item.setAttribute('id', id)
+            }
+
+            let flag = Number(item.tagName.substr(1, 1))
+            if (item.innerText.trim()) {
+              h_list.push({
+                id: id,
+                tag: item.tagName,
+                text: item.innerText.replace(/\s/g, ""),
+                level: Number(item.tagName.substr(1, 1)),
+                children: []
+              })
+            }
+
+          }
+        }
+        // 生成标题等级
+        // if (!h_list.some(item => item.level == 1)) {
+        //   h_list.forEach((item) => {
+        //     item.level--
+        //   })
+        // }
+        //this.catalogList = h_list
+        console.log(h_list, converter)
+        return converter.innerHTML
+      },
+
       getArticleDetail() {
         let params = {
           id: this.id
@@ -232,12 +273,13 @@
             VditorPreview.preview(this.$refs.article_main, article.articleContent, {
               //_lutePath:"",
               mode: "dark",
-              after:()=>{
-                // this.outline = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline)
+              after: () => {
+                let reg = new RegExp("<svg(.*?)>(.*?)</svg>",'ig')
+                this.outline = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline).replace(reg,"")
                 // console.log(this.outline)
 
-
-
+                console.log(this.outline)
+                //this.getCatalog(this.$refs.article_main.innerHTML)
               }
             })
             //VditorPreview.highlightRender('IHljs',this.$refs.article_main)
