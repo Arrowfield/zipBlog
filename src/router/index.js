@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 import changePageTitle from '../utils/changePageTitle'
 import greenBook from "./greenBook";
-import nexmoe from "./nexmoe";
+// import nexmoe from "./nexmoe";
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
