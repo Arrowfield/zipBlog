@@ -168,7 +168,7 @@
       postArticleList() {
 
         // this.total = 0
-        //this.articleList = []
+        this.articleList = []
         let params = {
           pageNo: this.currPage,
           pageSize: 10,

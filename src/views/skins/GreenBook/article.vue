@@ -3,9 +3,9 @@
 
     <!-- 非移动端展示 -->
     <div class="post-header-thumb  bg-orange"
-         style="background-image:url(https://cdn.rawchen.com/2021/04/onedrive/00.jpg);">
+         :style="{backgroundImage:`url(${articleDetail.src})`}">
       <div class="post-header-thumb-op"
-           style="background-image:url(https://cdn.rawchen.com/2021/04/onedrive/00.jpg);"></div>
+           :style="{backgroundImage:`url(${articleDetail.src})`}"></div>
       <div class="post-header-thumb-cover">
         <div class="post-header-thumb-container">
           <div class="post-header-thumb-title">
@@ -30,7 +30,7 @@
       </div>
     </div>
     <!-- 文章主体 -->
-    <article class="main-content post-page" itemscope="" itemtype="http://schema.org/Article">
+    <article ref="article_body" class="main-content post-page" itemscope="" itemtype="http://schema.org/Article">
 
       <!-- mobile -->
       <div class="post-header">
@@ -57,6 +57,8 @@
         <p class="post-tags">
           <a v-for="item of articleDetail.tags" href="https://rawchen.com/tag/OneDrive/">{{ item.name }}</a>
         </p>
+
+
         <!-- body start -->
         <div ref="article_main" v-html="articleDetail.body"></div>
         <!-- body end -->
@@ -132,33 +134,33 @@
 
 
     <!-- 目录 -->
-    <div id="directory-content" class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
+    <div ref="outline" id="directory-content" class="directory-content initial  unpinned">
       <div id="directory" v-html="outline">
-<!--                    <ul>-->
-<!--                      <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
-<!--                      <li><a href="#directory047730034661277412">2 使用方法</a>-->
-<!--                        <ul>-->
-<!--                          <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>-->
-<!--                          <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>-->
-<!--                            <ul>-->
-<!--                              <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>-->
-<!--                              <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>-->
-<!--                              <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>-->
-<!--                            </ul>-->
-<!--                          </li>-->
-<!--                          <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>-->
-<!--                          <li><a href="#directory047730034661277419">2.4 使用场景</a></li>-->
-<!--                        </ul>-->
-<!--                      </li>-->
-<!--                    </ul>-->
+        <!--        <ul>-->
+        <!--          <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
+        <!--          <li><a href="#directory047730034661277412">2 使用方法</a>-->
+        <!--            <ul>-->
+        <!--              <li><a href="#directory047730034661277413">2.1 定义Interceptor实现类</a></li>-->
+        <!--              <li><a href="#directory047730034661277414">2.2 实现HandlerInterceptor接口</a>-->
+        <!--                <ul>-->
+        <!--                  <li><a href="#directory047730034661277415">2.2.1 preHandle</a></li>-->
+        <!--                  <li><a href="#directory047730034661277416">2.2.2 postHandle</a></li>-->
+        <!--                  <li><a href="#directory047730034661277417">2.2.3 afterCompletion</a></li>-->
+        <!--                </ul>-->
+        <!--              </li>-->
+        <!--              <li><a href="#directory047730034661277418">2.3 实现WebRequestInterceptor</a></li>-->
+        <!--              <li><a href="#directory047730034661277419">2.4 使用场景</a></li>-->
+        <!--            </ul>-->
+        <!--          </li>-->
+        <!--        </ul>-->
       </div>
     </div>
 
 
-        <div ref="outline"
-             class="directory-content initial headroom--not-bottom headroom--not-top unpinned">
+    <!--        <div ref="outline"-->
+    <!--             class="directory-content initial headroom&#45;&#45;not-bottom headroom&#45;&#45;not-top unpinned">-->
 
-        </div>
+    <!--        </div>-->
 
 
   </layout-slot>
@@ -172,7 +174,6 @@
   import {getArticleById} from "@/api/home";
 
   import VditorPreview from 'vditor/dist/method.min'
-
 
 
   export default {
@@ -196,51 +197,64 @@
       // this.$nextTick(() => {
       //   Prism.highlightAll()
       // })
-
+      new Headroom(this.$refs.outline, {
+        offset: this.$refs.article_body.offsetTop,
+        tolerance: 0,
+        classes: {initial: "headroom", pinned: "slideDown", unpinned: "slideUp"}
+      }).init();
       this.getArticleDetail()
-
       // console.log(Prism.plugins)
-
       // Prism.plugins.toolbar.hook({element:document.body})
     },
     methods: {
-
       getCatalog(textHtml) {
         let converter = document.createElement("DIV")
         converter.innerHTML = textHtml
         let elements = converter.getElementsByTagName('*')
-        let h_list = []
+        let h_list = [], html = `<ul>`, serial = 0, flag = 0,num = {},serial1 = 0
         for (let i = 0; i < elements.length; i++) {
           let item = elements[i]
           if (item.tagName.substr(0, 1).toUpperCase() === 'H') {
             let id = item.getAttribute('id')
-            if (!id) {
-              id = 'header-' + i
-              item.setAttribute('id', id)
-            }
-
-            let flag = Number(item.tagName.substr(1, 1))
-            if (item.innerText.trim()) {
-              h_list.push({
-                id: id,
-                tag: item.tagName,
-                text: item.innerText.replace(/\s/g, ""),
-                level: Number(item.tagName.substr(1, 1)),
+            let h_serial = item.tagName.substr(1, 1)
+            if (h_serial == 1) {
+              serial++
+              serial1 = 0
+              num[serial] = {
+                inner:`<a href="#${id}">${serial} ${item.innerText.replace(/\s/g, "")}</a>`,
+                children : []
+              }
+            }else if(h_serial == 2){
+              serial1++
+              num[serial].children.push({
+                inner:`<a href="#${id}">${serial}.${serial1} ${item.innerText.replace(/\s/g, "")}</a>`,
                 children: []
               })
-            }
+            }else if(h_serial == 3){
 
+            }
           }
         }
-        // 生成标题等级
-        // if (!h_list.some(item => item.level == 1)) {
-        //   h_list.forEach((item) => {
-        //     item.level--
-        //   })
-        // }
-        //this.catalogList = h_list
-        console.log(h_list, converter)
-        return converter.innerHTML
+
+
+        for(let key in num){
+          if(num[key].children.length == 0) {
+            html += `<li>${num[key].inner}</li>`
+          }else{
+            html += `<li>${num[key].inner}`
+            let temp = `<ul>`
+            for(let item of num[key].children){
+              temp += `<li>${item.inner}</li>`
+            }
+            temp += `</ul></li>`
+            html += temp
+          }
+        }
+
+
+        html += `</ul>`
+        console.log(num)
+        return html
       },
 
       getArticleDetail() {
@@ -274,12 +288,9 @@
               //_lutePath:"",
               mode: "dark",
               after: () => {
-                let reg = new RegExp("<svg(.*?)>(.*?)</svg>",'ig')
-                this.outline = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline).replace(reg,"")
-                // console.log(this.outline)
-
-                console.log(this.outline)
-                //this.getCatalog(this.$refs.article_main.innerHTML)
+                // let reg = new RegExp("<svg(.*?)>(.*?)</svg>",'ig')
+                // this.outline = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline).replace(reg,"")
+                this.outline = this.getCatalog(this.$refs.article_main.innerHTML)
               }
             })
             //VditorPreview.highlightRender('IHljs',this.$refs.article_main)
