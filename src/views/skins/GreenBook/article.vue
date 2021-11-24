@@ -211,7 +211,7 @@
         let converter = document.createElement("DIV")
         converter.innerHTML = textHtml
         let elements = converter.getElementsByTagName('*')
-        let h_list = [], html = `<ul>`, serial = 0, flag = 0,num = {},serial1 = 0
+        let h_list = [], html = `<ul level="1">`, serial = 0, flag = 0,num = {},serial1 = 0
         for (let i = 0; i < elements.length; i++) {
           let item = elements[i]
           if (item.tagName.substr(0, 1).toUpperCase() === 'H') {
@@ -242,7 +242,7 @@
             html += `<li>${num[key].inner}</li>`
           }else{
             html += `<li>${num[key].inner}`
-            let temp = `<ul>`
+            let temp = `<ul level="2">`
             for(let item of num[key].children){
               temp += `<li>${item.inner}</li>`
             }
@@ -289,8 +289,12 @@
             }
 
             VditorPreview.preview(this.$refs.article_main, article.articleContent, {
-              //_lutePath:"",
-              mode: "dark",
+              _lutePath:"http://120.78.171.206:8249/",
+              hljs:{
+                enable:true,
+                style:"dracula",
+                lineNumber:true
+              },
               after: () => {
                 // let reg = new RegExp("<svg(.*?)>(.*?)</svg>",'ig')
                 // this.outline = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline).replace(reg,"")
