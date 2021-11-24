@@ -134,7 +134,7 @@
 
 
     <!-- 目录 -->
-    <div ref="outline" id="directory-content" class="directory-content initial  unpinned">
+    <div v-show="outline" ref="outline" id="directory-content" class="directory-content initial  unpinned">
       <div id="directory" v-html="outline">
         <!--        <ul>-->
         <!--          <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
@@ -253,7 +253,11 @@
 
 
         html += `</ul>`
-        console.log(num)
+
+        if(Object.keys(num).length === 0){
+          html = ""
+        }
+
         return html
       },
 
@@ -291,6 +295,7 @@
                 // let reg = new RegExp("<svg(.*?)>(.*?)</svg>",'ig')
                 // this.outline = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline).replace(reg,"")
                 this.outline = this.getCatalog(this.$refs.article_main.innerHTML)
+                console.log(this.outline)
               }
             })
             //VditorPreview.highlightRender('IHljs',this.$refs.article_main)
