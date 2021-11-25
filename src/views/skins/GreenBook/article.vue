@@ -187,7 +187,7 @@
 
 
   import hljs from 'highlight.js'
-  import 'highlight.js/styles/vs.css'
+  import 'highlight.js/styles/a11y-dark.css'
 
 
   export default {
@@ -330,17 +330,17 @@
 
 
             VditorPreview.preview(this.$refs.article_main, article.articleContent, {
-              _lutePath: "http://120.78.171.206:8249/",
               hljs: {
-                enable: false,
-                // style: "monokai",
-                // lineNumber: true
+                enable: true,
+                style: "a11y-dark",
+                lineNumber: true
               },
               after: () => {
                 this.outline = this.getCatalog(this.$refs.article_main.innerHTML)
                 if (decodeURIComponent(this.$route.hash)) {
                   this.anchorPoint(this.$route.hash.replace("#", ""))
                 }
+
                 let lis = this.$refs.article_main.querySelectorAll("pre")
 
                 lis.forEach((item)=>{
