@@ -134,7 +134,7 @@
 
 
     <!-- 目录 -->
-    <div v-show="outline" ref="outline" id="directory-content" class="directory-content initial  unpinned">
+    <div v-show="Object.keys(outline).length > 0" ref="outline" id="directory-content" class="directory-content initial  unpinned">
       <div id="directory">
         <ul>
           <li v-for="item of outline">
@@ -328,7 +328,7 @@
               _lutePath: "http://120.78.171.206:8249/",
               hljs: {
                 enable: true,
-                style: "dracula",
+                style: "monokai",
                 lineNumber: true
               },
               after: () => {

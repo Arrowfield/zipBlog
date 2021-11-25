@@ -29,8 +29,6 @@ const router = new VueRouter({
   linkActiveClass: 'active',
   base: process.env.BASE_URL,
   scrollBehavior (to, from, savedPosition) {
-    // console.log(to.hash)
-
     if (to.hash) {
       return {
         selector: decodeURIComponent(to.hash)
