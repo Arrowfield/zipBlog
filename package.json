@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "highlight.js": "^11.3.1",
     "js-cookie": "^3.0.1",
     "prismjs": "^1.25.0",
     "valine": "^1.4.14",

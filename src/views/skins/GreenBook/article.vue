@@ -186,6 +186,10 @@
   import VditorPreview from 'vditor/dist/method.min'
 
 
+  import hljs from 'highlight.js'
+  import 'highlight.js/styles/vs.css'
+
+
   export default {
     name: "vue-article",
     components: {Message, LayoutSlot},
@@ -328,47 +332,32 @@
             VditorPreview.preview(this.$refs.article_main, article.articleContent, {
               _lutePath: "http://120.78.171.206:8249/",
               hljs: {
-                enable: true,
-                style: "monokai",
-                lineNumber: true
+                enable: false,
+                // style: "monokai",
+                // lineNumber: true
               },
               after: () => {
-                // let reg = new RegExp("<svg(.*?)>(.*?)</svg>",'ig')
-                // this.outline = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline).replace(reg,"")
                 this.outline = this.getCatalog(this.$refs.article_main.innerHTML)
-                // console.log(this.outline)
-                // let hrefs = document.querySelectorAll('ul li')
-                // console.log(hrefs)
-
                 if (decodeURIComponent(this.$route.hash)) {
                   this.anchorPoint(this.$route.hash.replace("#", ""))
                 }
+                let lis = this.$refs.article_main.querySelectorAll("pre")
+
+                lis.forEach((item)=>{
+                  //hljs.highlightAuto(item.innerHTML, ["shell"])
+                  hljs.highlightBlock(item)
+                })
 
 
-                //highlightRender(Object.assign({}, vditor.options.preview.hljs), previewPanel, vditor.options.cdn);
 
 
 
-
-
-                let code = this.$refs.article_main.querySelectorAll('code')
-                console.log()
-
-                console.log(VditorPreview.codeRender)
-
-                VditorPreview.codeRender(this.$refs.article_main)
-
-                // VditorPreview.highlightRender(Object.assign({}, {
-                //
-                //   style: "monokai",
-                //   lineNumber: true
-                // }), code, 'http://localhost:9000/')
 
               }
             })
-            //VditorPreview.highlightRender('IHljs',this.$refs.article_main)
+
           }
-          // console.log(this.articleDetail)
+
         })
       },
     }
