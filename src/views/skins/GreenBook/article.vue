@@ -135,7 +135,17 @@
 
     <!-- 目录 -->
     <div v-show="outline" ref="outline" id="directory-content" class="directory-content initial  unpinned">
-      <div id="directory" v-html="outline">
+      <div id="directory">
+        <ul>
+          <li v-for="item of outline">
+            <a @click="anchorPoint(item.id)" href="javascript:">{{ item.inner }}</a>
+            <ul v-if="item.children.length > 0">
+              <li v-for="tmp of item.children">
+                <a @click="anchorPoint(tmp.id)" href="javascript:">{{ tmp.inner }}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
         <!--        <ul>-->
         <!--          <li><a href="#directory047730034661277411">1 SpringMVC拦截器</a></li>-->
         <!--          <li><a href="#directory047730034661277412">2 使用方法</a>-->
@@ -205,13 +215,27 @@
       this.getArticleDetail()
       // console.log(Prism.plugins)
       // Prism.plugins.toolbar.hook({element:document.body})
+
+
     },
     methods: {
+      anchorPoint(id) {
+        this.$router.push(`${this.$route.path}#${id}`)
+        let base = document.getElementsByClassName('main-content')[0].offsetTop
+        let target = document.getElementById(id)
+        if(target) {
+          window.scrollTo({
+            top: target.offsetTop + base,
+            behavior: "smooth"
+          })
+        }
+      },
       getCatalog(textHtml) {
         let converter = document.createElement("DIV")
         converter.innerHTML = textHtml
+        //console.log(this.$route.path)
         let elements = converter.getElementsByTagName('*')
-        let h_list = [], html = `<ul level="1">`, serial = 0, flag = 0,num = {},serial1 = 0
+        let html = `<ul level="1">`, serial = 0, flag = 0, num = {}, serial1 = 0
         for (let i = 0; i < elements.length; i++) {
           let item = elements[i]
           if (item.tagName.substr(0, 1).toUpperCase() === 'H') {
@@ -221,44 +245,56 @@
               serial++
               serial1 = 0
               num[serial] = {
-                inner:`<a href="#${id}">${serial} ${item.innerText.replace(/\s/g, "")}</a>`,
-                children : []
+                inner: `${serial} ${item.innerText.replace(/\s/g, "")}`,
+                children: [],
+                id: item.innerText.replace(/\s/g, "")
               }
-            }else if(h_serial == 2){
+            } else if (h_serial == 2) {
               serial1++
               num[serial].children.push({
-                inner:`<a href="#${id}">${serial}.${serial1} ${item.innerText.replace(/\s/g, "")}</a>`,
-                children: []
+                inner: `${serial}.${serial1} ${item.innerText.replace(/\s/g, "")}`,
+                children: [],
+                id: item.innerText.replace(/\s/g, "")
               })
-            }else if(h_serial == 3){
+            } else if (h_serial == 3) {
 
             }
           }
         }
 
+        // for (let key in num) {
+        //   if (num[key].children.length == 0) {
+        //     html += `<li>${num[key].inner}</li>`
+        //   } else {
+        //     html += `<li>${num[key].inner}`
+        //     let temp = `<ul level="2">`
+        //     for (let item of num[key].children) {
+        //       temp += `<li>${item.inner}</li>`
+        //     }
+        //     temp += `</ul></li>`
+        //     html += temp
+        //   }
+        // }
+        //
+        //
+        // html += `</ul>`
+        //
+        // if (Object.keys(num).length === 0) {
+        //   html = ""
+        // }
+        // // 事件绑定
+        //
+        // let targetElement = document.createElement("DIV")
+        // targetElement.innerHTML = html
+        // let list = targetElement.getElementsByTagName("LI")
+        // for (let item of list) {
+        //   console.log(item)
+        //   item.onclick = function () {
+        //     console.log(1231)
+        //   }
+        // }
 
-        for(let key in num){
-          if(num[key].children.length == 0) {
-            html += `<li>${num[key].inner}</li>`
-          }else{
-            html += `<li>${num[key].inner}`
-            let temp = `<ul level="2">`
-            for(let item of num[key].children){
-              temp += `<li>${item.inner}</li>`
-            }
-            temp += `</ul></li>`
-            html += temp
-          }
-        }
-
-
-        html += `</ul>`
-
-        if(Object.keys(num).length === 0){
-          html = ""
-        }
-
-        return html
+        return num
       },
 
       getArticleDetail() {
@@ -289,17 +325,23 @@
             }
 
             VditorPreview.preview(this.$refs.article_main, article.articleContent, {
-              _lutePath:"http://120.78.171.206:8249/",
-              hljs:{
-                enable:true,
-                style:"dracula",
-                lineNumber:true
+              _lutePath: "http://120.78.171.206:8249/",
+              hljs: {
+                enable: true,
+                style: "dracula",
+                lineNumber: true
               },
               after: () => {
                 // let reg = new RegExp("<svg(.*?)>(.*?)</svg>",'ig')
                 // this.outline = VditorPreview.outlineRender(this.$refs.article_main, this.$refs.outline).replace(reg,"")
                 this.outline = this.getCatalog(this.$refs.article_main.innerHTML)
-                console.log(this.outline)
+                // console.log(this.outline)
+                // let hrefs = document.querySelectorAll('ul li')
+                // console.log(hrefs)
+
+                if (decodeURIComponent(this.$route.hash)) {
+                  this.anchorPoint(this.$route.hash.replace("#", ""))
+                }
               }
             })
             //VditorPreview.highlightRender('IHljs',this.$refs.article_main)

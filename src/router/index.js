@@ -29,7 +29,13 @@ const router = new VueRouter({
   linkActiveClass: 'active',
   base: process.env.BASE_URL,
   scrollBehavior (to, from, savedPosition) {
-    if (savedPosition) {
+    // console.log(to.hash)
+
+    if (to.hash) {
+      return {
+        selector: decodeURIComponent(to.hash)
+      }
+    } else if (savedPosition) {
       return savedPosition
     } else {
       return { x: 0, y: 0 }
