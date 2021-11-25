@@ -332,7 +332,7 @@
             VditorPreview.preview(this.$refs.article_main, article.articleContent, {
               hljs: {
                 enable: true,
-                style: "a11y-dark",
+                style: "monokai",
                 lineNumber: true
               },
               after: () => {
@@ -341,12 +341,12 @@
                   this.anchorPoint(this.$route.hash.replace("#", ""))
                 }
 
-                let lis = this.$refs.article_main.querySelectorAll("pre")
-
-                lis.forEach((item)=>{
-                  //hljs.highlightAuto(item.innerHTML, ["shell"])
-                  hljs.highlightBlock(item)
-                })
+                // let lis = this.$refs.article_main.querySelectorAll("pre")
+                //
+                // lis.forEach((item)=>{
+                //   //hljs.highlightAuto(item.innerHTML, ["shell"])
+                //   hljs.highlightBlock(item)
+                // })
 
 
 
