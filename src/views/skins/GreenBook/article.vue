@@ -134,7 +134,8 @@
 
 
     <!-- 目录 -->
-    <div v-show="Object.keys(outline).length > 0" ref="outline" id="directory-content" class="directory-content initial  unpinned">
+    <div v-show="Object.keys(outline).length > 0" ref="outline" id="directory-content"
+         class="directory-content initial  unpinned">
       <div id="directory">
         <ul>
           <li v-for="item of outline">
@@ -179,7 +180,6 @@
 <script>
   import LayoutSlot from "./slot/layout-slot";
   import settings from "../../../settings";
-  // import Prism from 'prismjs'
   import Message from "../../../components/Message";
   import {getArticleById} from "@/api/home";
 
@@ -223,7 +223,7 @@
         this.$router.push(`${this.$route.path}#${id}`)
         let base = document.getElementsByClassName('main-content')[0].offsetTop
         let target = document.getElementById(id)
-        if(target) {
+        if (target) {
           window.scrollTo({
             top: target.offsetTop + base,
             behavior: "smooth"
@@ -324,6 +324,7 @@
               body: ""
             }
 
+
             VditorPreview.preview(this.$refs.article_main, article.articleContent, {
               _lutePath: "http://120.78.171.206:8249/",
               hljs: {
@@ -342,6 +343,27 @@
                 if (decodeURIComponent(this.$route.hash)) {
                   this.anchorPoint(this.$route.hash.replace("#", ""))
                 }
+
+
+                //highlightRender(Object.assign({}, vditor.options.preview.hljs), previewPanel, vditor.options.cdn);
+
+
+
+
+
+                let code = this.$refs.article_main.querySelectorAll('code')
+                console.log()
+
+                console.log(VditorPreview.codeRender)
+
+                VditorPreview.codeRender(this.$refs.article_main)
+
+                // VditorPreview.highlightRender(Object.assign({}, {
+                //
+                //   style: "monokai",
+                //   lineNumber: true
+                // }), code, 'http://localhost:9000/')
+
               }
             })
             //VditorPreview.highlightRender('IHljs',this.$refs.article_main)
