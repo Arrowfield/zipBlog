@@ -217,6 +217,12 @@ input, textarea, button, a, select {
     padding-bottom: 0;
   }
 
+  .highlight-ln{
+    user-select: none;
+  }
+
+
+
   //.hljs {
   //  background: white
   //}
