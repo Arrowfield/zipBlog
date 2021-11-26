@@ -168,10 +168,6 @@
     </div>
 
 
-    <!--        <div ref="outline"-->
-    <!--             class="directory-content initial headroom&#45;&#45;not-bottom headroom&#45;&#45;not-top unpinned">-->
-
-    <!--        </div>-->
 
 
   </layout-slot>
@@ -183,11 +179,11 @@
   import Message from "../../../components/Message";
   import {getArticleById} from "@/api/home";
 
-  import VditorPreview from 'vditor/dist/method.min'
+  //import VditorPreview from 'vditor/dist/method.min'
 
 
-  import hljs from 'highlight.js'
-  import 'highlight.js/styles/a11y-dark.css'
+  // import hljs from 'highlight.js'
+  // import 'highlight.js/styles/monokai.css'
 
 
   export default {
@@ -203,7 +199,7 @@
           footerStatement: {},
           category: {},
         },
-        outline: ""
+        outline: []
       }
     },
     mounted() {
@@ -224,15 +220,17 @@
     },
     methods: {
       anchorPoint(id) {
+        console.log(id)
+
+        // let base = document.getElementsByClassName('main-content')[0].offsetTop
+        // let target = document.getElementById(id)
+        // if (target) {
+        //   window.scrollTo({
+        //     top: target.offsetTop + base,
+        //     behavior: "smooth"
+        //   })
+        // }
         this.$router.push(`${this.$route.path}#${id}`)
-        let base = document.getElementsByClassName('main-content')[0].offsetTop
-        let target = document.getElementById(id)
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop + base,
-            behavior: "smooth"
-          })
-        }
       },
       getCatalog(textHtml) {
         let converter = document.createElement("DIV")
@@ -325,36 +323,39 @@
                 name: item,
                 url: ""
               })),
-              body: ""
+              body: article.articleContent
             }
 
+            //console.log()
 
-            VditorPreview.preview(this.$refs.article_main, article.articleContent, {
-              hljs: {
-                enable: true,
-                style: "monokai",
-                lineNumber: true
-              },
-              after: () => {
-                this.outline = this.getCatalog(this.$refs.article_main.innerHTML)
-                if (decodeURIComponent(this.$route.hash)) {
-                  this.anchorPoint(this.$route.hash.replace("#", ""))
-                }
+            this.outline = this.getCatalog(article.articleContent)
 
-                // let lis = this.$refs.article_main.querySelectorAll("pre")
-                //
-                // lis.forEach((item)=>{
-                //   //hljs.highlightAuto(item.innerHTML, ["shell"])
-                //   hljs.highlightBlock(item)
-                // })
-
-
-
-
-
-
-              }
-            })
+            // VditorPreview.preview(this.$refs.article_main, article.articleContent, {
+            //   hljs: {
+            //     enable: true,
+            //     style: "monokai",
+            //     lineNumber: true
+            //   },
+            //   after: () => {
+            //     this.outline = this.getCatalog(this.$refs.article_main.innerHTML)
+            //     if (decodeURIComponent(this.$route.hash)) {
+            //       this.anchorPoint(this.$route.hash.replace("#", ""))
+            //     }
+            //
+            //     // let lis = this.$refs.article_main.querySelectorAll("pre")
+            //     //
+            //     // lis.forEach((item)=>{
+            //     //   //hljs.highlightAuto(item.innerHTML, ["shell"])
+            //     //   hljs.highlightBlock(item)
+            //     // })
+            //
+            //
+            //
+            //
+            //
+            //
+            //   }
+            // })
 
           }
 
